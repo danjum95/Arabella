@@ -2,6 +2,7 @@ package ar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +16,7 @@ public class LoginController {
     private UserRepository userRepository;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam Map<String,String> loginParam)
+    public String login(@RequestParam Map<String,String> loginParam, Model model)
     {
         Iterable<User> userDB = userRepository.findAll();
         for(User user:userRepository.findAll())
@@ -26,6 +27,7 @@ public class LoginController {
                     return  "ok";
             }
         }
+        model.addAttribute("error","Brak takiego uzytkownika lub niepoprawne haslo");
         return "nok";
     }
 
