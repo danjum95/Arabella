@@ -12,12 +12,14 @@ import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { HeaderComponent } from './header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersComponent }
+  { path: 'allUsers', component: UsersComponent },
+  { path: 'myCalendar', component: CalendarComponent }
 ];
 
 
@@ -29,6 +31,7 @@ const routes: Routes = [
     UsersComponent,
     HeaderComponent,
     WelcomeComponent,
+    CalendarComponent,
   ],
   imports: [RouterModule.forRoot(routes),
     BrowserModule,
