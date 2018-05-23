@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { CalendarModule } from 'angular-calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
-
-import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -35,7 +35,8 @@ const routes: Routes = [
   ],
   imports: [RouterModule.forRoot(routes),
     BrowserModule,
-    FormsModule
+    FormsModule,
+    CalendarModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,9 +20,12 @@
     "@angular/platform-browser": "^6.0.0",
     "@angular/platform-browser-dynamic": "^6.0.0",
     "@angular/router": "^6.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^2.0.0",
+    "@types/dhtmlxscheduler": "^4.3.36",
     "angular-calendar": "^0.25.2",
     "angular-material-calendar": "^0.2.14",
     "core-js": "^2.5.4",
+    "dhtmlx-scheduler": "^5.0.1",
     "fullcalendar": "^3.9.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

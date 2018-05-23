@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CalendarModule } from 'angular-calendar';
 import { CalendarComponent } from './calendar.component';
 
 describe('CalendarComponent', () => {
