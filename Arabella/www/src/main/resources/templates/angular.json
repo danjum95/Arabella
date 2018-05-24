@@ -25,7 +25,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/dhtmlx-scheduler/codebase/sources/locale/recurring/locale_recurring_pl.js",
+			"node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.js",
+			"node_modules/dhtmlx-scheduler/codebase/sources/locale/locale_pl.js"]
           },
           "configurations": {
             "production": {
