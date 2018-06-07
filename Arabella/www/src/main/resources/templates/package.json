@@ -27,8 +27,10 @@
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
     "dhtmlx-scheduler": "^5.0.1",
+    "font-awesome": "^4.7.0",
     "fullcalendar": "^3.9.0",
-    "rxjs": "^6.0.0",
+    "rxjs": "^6.2.0",
+    "rxjs-compat": "^6.2.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
