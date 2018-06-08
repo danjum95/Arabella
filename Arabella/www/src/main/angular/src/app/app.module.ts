@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -39,7 +39,7 @@ const routes: Routes = [
     HttpModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
