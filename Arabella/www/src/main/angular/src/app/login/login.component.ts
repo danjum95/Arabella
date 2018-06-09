@@ -35,8 +35,6 @@ export class LoginComponent implements OnInit {
     .subscribe(data => {
         console.log(data.token);
       });
-    this._cookieService.put('test', "data.token");
-    console.log("Set Test Cookie as Test");
   }
 }
  
