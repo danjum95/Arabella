@@ -12,13 +12,16 @@ export class LoginComponent implements OnInit {
   usersCount: number = 4;
   btnText: string = 'Zaloguj';
   goalText: string = 'Podaj swój e-mail';
+  cookie : string;
   
   constructor(private http: HttpClient, private _cookieService:CookieService) { }
  
   ngOnInit() {
-
   }
- 
+  setCookie()
+  {
+  	this._cookieService.put('cookie',this.cookie);
+  }
   sendData() {
 
     interface LoginResponse {
@@ -27,13 +30,14 @@ export class LoginComponent implements OnInit {
     var mail = ((document.getElementById("email") as HTMLInputElement).value);
     let data = { email: mail };
     let headers = new HttpHeaders();
-    let log = "";
     headers.append('Content-Type', 'application/json');
  
     this.http.post<LoginResponse>('http://orlean.ski:8090/api/login', data, { headers })
-    .subscribe(data => { log = data.token;
-        console.log(log);
+    .subscribe(data => { this.cookie = data.token;
+        console.log(this.cookie);
       });
+
   }
+
 }
  
