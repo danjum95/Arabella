@@ -22,13 +22,18 @@ export class LoginComponent implements OnInit {
   {
   	this._cookieService.put('cookie',this.cookie);
   }
+  deleteCookie()
+  {
+  	 this._cookieService.remove('cookie');
+  }
   sendData() {
 
     interface LoginResponse {
       token: string;
     }
     var mail = ((document.getElementById("email") as HTMLInputElement).value);
-    let data = { email: mail };
+    var pass = ((document.getElementById("password") as HTMLInputElement).value);
+    let data = { email: mail, password: pass };
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
  
