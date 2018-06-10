@@ -19,7 +19,7 @@
 								<label for="name" class="col-md-4 control-label">PESEL</label>
 
 								<div class="col-md-6">
-									<input id="name" type="pesel" class="form-control" name="name" value="" required autofocus>
+									<input id="pesel" type="pesel" class="form-control" name="name" value="" required autofocus>
 
 								</div>
 							
@@ -52,16 +52,16 @@
 
 							<label for="listing" class="col-md-4 control-label"></label>
 								<div class="col-md-4 control-label">
-					              <select class="form-control" name="list">
+					              <select class="form-control" id="list" name="list">
 					                <option hidden>Wybierz rodzaj konta</option>
 					                <option value ="1">OSK</option>
-					            	<option value ="1">Instruktor</option>
-					                <option value ="1">Kursant</option>
+					            	<option value ="2">Instruktor</option>
+					                <option value ="3">Kursant</option>
 					              </select>
 					              </div>
 							<div class="form-group">
 								<div class="col-md-8 col-md-offset-4">
-									<button type="submit" class="btn btn-primary">
+									<button type="submit" class="btn btn-primary" (click)="sendData()" >
 										Zarejestruj
 									</button>
 								</div>
