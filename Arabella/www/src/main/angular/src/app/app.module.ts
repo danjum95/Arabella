@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UsersComponent } from './users/users.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'allUsers', component: UsersComponent },
-  { path: 'myCalendar', component: CalendarComponent }
+  { path: 'myCalendar', component: CalendarComponent },
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({
@@ -32,6 +34,7 @@ const routes: Routes = [
     RegisterComponent,
     UsersComponent,
     WelcomeComponent,
+    DashboardComponent,
   ],
   imports: [RouterModule.forRoot(routes),
     BrowserModule,

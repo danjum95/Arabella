@@ -39,17 +39,17 @@ export class RegisterComponent implements OnInit {
     var rpass = ((document.getElementById("chkpassword") as HTMLInputElement).value);
     var psl = ((document.getElementById("pesel") as HTMLInputElement).value);
     var rola = ((document.getElementById("list") as HTMLInputElement).value);
-
+    let data = {};
     if (pass == rpass)
     {
-    let data = {name: imie, surname: nazwisko, email: mail, password: pass, pesel: psl, accountType: rola};
+    	data = {name: imie, surname: nazwisko, email: mail, password: pass, pesel: psl, accountType: rola};
     }
 
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
  
     this.http.post('http://orlean.ski:8090/api/register', data, { headers })
-    .subscribe(data => { console.log("ok");
+    .subscribe(data => { console.log(rola);
       });
 
   }

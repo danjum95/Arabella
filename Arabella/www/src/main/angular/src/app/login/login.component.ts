@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'angular2-cookie/core';
- 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +13,9 @@ export class LoginComponent implements OnInit {
   btnText: string = 'Zaloguj';
   goalText: string = 'Podaj swój e-mail';
   cookie : string;
-  
+
+
+
   constructor(private http: HttpClient, private _cookieService:CookieService) { }
  
   ngOnInit() {
@@ -41,7 +43,6 @@ export class LoginComponent implements OnInit {
     .subscribe(data => { this.cookie = data.token;
         console.log(this.cookie);
       });
-
   }
 
 }

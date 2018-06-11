@@ -32,7 +32,7 @@ export class UsersComponent implements OnInit {
     let data = { "cos": "waznego"};
     this.http.post<ListingUsers>('http://orlean.ski:8090/api/users', data, { headers })
     .subscribe(data => {
-        console.log(this.surname = data[0].surname,this.name = data[0].name,this.id = data[0].id,this.email = data[0].email);
+        	console.log(this.surname =  data[0].surname,this.name = data[0].name,this.id = data[0].id,this.email = data[0].email);
       });
 
   }
