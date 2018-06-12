@@ -1,218 +1,178 @@
 package pl.arabella.user.arabella;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 
-import com.mapbox.android.core.location.LocationEngine;
-import com.mapbox.android.core.location.LocationEngineListener;
-import com.mapbox.android.core.location.LocationEnginePriority;
-import com.mapbox.android.core.location.LocationEngineProvider;
-import com.mapbox.android.core.permissions.PermissionsListener;
-import com.mapbox.android.core.permissions.PermissionsManager;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.annotations.Marker;
-import com.mapbox.mapboxsdk.annotations.MarkerOptions;
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin;
-import com.mapbox.mapboxsdk.plugins.locationlayer.modes.RenderMode;
 
-import java.util.List;
 
-public class MapActivity extends AppCompatActivity implements LocationEngineListener, PermissionsListener {
-    private MapView mapView;
-    // variables for adding location layer
-    private MapboxMap map;
-    private PermissionsManager permissionsManager;
-    private LocationLayerPlugin locationPlugin;
-    private LocationEngine locationEngine;
-    private Location originLocation;
-    //private Location originLocation;
+public class MapActivity extends AppCompatActivity implements LocationListener {
 
-    // variables for adding a marker
-    private Marker customMarker;
-    private LatLng customMarkerCoord;
-    //private LatLng originCoord;
+    public boolean locationInit = false;
+    final static int PERMISSION_ALL = 1;
+    final static String[] PERMISSIONS = {android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION};
+    LocationManager locationManager;
+    WebView webView;
+    //TextView coords;
 
-    
     @Override
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Mapbox.getInstance(this, "pk.eyJ1Ijoia29iYTEwcyIsImEiOiJjamhxY3dkODgwdjEzMzBtcHA3djMxb205In0.HKAuDkau6r1C-4d2OwHHVA");
         setContentView(R.layout.activity_map);
-        mapView = (MapView) findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
-        //BEGIN
-        mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(final MapboxMap mapboxMap) {
+        webView = (WebView)findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.setWebChromeClient(new CustomWebChromeClient());
+        webView.loadUrl("file:///android_asset/www/index.html");
+        //coords = (TextView)findViewById(R.id.tvCoords);
+        //coords.setText(String.valueOf(location.getLatitude()) + " " + String.valueOf(location.getLongitude()));
 
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= 23 && !isPermissionGranted()) {
+            requestPermissions(PERMISSIONS, PERMISSION_ALL);
+        } else requestLocation();
+        if (!isLocationEnabled())
+            showAlert(1);
 
-                map = mapboxMap;
-                enableLocationPlugin();
+    }
 
-                //BEGIN
-                //originCoord = new LatLng(originLocation.getLatitude(), originLocation.getLongitude());
-                mapboxMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(@NonNull LatLng point) {
-                        if (customMarker != null) {
-                            mapboxMap.removeMarker(customMarker);
-                        }
-                        customMarkerCoord = point;
-                        customMarker = mapboxMap.addMarker(new MarkerOptions()
-                                .position(customMarkerCoord)
-                                .title("PUNKT")
-                                .snippet("Tutaj pojechałem w lewo na rondzie")
-                        );
+    class CustomWebChromeClient extends WebChromeClient {
+        private static final String TAG = "CustomWebChromeClient";
 
+        @Override
+        public boolean onConsoleMessage(ConsoleMessage cm) {
+            Log.d(TAG, String.format("%s @ %d: %s", cm.message(),
+                    cm.lineNumber(), cm.sourceId()));
+            return true;
+        }
+    }
 
-                    }
-
-                    ;
-                });
-                //END
-
+    private void callJavaScript(WebView view, String methodName, Object...params){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("javascript:try{");
+        stringBuilder.append(methodName);
+        stringBuilder.append("(");
+        String separator = "";
+        for (Object param : params) {
+            stringBuilder.append(separator);
+            separator = ",";
+            if(param instanceof String){
+                stringBuilder.append("'");
+            }
+            stringBuilder.append(param);
+            if(param instanceof String){
+                stringBuilder.append("'");
             }
 
-            ;
-        });
-        //END
-
-    }
-
-
-    @SuppressWarnings( {"MissingPermission"})
-    private void enableLocationPlugin() {
-        // Check if permissions are enabled and if not request
-        if (PermissionsManager.areLocationPermissionsGranted(this)) {
-            // Create an instance of LOST location engine
-            initializeLocationEngine();
-
-            locationPlugin = new LocationLayerPlugin(mapView, map, locationEngine);
-            locationPlugin.setRenderMode(RenderMode.COMPASS);
-        } else {
-            permissionsManager = new PermissionsManager(this);
-            permissionsManager.requestLocationPermissions(this);
         }
-    }
+        stringBuilder.append(")}catch(error){console.error(error.message);}");
+        final String call = stringBuilder.toString();
+        Log.i("CustomWebChromeClient", "callJavaScript: call="+call);
 
-    @SuppressWarnings( {"MissingPermission"})
-    private void initializeLocationEngine() {
-        LocationEngineProvider locationEngineProvider = new LocationEngineProvider(this);
-        locationEngine = locationEngineProvider.obtainBestLocationEngineAvailable();
-        locationEngine.setPriority(LocationEnginePriority.HIGH_ACCURACY);
-        locationEngine.activate();
-
-        Location lastLocation = locationEngine.getLastLocation();
-        if (lastLocation != null) {
-            originLocation = lastLocation;
-            setCameraPosition(lastLocation);
-        } else {
-            locationEngine.addLocationEngineListener(this);
-        }
-    }
-
-    private void setCameraPosition(Location location) {
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(location.getLatitude(), location.getLongitude()), 13));
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    @Override
-    public void onExplanationNeeded(List<String> permissionsToExplain) {
-
-    }
-
-    @Override
-    public void onPermissionResult(boolean granted) {
-        if (granted) {
-            enableLocationPlugin();
-        } else {
-            finish();
-        }
-    }
-
-    @Override
-    @SuppressWarnings( {"MissingPermission"})
-    public void onConnected() {
-        locationEngine.requestLocationUpdates();
+        view.loadUrl(call);
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        if (location != null) {
-            originLocation = location;
-            setCameraPosition(location);
-            locationEngine.removeLocationEngineListener(this);
+        LatLng myCoordinates = new LatLng(location.getLatitude(), location.getLongitude());
+        if(locationInit == false) {
+            callJavaScript(webView, "updateCurrentPosition", myCoordinates.getLatitude(),  myCoordinates.getLongitude());
+            callJavaScript(webView, "startDrawing");
+            locationInit = true;
+        }
+        else {
+            callJavaScript(webView, "updateCurrentPosition", myCoordinates.getLatitude(), myCoordinates.getLongitude());
         }
     }
 
     @Override
-    @SuppressWarnings( {"MissingPermission"})
-    protected void onStart() {
-        super.onStart();
-        if (locationEngine != null) {
-            locationEngine.requestLocationUpdates();
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
+
+    private void requestLocation() {
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setPowerRequirement(Criteria.POWER_HIGH);
+        String provider = locationManager.getBestProvider(criteria, true);
+        //locationManager.requestLocationUpdates(provider, 10000, 10, this);
+        locationManager.requestLocationUpdates(provider, 0, 0, this);
+    }
+
+    private boolean isLocationEnabled() {
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    private boolean isPermissionGranted() {
+        if (checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED || checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            Log.v("mylog", "Permission is granted");
+            return true;
+        } else {
+            Log.v("mylog", "Permission not granted");
+            return false;
         }
-        if (locationPlugin != null) {
-            locationPlugin.onStart();
+    }
+
+    private void showAlert(final int status) {
+        String message, title, btnText;
+        if (status == 1) {
+            message = "Your Locations Settings is set to 'Off'.\nPlease Enable Location to " +
+                    "use this app";
+            title = "Enable Location";
+            btnText = "Location Settings";
+        } else {
+            message = "Please allow this app to access location!";
+            title = "Permission access";
+            btnText = "Grant";
         }
-        mapView.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (locationEngine != null) {
-            locationEngine.removeLocationUpdates();
-        }
-        if (locationPlugin != null) {
-            locationPlugin.onStop();
-        }
-        mapView.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mapView.onDestroy();
-        if (locationEngine != null) {
-            locationEngine.deactivate();
-        }
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mapView.onLowMemory();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mapView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mapView.onPause();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setCancelable(false);
+        dialog.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(btnText, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        if (status == 1) {
+                            Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(myIntent);
+                        } else
+                            requestPermissions(PERMISSIONS, PERMISSION_ALL);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                        finish();
+                    }
+                });
+        dialog.show();
     }
 
 }

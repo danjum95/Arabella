@@ -1,17 +1,24 @@
 package pl.arabella.user.arabella;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import javax.security.auth.login.LoginException;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -20,10 +27,15 @@ public class RegisterActivity extends AppCompatActivity {
     Button btRegister;
     EditText etFirstName, etLastName, etEmail, etPassword, etPassword2, etPesel;
 
+    RequestQueue queue;
+    String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        queue = Volley.newRequestQueue(this);
 
         openHelper = new DatabaseHelper(this);
         etFirstName = (EditText)findViewById(R.id.etFirstName);
@@ -46,11 +58,46 @@ public class RegisterActivity extends AppCompatActivity {
                 String pesel = etPesel.getText().toString();
 
                 if(validate(fname, lname, email, pass, pass2, pesel).equals("correct")) {
-                    insertdata(fname, lname, pass, email, pesel);
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(getApplicationContext(), "Zarejestrowano!",Toast.LENGTH_LONG).show();
+
+                    url = "http://orlean.ski:8090/api/register";
+                    JSONObject JSON_Params = new JSONObject();
+                    try {
+                        //JSON_Params.put("Content-Type", "application/json");
+                        JSON_Params.put("name", fname);
+                        JSON_Params.put("surname", lname);
+                        JSON_Params.put("email", email);
+                        JSON_Params.put("password", pass);
+                        JSON_Params.put("pesel", pesel);
+                        JSON_Params.put("accountType", "1");
+                    }
+                    catch (JSONException e) { }
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                            (Request.Method.POST, url, JSON_Params, new Response.Listener<JSONObject>() {
+
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Toast.makeText(getApplicationContext(), "Zarejestrowano!",Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, new Response.ErrorListener() {
+
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    // TODO: Handle error
+                                    Toast.makeText(getApplicationContext(), "Błąd zapytania!", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+                    queue.add(jsonObjectRequest);
+
+                    //insertdata(fname, lname, pass, email, pesel);
+                    //Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    //startActivity(intent);
+                    //finish();
                 }
 
                 else {
@@ -88,6 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /*
     public void insertdata(String fname, String lname, String pass, String email, String phone){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.COL_2, fname);
@@ -97,5 +145,5 @@ public class RegisterActivity extends AppCompatActivity {
         contentValues.put(DatabaseHelper.COL_6, phone);
         long id = db.insert(DatabaseHelper.TABLE_NAME, null, contentValues);
     }
-
+    */
 }
