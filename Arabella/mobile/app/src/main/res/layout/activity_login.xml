@@ -6,15 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/road_bg" />
+
+    <ImageView
+        android:id="@+id/logoArabella"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"
+        android:src="@drawable/arabella" />
+
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:hint="E-MAIL"
+        android:textColorHint="#aaaaaa"
+        android:backgroundTint="#aaaaaa"
+        android:textColor="#ffffff"
+
         android:inputType="textPersonName" />
 
     <EditText
@@ -23,28 +41,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="190dp"
         android:ems="10"
         android:hint="HASŁO"
-        android:inputType="textPassword" />
+        android:textColorHint="#aaaaaa"
+        android:backgroundTint="#aaaaaa"
+        android:textColor="#ffffff"
 
-    <TextView
-        android:id="@+id/tvRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="Zarejestruj się!"
-        android:onClick="onClick"
-        android:clickable="true" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="169dp"
+        android:layout_marginTop="250dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#303030"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="25"
         android:text="ZALOGUJ" />
+
 </RelativeLayout>

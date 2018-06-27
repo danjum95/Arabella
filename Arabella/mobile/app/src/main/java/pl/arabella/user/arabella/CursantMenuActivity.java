@@ -1,8 +1,8 @@
 package pl.arabella.user.arabella;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,39 +18,40 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class UserMenu extends AppCompatActivity {
-    Button btMap, btCalendar;
+public class CursantMenuActivity extends AppCompatActivity {
+
+    Button btProfile, btMessages, btCalendar, btInstructors;
     TextView welcomeUsername;
     RequestQueue queue;
     String url;
+    private String authToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_menu);
-        queue = Volley.newRequestQueue(this);
-        btMap = (Button)findViewById(R.id.btMap);
-        btCalendar = (Button)findViewById(R.id.btCalendar);
-
+        setContentView(R.layout.activity_cursant_menu);
         welcomeUsername = (TextView)findViewById(R.id.tvUsername);
+        btProfile = (Button)findViewById(R.id.btProfile);
+        btMessages = (Button)findViewById(R.id.btMessages);
+        btInstructors = (Button)findViewById(R.id.btInstructors);
+        btCalendar = (Button)findViewById(R.id.btCalendar);
+        queue = Volley.newRequestQueue(this);
         Intent startIntent = getIntent();
+        setAuthToken(startIntent.getStringExtra("_authToken"));
 
+        //USTAWIANIE WELCOME MESSAGE
         url = "http://orlean.ski:8090/api/user/info";
         JSONObject JSON_Params = new JSONObject();
-        try {
-            JSON_Params.put("token", startIntent.getStringExtra("_authToken"));
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        try { JSON_Params.put("token", getAuthToken()); }
+        catch (JSONException e) { e.printStackTrace(); }
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.POST, url, JSON_Params, new Response.Listener<JSONObject>() {
-                //surname name
+                    //surname name
                     @Override
                     public void onResponse(JSONObject response) {
+
                         try {
-                            welcomeUsername.setText("Zalogowany jako:\n" + response.get("name").toString() + " " + response.get("surname").toString());
+                            welcomeUsername.setText("Witaj!" + "\n" + response.get("name").toString() + " " + response.get("surname").toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -63,30 +64,60 @@ public class UserMenu extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
         queue.add(jsonObjectRequest);
+        //END
 
-        btMap.setOnClickListener(new View.OnClickListener() {
+        //PROFILE INFO + ZMIANA HASŁA
+        btProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserMenu.this, MapActivity.class);
+                Intent intent = new Intent(CursantMenuActivity.this, ProfileActivity.class);
+                intent.putExtra("_authToken", getAuthToken());
                 startActivity(intent);
             }
         });
+        //END
 
+        //WIADOMOŚCI
+        btMessages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CursantMenuActivity.this, MessengerActivity.class);
+                intent.putExtra("_authToken", getAuthToken());
+                startActivity(intent);
+            }
+        });
+        //END
+
+        //CALENDAR
         btCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserMenu.this, CalendarActivity.class);
+                Intent intent = new Intent(CursantMenuActivity.this, CalendarROActivity.class);
+                intent.putExtra("_authToken", getAuthToken());
                 startActivity(intent);
             }
         });
+        //END
+
+        //INSTRUKTORZY
+        btInstructors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //LISTVIEW Z INSTRUKTORAMI, CLICKABLE
+            }
+        });
+        //END
     }
 
+    //WYLOGOWANIE
     public void onClick(View view) {
-        Intent intent = new Intent(UserMenu.this, LoginActivity.class);
+        Intent intent = new Intent(CursantMenuActivity.this, LoginActivity.class);
         Toast.makeText(getApplicationContext(), "Wylogowano!", Toast.LENGTH_SHORT).show();
         startActivity(intent);
         finish();
     }
+    //END
+    public String getAuthToken() { return authToken; }
+    public void setAuthToken(String authToken) { this.authToken = authToken; }
 }

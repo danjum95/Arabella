@@ -21,9 +21,26 @@
       target: 'map',
       view: new ol.View({
         center: [0, 0],
-        zoom: 16
+        zoom: 2
       })
     });
+    // Dodanie warstwy z punktami
+    var currentPointsSource = new ol.source.Vector({
+        features: []
+    });
+    var currentPointsLayer = new ol.layer.Vector({
+        source: currentPointsSource,
+        style: new ol.style.Style({
+            image: new ol.style.Circle({
+                radius: 6,
+                fill: new ol.style.Fill({color: 'red'}),
+                    stroke: new ol.style.Stroke({
+                    color: 'black', width: 2
+                })
+          })
+        })
+    });
+    map.addLayer(currentPointsLayer);
     // Dodanie warstwy aktualnej pozycji
     var currentPositionSource = new ol.source.Vector({
         features: []
@@ -44,8 +61,8 @@
     var isDrawing = false;
     // Funkcja odświeżania aktualnej pozycji
     function updateCurrentPosition(lat, lon) {
-        // Centrowanie mapy
         map.getView().setCenter(ol.proj.fromLonLat([lon, lat]))
+        map.getView().setZoom(18)
         /*
         Funkcja przyjmuje kolejno szerokość i długość geograficzną.
         Na przykład środek Poznania: updateCurrentPosition(52.4069200, 16.9299300)
@@ -86,9 +103,40 @@
         isDrawing = false;
     };
     // Funkcja dodawania punktu podczas rysowania linii
-    function addPoint() {
+    function addPoint(data) {
+        // Dodaj punkt tylko podczas trackingu
+        if(isDrawing == true) {
+            /*
+            Jeśli chcesz jakieś atrybuty przypisać to musisz tutaj wywołać coś do zebrania danych od usera (nazwa punktu np.)
+            I jak już zbierzesz te dane, powiedzmy w postaci jsona, to wywołaj funkcję savePoint() z danymi punktu
+            np. dane:
 
+            var data = {
+                nazwa: 'testowy punkt'
+            }
+            */
+            var featurePoint = new ol.Feature({
+                geometry: currentPositionSource.getFeatures()[0].clone().getGeometry() // Geometria
+            });
+            featurePoint.setProperties(data);
+            currentPointsSource.addFeature(featurePoint);
+            console.log(featurePoint.getProperties())
+        }
     };
+
+    // Funkcja eksportu warstwy do GeoJSON - w argumencie trzeba podać nazwę warstwy (nazwa zmiennej *cosTam*Layer)
+    function exportToGeoJSON(layer) {
+        /*
+        Zmienna geojson zawiera string, który jest gotowy do sparsowania, tak jak zwykły JSON
+        Współrzędne zapisywane są w układzie 3857, bo taki jest standardowy układ map internetowych.
+        Jeśli potrzebujesz to czegoś jednak 4326 (czyli współrzędne geograficzne, np. 52.4069200, 16.9299300 to dawaj cyne)
+        */
+        var geojson = new ol.format.GeoJSON().writeFeatures(layer.getSource().getFeatures());
+        //console.log(geojson)
+        //return geojson;
+        window.AndroidApp.GeoJSON_ToAndroid(geojson);
+    }
+
     /*
     Testowy case:
     1. Lokalizacja w miejscu jeden

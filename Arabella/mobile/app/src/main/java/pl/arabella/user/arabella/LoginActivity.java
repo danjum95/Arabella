@@ -21,10 +21,6 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
 
     String authToken;
-
-    //SQLiteDatabase db;
-    //SQLiteOpenHelper openHelper;
-    //Cursor cursor;
     Button btLogin;
     EditText etEmail, etPassword;
     RequestQueue queue;
@@ -38,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = (EditText)findViewById(R.id.etEmail);
         etPassword = (EditText)findViewById(R.id.etPassword);
         btLogin = (Button)findViewById(R.id.btLogin);
-        //openHelper = new DatabaseHelper(this);
-        //db = openHelper.getReadableDatabase();
 
         queue = Volley.newRequestQueue(this);
 
@@ -52,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
                 url = "http://orlean.ski:8090/api/login";
                 JSONObject JSON_Params = new JSONObject();
                 try {
-                    //JSON_Params.put("Content-Type", "application/json");
                     JSON_Params.put("email", email);
                     JSON_Params.put("password", pass);
                 }
@@ -71,47 +64,38 @@ public class LoginActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                Intent intent = new Intent(LoginActivity.this, UserMenu.class);
-                                intent.putExtra("_authToken", authToken);
-                                startActivity(intent);
-                                finish();
+
+                                try {
+                                    if(response.get("accountType").equals("1")) {
+                                        Intent intent = new Intent(LoginActivity.this, InstructorMenuActivity.class);
+                                        intent.putExtra("_authToken", authToken);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    if(response.get("accountType").equals("2")) {
+                                        Intent intent = new Intent(LoginActivity.this, CursantMenuActivity.class);
+                                        intent.putExtra("_authToken", authToken);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }, new Response.ErrorListener() {
 
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 // TODO: Handle error
-                                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), error.getMessage, Toast.LENGTH_SHORT).show();
                             }
                         });
 
                 queue.add(jsonObjectRequest);
 
-
-                /*cursor = db.rawQuery("SELECT *FROM " + DatabaseHelper.TABLE_NAME + " WHERE " + DatabaseHelper.COL_5 + "=? AND " + DatabaseHelper.COL_4 + "=?", new String[]{email, pass});
-                if (cursor != null) {
-                    if (cursor.getCount() > 0) {
-                        Intent intent = new Intent(LoginActivity.this, UserMenu.class);
-                        while(cursor.moveToNext()) {
-                            intent.putExtra("_name", cursor.getString(1));
-                            intent.putExtra("_surname", cursor.getString(2));
-                            //TUTAJ NIE INDEKSY 2 i 3 TAK JAK W TABELI TYLKO 1 I 2 BO CURSOR INDEKSUJE OD -1
-                        }
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
-                    }
-                }*/
             }
         });
 
-    }
-
-    public void onClick(View view) {
-        // REJESTRACJA intent() ->>
-        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(intent);
     }
 
 }

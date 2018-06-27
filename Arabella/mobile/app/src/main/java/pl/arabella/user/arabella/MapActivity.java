@@ -13,11 +13,21 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.webkit.ConsoleMessage;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.mapbox.geojson.GeoJson;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MapActivity extends AppCompatActivity implements LocationListener {
@@ -27,16 +37,28 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
     final static String[] PERMISSIONS = {android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION};
     LocationManager locationManager;
     WebView webView;
+    Button btAdd, btSave;
     //TextView coords;
+    JSONObject PointJSON = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+/*
+        try {
+            PointJSON.put("title", "Punkt Testowy");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+*/
+        btAdd = (Button)findViewById(R.id.btAdd);
+        btSave = (Button)findViewById(R.id.btSave);
         webView = (WebView)findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.setWebChromeClient(new CustomWebChromeClient());
+        webView.addJavascriptInterface(new IJavascriptHandler(), "AndroidApp");
         webView.loadUrl("file:///android_asset/www/index.html");
         //coords = (TextView)findViewById(R.id.tvCoords);
         //coords.setText(String.valueOf(location.getLatitude()) + " " + String.valueOf(location.getLongitude()));
@@ -48,6 +70,68 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         if (!isLocationEnabled())
             showAlert(1);
 
+        btAdd.setOnClickListener(new View.OnClickListener() { //DODANIE PUNKTU KONTROLNEGO
+            @Override
+            public void onClick(View v) {
+                if(locationInit == true) {
+
+                    LayoutInflater layoutInflater = LayoutInflater.from(MapActivity.this);
+                    View promptView = layoutInflater.inflate(R.layout.input_dialog, null);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MapActivity.this, R.style.MyDialogTheme);
+                    alertDialogBuilder.setView(promptView);
+
+                    final EditText editText = (EditText) promptView.findViewById(R.id.edittext);
+                    // setup a dialog window
+                    alertDialogBuilder.setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //resultText.setText("Hello, " + editText.getText());
+                                    try {
+                                        PointJSON.put("title", editText.getText());
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    callJavaScript(webView, "addPoint", PointJSON);
+                                }
+                            })
+                            .setNegativeButton("WRÓĆ",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                    // create an alert dialog
+                    AlertDialog alert = alertDialogBuilder.create();
+                    alert.show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Lokalizajca nie została jeszcze zainicjowana!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btSave.setOnClickListener(new View.OnClickListener() { //ZAPISYWANIE PUNKTÓW KONTROLNYCH
+            @Override
+            public void onClick(View v) {
+                //webView.loadUrl("javascript:android.onData(exportToGeoJSON)");
+                callJavaScript_NO_SEP(webView, "exportToGeoJSON", "currentPointsLayer");
+            }
+        });
+
+    }
+
+    final class IJavascriptHandler {
+        IJavascriptHandler() {
+        }
+
+        @JavascriptInterface
+        public void GeoJSON_ToAndroid(GeoJson obj) {
+            // this is called from JS with passed value
+            Toast t = Toast.makeText(getApplicationContext(), obj.toString(), 2000);
+            t.show();
+        }
     }
 
     class CustomWebChromeClient extends WebChromeClient {
@@ -78,6 +162,24 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
                 stringBuilder.append("'");
             }
 
+        }
+        stringBuilder.append(")}catch(error){console.error(error.message);}");
+        final String call = stringBuilder.toString();
+        Log.i("CustomWebChromeClient", "callJavaScript: call="+call);
+
+        view.loadUrl(call);
+    }
+
+    private void callJavaScript_NO_SEP(WebView view, String methodName, Object...params){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("javascript:try{");
+        stringBuilder.append(methodName);
+        stringBuilder.append("(");
+        String separator = "";
+        for (Object param : params) {
+            stringBuilder.append(separator);
+            separator = ",";
+            stringBuilder.append(param);
         }
         stringBuilder.append(")}catch(error){console.error(error.message);}");
         final String call = stringBuilder.toString();
@@ -120,7 +222,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         criteria.setPowerRequirement(Criteria.POWER_HIGH);
         String provider = locationManager.getBestProvider(criteria, true);
         //locationManager.requestLocationUpdates(provider, 10000, 10, this);
-        locationManager.requestLocationUpdates(provider, 0, 0, this);
+        locationManager.requestLocationUpdates(provider, 10000, 10, this);
     }
 
     private boolean isLocationEnabled() {
@@ -152,7 +254,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
             title = "Permission access";
             btnText = "Grant";
         }
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         dialog.setCancelable(false);
         dialog.setTitle(title)
                 .setMessage(message)

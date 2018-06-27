@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserMenu">
+    tools:context=".CursantMenuActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -36,10 +36,10 @@
         android:layout_marginTop="30dp"
         android:textColor="#ffffff"
         android:textSize="15dp"
-        android:text="username" />
+        android:text="Wczytuje..." />
 
     <Button
-        android:id="@+id/btMap"
+        android:id="@+id/btProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -50,11 +50,11 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="25"
-        android:text="MAPA"
+        android:text="PROFIL"
         android:textColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/btCalendar"
+        android:id="@+id/btMessages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -65,7 +65,37 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="25"
+        android:text="WIADOMOŚCI"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#303030"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="25"
         android:text="TEMINARZ"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btInstructors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#303030"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="25"
+        android:text="INSTRUKTORZY"
         android:textColor="#FFFFFF" />
 
 </RelativeLayout>

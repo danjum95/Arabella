@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserMenu">
+    tools:context=".MessengerActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -13,33 +13,8 @@
         android:scaleType="centerCrop"
         android:src="@drawable/road_bg" />
 
-    <TextView
-        android:id="@+id/tvLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:clickable="true"
-        android:onClick="onClick"
-        android:textColor="#ffffff"
-        android:textSize="15dp"
-        android:text="Wyloguj się!" />
-
-    <TextView
-        android:id="@+id/tvUsername"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:textColor="#ffffff"
-        android:textSize="15dp"
-        android:text="username" />
-
     <Button
-        android:id="@+id/btMap"
+        android:id="@+id/btSend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -50,11 +25,11 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="25"
-        android:text="MAPA"
+        android:text="WYŚLIJ WIADOMOŚĆ"
         android:textColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/btCalendar"
+        android:id="@+id/btViewMsgs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -65,7 +40,21 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="25"
-        android:text="TEMINARZ"
+        android:text="SKRZYNKA ODBIORCZA"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#303030"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="25"
+        android:text="WRÓĆ"
         android:textColor="#FFFFFF" />
 
 </RelativeLayout>
