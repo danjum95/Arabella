@@ -1,7 +1,0 @@
-#Mon Apr 23 18:52:05 CEST 2018
-base.0=C\:\\Users\\Dawid\\Desktop\\DPRI\\Arabella\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_bfd9f2b58f7ea09db5411c8bcd99e0c851dfa5fe
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=C\:\\Users\\Dawid\\Desktop\\DPRI\\Arabella\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_d70817cc797b96935a58bbb26726e98d13d6760c\\classes.dex
-base.1=C\:\\Users\\Dawid\\Desktop\\DPRI\\Arabella\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_d70817cc797b96935a58bbb26726e98d13d6760c
-file.0=C\:\\Users\\Dawid\\Desktop\\DPRI\\Arabella\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_bfd9f2b58f7ea09db5411c8bcd99e0c851dfa5fe\\classes.dex
