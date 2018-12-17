@@ -48,6 +48,12 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `GET` (`/of/school/{schoolId}`) - Header `Token` - Returns lessons depending on type of user, `owner` see all lessons
 
+### Maps - `/api/maps`
+
+`GET` (`/{lessonId}`) - None - Show given lesson's map if exists
+
+`PUT` - [Map](src/main/java/arabella/backend/model/Map.java)
+
 # IGNORED FILES
 
 .gradle
