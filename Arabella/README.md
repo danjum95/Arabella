@@ -4,7 +4,9 @@
 
 METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
-`PUT` - [User](src/main/java/arabella/backend/model/User.java)(group = New.class) - add user to DB
+`PUT` - [User](src/main/java/arabella/backend/model/User.java)(group = New.class) - add user to DB, returns `Token`
+
+`GET` (`/user/info`) - Header `Token` - Returns info about user which use given `Token`
 
 `GET` (`/{id}`) - None (temporary) - Shows DB information about user of given `id`
 
