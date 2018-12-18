@@ -89,6 +89,11 @@ public class UserRestController {
         return userRepository.findByEmail(user.getEmail()) != null;
     }
 
+    @GetMapping("/user/info")
+    public ResponseEntity getUserInfo(@RequestHeader("Token") String givenToken) {
+        return new ResponseEntity<>(sessionController.getUserFromToken(givenToken), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity getUser(@PathVariable("id") Long id) {
         Optional<User> user = userRepository.findById(id);
