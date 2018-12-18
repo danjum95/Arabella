@@ -30,7 +30,7 @@ public class SchoolRestController {
     public ResponseEntity createSchool(@RequestHeader("Token") String givenToken, @Validated(School.Add.class) @RequestBody School newSchool) {
         User user = sessionController.getUserFromToken(givenToken);
 
-        if (schoolRepository.findByOwnerId(user.getId()) != null) {
+        if (schoolRepository.findByOwnerId(user.getId()) == null) {
             newSchool.setOwnerId(user.getId());
             return new ResponseEntity<>(schoolRepository.save(newSchool), HttpStatus.OK);
         } else {
