@@ -2,7 +2,9 @@ package arabella.backend.endpoint;
 
 import arabella.backend.auth.SessionController;
 import arabella.backend.model.School;
+import arabella.backend.model.Token;
 import arabella.backend.model.User;
+import arabella.backend.repository.TokenRepository;
 import arabella.backend.repository.UserRepository;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
@@ -33,11 +35,16 @@ public class UserRestController {
     @Autowired
     SessionController sessionController;
 
+    @Autowired
+    TokenRepository tokenRepository;
+
     @PutMapping
     public ResponseEntity addUser(@Validated(User.New.class) @RequestBody User newUser){
         if (!checkIfUserExists(newUser)) {
-            userRepository.save(newUser);
-            return new ResponseEntity(HttpStatus.OK);
+            Token token = new Token();
+            token.setUserId(userRepository.save(newUser).getId());
+            token.setValue(SessionController.generateTokenValue());
+            return new ResponseEntity<>(tokenRepository.save(token), HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
