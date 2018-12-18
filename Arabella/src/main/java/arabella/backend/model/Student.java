@@ -13,6 +13,11 @@ public class Student {
 
     private Long userId;
 
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade =  CascadeType.ALL)
+    @JoinColumn(name = "userId", referencedColumnName ="id", insertable = false, updatable = false)
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -35,5 +40,13 @@ public class Student {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

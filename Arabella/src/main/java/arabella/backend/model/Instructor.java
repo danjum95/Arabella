@@ -1,8 +1,6 @@
 package arabella.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Instructor {
@@ -14,6 +12,11 @@ public class Instructor {
     private Long schoolId;
 
     private Long userId;
+
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade =  CascadeType.ALL)
+    @JoinColumn(name = "userId", referencedColumnName ="id", insertable = false, updatable = false)
+    private User user;
 
     public Long getId() {
         return id;
@@ -37,5 +40,13 @@ public class Instructor {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

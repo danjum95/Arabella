@@ -1,8 +1,6 @@
 package arabella.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,6 +17,16 @@ public class Message {
 
     @NotNull
     private String message;
+
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade =  CascadeType.ALL)
+    @JoinColumn(name = "senderId", referencedColumnName ="id", insertable = false, updatable = false)
+    private User sender;
+
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade =  CascadeType.ALL)
+    @JoinColumn(name = "receiverId", referencedColumnName ="id", insertable = false, updatable = false)
+    private User receiver;
 
     private Long timestamp;
 
@@ -60,5 +68,21 @@ public class Message {
 
     public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
     }
 }

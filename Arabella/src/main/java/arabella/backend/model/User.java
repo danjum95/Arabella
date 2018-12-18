@@ -38,6 +38,7 @@ public class User {
     @NotNull(
             groups = New.class
     )
+    @Transient
     private String password;
 
     public Long getId() {
