@@ -1,10 +1,7 @@
 package arabella.backend.endpoint;
 
 import arabella.backend.auth.SessionController;
-import arabella.backend.model.Contract;
-import arabella.backend.model.Instructor;
-import arabella.backend.model.Student;
-import arabella.backend.model.User;
+import arabella.backend.model.*;
 import arabella.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,19 +38,37 @@ public class ContractRestController {
     @Autowired
     SessionController sessionController;
 
+    @GetMapping
+    public ResponseEntity getContracts(@RequestHeader("Token") String givenToken) {
+        User user = sessionController.getUserFromToken(givenToken);
+
+        School school = sessionController.findSchoolOfGivenUser(user);
+
+        if (school == null) {
+            return new ResponseEntity<>(contractRepository.findByUserId(user.getId()), HttpStatus.OK);
+        }
+
+        if (sessionController.isOwnerOfGivenSchool(user, school.getId())) {
+            return new ResponseEntity<>(contractRepository.findAllBySchoolId(school.getId()), HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+    }
+
     @PutMapping("/change/status/of/{contractId}")
     public ResponseEntity changeStatus(@PathVariable("contractId") Long contractId, @RequestHeader("Token") String givenToken, @Validated @RequestBody Contract givenContract) {
         User user = sessionController.getUserFromToken(givenToken);
-
-        if (!sessionController.isOwnerOfGivenSchool(user, contractId)) {
-            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-        }
 
         Optional<Contract> contract = contractRepository.findById(contractId);
 
         if (!contract.isPresent()) {
             return new ResponseEntity<>("Contact with that id doesn't exists", HttpStatus.NOT_FOUND);
         }
+
+        if (!sessionController.isOwnerOfGivenSchool(user, contract.get().getSchoolId())) {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+
 
         if (contract.get().getStatus() == givenContract.getStatus()) {
             return new ResponseEntity<>("Lower status can't be set", HttpStatus.CONFLICT);
@@ -107,10 +122,19 @@ public class ContractRestController {
     public ResponseEntity becomeStudent(@PathVariable("schoolId") Long schoolId, @RequestHeader("Token") String givenToken) {
         User user = sessionController.getUserFromToken(givenToken);
 
-        if (makeMemberOfSchool(user, schoolId, User.Type.STUDENT)) {
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (!contractRepository.findByUserId(user.getId()).isEmpty()) {
+            return new ResponseEntity<>("Contract already created", HttpStatus.CONFLICT);
+        }
+
+        if (sessionController.findSchoolOfGivenUser(user) == null) {
+            Contract contract = new Contract();
+            contract.setStatus(Contract.Status.NEW);
+            contract.setSchoolId(schoolId);
+            contract.setUserId(user.getId());
+            contract.setTypeOfAccount(User.Type.STUDENT);
+            return new ResponseEntity<>(contractRepository.save(contract), HttpStatus.OK);
         } else {
-            return new ResponseEntity(HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Already a member of school", HttpStatus.CONFLICT);
         }
     }
 

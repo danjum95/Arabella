@@ -40,7 +40,11 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 ### Contracts - `/api/contract`
 
-`PUT` (`/student/of/school/{schoolId}`) - Header `Token` - If user is neither `student`, `instructor`, `owner` of given school then he became a `student`
+`GET` - Header `Token` - Returns list of contracts to given `school` if owner of `school` or contract  if `user`
+
+`PUT` (`/change/status/of/{contractId}`) - Header `Token`, [Contract](src/main/java/arabella/backend/model/School.java) (annotation) - It changes status of contract, if status ACCEPTED then makes given `user` a `student` 
+
+`PUT` (`/student/of/school/{schoolId}`) - Header `Token` - Creates `contract` to accept by `school` and returns that `contract`
 
 `PUT` (`/instructor/of/school/{schoolId}`) - Header `Token` - If user is neither `student`, `instructor`, `owner` of given school then he became a `instructor`
 
