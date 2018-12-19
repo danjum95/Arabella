@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -79,6 +80,10 @@ public class UserRestController {
     public ResponseEntity changePassword(@RequestHeader("Token") String token, @RequestBody User changesOfUser) {
         User user = sessionController.getUserFromToken(token);
 
+        if (StringUtils.isEmpty(changesOfUser.getPassword())) {
+            return new ResponseEntity<>("Null or empty String as password", HttpStatus.BAD_REQUEST);
+        }
+
         if (user.getPassword().equals(changesOfUser.getPassword())) {
             return new ResponseEntity(HttpStatus.NOT_MODIFIED);
         }
@@ -93,6 +98,10 @@ public class UserRestController {
     @PostMapping("/change/email")
     public ResponseEntity changeEmail(@RequestHeader("Token") String token, @RequestBody User changesOfUser) {
         User user = sessionController.getUserFromToken(token);
+
+        if (StringUtils.isEmpty(changesOfUser.getEmail())) {
+            return new ResponseEntity<>("Null or empty String as password", HttpStatus.BAD_REQUEST);
+        }
 
         if (user.getEmail().equals(changesOfUser.getEmail())) {
             return new ResponseEntity(HttpStatus.NOT_MODIFIED);
