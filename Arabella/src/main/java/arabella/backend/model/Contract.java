@@ -12,6 +12,16 @@ public class Contract {
         public static final String INSTRUCTOR = "instructor";
     }
 
+    public static final class Status {
+        public static final int NEW = 0;
+
+        public static final int REJECTED = 1;
+
+        public static final int ACCEPTED = 2;
+
+        public static final int CANCELED_BY_USER = 3;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
@@ -19,6 +29,11 @@ public class Contract {
     private Long schoolId;
 
     private Long userId;
+
+    private Integer typeOfAccount;
+
+    @NotNull
+    private Integer status;
 
     @OneToOne(fetch = FetchType.EAGER,
             cascade =  CascadeType.ALL)
@@ -68,5 +83,21 @@ public class Contract {
 
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getTypeOfAccount() {
+        return typeOfAccount;
+    }
+
+    public void setTypeOfAccount(Integer typeOfAccount) {
+        this.typeOfAccount = typeOfAccount;
     }
 }
