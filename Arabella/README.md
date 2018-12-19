@@ -4,7 +4,7 @@
 
 METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
-`PUT` - [User](src/main/java/arabella/backend/model/User.java)(group = New.class) - add user to DB, returns `Token`
+`PUT` - [User](src/main/java/arabella/backend/model/User.java)(group = New.class) - add user to DB abd returns `Token`
 
 `GET` (`/user/info`) - Header `Token` - Returns info about user which use given `Token`
 
@@ -12,13 +12,19 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `GET` (`/which/type/of/user`) - Header `Token` - Returns user type in given school 
 
+`GET` (`/which/school`) - Header `Token` - Retruns `id` of `school` 
+
 `POST` (`/change/password`) - Header `Token`, [User](src/main/java/arabella/backend/model/User.java) (only password field) - Changes password if not the same
 
 `POST` (`/change/email`) - Header `Token`, [User](src/main/java/arabella/backend/model/User.java) (only email field) - Changes email if not the same and new email not already used 
 
 ### Students - `/api/students`
 
-`GET` (`/of/school/{schoolId}`) - Header `Token` - Returns list of students of given school if user is `Instructor` or `School owner`
+`GET` (`/of/school/{schoolId}`) - Header `Token` - Returns list of students of given school if user is `Instructor` or `School owner` for given school
+
+### Instructors `/api/instructors`
+
+`GET` (`/of/school/{schoolId}`) - Header `Token` - Returns list of instructors of given school if user is `Student` `Instructor` or `School owner` for given school
 
 ### Login - `/api/login`
 
