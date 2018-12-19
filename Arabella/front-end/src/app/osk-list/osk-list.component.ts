@@ -23,9 +23,8 @@ export class OskListComponent implements OnInit {
   }
 
   id(event) {
-    this.Auth.cotractKursant(localStorage.getItem('newUser'), event.target.id);
+    this.Auth.cotractKursant(localStorage.getItem('userToken'), event.target.id).subscribe();
     setTimeout(() => {
-      localStorage.removeItem('newUser');
       this.router.navigate(['']);
     }, 500);
   }

@@ -38,11 +38,14 @@ export class LoginComponent {
               this.router.navigate(['kursantMenu']);
               break;
           }
+        },
+        (err: HttpErrorResponse) => {
+          this.router.navigate(['oskList']);
         });
       }, 500);
     },
     (err: HttpErrorResponse) => {
-      this.isLoginError = true;
+        this.isLoginError = true;
     });
   }
 }

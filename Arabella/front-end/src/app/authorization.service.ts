@@ -32,11 +32,11 @@ export class AuthorizationService {
   }
 
   cotractKursant(token, id): any {
-    return this.http.put(this.url + '/student/of/school/' + id, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+    return this.http.put(this.url + '/contract/student/of/school/' + id, null, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
   cotractInstruktor(token, id): any {
-    return this.http.put(this.url + '/instructor/of/school/' + id, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+    return this.http.put(this.url + '/contract/instructor/of/school/' + id, null, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
   addSchools(name, token): any {
