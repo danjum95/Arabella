@@ -29,7 +29,7 @@ export class SettingsComponent implements OnInit {
 
   change() {
     this.Auth.getUserDetails(localStorage.getItem('userId')).subscribe(data => {
-
+      
       if (data.email !== this.email) {
         setTimeout(() => {
           this.Auth.changeMail(this.email, localStorage.getItem('userToken')).subscribe(dat => {
@@ -45,8 +45,8 @@ export class SettingsComponent implements OnInit {
   changePassword() {
 
     if (this.password !== undefined) {
-      this.Auth.changePassword(this.password, localStorage.getItem('userToken'));
-    }
+      this.Auth.changePassword(this.password, localStorage.getItem('userToken')).subscribe();
+    } 
   }
 
 }
