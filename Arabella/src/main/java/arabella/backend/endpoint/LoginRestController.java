@@ -48,9 +48,8 @@ public class LoginRestController {
         Token token = new Token();
         token.setUserId(dbUser.getId());
         token.setValue(SessionController.generateTokenValue());
-        tokenRepository.save(token);
 
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new ResponseEntity<>(tokenRepository.save(token), HttpStatus.OK);
     }
 
 }

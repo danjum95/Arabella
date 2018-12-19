@@ -1,9 +1,9 @@
 package arabella.backend.endpoint;
 
 import arabella.backend.auth.SessionController;
-import arabella.backend.model.School;
-import arabella.backend.model.Token;
-import arabella.backend.model.User;
+import arabella.backend.model.*;
+import arabella.backend.repository.InstructorRepository;
+import arabella.backend.repository.StudentRepository;
 import arabella.backend.repository.TokenRepository;
 import arabella.backend.repository.UserRepository;
 import com.google.gson.ExclusionStrategy;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,6 +32,12 @@ public class UserRestController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    StudentRepository studentRepository;
+
+    @Autowired
+    InstructorRepository instructorRepository;
 
     @Autowired
     SessionController sessionController;
@@ -48,6 +55,24 @@ public class UserRestController {
         } else {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
+    }
+
+    @GetMapping("/of/school/{schoolId}")
+    public ResponseEntity getStudentList(@PathVariable("schoolId") Long schoolId, @RequestHeader("Token") String token) {
+        User user = sessionController.getUserFromToken(token);
+
+        if (!sessionController.isInstructorOfGivenSchool(user, schoolId)
+                && !sessionController.isOwnerOfGivenSchool(user, schoolId)) {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+
+        Map<String, List<Student>> listOfUsersInSchool = new HashMap<>();
+        listOfUsersInSchool.put("students", studentRepository.findAllBySchoolId(schoolId));
+
+        Map<String, List<Instructor>> listOfInstructorsInSchool = new HashMap<>();
+        listOfInstructorsInSchool.put("instructors", instructorRepository.findAllBySchoolId(schoolId));
+
+        return new ResponseEntity<>(studentRepository.findAllBySchoolId(schoolId), HttpStatus.OK);
     }
 
     @PostMapping("/change/password")
