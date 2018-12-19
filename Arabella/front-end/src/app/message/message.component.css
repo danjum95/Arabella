@@ -1,0 +1,80 @@
+body {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.container {
+  max-width:80vw;
+  margin:auto;
+}
+
+.inbox_people {
+  float: left;
+  overflow: hidden;
+  width: 40%; border-right:1px solid #c4c4c4;
+}
+.inbox_msg {
+  overflow: hidden;
+  height: 60vh;
+}
+
+.chat_ib p{
+  font-size:14px;
+  margin:auto
+}
+
+.chat_list {
+  margin: 0;
+  padding: 18px 16px 10px;
+}
+.inbox_chat {
+  height: 550px;
+  overflow-y: scroll;
+}
+
+ .received_withd_msg p {
+  border-radius: 3px;
+  color: #646464;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
+.received_withd_msg {
+  width: 57%;
+}
+
+.mesgs {
+  float: left;
+  padding: 30px 15px 0 25px;
+  width: 60%;
+}
+
+.input_msg_write input {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: #4c4c4c;
+  font-size: 15px;
+  min-height: 48px;
+  width: 100%;
+}
+
+.type_msg {
+  position: relative;
+}
+
+.msg_send_btn {
+  background: #05728f none repeat scroll 0 0;
+  border: medium none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: 33px;
+  position: absolute;
+  right: 0;
+  top: 300px;
+  width: 33px;
+}
+
+.title{
+  font-weight: bold;
+}

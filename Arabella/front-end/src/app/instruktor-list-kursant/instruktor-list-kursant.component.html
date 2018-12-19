@@ -1,0 +1,22 @@
+<table class="table">
+<thead>
+    <tr class="thead">
+        <th *ngFor="let col of columns">
+          {{col}}
+        </th>
+      </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let instruktor of allInstruktors$ | async">
+        <td>
+          {{instruktor.user.firstName}}
+        </td>
+        <td>
+          {{instruktor.user.lastName}}
+        </td>
+        <td>
+          {{instruktor.user.email}}
+        </td>
+      </tr>
+</tbody>
+</table>

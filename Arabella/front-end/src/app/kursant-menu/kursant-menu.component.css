@@ -1,0 +1,48 @@
+nav.sidebar, .main{
+  -webkit-transition: margin 700ms ease-out;
+    -moz-transition: margin 700ms ease-out;
+    -o-transition: margin 700ms ease-out;
+    transition: margin 700ms ease-out;
+    z-index: 2;
+}
+
+.main{
+  padding: 10px 10px 0 10px;
+}
+
+nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+  margin-left: 0px;
+}
+
+nav.sidebar a{
+  padding-right: 10px;
+}
+
+nav.sidebar .navbar-nav > li{
+  border-bottom: 2px #e5e5e5d0 solid;
+}
+
+nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
+  padding: 0 0px 0 0px;
+}
+
+nav.sidebar{
+  width: 205px;
+  height: 315px;
+  margin-left: -160px;
+  float: left;
+}
+
+nav.sidebar li {
+  width: 100%;
+}
+
+nav.sidebar:hover{
+  margin-left: 3px;
+}
+
+.router{
+  margin-top: 10vh;
+  margin-left: 10vw;
+  position: fixed;
+}

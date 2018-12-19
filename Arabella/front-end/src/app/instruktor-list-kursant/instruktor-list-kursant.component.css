@@ -1,0 +1,25 @@
+.table {
+  width: 50vw;
+  position: fixed;
+  margin-left: 15vw;
+}
+.thead{
+  background-color: rgba(128, 128, 134, 0.75);
+  border-bottom: 5px solid;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+  font-size: 18px;
+  justify-content: center;
+}
+
+td {
+  background-color: rgba(199, 195, 175, 0.65);
+}
+
+
+tbody :hover {
+  background-color: rgba(199, 195, 175, 0.75);
+}

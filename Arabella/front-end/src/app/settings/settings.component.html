@@ -1,0 +1,22 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <div class="account-wall">
+        <div class="tab-pane active">
+            <input type="text" class="form-control" [(ngModel)]="name" name="name" id="name"readonly>
+            <input type="text" class="form-control" [(ngModel)]="surname" name="surname" id="surname"readonly>
+            <input type="text" class="form-control" [(ngModel)]="email" name="email" id="email">
+            <input type="password" class="form-control" placeholder="Podaj nowe hasło" [(ngModel)]="password" name="password" id="password">
+            <input (click)="change()" class="btn btn-lg btn-success btn-block" value="Zapisz zmiany" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,19 @@
+<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.css'>
+
+<div class="container" *ngIf="calendarOptions">
+    <ng-fullcalendar #ucCalendar
+    [options]="calendarOptions"
+    (eventClick)="eventClick($event.detail)"
+    [(eventsModel)]="events"></ng-fullcalendar>
+    <div *ngIf="isInstructor" class="container2" >
+        <div class="form-group" style="text-align: center;">
+          <input type="text" id="email" [(ngModel)]='email' placeholder="Email">
+          <br>
+          <input type="text" id="data" [(ngModel)]='date' placeholder="Długość minimalna minimalna lekcji" placeholder="Data (w formacie 2018-07-5T12:30:00)">
+          <br>
+          <input type="number" id="min_lenght" [(ngModel)]='length' placeholder="Długość minimalna lekcji (w minutach)">
+          <br>
+          <button id="lekcja_dodana" value="Dodaj lekcję" (click)="addLesson(email,date,length)" class="btn btn-success btn-sm">Dodaj lekcję</button>
+    </div>
+    </div>
+</div>
