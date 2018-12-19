@@ -51,7 +51,7 @@ export class AuthorizationService {
 
   changeMail(email, token): any {
     const data = {email: email};
-    return this.http.post(this.url + '/users/change/password', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+    return this.http.post(this.url + '/users/change/email', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
   getUserDetails(userId): any {
