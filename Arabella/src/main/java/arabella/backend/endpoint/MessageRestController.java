@@ -55,8 +55,6 @@ public class MessageRestController {
 
     @GetMapping("/users")
     public ResponseEntity getUsersToWhichCanSendMessages(@RequestHeader("Token") String givenToken) {
-        //TODO map with names of users
-
         User user = sessionController.getUserFromToken(givenToken);
         School school = sessionController.findSchoolOfGivenUser(user);
 
