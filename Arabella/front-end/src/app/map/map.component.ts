@@ -36,6 +36,7 @@ export class MapComponent implements OnInit {
   longitude: number = 16.9335199;
 
   ngOnInit() {
+    this.Auth.getMap(1);
     this.Auth.getLessonMap();
     this.marker = new OlFeature({
       // Added fromLonLat

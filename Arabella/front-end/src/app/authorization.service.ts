@@ -99,7 +99,7 @@ export class AuthorizationService {
 
   getLessonMap()
   {
-    return this.http.put(this.url + '/maps', {headers: {'Content-Type' : 'application/json'}});
+    return this.http.get(this.url + '/maps', {headers: {'Content-Type' : 'application/json'}});
   }
   registerInstuktor(token, email, name, surname, password) {
     const data = { token: token, email: email, name: name, surname: surname, password: password};
