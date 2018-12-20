@@ -26,15 +26,17 @@ export class CalComponent implements OnInit {
   }
 
   loadData() {
+    console.log(localStorage.getItem('userToken'));
     this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {
       this.allKursants$ = this.Auth.getLesson(localStorage.getItem('userToken'), data.id);
+      this.allKursants$.id[1];
     });
 
-    this.Auth.getUserDetails(localStorage.getItem('userToken')).subscribe(data => {
+    this.Auth.getTypeOfUser(localStorage.getItem('userToken')).subscribe(data =>  {
       switch (data.accountType) {
         case 0:
-          this.Auth.getSchoolLessons(localStorage.getItem('userToken')).subscribe(data => {
-            this.lessons = JSON.stringify(data);
+            this.lessons = JSON.stringify(this.allKursants$);
+            console.log(JSON.stringify(this.allKursants$));
             this.lessons = this.lessons.replace(/date/g,"start");
             this.lessons = this.lessons.replace(/endDate/g,"end");
             this.calendarOptions = {
@@ -63,15 +65,14 @@ export class CalComponent implements OnInit {
               timeFormat: 'H(:mm)',
               allDaySlot: false,
               noEventsMessage:"Brak wydarzeń do wyświetlenia",
-              events: JSON.parse(this.lessons)
+              events: JSON.parse(this.allKursants$)
             };
-          });
         break;
 
         case 1:
           this.isInstructor = true;
-          this.Auth.getInstruktorLessons(localStorage.getItem('userToken')).subscribe(data => {
-            this.lessons = JSON.stringify(data);
+            this.lessons = JSON.stringify(this.allKursants$);
+            console.log(JSON.stringify(this.allKursants$));
             this.lessons = this.lessons.replace(/date/g,"start");
             this.lessons = this.lessons.replace(/endDate/g,"end");
             this.calendarOptions = {
@@ -100,14 +101,13 @@ export class CalComponent implements OnInit {
               timeFormat: 'H(:mm)',
               allDaySlot: false,
               noEventsMessage:"Brak wydarzeń do wyświetlenia",
-              events: JSON.parse(this.lessons)
+              events: JSON.parse(this.allKursants$)
             };
-          });
         break;
 
         case 2:
-          this.Auth.getKursantLessons(localStorage.getItem('userToken')).subscribe(data => {
-            this.lessons = JSON.stringify(data);
+          this.lessons = JSON.stringify(this.allKursants$);
+          console.log(JSON.stringify(this.allKursants$));
             this.lessons = this.lessons.replace(/date/g,"start");
             this.lessons = this.lessons.replace(/endDate/g,"end");
             this.calendarOptions = {
@@ -136,9 +136,8 @@ export class CalComponent implements OnInit {
               timeFormat: 'H(:mm)',
               allDaySlot: false,
               noEventsMessage:"Brak wydarzeń do wyświetlenia",
-              events: JSON.parse(this.lessons)
+              events: JSON.parse(this.allKursants$)
               };
-            });
         break;
       }
     });
@@ -149,8 +148,8 @@ export class CalComponent implements OnInit {
     this.displayEvent = model;
   }
 
-  addLesson(email: any , date: any, hours: any) {
-    this.Auth.addLesson(localStorage.getItem('userToken'), email, date, hours).subscribe(data => {
+  addLesson(id: any , date: any, hours: any) {
+    this.Auth.addLesson(localStorage.getItem('userToken'), id, date, hours).subscribe(data => {
       console.log("LESSON ADDED");
     });
   }

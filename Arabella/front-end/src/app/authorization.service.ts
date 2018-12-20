@@ -82,10 +82,25 @@ export class AuthorizationService {
     return this.http.get(this.url + '/lessons/of/school/' + id, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
+  addNewLesson(token, email, date, length) {
+    const data = {
+    instructorId:localStorage.getItem('userId'),
+    schoolId:"this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {",
+    studentId:email,
+    date: date,
+    endDate: length};
+    return this.http.put(this.url + '/lessons', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
 
+  getMap(lessonId)
+  {
+    return this.http.put(this.url + '/maps' + lessonId , {headers: {'Content-Type' : 'application/json'}});
+  }
 
-
-
+  getLessonMap()
+  {
+    return this.http.put(this.url + '/maps', {headers: {'Content-Type' : 'application/json'}});
+  }
   registerInstuktor(token, email, name, surname, password) {
     const data = { token: token, email: email, name: name, surname: surname, password: password};
     return this.http.post(this.url + '/api/school/register/instructor', data , {headers: this.reqHeader});
