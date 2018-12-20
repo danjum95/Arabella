@@ -79,6 +79,7 @@ public class ContractRestController {
         if (Contract.Status.ACCEPTED == contract.get().getStatus()) {
             if (makeMemberOfSchool(userRepository.findById(contract.get().getUserId()).get(),
                     contract.get().getSchoolId(), contract.get().getTypeOfAccount()) ) {
+                contractRepository.save(contract.get());
                 return new ResponseEntity<>("User is member of school now", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Something gone wrong with making user a member of school", HttpStatus.INTERNAL_SERVER_ERROR);
