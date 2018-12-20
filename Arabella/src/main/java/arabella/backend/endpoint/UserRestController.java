@@ -128,6 +128,27 @@ public class UserRestController {
         return new ResponseEntity<>(sessionController.getUserFromToken(givenToken), HttpStatus.OK);
     }
 
+    @PostMapping("/other/user/info")
+    public ResponseEntity getOtherUserInfo(@RequestHeader("Token") String givenToken, @RequestBody User otherUser) {
+
+        if (otherUser.getEmail() != null) {
+            User user = userRepository.findByEmail(otherUser.getEmail());
+            if (user != null) {
+                return new ResponseEntity<>(user, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("User not found with given email", HttpStatus.NOT_FOUND);
+            }
+        } else if (otherUser.getId() != null) {
+            Optional<User> user = userRepository.findById(otherUser.getId());
+            if (user.isPresent()) {
+                return new ResponseEntity<>(user.get(), HttpStatus.OK);
+            }
+            return new ResponseEntity<>("User not found with given id", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity getUser(@PathVariable("id") Long id) {
         Optional<User> user = userRepository.findById(id);
