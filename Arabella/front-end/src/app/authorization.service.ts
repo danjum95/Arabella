@@ -78,9 +78,9 @@ export class AuthorizationService {
   getStudents(token, id): any {
     return this.http.get(this.url + '/students/of/school/' + id, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
-
-
-
+  getLesson(token, id) {
+    return this.http.get(this.url + '/lessons/of/school/' + id, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
 
 
 

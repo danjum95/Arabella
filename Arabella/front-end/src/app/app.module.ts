@@ -23,6 +23,7 @@ import { InstruktorListKursantComponent } from './instruktor-list-kursant/instru
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalComponent } from './cal/cal.component';
 import { ContractListComponent } from './contract-list/contract-list.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ContractListComponent } from './contract-list/contract-list.component';
     InstruktorListKursantComponent,
     CalComponent,
     ContractListComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -123,6 +125,10 @@ import { ContractListComponent } from './contract-list/contract-list.component';
           {
             path: 'message',
             component: MessageComponent
+          },
+          {
+            path: 'map',
+            component: MapComponent
           },
           {
             path: 'instruktorList',
