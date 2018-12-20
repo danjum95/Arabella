@@ -23,6 +23,8 @@ public class Lesson {
     @NotNull
     private String endDate;
 
+    private String title;
+
     @OneToOne(fetch = FetchType.EAGER,
             cascade =  CascadeType.ALL)
     @JoinColumn(name = "instructorId", referencedColumnName ="id", insertable = false, updatable = false)
