@@ -37,7 +37,7 @@ export class MessageComponent implements OnInit {
     this.title = target.querySelector('#title').value;
     this.textMessage = target.querySelector('#textMessage').value;
 
-    this.Auth.getInstruktorList(localStorage.getItem('userToken')).subscribe(data => {
+    /*this.Auth.getInstruktorList(localStorage.getItem('userToken')).subscribe(data => {
         data.forEach(element => {
           if (element.email === this.to) {
             this.idInstruktor = element.id;
@@ -59,6 +59,6 @@ export class MessageComponent implements OnInit {
       } else {
         this.idSend = this.idInstruktor;
       }
-      this.Auth.sendMessage(localStorage.getItem('userToken'), this.idSend, this.textMessage);
+      this.Auth.sendMessage(localStorage.getItem('userToken'), this.idSend, this.textMessage);*/
   }
 }
