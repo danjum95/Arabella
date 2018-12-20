@@ -21,15 +21,12 @@ export class RegisterOskComponent {
 
     this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
       localStorage.setItem('newTokenOsk', data.value);
-    });
-
-    setTimeout(() => {
-      this.Auth.addSchools(this.oskName, localStorage.getItem('newTokenOsk'));
+      this.Auth.addSchools(this.oskName, localStorage.getItem('newTokenOsk')).subscribe();
       setTimeout(() => {
         localStorage.removeItem('newTokenOsk');
         this.router.navigate(['']);
       }, 300);
-    }, 300);
+    });
   }
 
 }
