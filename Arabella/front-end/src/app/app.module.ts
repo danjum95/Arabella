@@ -22,6 +22,7 @@ import { RegisterOskComponent } from './register-osk/register-osk.component';
 import { InstruktorListKursantComponent } from './instruktor-list-kursant/instruktor-list-kursant.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalComponent } from './cal/cal.component';
+import { ContractListComponent } from './contract-list/contract-list.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CalComponent } from './cal/cal.component';
     RegisterOskComponent,
     InstruktorListKursantComponent,
     CalComponent,
+    ContractListComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +83,10 @@ import { CalComponent } from './cal/cal.component';
           {
             path: 'calendar',
             component: CalComponent
+          },
+          {
+            path: 'contract',
+            component: ContractListComponent
           }
         ]
       },
