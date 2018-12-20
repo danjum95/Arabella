@@ -18,12 +18,11 @@ export class RegisterInstruktorComponent {
   register() {
 
     this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
-      this.token = data.value;
+      this.token = data.value
+      this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {
+        this.Auth.cotractInstruktor(this.token, data.id).subscribe();
+      })
     });
-
-    setTimeout(() => {
-      this.Auth.cotractInstruktor(this.token, localStorage.getItem('userId'));
-    }, 500);
   }
 
 }

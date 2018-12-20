@@ -83,14 +83,12 @@ export class AuthorizationService {
     return this.http.post(this.url + '/api/school/register/instructor', data , {headers: this.reqHeader});
   }
 
-  getInstruktorList(token): Observable<Array<instruktorListInterface>> {
-    const data = { token: token};
-    return this.http.post<Array<instruktorListInterface>>(this.url + '/api/school/instructors', data , {headers: this.reqHeader});
+  getInstruktorList(token, id): Observable<Array<instruktorListInterface>> {
+    return this.http.get<Array<instruktorListInterface>>(this.url + '/instructors/of/school/' + id, {headers: {'Token': token}});
   }
 
-  getKursantList(token): Observable<Array<instruktorListInterface>> {
-    const data = { token: token};
-    return this.http.post<Array<instruktorListInterface>>(this.url + '/api/school/students', data , {headers: this.reqHeader});
+  getKursantList(token, id): Observable<Array<instruktorListInterface>> {
+    return this.http.get<Array<instruktorListInterface>>(this.url + '/students/of/school/' + id, {headers: {'Token': token}});
   }
 
   getSchoolList(): Observable<Array<oskListInterface>> {
@@ -104,12 +102,12 @@ export class AuthorizationService {
 
   receivedMessage(token): Observable<Array<receivedMessageInterface>> {
     const data = { token: token };
-    return this.http.post<Array<receivedMessageInterface>>(this.url + '/api/received/messages', data, {headers: this.reqHeader});
+    return this.http.get<Array<receivedMessageInterface>>(this.url + '/messages/', {headers: {"Token": token}});
   }
 
   sendMessage(token, told, text) {
-    const data = { token: token, told: told, text: text};
-    return this.http.post(this.url + '/api/send/message', data, {headers: this.reqHeader});
+    const data = { receiverId: told, message: text};
+    return this.http.put(this.url + '/messages', data, {headers: {"Token": token}});
   }
 
   sentMessage(token) {
