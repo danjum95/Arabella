@@ -2,6 +2,8 @@ import { AuthorizationService } from './../authorization.service';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { OnInit, ViewChild, Component } from '@angular/core';
+import { lessonListInterface } from '../interface/lessonListInterface';
+
 
 @Component({
   selector: 'app-cal',
@@ -14,6 +16,7 @@ export class CalComponent implements OnInit {
   myLogin: string;
   lessons: any;
   isInstructor: boolean;
+  allKursants$: any;
 
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
   constructor(protected Auth: AuthorizationService) { }
@@ -23,6 +26,10 @@ export class CalComponent implements OnInit {
   }
 
   loadData() {
+    this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {
+      this.allKursants$ = this.Auth.getLesson(localStorage.getItem('userToken'), data.id);
+    });
+
     this.Auth.getUserDetails(localStorage.getItem('userToken')).subscribe(data => {
       switch (data.accountType) {
         case 0:

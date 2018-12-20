@@ -38,7 +38,6 @@ export class MapComponent implements OnInit {
 
     this.marker = new OlFeature({
       // Added fromLonLat
-      geometry: new OlPoint[(fromLonLat([16.9335199, 52.4082663]))],
   });
 
     this.view = new OlView({
