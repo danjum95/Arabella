@@ -12,7 +12,9 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `GET` (`/which/type/of/user`) - Header `Token` - Returns user type in given school 
 
-`GET` (`/which/school`) - Header `Token` - Retruns `id` of `school` 
+`GET` (`/which/school`) - Header `Token` - Retruns `id` of `school`
+
+`POST` (`/other/user/info`) - Header `Token`, *Optional fields*: `email` or `id` - Returns `user` information based on `email` or `id` field 
 
 `POST` (`/change/password`) - Header `Token`, [User](src/main/java/arabella/backend/model/User.java) (only password field) - Changes password if not the same
 

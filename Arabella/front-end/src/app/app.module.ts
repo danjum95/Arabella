@@ -22,6 +22,8 @@ import { RegisterOskComponent } from './register-osk/register-osk.component';
 import { InstruktorListKursantComponent } from './instruktor-list-kursant/instruktor-list-kursant.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalComponent } from './cal/cal.component';
+import { ContractListComponent } from './contract-list/contract-list.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { CalComponent } from './cal/cal.component';
     RegisterOskComponent,
     InstruktorListKursantComponent,
     CalComponent,
+    ContractListComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +85,10 @@ import { CalComponent } from './cal/cal.component';
           {
             path: 'calendar',
             component: CalComponent
+          },
+          {
+            path: 'contract',
+            component: ContractListComponent
           }
         ]
       },
@@ -117,6 +125,10 @@ import { CalComponent } from './cal/cal.component';
           {
             path: 'message',
             component: MessageComponent
+          },
+          {
+            path: 'map',
+            component: MapComponent
           },
           {
             path: 'instruktorList',

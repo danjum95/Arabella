@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { instruktorListInterface } from './interface/instruktorListInterface';
 import { receivedMessageInterface } from './interface/receivedMessageInterface';
+import { contractListInterface } from './interface/contractListInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,10 @@ export class AuthorizationService {
     return this.http.get<Array<oskListInterface>>(this.url + '/schools', {headers: this.reqHeader});
   }
 
+  getAllContracts(token) : Observable<Array<contractListInterface>> {
+    return this.http.get<Array<contractListInterface>>(this.url + '/contract/', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
   cotractKursant(token, id): any {
     return this.http.put(this.url + '/contract/student/of/school/' + id, null, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
@@ -54,6 +59,10 @@ export class AuthorizationService {
     return this.http.post(this.url + '/users/change/email', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
+  getUserInfo(token): any {
+    return this.http.get(this.url + '/users/user/info', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
   getUserDetails(userId): any {
     return this.http.get(this.url + '/users/' + userId, {headers: this.reqHeader});
   }
@@ -69,15 +78,29 @@ export class AuthorizationService {
   getStudents(token, id): any {
     return this.http.get(this.url + '/students/of/school/' + id, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
+  getLesson(token, id) {
+    return this.http.get(this.url + '/lessons/of/school/' + id, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
 
+  addNewLesson(token, email, date, length) {
+    const data = {
+    instructorId:localStorage.getItem('userId'),
+    schoolId:"this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {",
+    studentId:email,
+    date: date,
+    endDate: length};
+    return this.http.put(this.url + '/lessons', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
 
+  getMap(lessonId)
+  {
+    return this.http.put(this.url + '/maps' + lessonId , {headers: {'Content-Type' : 'application/json'}});
+  }
 
-
-
-
-
-
-
+  getLessonMap()
+  {
+    return this.http.get(this.url + '/maps', {headers: {'Content-Type' : 'application/json'}});
+  }
   registerInstuktor(token, email, name, surname, password) {
     const data = { token: token, email: email, name: name, surname: surname, password: password};
     return this.http.post(this.url + '/api/school/register/instructor', data , {headers: this.reqHeader});

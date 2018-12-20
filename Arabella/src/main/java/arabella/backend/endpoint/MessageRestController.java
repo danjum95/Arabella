@@ -1,10 +1,7 @@
 package arabella.backend.endpoint;
 
 import arabella.backend.auth.SessionController;
-import arabella.backend.model.Instructor;
-import arabella.backend.model.Message;
-import arabella.backend.model.School;
-import arabella.backend.model.User;
+import arabella.backend.model.*;
 import arabella.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -57,16 +55,15 @@ public class MessageRestController {
 
     @GetMapping("/users")
     public ResponseEntity getUsersToWhichCanSendMessages(@RequestHeader("Token") String givenToken) {
-        //TODO map with names of users
-
         User user = sessionController.getUserFromToken(givenToken);
         School school = sessionController.findSchoolOfGivenUser(user);
 
         if (school != null) {
-            List<Long> users = new LinkedList<>();
+            List<User> users = new LinkedList<>();
 
-            users.add(school.getId());
-            users.addAll(instructorRepository.findBySchoolId(school.getId()).stream().map(Instructor::getId).collect(Collectors.toList()));
+            users.addAll(instructorRepository.findAllBySchoolId(school.getId()).stream().map(Instructor::getUser).collect(Collectors.toList()));
+            users.add(school.getUser());
+            users.addAll(studentRepository.findAllBySchoolId(school.getId()).stream().map(Student::getUser).collect(Collectors.toList()));
 
             return new ResponseEntity<>(users, HttpStatus.OK);
         } else {

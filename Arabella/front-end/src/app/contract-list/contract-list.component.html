@@ -1,0 +1,25 @@
+<div class="button">
+  <button class="button1">Zaakceptuj</button>
+</div>
+<table class="table">
+<thead>
+    <tr class="thead">
+        <th *ngFor="let col of columns">
+          {{col}}
+        </th>
+      </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let contract of allContracts$ | async">
+        <td>
+          {{contract.user.firstName}}
+        </td>
+        <td>
+          {{contract.user.lastName}}
+        </td>
+        <td>
+          {{contract.user.email}}
+        </td>
+      </tr>
+</tbody>
+</table>

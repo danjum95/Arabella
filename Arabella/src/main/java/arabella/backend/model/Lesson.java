@@ -18,10 +18,12 @@ public class Lesson {
     private Long studentId;
 
     @NotNull
-    private Long startTimestamp;
+    private String date;
 
     @NotNull
-    private Integer duration;
+    private String endDate;
+
+    private String title;
 
     @OneToOne(fetch = FetchType.EAGER,
             cascade =  CascadeType.ALL)
@@ -61,26 +63,6 @@ public class Lesson {
         return studentId;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
-
-    public Long getStartTimestamp() {
-        return startTimestamp;
-    }
-
-    public void setStartTimestamp(Long startTimestamp) {
-        this.startTimestamp = startTimestamp;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
     public User getInstructor() {
         return instructor;
     }
@@ -95,5 +77,29 @@ public class Lesson {
 
     public void setStudent(User student) {
         this.student = student;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getTitle() {
+        return String.format("Kursant: %s, Instruktor: %s", student.getName(), instructor.getName());
     }
 }

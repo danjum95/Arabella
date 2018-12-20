@@ -42,19 +42,18 @@ public class LessonRestController {
     @PutMapping
     public ResponseEntity addLesson(@RequestHeader("Token") String givenToken, @Validated @RequestBody Lesson lesson) {
 
-        Long instructorId = sessionController.checkToken(givenToken).getUserId();
-
-        Long schoolId = instructorRepository.findByUserId(instructorId).get().getSchoolId();
+        User user = sessionController.getUserFromToken(givenToken);
 
         User student = userRepository.findById(lesson.getStudentId()).get();
 
         if (student != null) {
-            if(sessionController.isStudentOfGivenSchool(student, schoolId)) {
+            if(sessionController.isStudentOfGivenSchool(student, sessionController.findSchoolOfGivenUser(user).getId())) {
 
                 lesson.setInstructorId(sessionController.checkToken(givenToken).getUserId());
-                lesson.setSchoolId(schoolId);
+                lesson.setSchoolId(sessionController.findSchoolOfGivenUser(user).getId());
 
-                return new ResponseEntity<>(lessonRepository.save(lesson), HttpStatus.OK);
+                lessonRepository.save(lesson);
+                return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("User does not belong to the same school as Instructor", HttpStatus.CONFLICT);
             }

@@ -13,6 +13,8 @@ export class RegisterInstruktorComponent {
   password: any;
   token: any;
 
+  isRegistered = false;
+
   constructor(private Auth: AuthorizationService) {}
 
   register() {
@@ -21,6 +23,7 @@ export class RegisterInstruktorComponent {
       this.token = data.value
       this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {
         this.Auth.cotractInstruktor(this.token, data.id).subscribe();
+        this.isRegistered = true;
       })
     });
   }
