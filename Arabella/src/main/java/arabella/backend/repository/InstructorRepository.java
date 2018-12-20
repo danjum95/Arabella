@@ -12,7 +12,5 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 
     Optional<Instructor> findByUserIdAndSchoolId(Long userId, Long schoolId);
 
-    List<Instructor> findBySchoolId(Long id);
-
     List<Instructor> findAllBySchoolId(Long id);
 }

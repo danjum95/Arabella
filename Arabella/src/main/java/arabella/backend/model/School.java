@@ -18,6 +18,11 @@ public class School {
 
     private Long ownerId;
 
+    @OneToOne(fetch = FetchType.EAGER,
+            cascade =  CascadeType.ALL)
+    @JoinColumn(name = "ownerId", referencedColumnName ="id", insertable = false, updatable = false)
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -40,6 +45,14 @@ public class School {
 
     public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public interface Add {}
