@@ -5,10 +5,7 @@
     [options]="calendarOptions"
     (eventClick)="eventClick($event.detail)"
     [(eventsModel)]="events"></ng-fullcalendar>
-    
-</div>
-
-<div class="container2" >
+    <div *ngIf="isInstructor" class="container2" >
         <div class="form-group" style="text-align: center;">
           <input type="text" id="email" [(ngModel)]='email' placeholder="Email">
           <br>
@@ -19,3 +16,4 @@
           <button id="lekcja_dodana" value="Dodaj lekcję" (click)="addLesson(email,date,length)" class="btn btn-success btn-sm">Dodaj lekcję</button>
     </div>
     </div>
+</div>
