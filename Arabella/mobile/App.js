@@ -3,6 +3,7 @@ import Login from "./containers/login";
 import Usermenu from "./containers/usermenu";
 import Calendar from "./containers/calendar";
 import AddEvent from "./containers/addEvent";
+import Map from "./containers/map";
 import ParticipantsList from "./containers/participantsList";
 import {ActionConst, Router, Scene} from 'react-native-router-flux';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
@@ -77,6 +78,12 @@ export default class App extends React.Component {
                 hideNavBar={true}
                 key='ProfileInfo'
                 title='ProfileInfo'
+              />
+              <Scene
+                component={Map}
+                hideNavBar={true}
+                key='Map'
+                title='Map'
               />
             </Scene>
           </Router>

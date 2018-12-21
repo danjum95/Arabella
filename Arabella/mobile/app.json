@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "pl.arabella",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "pl.arabella"
     }
   }
 }

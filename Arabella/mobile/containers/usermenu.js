@@ -1,9 +1,52 @@
 import React from 'react';
-import {StyleSheet, View, Button, ToastAndroid} from 'react-native';
+import { View, Button, ToastAndroid} from 'react-native';
 import { SecureStore } from "expo";
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
+import { bindActionCreators } from "redux";
+import { connect } from 'react-redux';
+import { addUserInfo, addUserRole, addUserSchool } from "../actions/userInfoActions";
+import axios from "axios";
+import {_env} from "../local/env";
+import styles from '../styles/styles'
 
 class Usermenu extends React.Component {
+
+  componentWillMount() {
+    SecureStore.getItemAsync('token').then((token) => {
+      axios.get(_env.API_URL + '/api/users/user/info', {
+        headers: { Token: token }
+      })
+        .then(function (response) {
+          this.props.addUserInfo(response.data);
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
+          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+        });
+
+      axios.get(_env.API_URL + '/api/users/which/type/of/user', {
+        headers: { Token: token }
+      })
+        .then(function (response) {
+          this.props.addUserRole(response.data);
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
+          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+        });
+
+      axios.get(_env.API_URL + '/api/users/which/school', {
+        headers: { Token: token }
+      })
+        .then(function (response) {
+          this.props.addUserSchool(response.data);
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
+          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+        });
+    });
+  }
 
   async userLogout() {
     try {
@@ -22,10 +65,13 @@ class Usermenu extends React.Component {
           <Button onPress={() => {Actions.ProfileInfo()}} title="Mój profil" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => {Actions.Calendar()}} title="Kalendarz" />
+          <Button onPress={() => {Actions.Calendar({schoolID: this.props.user.get('school').id})}} title="Kalendarz" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => {Actions.ParticipantsList()}} title="Lista Kursantów" />
+          <Button onPress={() => {Actions.ParticipantsList({schoolID: this.props.user.get('school').id})}} title="Lista Kursantów" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => {Actions.Map()}} title="Mapa" />
         </View>
         <View style={styles.button}>
           <Button onPress={this.userLogout} title="Wyloguj" />
@@ -35,17 +81,18 @@ class Usermenu extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    justifyContent: 'center',
-    backgroundColor:'#efefef',
-    padding:10
-  },
-  button:{
-    padding: 5,
-    margin: 5
-  }
-});
 
-export default Usermenu;
+const mapStateToProps = (state) => {
+  const { user } = state;
+  return { user }
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    addUserInfo,
+    addUserRole,
+    addUserSchool
+  }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Usermenu);

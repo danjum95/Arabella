@@ -1,7 +1,10 @@
 import React from 'react';
-import {StyleSheet, View, FlatList, Text} from 'react-native';
-import {Actions} from 'react-native-router-flux';
-import {requestParticipants} from "../utils/mock-api";
+import { View, FlatList, Text, ToastAndroid} from 'react-native';
+import {SecureStore} from "expo";
+import axios from 'axios';
+import { _env } from "../local/env";
+import styles from '../styles/styles'
+import {Actions} from "react-native-router-flux";
 
 class ParticipantsList extends React.Component {
 
@@ -13,7 +16,23 @@ class ParticipantsList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({participants: requestParticipants('abcd1234')})
+    let users = this.state.participants;
+    SecureStore.getItemAsync('token').then((token) => {
+      axios.get(_env.API_URL + '/api/students/of/school/' + this.props.schoolID, {
+        headers: { Token: token }
+      })
+        .then(function (response) {
+          console.log(response.data);
+          response.data.forEach(user =>{
+            users.push(user);
+          })
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
+          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+        });
+    });
+    this.setState({participants: users});
   }
 
   render() {
@@ -23,8 +42,8 @@ class ParticipantsList extends React.Component {
           data={this.state.participants}
           renderItem={({item}) =>
             <View style={styles.element}>
-              <Text style={styles.mainText}>{item.fullname}</Text>
-              <Text style={styles.lightText}>{item.mail}</Text>
+              <Text style={styles.mainText}>{item.user.name}</Text>
+              <Text style={styles.lightText}>{item.user.email}</Text>
             </View>
           }
         />
@@ -32,33 +51,5 @@ class ParticipantsList extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    justifyContent: 'center',
-    backgroundColor:'#efefef',
-    padding:10
-  },
-  button:{
-    padding: 5,
-    margin: 5
-  },
-  lightText: {
-    fontSize: 18,
-    color: 'darkgrey',
-    fontWeight: 'bold'
-  },
-  mainText: {
-    fontWeight: 'bold',
-    fontSize: 20
-  },
-  element: {
-    borderWidth:1,
-    borderColor:'#ccc',
-    padding: 2,
-    margin: 2
-  }
-});
 
 export default ParticipantsList;

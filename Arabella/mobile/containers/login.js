@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, Button, ToastAndroid } from 'react-native';
-import { requestLogIn } from "../utils/mock-api";
 import { SecureStore } from 'expo';
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
+import axios from 'axios';
+import { _env } from "../local/env";
 
 class Login extends React.Component {
 
@@ -18,7 +19,7 @@ class Login extends React.Component {
     return(
       <View style={styles.container}>
         <View style={{alignItems: 'center'}}>
-          <Text>
+          <Text style={{ fontSize: 32 }}>
             A R A B E L L A
           </Text>
         </View>
@@ -33,18 +34,28 @@ class Login extends React.Component {
           onChangeText={(password) => this.setState({password})}
           secureTextEntry={true}
         />
-        <Button
-          onPress={() => {
-            if(!requestLogIn(this.state.username, this.state.password))
-              ToastAndroid.show('Błędny e-mail lub hasło!', ToastAndroid.SHORT);
-            else {
-              SecureStore.setItemAsync('token', requestLogIn(this.state.username, this.state.password));
-              ToastAndroid.show('Zalogowano!', ToastAndroid.SHORT);
-              Actions.Usermenu();
-            }
-          }}
-          title="Zaloguj"
-        />
+        <View style={styles.button}>
+          <Button
+            onPress={() => {
+              axios.post(_env.API_URL + '/api/login', {
+                email: this.state.username,
+                password: this.state.password
+              }, {
+                headers: { 'Content-Type': 'application/json' }
+              })
+                .then(function (response) {
+                  SecureStore.setItemAsync('token', response.data.value);
+                  ToastAndroid.show('Zalogowano!', ToastAndroid.SHORT);
+                  Actions.Usermenu();
+                })
+                .catch(function (error) {
+                  console.log(error.response);
+                  ToastAndroid.show('Błędny e-mail lub hasło!', ToastAndroid.SHORT);
+                });
+            }}
+            title="Zaloguj"
+          />
+        </View>
       </View>
     );
   }
@@ -60,6 +71,10 @@ const styles = StyleSheet.create({
   input:{
     padding:10, margin: 10,
     borderWidth:1, borderColor:'#ccc'
+  },
+  button:{
+    padding: 5,
+    margin: 5
   }
 });
 

@@ -1,10 +1,11 @@
-import {combineReducers} from 'redux';
+import { Map, OrderedMap } from 'immutable';
+import { combineReducers } from 'redux';
 
-const INITIAL_STATE = {
+const EVENTS_INITIAL_STATE = {
   events: {}
 };
 
-const calendarReducer = (state = INITIAL_STATE, action) => {
+const calendarReducer = (state = EVENTS_INITIAL_STATE, action) => {
   switch (action.type) {
 
     case 'ADD_EVENT':
@@ -17,6 +18,30 @@ const calendarReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
+const USER_INITIAL_STATE = Map({
+  info: Map(),
+  role: null,
+  school: null
+});
+
+const userReducer = (state = USER_INITIAL_STATE, action) => {
+  switch (action.type) {
+
+    case 'ADD_USER_INFO':
+      return state.set("info", action.payload);
+
+    case 'ADD_USER_ROLE':
+      return state.set("role", action.payload);
+
+    case 'ADD_USER_SCHOOL':
+      return state.set("school", action.payload);
+
+    default:
+      return state
+  }
+};
+
 export default combineReducers({
   calendarEvents: calendarReducer,
+  user: userReducer
 });

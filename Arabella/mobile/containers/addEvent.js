@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, Button} from 'react-native';
+import {Text, View, TouchableOpacity, StyleSheet, Button, ToastAndroid} from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addEvent } from '../actions/calendarActions';
@@ -7,6 +7,9 @@ import Autocomplete from "react-native-autocomplete-input";
 import {requestEvents, requestParticipants} from "../utils/mock-api";
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import {Actions} from "react-native-router-flux";
+import {SecureStore} from "expo";
+import axios from "axios";
+import {_env} from "../local/env";
 
 class AddEvent extends React.Component {
 
@@ -15,6 +18,7 @@ class AddEvent extends React.Component {
     this.state = {
       user: '',
       usersData: [],
+      participants: [],
       from: '00:00',
       to: '00:00',
       isFromTimePickerVisible: false,
@@ -39,12 +43,25 @@ class AddEvent extends React.Component {
   };
 
   componentDidMount() {
-    let element, users = this.state.usersData;
-    requestParticipants('abcd1234').forEach((value) => {
-      element = value.fullname + ' - ' + value.mail;
-      users.push(element)
+    let element, users = this.state.usersData, participants = this.state.participants;
+    SecureStore.getItemAsync('token').then((token) => {
+      axios.get(_env.API_URL + '/api/students/of/school/' + this.props.schoolID, {
+        headers: { Token: token }
+      })
+        .then(function (response) {
+          console.log(response.data);
+          response.data.forEach(user =>{
+            element = user.user.name + ' - ' + user.user.email;
+            participants.push(user);
+            users.push(element);
+          })
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
+          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+        });
     });
-    this.setState({usersData: users});
+    this.setState({usersData: users, participants: participants});
   }
 
   findUser(query) {
@@ -115,6 +132,29 @@ class AddEvent extends React.Component {
         <View style={styles.button}>
           <Button
             onPress={() => {
+              SecureStore.getItemAsync('token').then((token) => {
+                axios.put(_env.API_URL + '/api/lessons', {
+                  headers: { Token: token },
+                  Lesson: {
+                    studentId: null,
+                    startDate: null,
+                    endDate: null
+                  }
+                })
+                  .then(function (response) {
+                    console.log(response.data);
+                    response.data.forEach(user =>{
+                      element = user.user.name + ' - ' + user.user.email;
+                      participants.push(user);
+                      users.push(element);
+                    })
+                  }.bind(this))
+                  .catch(function (error) {
+                    console.log(error);
+                    ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+                  });
+              });
+
               let jsondata = {};
               jsondata[this.props.eventDay.dateString] = [{
                 name: 'Testowe Jazdy',
