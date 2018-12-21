@@ -37,11 +37,7 @@ export class MessageComponent implements OnInit {
     this.title = target.querySelector('#title').value;
     this.textMessage = target.querySelector('#textMessage').value;
 
-<<<<<<< HEAD
     /*this.Auth.getInstruktorList(localStorage.getItem('userToken')).subscribe(data => {
-=======
-    this.Auth.getInstruktorList(localStorage.getItem('userToken'),1).subscribe(data => {
->>>>>>> f02d1c3f51b52b608ce6eb2ae5e42d14ea7ed19a
         data.forEach(element => {
           if (element.email === this.to) {
             this.idInstruktor = element.id;
