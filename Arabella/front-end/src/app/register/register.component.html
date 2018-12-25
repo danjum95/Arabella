@@ -8,7 +8,7 @@
       <div class="account-wall">
         <div class="tab-pane active">
           <form (submit)="register()" class="form-signin" [formGroup] = "registerForm">
-            <input type="text" class="form-control" placeholder="imię" [(ngModel)]="name" name="name" formControlName="username" id="username"required autofocus>
+            <input type="text" class="form-control" placeholder="imię" [(ngModel)]="name" name="name" formControlName="name" id="username"required autofocus>
             <input type="text" class="form-control" placeholder="nazwisko" [(ngModel)]="lastname" name="lastname" formControlName="lastname" id="lastname"required>
             <input type="text" class="form-control" placeholder="email" [(ngModel)]="email" name="email" formControlName="email" id="email"required>
             <input type="password" class="form-control" placeholder="Hasło" [(ngModel)]="password" name="password" formControlName="password" id="password"required>

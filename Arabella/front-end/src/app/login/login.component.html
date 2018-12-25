@@ -10,7 +10,7 @@
           <form (submit)= "loginUser($event)" class="form-signin" [formGroup] = "loginForm">
             <input type="text" class="form-control" placeholder="Nazwa użytkownika lub mail" formControlName="username" id="username">
             <input type="password" class="form-control" placeholder="Hasło" formControlName="password" id="password">
-            <input type="submit" class="btn btn-lg btn-success btn-block" value="Zaloguj się" />
+            <input type="submit" class="btn btn-lg btn-success btn-block" [disabled]="!loginForm.valid" value="Zaloguj się" />
           </form>
           <form class="form-signin">
             <a routerLink="register"><input type="submit" class="btn btn-lg btn-info btn-block" value="Zarejestruj się" /></a>
