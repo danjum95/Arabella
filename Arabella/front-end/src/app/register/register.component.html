@@ -7,11 +7,11 @@
     <div class="col-sm-6 col-md-4 col-md-offset-4">
       <div class="account-wall">
         <div class="tab-pane active">
-          <form (submit)="register()" class="form-signin">
-            <input type="text" class="form-control" placeholder="imię" [(ngModel)]="name" name="name" id="username"required autofocus>
-            <input type="text" class="form-control" placeholder="nazwisko" [(ngModel)]="lastname" name="lastname" id="lastname"required>
-            <input type="text" class="form-control" placeholder="email" [(ngModel)]="email" name="email" id="email"required>
-            <input type="password" class="form-control" placeholder="Hasło" [(ngModel)]="password" name="password" id="password"required>
+          <form (submit)="register()" class="form-signin" [formGroup] = "registerForm">
+            <input type="text" class="form-control" placeholder="imię" [(ngModel)]="name" name="name" formControlName="username" id="username"required autofocus>
+            <input type="text" class="form-control" placeholder="nazwisko" [(ngModel)]="lastname" name="lastname" formControlName="lastname" id="lastname"required>
+            <input type="text" class="form-control" placeholder="email" [(ngModel)]="email" name="email" formControlName="email" id="email"required>
+            <input type="password" class="form-control" placeholder="Hasło" [(ngModel)]="password" name="password" formControlName="password" id="password"required>
             <input type="submit" class="btn btn-lg btn-success btn-block" value="Zarejestruj się" />
           </form>
         </div>

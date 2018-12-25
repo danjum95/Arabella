@@ -3,6 +3,8 @@ import { AuthorizationService } from './../authorization.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { receivedMessageInterface } from '../interface/receivedMessageInterface';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-message',
@@ -18,9 +20,34 @@ export class MessageComponent implements OnInit {
   idKursant: any;
   idInstruktor: any;
   idSend: any;
+  msgForm: FormGroup;
+  message = {
+    to: '',
+    title: '',
+    textMessage:''
+  };
 
   constructor(private Auth: AuthorizationService) {
-   }
+    this.createForm();
+  }
+
+
+  createForm(): void {
+   this.msgForm = new FormGroup({
+       'to': new FormControl(this.message.to, [
+             Validators.required,
+             Validators.email
+       ]),
+       'title': new FormControl(this.message.title, [
+           Validators.required,
+           Validators.minLength(5)
+       ]),
+       'textMessage': new FormControl(this.message.textMessage, [
+        Validators.required,
+        Validators.minLength(10)
+       ])
+   });
+  }
 
   ngOnInit() {
     this.receivedMessage();
