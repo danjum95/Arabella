@@ -7,9 +7,9 @@
     <div class="col-sm-6 col-md-4 col-md-offset-4">
       <div class="account-wall">
         <div class="tab-pane active">
-          <form (submit)= "loginUser($event)" class="form-signin">
-            <input type="text" class="form-control" placeholder="Nazwa użytkownika lub mail" id="username"required autofocus>
-            <input type="password" class="form-control" placeholder="Hasło" id="password"required>
+          <form (submit)= "loginUser($event)" class="form-signin" [formGroup] = "loginForm">
+            <input type="text" class="form-control" placeholder="Nazwa użytkownika lub mail" formControlName="username" id="username">
+            <input type="password" class="form-control" placeholder="Hasło" formControlName="password" id="password">
             <input type="submit" class="btn btn-lg btn-success btn-block" value="Zaloguj się" />
           </form>
           <form class="form-signin">

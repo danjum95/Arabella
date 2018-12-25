@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { AuthorizationService } from './../authorization.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,28 @@ export class LoginComponent {
 
   token: string;
   isLoginError = false;
+  loginForm: FormGroup;
+  login = {
+    username: '',
+    password: ''
+  };
+  constructor(private Auth: AuthorizationService, private router: Router) {
+      this.createForm();
+   }
 
-  constructor(private Auth: AuthorizationService, private router: Router) { }
+
+   createForm(): void {
+    this.loginForm = new FormGroup({
+        'username': new FormControl(this.login.username, [
+              Validators.required,
+              Validators.email
+        ]),
+        'password': new FormControl(this.login.password, [
+            Validators.required,
+            Validators.minLength(6)
+        ])
+    });
+}
 
   loginUser(event) {
     event.preventDefault();
