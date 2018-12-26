@@ -3,7 +3,8 @@ import { BrowserModule, By} from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DebugElement} from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { AuthorizationService } from './../authorization.service';
 import { MessageComponent } from './message.component';
 
 describe('MessageComponent', () => {
@@ -15,7 +16,8 @@ describe('MessageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MessageComponent ],
-      imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule],
+      imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule,HttpTestingController],
+      providers: [AuthorizationService]
     })
     .compileComponents();
   }));

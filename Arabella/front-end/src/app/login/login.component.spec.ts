@@ -3,12 +3,15 @@ import { BrowserModule, By} from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DebugElement} from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { LoginComponent } from './login.component';
+import { AuthorizationService } from './../authorization.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let service: AuthorizationService;
+  let httpMock: HttpTestingController;
   let de: DebugElement;
   let el: HTMLElement;
 
@@ -16,6 +19,7 @@ describe('LoginComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule],
+      providers: [AuthorizationService],
     })
     .compileComponents();
   }));
@@ -23,6 +27,8 @@ describe('LoginComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
+    service = TestBed.get(AuthorizationService);
+    httpMock = TestBed.get(HttpTestingController);
     fixture.detectChanges();
   });
 
@@ -45,4 +51,10 @@ describe('LoginComponent', () => {
     component.loginForm.controls['password'].setValue('1234567');
     expect(component.loginForm.valid).toBeTruthy();
   }));
+
+  it('should get the data successful', () => {
+    service.login("test@test.pl","tescik").subscribe((data: any) => {
+      expect(data.token).toBe('abcdefghijklmno');
+    });
+  });
 });
