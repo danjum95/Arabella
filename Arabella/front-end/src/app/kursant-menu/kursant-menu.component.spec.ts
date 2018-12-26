@@ -1,14 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserModule, By} from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DebugElement} from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { KursantMenuComponent } from './kursant-menu.component';
 
 describe('KursantMenuComponent', () => {
   let component: KursantMenuComponent;
   let fixture: ComponentFixture<KursantMenuComponent>;
-
+  let de: DebugElement;
+  let el: HTMLElement;
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ KursantMenuComponent ]
+      declarations: [ KursantMenuComponent ],
+      imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule],
     })
     .compileComponents();
   }));
