@@ -29,4 +29,23 @@ describe('RegisterOskComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('form invalid', async(() => {
+    component.registerForm.controls['oskName'].setValue('');
+    component.registerForm.controls['name'].setValue('');
+    component.registerForm.controls['lastname'].setValue('');
+    component.registerForm.controls['email'].setValue('');
+    component.registerForm.controls['password'].setValue('');
+    expect(component.registerForm.valid).toBeFalsy();
+  }));
+
+  it('form is valid', async(() => {
+    component.registerForm.controls['oskName'].setValue('MOJE_OSK');
+    component.registerForm.controls['name'].setValue('TESTOWY');
+    component.registerForm.controls['lastname'].setValue('TESTOWY');
+    component.registerForm.controls['email'].setValue('test@test.pl');
+    component.registerForm.controls['password'].setValue('123456');
+    expect(component.registerForm.valid).toBeTruthy();
+  }));
+
 });
