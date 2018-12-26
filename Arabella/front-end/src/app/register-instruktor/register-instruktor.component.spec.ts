@@ -3,12 +3,16 @@ import { BrowserModule, By} from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DebugElement} from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RegisterInstruktorComponent } from './register-instruktor.component';
+import { AuthorizationService } from './../authorization.service';
+
 
 describe('RegisterInstruktorComponent', () => {
   let component: RegisterInstruktorComponent;
   let fixture: ComponentFixture<RegisterInstruktorComponent>;
+  let service: AuthorizationService;
+  let httpMock: HttpTestingController;
   let de: DebugElement;
   let el: HTMLElement;
   
@@ -16,6 +20,7 @@ describe('RegisterInstruktorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RegisterInstruktorComponent ],
       imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule],
+      providers: [AuthorizationService],
     })
     .compileComponents();
   }));
@@ -23,6 +28,8 @@ describe('RegisterInstruktorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterInstruktorComponent);
     component = fixture.componentInstance;
+    service = TestBed.get(AuthorizationService);
+    httpMock = TestBed.get(HttpTestingController);
     fixture.detectChanges();
   });
 
@@ -45,5 +52,10 @@ describe('RegisterInstruktorComponent', () => {
     component.registerForm.controls['password'].setValue('123456');
     expect(component.registerForm.valid).toBeTruthy();
   }));
-  
+
+  it('should get register instructor successful', () => {
+    service.addUsers("Marcin", "Marcinowski", "testowy@testowy.pl", "1234567").subscribe((data: any) => {
+      expect(data.value).toBe('abcdefghijklmno');
+    });
+  });
 });

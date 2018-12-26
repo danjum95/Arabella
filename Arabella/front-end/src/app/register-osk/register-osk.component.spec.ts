@@ -3,12 +3,16 @@ import { BrowserModule, By} from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DebugElement} from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RegisterOskComponent } from './register-osk.component';
+import { AuthorizationService } from './../authorization.service';
+
 
 describe('RegisterOskComponent', () => {
   let component: RegisterOskComponent;
   let fixture: ComponentFixture<RegisterOskComponent>;
+  let service: AuthorizationService;
+  let httpMock: HttpTestingController;
   let de: DebugElement;
   let el: HTMLElement;
   
@@ -16,6 +20,7 @@ describe('RegisterOskComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ RegisterOskComponent ],
       imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule],
+      providers: [AuthorizationService],
     })
     .compileComponents();
   }));
@@ -23,6 +28,8 @@ describe('RegisterOskComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterOskComponent);
     component = fixture.componentInstance;
+    service = TestBed.get(AuthorizationService);
+    httpMock = TestBed.get(HttpTestingController);
     fixture.detectChanges();
   });
 
@@ -56,5 +63,11 @@ describe('RegisterOskComponent', () => {
     component.registerForm.controls['password'].setValue('123456');
     expect(component.registerForm.valid).toBeTruthy();
   }));
+
+  it('should get register school successful', () => {
+    service.addSchools("Moje OSK", "12345678910").subscribe((data: any) => {
+      expect(data.value).toBe('abcdefghijklmno');
+    });
+  });
 
 });

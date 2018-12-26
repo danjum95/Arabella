@@ -4,19 +4,22 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DebugElement} from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { AuthorizationService } from './../authorization.service';
 import { MessageComponent } from './message.component';
+import { AuthorizationService } from './../authorization.service';
+
 
 describe('MessageComponent', () => {
   let component: MessageComponent;
   let fixture: ComponentFixture<MessageComponent>;
+  let service: AuthorizationService;
+  let httpMock: HttpTestingController;
   let de: DebugElement;
   let el: HTMLElement;
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MessageComponent ],
-      imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule,HttpTestingController],
+      imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule],
       providers: [AuthorizationService]
     })
     .compileComponents();
@@ -25,6 +28,8 @@ describe('MessageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MessageComponent);
     component = fixture.componentInstance;
+    service = TestBed.get(AuthorizationService);
+    httpMock = TestBed.get(HttpTestingController);
     fixture.detectChanges();
   });
 

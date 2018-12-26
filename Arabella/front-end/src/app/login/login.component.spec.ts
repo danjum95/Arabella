@@ -52,7 +52,7 @@ describe('LoginComponent', () => {
     expect(component.loginForm.valid).toBeTruthy();
   }));
 
-  it('should get the data successful', () => {
+  it('should get login successful', () => {
     service.login("test@test.pl","tescik").subscribe((data: any) => {
       expect(data.token).toBe('abcdefghijklmno');
     });
