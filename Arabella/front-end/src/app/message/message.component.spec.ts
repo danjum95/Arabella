@@ -50,4 +50,11 @@ describe('MessageComponent', () => {
     component.msgForm.controls['textMessage'].setValue('sadadsdsadadasdas');
     expect(component.msgForm.valid).toBeTruthy();
   }));
+
+  it('form is invalid partially', async(() => {
+    component.msgForm.controls['to'].setValue('testowy');
+    component.msgForm.controls['title'].setValue('tytul123');
+    component.msgForm.controls['textMessage'].setValue('123');
+    expect(component.msgForm.valid).toBeFalsy();
+  }));
 });

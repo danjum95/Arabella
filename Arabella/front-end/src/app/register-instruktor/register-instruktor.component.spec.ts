@@ -45,6 +45,14 @@ describe('RegisterInstruktorComponent', () => {
     expect(component.registerForm.valid).toBeFalsy();
   }));
 
+  it('form invalid partially', async(() => {
+    component.registerForm.controls['name'].setValue('');
+    component.registerForm.controls['lastname'].setValue('testuje');
+    component.registerForm.controls['email'].setValue('');
+    component.registerForm.controls['password'].setValue('12345678900');
+    expect(component.registerForm.valid).toBeFalsy();
+  }));
+
   it('form is valid', async(() => {
     component.registerForm.controls['name'].setValue('TESTOWY');
     component.registerForm.controls['lastname'].setValue('TESTOWY');
