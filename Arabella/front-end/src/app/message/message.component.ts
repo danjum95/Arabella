@@ -2,7 +2,7 @@ import { instruktorListInterface } from './../interface/instruktorListInterface'
 import { AuthorizationService } from './../authorization.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { receivedMessageInterface } from '../interface/receivedMessageInterface';
+import { IReceivedMessageInterface } from '../interface/receivedMessageInterface';
 
 @Component({
   selector: 'app-message',
@@ -10,59 +10,35 @@ import { receivedMessageInterface } from '../interface/receivedMessageInterface'
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
-  receivedMessages$: Observable<Array<receivedMessageInterface>>;
   to: any;
-  title: any;
   textMessage: any;
-  dataInstruktor: Observable<Array<instruktorListInterface>>;
-  idKursant: any;
-  idInstruktor: any;
-  idSend: any;
+  rev$: Observable<Array<IReceivedMessageInterface>>;
 
   constructor(private Auth: AuthorizationService) {
    }
 
   ngOnInit() {
-    this.receivedMessage();
+    this.getMessages();
   }
 
-  receivedMessage() {
-    this.receivedMessages$ = this.Auth.receivedMessage(localStorage.getItem('userToken'));
+  getMessages() {
+    this.rev$ = this.Auth.getAllMessages(localStorage.getItem('userToken'));
+
+    console.log(this.rev$);
   }
 
   sendMessage(event) {
     event.preventDefault();
     const target = event.target;
     this.to = target.querySelector('#to').value;
-    this.title = target.querySelector('#title').value;
     this.textMessage = target.querySelector('#textMessage').value;
 
-<<<<<<< HEAD
-    /*this.Auth.getInstruktorList(localStorage.getItem('userToken')).subscribe(data => {
-=======
-    this.Auth.getInstruktorList(localStorage.getItem('userToken'),1).subscribe(data => {
->>>>>>> f02d1c3f51b52b608ce6eb2ae5e42d14ea7ed19a
-        data.forEach(element => {
-          if (element.email === this.to) {
-            this.idInstruktor = element.id;
-            this.idKursant = null;
-          }
-        });
+    this.Auth.getUsersToMessage(localStorage.getItem('userToken')).subscribe(data => {
+      data.forEach(element => {
+        if (this.to === element.email) {
+          this.Auth.addMessage(localStorage.getItem('userToken'), element.id, this.textMessage).subscribe();
+        }
       });
-
-      this.Auth.getKursantList(localStorage.getItem('userToken'),1).subscribe(data => {
-        data.forEach(element => {
-          if (element.email === this.to) {
-            this.idKursant = element.id;
-            this.idInstruktor = null;
-          }
-        });
-      });
-      if (this.idInstruktor === null) {
-        this.idSend = this.idKursant;
-      } else {
-        this.idSend = this.idInstruktor;
-      }
-      this.Auth.sendMessage(localStorage.getItem('userToken'), this.idSend, this.textMessage);*/
+    });
   }
 }

@@ -1,14 +1,8 @@
 <link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.css'>
 
 <div class="container" *ngIf="calendarOptions">
-    <ng-fullcalendar #ucCalendar
-    [options]="calendarOptions"
-    (eventClick)="eventClick($event.detail)"
-    [(eventsModel)]="events"></ng-fullcalendar>
-    
-</div>
-
-<div class="container2" >
+    <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" [(eventsModel)]="events"></ng-fullcalendar>
+    <div *ngIf="isInstructor" class="container2" >
         <div class="form-group" style="text-align: center;">
           <input type="text" id="email" [(ngModel)]='email' placeholder="Email">
           <br>
@@ -19,3 +13,4 @@
           <button id="lekcja_dodana" value="Dodaj lekcję" (click)="addLesson(email,date,length)" class="btn btn-success btn-sm">Dodaj lekcję</button>
     </div>
     </div>
+</div>

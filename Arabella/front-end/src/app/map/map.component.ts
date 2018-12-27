@@ -10,7 +10,6 @@ import OlXyzSource from 'ol/source/XYZ';
 import OlTileLayer from 'ol/layer/Tile';
 import {Icon, Style} from 'ol/style';
 import { fromLonLat } from 'ol/proj';
-import { AuthorizationService } from './../authorization.service';
 import { markParentViewsForCheck } from '@angular/core/src/view/util';
 
 declare var ol: any;
@@ -23,7 +22,7 @@ declare var ol: any;
 export class MapComponent implements OnInit {
 
   
-  constructor(private Auth: AuthorizationService) { }
+  constructor() { }
 
   map: OlMap;
     vectorSource: OlVectorSource;
@@ -36,8 +35,7 @@ export class MapComponent implements OnInit {
   longitude: number = 16.9335199;
 
   ngOnInit() {
-    this.Auth.getMap(1);
-    this.Auth.getLessonMap();
+
     this.marker = new OlFeature({
       // Added fromLonLat
   });

@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../authorization.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-register-osk',
@@ -14,8 +15,17 @@ export class RegisterOskComponent {
   password: any;
   token: any;
   oskName: any;
+  myForm: FormGroup;
 
-  constructor(private Auth: AuthorizationService, private router: Router) { }
+  constructor(private Auth: AuthorizationService, private router: Router, private fb: FormBuilder) {
+    this.myForm = fb.group({
+      'oskName': [null, Validators.required],
+      'name': [null, Validators.required],
+      'lastname': [null, Validators.required],
+      'email': [null, Validators.compose([Validators.required, Validators.pattern('.+[@].+[\.].+')])],
+      'password': [null, Validators.required]
+    });
+   }
 
   register() {
 
@@ -27,6 +37,7 @@ export class RegisterOskComponent {
         this.router.navigate(['']);
       }, 300);
     });
+
   }
 
 }

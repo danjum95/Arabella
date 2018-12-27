@@ -12,13 +12,12 @@
 
       <div class="inbox_msg">
         <div class="inbox_people">
-          <div class="inbox_chat" *ngFor="let message of receivedMessages$ |async">
+          <div class="inbox_chat" *ngFor="let message of rev$ |async">
             <div class="chat_list">
               <div class="chat_ib">
-                <h5>Od: {{message.fromName}}</h5>
-                <p class="title">Tytuł: {{message.title}}</p>
+                <h5>Od: {{message.sender.email}}</h5>
                 <p>
-                  Wiadomość: {{message.text}}
+                  Wiadomość: {{message.message}}
                 </p>
               </div>
             </div>
@@ -28,7 +27,6 @@
           <div class="type_msg">
             <form (submit)= "sendMessage($event)" class="input_msg_write">
               <input type="text" class="write_msg" placeholder="Odbiorca" id="to"/>
-              <input type="text" class="write_msg" placeholder="Tytuł" id="title"/>
               <input type="text" class="write_msg" placeholder="Wiadomość" id="textMessage"/>
               <button type="submit" class="msg_send_btn">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>

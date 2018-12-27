@@ -7,10 +7,12 @@
     <div class="col-sm-6 col-md-4 col-md-offset-4">
       <div class="account-wall">
         <div class="tab-pane active">
-          <form (submit)= "loginUser($event)" class="form-signin">
-            <input type="text" class="form-control" placeholder="Nazwa użytkownika lub mail" id="username"required autofocus>
-            <input type="password" class="form-control" placeholder="Hasło" id="password"required>
-            <input type="submit" class="btn btn-lg btn-success btn-block" value="Zaloguj się" />
+          <form [formGroup]="myForm" (submit)= "loginUser($event)" class="form-signin">
+            <input formControlName="email" type="text" name = "email" class="form-control" placeholder="Nazwa użytkownika lub mail" id="username"
+            [ngClass]="{'in-valid': !myForm.controls['email'].valid && myForm.controls['email'].touched}" required autofocus>
+            <input formControlName="password" type="password" class="form-control" placeholder="Hasło" id="password" name="password"
+            [ngClass]="{'in-valid': !myForm.controls['password'].valid && myForm.controls['password'].touched}"required>
+            <input [disabled]="!myForm.valid" type="submit" class="btn btn-lg btn-success btn-block" value="Zaloguj się" />
           </form>
           <form class="form-signin">
             <a routerLink="register"><input type="submit" class="btn btn-lg btn-info btn-block" value="Zarejestruj się" /></a>
@@ -20,11 +22,15 @@
     </div>
   </div>
   <div class="contener-error">
+    <div *ngIf="!myForm.controls['email'].valid && myForm.controls['email'].touched" class="alert alert-danger">
+        <i class="material-icons">Email jest wymagany</i>
+    </div>
+    <div *ngIf="!myForm.controls['password'].valid && myForm.controls['password'].touched" class="alert alert-danger">
+        <i class="material-icons">Hasło jest wymagane</i>
+    </div>
       <div *ngIf = "isLoginError" class="alert alert-danger">
           <i class="material-icons">Nieprawidłowe dane</i>
       </div>
   </div>
-
+  
 </div>
-
-

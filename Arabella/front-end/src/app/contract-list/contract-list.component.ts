@@ -2,6 +2,7 @@ import { AuthorizationService } from './../authorization.service';
 import { Component, OnInit } from '@angular/core';
 import { contractListInterface } from '../interface/contractListInterface';
 import { Observable } from 'rxjs';
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-contract-list',
@@ -22,10 +23,11 @@ export class ContractListComponent implements OnInit {
   }
 
   loadData () {
-    this.columns = ['Imię', 'Nazwisko', 'E-mail'];
+    this.columns = ['Uzytkownik', 'Email', 'Zatwierdz'];
+    this.allContracts$ = this.Auth.getAllContracts(localStorage.getItem('userToken'));
+  }
 
-    this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {
-      this.allContracts$ = this.Auth.getAllContracts(localStorage.getItem('userToken'));
-    });
+  id(event) {
+    this.Auth.acceptContract(localStorage.getItem('userToken'), event.target.id, 2).subscribe();
   }
 }

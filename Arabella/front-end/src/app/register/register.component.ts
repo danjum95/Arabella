@@ -1,6 +1,9 @@
 import { AuthorizationService } from './../authorization.service';
 import { Router} from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -12,15 +15,25 @@ export class RegisterComponent {
   lastname: any;
   email: any;
   password: any;
+  myForm: FormGroup;
+  isLoginError = false;
 
-  constructor(private router: Router, private Auth: AuthorizationService) { }
+  constructor(private router: Router, private Auth: AuthorizationService, private fb: FormBuilder) {
+    this.myForm = fb.group({
+      'name': [null, Validators.required],
+      'lastname': [null, Validators.required],
+      'email': [null, Validators.compose([Validators.required, Validators.pattern('.+[@].+[\.].+')])],
+      'password': [null, Validators.required]
+    });
+  }
 
   register() {
+      this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
+        localStorage.setItem('newUser', data.value);
+      }, (error) => this.isLoginError = true);
 
-    this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
-      localStorage.setItem('newUser', data.value);
-    });
-
-    this.router.navigate(['oskList']);
+    if (!(this.isLoginError === true)) {
+      this.router.navigate(['oskList']);
+    }
   }
 }

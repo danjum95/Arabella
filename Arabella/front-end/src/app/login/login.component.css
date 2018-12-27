@@ -18,14 +18,7 @@
 {
   z-index: 2;
 }
-.form-signin input[type="text"]
-{
-  margin-bottom: -1px;
-}
-.form-signin input[type="password"]
-{
-  margin-bottom: 10px;
-}
+
 .account-wall
 {
   margin-top: 20vh;
@@ -33,6 +26,11 @@
   box-shadow: 5px 5px 5px 5px rgba(0.300, 0.300, 0.300, 0.300);
   opacity: 0.95;
 }
+
+.contener-error {
+  margin-top: 20px;
+}
+
 .material-icons {
   color: red;
   text-align: center;
@@ -41,9 +39,12 @@
 
 .alert {
   display: grid;
-  margin-top: 40px;
+  margin-bottom: 5px;
   max-width: 310px;
   margin-left: 29vw;
+  box-shadow: 5px 5px 5px 5px rgba(0.300, 0.300, 0.300, 0.300);
 }
 
-
+.in-valid {
+  border: 2px solid red;
+}

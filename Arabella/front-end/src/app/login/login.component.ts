@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { AuthorizationService } from './../authorization.service';
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,17 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent {
 
+  myForm: FormGroup;
+
   token: string;
   isLoginError = false;
 
-  constructor(private Auth: AuthorizationService, private router: Router) { }
+  constructor(private Auth: AuthorizationService, private router: Router, private fb: FormBuilder) {
+    this.myForm = fb.group({
+      'email': [null, Validators.compose([Validators.required, Validators.pattern('.+[@].+[\.].+')])],
+      'password': [null, Validators.required]
+    });
+  }
 
   loginUser(event) {
     event.preventDefault();
@@ -38,9 +46,6 @@ export class LoginComponent {
               this.router.navigate(['kursantMenu']);
               break;
           }
-        },
-        (err: HttpErrorResponse) => {
-          this.router.navigate(['oskList']);
         });
       }, 500);
     },
