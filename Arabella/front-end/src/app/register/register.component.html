@@ -7,15 +7,37 @@
     <div class="col-sm-6 col-md-4 col-md-offset-4">
       <div class="account-wall">
         <div class="tab-pane active">
-          <form (submit)="register()" class="form-signin" [formGroup] = "registerForm">
-            <input type="text" class="form-control" placeholder="imię" [(ngModel)]="name" name="name" formControlName="name" id="username"required autofocus>
-            <input type="text" class="form-control" placeholder="nazwisko" [(ngModel)]="lastname" name="lastname" formControlName="lastname" id="lastname"required>
-            <input type="text" class="form-control" placeholder="email" [(ngModel)]="email" name="email" formControlName="email" id="email"required>
-            <input type="password" class="form-control" placeholder="Hasło" [(ngModel)]="password" name="password" formControlName="password" id="password"required>
-            <input type="submit" class="btn btn-lg btn-success btn-block" value="Zarejestruj się" />
+          <form [formGroup]="myForm" (submit)="register()" class="form-signin">
+            <input formControlName="name" type="text" class="form-control" placeholder="imię" [(ngModel)]="name" name="name" id="username"
+            [ngClass]="{'in-valid': !myForm.controls['name'].valid && myForm.controls['name'].touched}"required autofocus>
+            <input formControlName="lastname" type="text" class="form-control" placeholder="nazwisko" [(ngModel)]="lastname" name="lastname" id="lastname"
+            [ngClass]="{'in-valid': !myForm.controls['lastname'].valid && myForm.controls['lastname'].touched}" required>
+            <input formControlName="email" type="text" class="form-control" placeholder="email" [(ngModel)]="email" name="email" id="email"
+            [ngClass]="{'in-valid': !myForm.controls['email'].valid && myForm.controls['email'].touched}"required>
+            <input formControlName="password" type="password" class="form-control" placeholder="Hasło" [(ngModel)]="password" name="password" id="password"
+            [ngClass]="{'in-valid': !myForm.controls['password'].valid && myForm.controls['password'].touched}"required>
+            <input [disabled]="!myForm.valid" type="submit" class="btn btn-lg btn-success btn-block" value="Zarejestruj się" />
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="contener-error">
+    <div *ngIf="!myForm.controls['name'].valid && myForm.controls['name'].touched" class="alert alert-danger">
+        <i class="material-icons">Imię jest wymagane</i>
+    </div>
+    <div *ngIf="!myForm.controls['lastname'].valid && myForm.controls['lastname'].touched" class="alert alert-danger">
+        <i class="material-icons">Nazwisko jest wymagane</i>
+    </div>
+    <div *ngIf="!myForm.controls['email'].valid && myForm.controls['email'].touched" class="alert alert-danger">
+        <i class="material-icons">Email jest wymagany</i>
+    </div>
+    <div *ngIf="!myForm.controls['password'].valid && myForm.controls['password'].touched" class="alert alert-danger">
+        <i class="material-icons">Hasło jest wymagane i musi mieć przynajmniej 6 znaków</i>
+    </div>
+    <div *ngIf = "isLoginError" class="alert alert-danger">
+      <i class="material-icons">Taka osoba już istnieje!</i>
+    </div>
+  </div>

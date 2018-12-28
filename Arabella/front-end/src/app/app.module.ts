@@ -52,6 +52,7 @@ import { MapComponent } from './map/map.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     FullCalendarModule,
     ReactiveFormsModule,
     RouterModule.forRoot([

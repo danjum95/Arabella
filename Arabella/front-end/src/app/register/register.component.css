@@ -33,3 +33,25 @@
   box-shadow: 5px 5px 5px 5px rgba(0.300, 0.300, 0.300, 0.300);
   opacity: 0.95;
 }
+
+.contener-error {
+  margin-top: 20px;
+}
+
+.material-icons {
+  color: red;
+  text-align: center;
+  font-size: 20px;
+}
+
+.alert {
+  display: grid;
+  margin-bottom: 5px;
+  max-width: 310px;
+  margin-left: 39vw;
+  box-shadow: 5px 5px 5px 5px rgba(0.300, 0.300, 0.300, 0.300);
+}
+
+.in-valid {
+  border: 2px solid red;
+}

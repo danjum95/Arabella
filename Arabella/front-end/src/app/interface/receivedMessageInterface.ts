@@ -1,5 +1,4 @@
-export interface receivedMessageInterface {
-  fromName;
-  title;
-  text;
+export interface IReceivedMessageInterface {
+  sender: any;
+  message: any;
 }

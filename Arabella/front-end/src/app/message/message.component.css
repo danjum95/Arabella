@@ -8,8 +8,9 @@ body {
 
 .inbox_people {
   float: left;
-  overflow: hidden;
+  max-height: 350px;
   width: 40%; border-right:1px solid #c4c4c4;
+  overflow-y: scroll;
 }
 .inbox_msg {
   overflow: hidden;
@@ -26,8 +27,7 @@ body {
   padding: 18px 16px 10px;
 }
 .inbox_chat {
-  height: 550px;
-  overflow-y: scroll;
+  height: 150px;
 }
 
  .received_withd_msg p {

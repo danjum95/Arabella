@@ -37,19 +37,19 @@ describe('LoginComponent', () => {
   });
 
   it('form invalid when empty', () => {
-    expect(component.loginForm.valid).toBeFalsy();
+    expect(component.myForm.valid).toBeFalsy();
   });
 
   it('form invalid', async(() => {
-    component.loginForm.controls['username'].setValue('');
-    component.loginForm.controls['password'].setValue('');
-    expect(component.loginForm.valid).toBeFalsy();
+    component.myForm.controls['email'].setValue('');
+    component.myForm.controls['password'].setValue('');
+    expect(component.myForm.valid).toBeFalsy();
   }));
 
   it('form is valid', async(() => {
-    component.loginForm.controls['username'].setValue('kurs@kurs.pl');
-    component.loginForm.controls['password'].setValue('1234567');
-    expect(component.loginForm.valid).toBeTruthy();
+    component.myForm.controls['email'].setValue('kurs@kurs.pl');
+    component.myForm.controls['password'].setValue('1234567');
+    expect(component.myForm.valid).toBeTruthy();
   }));
 
   it('should get login successful', () => {

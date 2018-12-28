@@ -37,31 +37,31 @@ describe('RegisterComponent', () => {
   });
 
   it('form invalid when empty', () => {
-    expect(component.registerForm.valid).toBeFalsy();
+    expect(component.myForm.valid).toBeFalsy();
   });
 
   it('form invalid', async(() => {
-    component.registerForm.controls['name'].setValue('');
-    component.registerForm.controls['lastname'].setValue('');
-    component.registerForm.controls['email'].setValue('');
-    component.registerForm.controls['password'].setValue('');
-    expect(component.registerForm.valid).toBeFalsy();
+    component.myForm.controls['name'].setValue('');
+    component.myForm.controls['lastname'].setValue('');
+    component.myForm.controls['email'].setValue('');
+    component.myForm.controls['password'].setValue('');
+    expect(component.myForm.valid).toBeFalsy();
   }));
 
   it('form is invalid partially', async(() => {
-    component.registerForm.controls['name'].setValue('test');
-    component.registerForm.controls['lastname'].setValue('TESTOWY');
-    component.registerForm.controls['email'].setValue('test@test.pl');
-    component.registerForm.controls['password'].setValue('');
-    expect(component.registerForm.valid).toBeFalsy();
+    component.myForm.controls['name'].setValue('test');
+    component.myForm.controls['lastname'].setValue('TESTOWY');
+    component.myForm.controls['email'].setValue('test@test.pl');
+    component.myForm.controls['password'].setValue('');
+    expect(component.myForm.valid).toBeFalsy();
   }));
 
   it('form is valid', async(() => {
-    component.registerForm.controls['name'].setValue('TESTOWY');
-    component.registerForm.controls['lastname'].setValue('TESTOWY');
-    component.registerForm.controls['email'].setValue('test@test.pl');
-    component.registerForm.controls['password'].setValue('123456');
-    expect(component.registerForm.valid).toBeTruthy();
+    component.myForm.controls['name'].setValue('TESTOWY');
+    component.myForm.controls['lastname'].setValue('TESTOWY');
+    component.myForm.controls['email'].setValue('test@test.pl');
+    component.myForm.controls['password'].setValue('123456');
+    expect(component.myForm.valid).toBeTruthy();
   }));
 
   it('should get register successful', () => {
