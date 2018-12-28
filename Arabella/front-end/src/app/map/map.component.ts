@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthorizationService } from './../authorization.service';
 import OlMap from 'ol/Map';
 import OlVectorSource from 'ol/source/Vector';
 import OlVectorLayer from 'ol/layer/Vector';
@@ -15,6 +15,7 @@ import Fill from 'ol/style/Fill';
 import Icon from 'ol/style/Icon';
 import { fromLonLat } from 'ol/proj';
 import { markParentViewsForCheck } from '@angular/core/src/view/util';
+import { Observable } from 'rxjs';
 
 declare var ol: any;
 
@@ -26,7 +27,7 @@ declare var ol: any;
 export class MapComponent implements OnInit {
 
   
-  constructor() { }
+  constructor(protected Auth: AuthorizationService) { }
 
   map: OlMap;
     vectorSource: OlVectorSource;
@@ -37,10 +38,25 @@ export class MapComponent implements OnInit {
     view: OlView;
   latitude: number = 52.4082663;
   longitude: number = 16.9335199;
+  lessonsId: string[] = [];
 
   ngOnInit() {
     this.vectorSource = new OlVectorSource({});
     this.vectorLine = new OlVectorSource({});
+    
+    this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(dat => {
+      this.Auth.getLessons(localStorage.getItem('userToken'), dat.id).subscribe(da => {
+        for (var i = 0; i < da.length; i++)
+        {
+          this.lessonsId[i] = da[i].id;
+        }
+      })
+    });
+
+    this.Auth.getMap(this.lessonsId[0]).subscribe(map => {
+      console.log(map.error);
+    })
+
     var places = [
       [16.9335199, 52.4082663, "r"],
       [15.9335000, 52.4082000, "y"],

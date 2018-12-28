@@ -107,6 +107,11 @@ export class AuthorizationService {
     return this.http.get(this.url + '/lessons/of/school/' + schoolId, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
+  getMap(lessonId): any
+  {
+    return this.http.get(this.url + '/maps/' + lessonId, {headers: {'Content-Type' : 'application/json'}});
+  }
+
   generalInfo(token, email): any {
     const data = {email: email};
     return this.http.post(this.url + '/users/other/user/info', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
