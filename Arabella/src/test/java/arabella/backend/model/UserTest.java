@@ -12,4 +12,12 @@ public class UserTest {
         user.setPassword("1234567");
         user.setId(Long.valueOf(5));
     }
+
+    @Test
+    public void isInvalid() {
+        User user = new User();
+        user.setEmail("testest.pl");
+        user.setPassword("");
+        user.setId(Long.valueOf(-5));
+    }
 }
