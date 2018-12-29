@@ -41,4 +41,33 @@ describe('KursantListComponent', () => {
     });
   });
 
+  it('shouldnt get kursants list', () => {
+    service.getSchool("").subscribe(data => {
+      expect(service.getStudents("", data.id)).toBeNull();
+    });
+  });
+
+  it('should checkuserid', () => {
+    service.getTypeOfUser("testowytoken").subscribe(data => {
+      expect(data).toMatch("2");
+    });
+    service.getTypeOfUser("testowytoken2").subscribe(data => {
+      expect(data).toMatch("1");
+    });
+    service.getTypeOfUser("testowytoken3").subscribe(data => {
+      expect(data).toMatch("0");
+    });
+  });
+
+  it('shouldnt checkuserid', () => {
+    service.getTypeOfUser("").subscribe(data => {
+      expect(data).toBeUndefined();
+    });
+    service.getTypeOfUser("").subscribe(data => {
+      expect(data).toBeUndefined();
+    });
+    service.getTypeOfUser("").subscribe(data => {
+      expect(data).toBeUndefined();
+    });
+  });
 });

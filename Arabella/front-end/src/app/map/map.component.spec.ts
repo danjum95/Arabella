@@ -47,4 +47,16 @@ describe('MapComponent', () => {
     });
   });
   });
+
+  it('shouldnt get list of map', () => {
+    service.getSchool("").subscribe((da: any) => {
+      service.getLessons(localStorage.getItem(""), da.id).subscribe(dat => {
+        for (var i = 0; i < dat.length; i++)
+        {
+          this.lessonsId.push(dat[i].id);
+        }
+        expect(service.getMap(this.lessons[this.lessons.length-1])).toBeNull();
+    });
+  });
+  });
 });

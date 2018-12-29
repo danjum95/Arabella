@@ -38,6 +38,7 @@ describe('OskListComponent', () => {
   it('should get contract with school', () => {
       expect(service.cotractKursant("abcdefghijkl", 1).subscribe()).toBeDefined();
   });
+
   it('should get contract with school', () => {
     expect(service.getSchools()).toBeDefined();
   });

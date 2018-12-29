@@ -36,10 +36,28 @@ describe('InstruktorListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   it('should get instruktor list', () => {
     service.getSchool("testowytoken").subscribe(data => {
       expect(service.getInstructors("testowytoken", data.id)).toBeDefined();
+    });
+  });
+
+  it('shouldnt get instruktor list', () => {
+    service.getSchool("").subscribe(data => {
+      expect(service.getInstructors("", data.id)).toBeNaN();
+    });
+  });
+
+  it('should checkuserid', () => {
+    service.getTypeOfUser("testowytoken").subscribe(data => {
+      expect(data).toMatch("2");
+    });
+    service.getTypeOfUser("testowytoken2").subscribe(data => {
+      expect(data).toMatch("1");
+    });
+    service.getTypeOfUser("testowytoken3").subscribe(data => {
+      expect(data).toMatch("0");
     });
   });
 });

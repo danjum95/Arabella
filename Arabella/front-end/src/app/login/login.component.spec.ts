@@ -41,7 +41,7 @@ describe('LoginComponent', () => {
   });
 
   it('form invalid', async(() => {
-    component.myForm.controls['email'].setValue('');
+    component.myForm.controls['email'].setValue('test');
     component.myForm.controls['password'].setValue('');
     expect(component.myForm.valid).toBeFalsy();
   }));
@@ -55,6 +55,12 @@ describe('LoginComponent', () => {
   it('should get login successful', () => {
     service.login("test@test.pl","tescik").subscribe((data: any) => {
       expect(data.token).toBe('abcdefghijklmno');
+    });
+  });
+
+  it('shouldnt get login successful', () => {
+    service.login("test@test.pl","").subscribe((data: any) => {
+      expect(data.token).toBeNull();
     });
   });
 });

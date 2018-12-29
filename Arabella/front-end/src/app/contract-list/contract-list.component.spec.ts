@@ -43,4 +43,12 @@ describe('ContractListComponent', () => {
     });
   });
   });
+
+  it('shouldnt get whole list', () => {
+    service.login("=","qwer").subscribe((da: any) => {
+    service.getAllContracts(da.value).subscribe((data: any) => {
+      expect(data).toBeNaN();
+    });
+  });
+  });
 });

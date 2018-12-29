@@ -10,6 +10,8 @@ public class UserTest {
         User user = new User();
         user.setEmail("test@test.pl");
         user.setPassword("1234567");
+        user.setFirstName("Testuje");
+        user.setLastName("Testuj");
         user.setId(Long.valueOf(5));
     }
 
@@ -18,6 +20,8 @@ public class UserTest {
         User user = new User();
         user.setEmail("testest.pl");
         user.setPassword("");
+        user.setFirstName("");
+        user.setLastName("");
         user.setId(Long.valueOf(-5));
     }
 }

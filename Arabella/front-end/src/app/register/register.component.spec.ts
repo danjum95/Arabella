@@ -69,4 +69,11 @@ describe('RegisterComponent', () => {
       expect(data.value).toBe('abcdefghijklmno');
     });
   });
+
+  it('shouldnt get register successful', () => {
+    service.addUsers("Marcin", "", "teststowy.pl", "123567").subscribe((data: any) => {
+      expect(data.value).toBeNull();
+    });
+  });
+
 });

@@ -47,4 +47,12 @@ describe('SettingsComponent', () => {
       expect(data).toBe('OK');
     });
   });
+
+  it('should get user mail, name and surname propoerly', () => {
+    service.getUserDetails("blablablabla").subscribe(data => {
+    expect(data.email).toBe('test@test.pl');
+    expect(data.firstName).toBe('Test');;
+    expect(data.lastName).toBe('testowy');
+  });
+});
 });

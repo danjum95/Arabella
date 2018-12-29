@@ -66,4 +66,15 @@ describe('RegisterInstruktorComponent', () => {
       expect(data.value).toBe('abcdefghijklmno');
     });
   });
+
+  it('should get full path to register successful', () => {
+    service.addUsers("Marcin", "Marcinowski", "testowy@testowy.pl", "1234567").subscribe(data => {
+      service.getSchool(data.token).subscribe(dat => {
+        service.cotractInstruktor(data.token, dat.id).subscribe(data => {
+          expect(data).toBeDefined();
+        })
+        this.isRegistered = true;
+      });
+    });
+  });
 });

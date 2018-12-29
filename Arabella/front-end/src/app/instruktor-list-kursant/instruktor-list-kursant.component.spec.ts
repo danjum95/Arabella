@@ -41,4 +41,10 @@ describe('InstruktorListKursantComponent', () => {
       expect(service.getInstructors("testowytoken", data.id)).toBeDefined();
     });
   });
+
+  it('shouldnt get instruktor list', () => {
+    service.getSchool("").subscribe(data => {
+      expect(service.getInstructors("", data.id)).toBeNaN();
+    });
+  });
 });
