@@ -2,7 +2,7 @@ package arabella.backend.endpoint;
 
 import arabella.backend.auth.SessionController;
 import arabella.backend.model.Lesson;
-import arabella.backend.model.Student;
+import arabella.backend.model.School;
 import arabella.backend.model.User;
 import arabella.backend.repository.InstructorRepository;
 import arabella.backend.repository.LessonRepository;
@@ -16,8 +16,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RestController
@@ -60,6 +64,28 @@ public class LessonRestController {
         } else {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/how/many/minutes/driven")
+    public ResponseEntity getDrivenMins(@RequestHeader("Token") String token) {
+        User user = sessionController.getUserFromToken(token);
+
+        School school = sessionController.findSchoolOfGivenUser(user);
+
+        if (!sessionController.isStudentOfGivenSchool(user, school.getId())) {
+            return new ResponseEntity<>("Endpoint only for students",HttpStatus.BAD_REQUEST);
+        }
+
+        List<Lesson> lessons = lessonRepository.findAllByStudentId(user.getId());
+
+        long sum = 0;
+        for (Lesson lesson : lessons) {
+            String endDate = lesson.getEndDate().replace("T"," ");
+            String startDate = lesson.getDate().replace("T"," ");
+            sum += Timestamp.valueOf(endDate).getTime() - Timestamp.valueOf(startDate).getTime();
+        }
+
+        return new ResponseEntity<>(TimeUnit.MILLISECONDS.toMinutes(sum), HttpStatus.OK);
     }
 
     @GetMapping("/of/school/{schoolId}")
