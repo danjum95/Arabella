@@ -4,10 +4,7 @@ import arabella.backend.auth.SessionController;
 import arabella.backend.model.Lesson;
 import arabella.backend.model.School;
 import arabella.backend.model.User;
-import arabella.backend.repository.InstructorRepository;
-import arabella.backend.repository.LessonRepository;
-import arabella.backend.repository.StudentRepository;
-import arabella.backend.repository.UserRepository;
+import arabella.backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +18,7 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -39,6 +37,9 @@ public class LessonRestController {
 
     @Autowired
     InstructorRepository instructorRepository;
+
+    @Autowired
+    SchoolRepository schoolRepository;
 
     @Autowired
     SessionController sessionController;
@@ -66,8 +67,8 @@ public class LessonRestController {
         }
     }
 
-    @GetMapping("/how/many/minutes/driven")
-    public ResponseEntity getDrivenMins(@RequestHeader("Token") String token) {
+    @GetMapping("/how/many/minutes/student/drove")
+    public ResponseEntity getDroveMins(@RequestHeader("Token") String token) {
         User user = sessionController.getUserFromToken(token);
 
         School school = sessionController.findSchoolOfGivenUser(user);
@@ -86,6 +87,34 @@ public class LessonRestController {
         }
 
         return new ResponseEntity<>(TimeUnit.MILLISECONDS.toMinutes(sum), HttpStatus.OK);
+    }
+
+    @GetMapping("/how/many/minutes/student/{studentId}/of/school/{schoolId}/drove")
+    public ResponseEntity getDroveMinsOfStudent(@PathVariable("studentId") Long studentId, @PathVariable("schoolId") Long schoolId, @RequestHeader("Token") String token) {
+        User user = sessionController.getUserFromToken(token);
+
+        Optional<School> school = schoolRepository.findById(schoolId);
+
+        if (!school.isPresent()) {
+            return new ResponseEntity<>("Unknown school", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!sessionController.isStudentOfGivenSchool(user, school.get().getId())
+                && (sessionController.isOwnerOfGivenSchool(user, school.get().getId()))
+                    ||  sessionController.isInstructorOfGivenSchool(user, school.get().getId())) {
+            List<Lesson> lessons = lessonRepository.findAllByStudentId(studentId);
+
+            long sum = 0;
+            for (Lesson lesson : lessons) {
+                String endDate = lesson.getEndDate().replace("T"," ");
+                String startDate = lesson.getDate().replace("T"," ");
+                sum += Timestamp.valueOf(endDate).getTime() - Timestamp.valueOf(startDate).getTime();
+            }
+
+            return new ResponseEntity<>(TimeUnit.MILLISECONDS.toMinutes(sum), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Endpoint only for instructor or school", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/of/school/{schoolId}")

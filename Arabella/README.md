@@ -62,7 +62,9 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `GET` (`/of/school/{schoolId}`) - Header `Token` - Returns lessons depending on type of user, `owner` see all lessons
 
-`GET` (`/how/many/minutes/driven`) - Header `Token` - Returns duration of all lessons - endpoint only for students
+`GET` (`/how/many/minutes/student/drove`) - Header `Token` - Returns duration of all lessons - endpoint only for students
+
+`GET` (`/how/many/minutes/student/{studentId}/of/school/{schoolId}/drove`) - Header `Token` - Returns duration of all lessons for given `student` - endpoint only for `instructor` or `school`
 
 ### Maps - `/api/maps`
 
