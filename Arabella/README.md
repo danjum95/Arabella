@@ -1,3 +1,8 @@
+# How to run
+Windows: `gradlew bootRun`
+
+Linux: `./gradlew bootRun`
+
 # API ENDPOINTS
 
 ### Users - `/api/users`
