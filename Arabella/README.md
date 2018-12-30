@@ -1,3 +1,8 @@
+# How to run
+Windows: `gradlew bootRun`
+
+Linux: `./gradlew bootRun`
+
 # API ENDPOINTS
 
 ### Users - `/api/users`
@@ -61,6 +66,10 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 `PUT` - Header `Token`, [Lesson](src/main/java/arabella/backend/model/Lesson.java)(annotations) - add lesson
 
 `GET` (`/of/school/{schoolId}`) - Header `Token` - Returns lessons depending on type of user, `owner` see all lessons
+
+`GET` (`/how/many/minutes/student/drove`) - Header `Token` - Returns duration of all lessons - endpoint only for students
+
+`GET` (`/how/many/minutes/student/{studentId}/of/school/{schoolId}/drove`) - Header `Token` - Returns duration of all lessons for given `student` - endpoint only for `instructor` or `school`
 
 ### Maps - `/api/maps`
 
