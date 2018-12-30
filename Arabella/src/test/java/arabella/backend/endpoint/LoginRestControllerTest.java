@@ -1,6 +1,7 @@
 package arabella.backend.endpoint;
 
 import arabella.backend.model.User;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,14 +16,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(LoginRestController.class)
@@ -43,12 +48,16 @@ public class LoginRestControllerTest {
 
     @Test
     public void loginCorrect() throws Exception {
-        String req = "{\"email\": \"student@student.pl\",\"password\": \"student\"}";
-        mvc.perform(post("/api/login")
+        String req;
+        ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(req)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}")
         )
                 .andExpect(status().isOk())
+                .andDo(print());
+
+        String content = result.andReturn().getResponse().getContentAsString();
+        System.out.println("TEST " + content);
     }
 
 }
