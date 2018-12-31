@@ -53,14 +53,14 @@ describe('LoginComponent', () => {
   }));
 
   it('should get login successful', () => {
-    service.login("test@test.pl","tescik").subscribe((data: any) => {
-      expect(data.token).toBe('abcdefghijklmno');
+    service.login("student@student.pl","student").subscribe((data: any) => {
+      expect(data.userId).toBe(4);
     });
   });
 
   it('shouldnt get login successful', () => {
-    service.login("test@test.pl","").subscribe((data: any) => {
-      expect(data.token).toBeNull();
+    service.login("student@student.pl",null).subscribe((data: any) => {
+      expect(data.statusCode).toEqual(404);
     });
   });
 });

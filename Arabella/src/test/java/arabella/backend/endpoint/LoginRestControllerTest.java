@@ -1,49 +1,56 @@
 package arabella.backend.endpoint;
 
-import arabella.backend.model.User;
-import org.hamcrest.Matchers;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.List;
+import javax.servlet.ServletContext;
 
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(LoginRestController.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration
+@WebAppConfiguration
+@EnableJpaRepositories(basePackages="arabella.backend", entityManagerFactoryRef="emf")
 public class LoginRestControllerTest {
 
-    private MockMvc mvc;
 
     @Autowired
     private WebApplicationContext wac;
 
-    @MockBean
-    private LoginRestController login;
 
+    private MockMvc mvc;
     @Before
-    public void init() {
-        mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+    public void init() throws Exception {
+        this.mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+
+    }
+
+    @Test
+    public void givenWac_whenServletContext_thenItProvidesGreetController() {
+        ServletContext servletContext = wac.getServletContext();
+
+        Assert.assertNotNull(servletContext);
+        Assert.assertTrue(servletContext instanceof MockServletContext);
+        Assert.assertNotNull(wac.getBean("LoginRestController.java"));
     }
 
     @Test
@@ -53,8 +60,8 @@ public class LoginRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}")
         )
-                .andExpect(status().isOk())
-                .andDo(print());
+                .andDo(print())
+                .andExpect(status().isOk());
 
         String content = result.andReturn().getResponse().getContentAsString();
         System.out.println("TEST " + content);
