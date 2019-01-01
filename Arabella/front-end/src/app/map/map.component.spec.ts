@@ -72,4 +72,24 @@ describe('MapComponent', () => {
     });
   });
   });
+
+  it('#getlessons should call endpoint and return it\'s result', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      let options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      expect(connection.request.url).toEqual('/users/user/info');
+      expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
+      connection.mockRespond(new Response(options));
+      connection.mockRespond(new Response(options));
+    });
+
+    service.getSchool("").subscribe((da: any) => {
+      service.getLessons(localStorage.getItem(""), da.id).subscribe(dat => {
+        expect(dat.json()).toEqual({ success: true });
+      });
+  });
+});
+
+
 });

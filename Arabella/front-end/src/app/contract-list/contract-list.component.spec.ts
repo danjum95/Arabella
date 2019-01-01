@@ -64,4 +64,24 @@ describe('ContractListComponent', () => {
     });
   });
   });
+
+  it('#getlessons should call endpoint and return it\'s result', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      let options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      expect(connection.request.url).toEqual('/users/user/info');
+      expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
+      connection.mockRespond(new Response(options));
+      connection.mockRespond(new Response(options));
+    });
+
+    service.login("instruktor@instruktor.pl","qwer").subscribe((da: any) => {
+      service.getAllContracts(da.value).subscribe((data: any) => {
+        expect(data.json()).toEqual({ success: true });
+        expect(data.length).toBe(1);
+      });
+  });
+});
+
 });

@@ -78,4 +78,20 @@ describe('LoginComponent', () => {
     });
   });
 
+  it('#login should call endpoint and return it\'s result', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      let options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      expect(connection.request.url).toEqual('/users/user/info');
+      expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
+      connection.mockRespond(new Response(options));
+      connection.mockRespond(new Response(options));
+    });
+
+    service.login("student@student.pl","student")
+      .subscribe((response) => {
+        expect(response.json()).toEqual({ success: true });
+      });
+  });
 });

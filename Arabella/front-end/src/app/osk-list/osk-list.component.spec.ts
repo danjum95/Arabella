@@ -55,4 +55,18 @@ describe('OskListComponent', () => {
   it('should get contract with school', () => {
     expect(service.getSchools()).toBeDefined();
   });
+
+  it('should get school list data', () => {
+    let profileInfo = { email: 'student@student.pl', firstName: 'Student', lastName: 'Student' };
+    backend.connections.subscribe((connection: MockConnection) => {
+      let options = new ResponseOptions({ body: profileInfo });
+      expect(connection.request.url).toEqual(service.url + '/users/user/info');
+      expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
+      connection.mockRespond(new Response(options));
+    });
+  
+    service.getSchools().subscribe((response) => {
+      expect(response).toBeDefined();
+    });
+  });
 });

@@ -88,4 +88,21 @@ describe('RegisterComponent', () => {
     });
   });
 
+  it('#register should call endpoint and return it\'s result', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      let options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      expect(connection.request.url).toEqual('/users');
+      expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
+      connection.mockRespond(new Response(options));
+      connection.mockRespond(new Response(options));
+    });
+
+    service.addUsers("Marcin", "Marcinowski", "testowy@testowy.pl", "1234567")
+      .subscribe((response) => {
+        expect(response.json()).toEqual({ success: true });
+      });
+  });
+
 });

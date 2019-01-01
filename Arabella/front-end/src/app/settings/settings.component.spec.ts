@@ -68,17 +68,18 @@ describe('SettingsComponent', () => {
     });
   });
 
-  it('should get profile data of user', async(() => {
+  it('should get profile data of user', () => {
     let profileInfo = { email: 'student@student.pl', firstName: 'Student', lastName: 'Student' };
     backend.connections.subscribe((connection: MockConnection) => {
       let options = new ResponseOptions({ body: profileInfo });
-  
+      expect(connection.request.url).toEqual(service.url + '/users/user/info');
+      expect(connection.request.headers.get('Content-Type')).toEqual('application/json');
       connection.mockRespond(new Response(options));
     });
   
-    service.getUserDetails('28a4b466fdc590c').subscribe((response) => {
-      expect(response).toEqual(profileInfo);
+    service.getUserDetails({token:'28a4b466fdc590c'}).subscribe((response) => {
+      expect(response.json()).toEqual({ success: true });
     });
-  }));
+  });
 
 });
