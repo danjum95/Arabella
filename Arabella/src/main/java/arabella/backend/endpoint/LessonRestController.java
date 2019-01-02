@@ -102,7 +102,7 @@ public class LessonRestController {
                     ||  sessionController.isInstructorOfGivenSchool(user, school.get().getId())) {
             List<Lesson> lessons = lessonRepository.findAllByStudentId(studentId);
 
-            long sum = sumDurationOfRidesInMinutes(lessons);
+            long sum = sumDurationOfDrivesInMinutes(lessons);
 
             return new ResponseEntity<>(sum, HttpStatus.OK);
         } else {
@@ -110,7 +110,7 @@ public class LessonRestController {
         }
     }
 
-    private long sumDurationOfRidesInMinutes(List<Lesson> lessons) {
+    private long sumDurationOfDrivesInMinutes(List<Lesson> lessons) {
         long sum = 0;
         for (Lesson lesson : lessons) {
             String endDate = lesson.getEndDate().replace("T"," ");
@@ -120,7 +120,7 @@ public class LessonRestController {
         return TimeUnit.MILLISECONDS.toMinutes(sum);
     }
 
-    @GetMapping("/students/rides/durations")
+    @GetMapping("/students/drives/durations")
     public ResponseEntity getStudentsRide(@RequestHeader("Token") String token) {
         User user = sessionController.getUserFromToken(token);
 
@@ -144,7 +144,7 @@ public class LessonRestController {
                         .filter(lesson -> lesson.getStudentId().equals(student.getUserId()))
                         .collect(Collectors.toList());
 
-                response.add(new Pair<>(student, sumDurationOfRidesInMinutes(studentLessons)));
+                response.add(new Pair<>(student, sumDurationOfDrivesInMinutes(studentLessons)));
             }
 
             return new ResponseEntity<>(response, HttpStatus.OK);

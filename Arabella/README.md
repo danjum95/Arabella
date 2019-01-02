@@ -81,7 +81,7 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 360
 ```
 
-`GET` (`/students/rides/durations`) - Header `Token` - Returns duration of all lessons of school students - endpoint only for `instructor` or `school`
+`GET` (`/students/drives/durations`) - Header `Token` - Returns duration of all lessons of school students - endpoint only for `instructor` or `school`
 
 *OUTPUT:*
 ```
