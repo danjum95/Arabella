@@ -13,8 +13,8 @@ import { AuthorizationService } from './../authorization.service';
 describe('MessageComponent', () => {
   let component: MessageComponent;
   let fixture: ComponentFixture<MessageComponent>;
-  let service: AuthorizationService = null;
-  let backend: MockBackend = null;
+  let service: AuthorizationService;
+  let backend: MockBackend;
   let httpMock: HttpTestingController;
   let de: DebugElement;
   let el: HTMLElement;

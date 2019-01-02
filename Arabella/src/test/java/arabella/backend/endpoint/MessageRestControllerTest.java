@@ -1,32 +1,59 @@
 package arabella.backend.endpoint;
 
 import arabella.backend.model.Message;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(MessageRestController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class MessageRestControllerTest {
 
-    private MockMvc mvc;
+    @Autowired
+    private WebApplicationContext wac;
 
     @Autowired
-    private MessageRestController msgController;
+    private MessageRestController controller;
+
+    private MockMvc mvc;
+    @Before
+    public void init() throws Exception {
+        this.mvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+
+    }
+
 
     @Test
     public void getMsg() throws Exception {
-        String token = "215e5908cc77a8ee";
+        String req;
+        ResultActions result = mvc.perform(get("/api/messages")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Token","28a4b466fdc590c")
+        )
+                .andDo(print())
+                .andExpect(status().isOk());
 
+        String content = result.andReturn().getResponse().getContentAsString();
+        System.out.println("TEST " + content);
     }
 }

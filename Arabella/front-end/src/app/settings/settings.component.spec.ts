@@ -1,5 +1,6 @@
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserModule, By} from '@angular/platform-browser';
+import {fakeAsync, tick} from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DebugElement} from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -35,12 +36,12 @@ describe('SettingsComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(inject([AuthorizationService, MockBackend], (auth, mockBackend) => {
+  beforeEach(inject([HttpTestingController, AuthorizationService, MockBackend], (mock, auth, mockBackend) => {
     fixture = TestBed.createComponent(SettingsComponent);
     component = fixture.componentInstance;
     service = auth;
     backend = mockBackend;
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = mock;
     fixture.detectChanges();
   }));
 
@@ -68,7 +69,8 @@ describe('SettingsComponent', () => {
     });
   });
 
-  it('should get profile data of user', () => {
+  it('should get profile data of user', fakeAsync(()  => {
+    let myresponse;
     let profileInfo = { email: 'student@student.pl', firstName: 'Student', lastName: 'Student' };
     backend.connections.subscribe((connection: MockConnection) => {
       let options = new ResponseOptions({ body: profileInfo });
@@ -78,8 +80,12 @@ describe('SettingsComponent', () => {
     });
   
     service.getUserDetails({token:'28a4b466fdc590c'}).subscribe((response) => {
-      expect(response.json()).toEqual({ success: true });
+      myresponse = response;
+      expect(myresponse).toBeDefined();
+      expect(myresponse.json()).toEqual({ success: true });
     });
-  });
 
+  }));
+
+  
 });
