@@ -3,8 +3,10 @@ package arabella.backend.endpoint;
 import arabella.backend.auth.SessionController;
 import arabella.backend.model.Lesson;
 import arabella.backend.model.School;
+import arabella.backend.model.Student;
 import arabella.backend.model.User;
 import arabella.backend.repository.*;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -104,14 +102,52 @@ public class LessonRestController {
                     ||  sessionController.isInstructorOfGivenSchool(user, school.get().getId())) {
             List<Lesson> lessons = lessonRepository.findAllByStudentId(studentId);
 
-            long sum = 0;
-            for (Lesson lesson : lessons) {
-                String endDate = lesson.getEndDate().replace("T"," ");
-                String startDate = lesson.getDate().replace("T"," ");
-                sum += Timestamp.valueOf(endDate).getTime() - Timestamp.valueOf(startDate).getTime();
+            long sum = sumDurationOfRidesInMinutes(lessons);
+
+            return new ResponseEntity<>(sum, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Endpoint only for instructor or school", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    private long sumDurationOfRidesInMinutes(List<Lesson> lessons) {
+        long sum = 0;
+        for (Lesson lesson : lessons) {
+            String endDate = lesson.getEndDate().replace("T"," ");
+            String startDate = lesson.getDate().replace("T"," ");
+            sum += Timestamp.valueOf(endDate).getTime() - Timestamp.valueOf(startDate).getTime();
+        }
+        return TimeUnit.MILLISECONDS.toMinutes(sum);
+    }
+
+    @GetMapping("/students/rides/durations")
+    public ResponseEntity getStudentsRide(@RequestHeader("Token") String token) {
+        User user = sessionController.getUserFromToken(token);
+
+        School school = sessionController.findSchoolOfGivenUser(user);
+
+        if (school == null) {
+            return new ResponseEntity("User doesn't belong to any school", HttpStatus.CONFLICT);
+        }
+
+        if (!sessionController.isStudentOfGivenSchool(user, school.getId())
+                && (sessionController.isOwnerOfGivenSchool(user, school.getId()))
+                ||  sessionController.isInstructorOfGivenSchool(user, school.getId())) {
+            List<Student> students = studentRepository.findAllBySchoolId(school.getId());
+
+            List<Lesson> lessons = lessonRepository.findAllBySchoolId(school.getId());
+
+            List<Pair<Student, Long>> response = new LinkedList<>();
+
+            for (Student student : students) {
+                List<Lesson> studentLessons = lessons.stream()
+                        .filter(lesson -> lesson.getStudentId().equals(student.getUserId()))
+                        .collect(Collectors.toList());
+
+                response.add(new Pair<>(student, sumDurationOfRidesInMinutes(studentLessons)));
             }
 
-            return new ResponseEntity<>(TimeUnit.MILLISECONDS.toMinutes(sum), HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Endpoint only for instructor or school", HttpStatus.BAD_REQUEST);
         }

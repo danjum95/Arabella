@@ -69,7 +69,41 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `GET` (`/how/many/minutes/student/drove`) - Header `Token` - Returns duration of all lessons - endpoint only for students
 
+*OUTPUT:*
+```
+360
+```
+
 `GET` (`/how/many/minutes/student/{studentId}/of/school/{schoolId}/drove`) - Header `Token` - Returns duration of all lessons for given `student` - endpoint only for `instructor` or `school`
+
+*OUTPUT:*
+```
+360
+```
+
+`GET` (`/students/rides/durations`) - Header `Token` - Returns duration of all lessons of school students - endpoint only for `instructor` or `school`
+
+*OUTPUT:*
+```
+[
+    {
+        "key": {
+            "id": 0,
+            "schoolId": 0,
+            "userId": 4,
+            "user": {
+                "id": 4,
+                "firstName": "Student",
+                "lastName": "Studentowski",
+                "email": "student@student.pl",
+                "name": "Student Studentowski"
+            }
+        },
+        "value": 360 // duration in minutes
+    },
+    //more...
+]
+```
 
 ### Maps - `/api/maps`
 
