@@ -57,7 +57,21 @@ public class LoginRestControllerTest {
                 .andExpect(status().isOk());
 
         String content = result.andReturn().getResponse().getContentAsString();
-        System.out.println("TEST " + content);
+
+    }
+
+    @Test
+    public void wrongpass() throws Exception {
+        String req;
+        ResultActions result = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"studeddnt\"}")
+        )
+                .andDo(print())
+                .andExpect(status().isConflict());
+
+        String content = result.andReturn().getResponse().getContentAsString();
+
     }
 
     @Test
@@ -72,7 +86,7 @@ public class LoginRestControllerTest {
                 .andExpect(content().string("No password field or value"));
 
         String content = result.andReturn().getResponse().getContentAsString();
-        System.out.println("TEST " + content);
+
     }
 
     @Test
@@ -87,6 +101,19 @@ public class LoginRestControllerTest {
                 .andExpect(content().string("No email field or value"));
 
         String content = result.andReturn().getResponse().getContentAsString();
-        System.out.println("TEST " + content);
+
+    }
+
+    @Test
+    public void nodata() throws Exception {
+        String req;
+        ResultActions result = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+
+        String content = result.andReturn().getResponse().getContentAsString();
+
     }
 }

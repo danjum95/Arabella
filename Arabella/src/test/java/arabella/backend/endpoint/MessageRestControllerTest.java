@@ -19,10 +19,9 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,9 +30,6 @@ public class MessageRestControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
-
-    @Autowired
-    private MessageRestController controller;
 
     private MockMvc mvc;
     @Before
@@ -54,6 +50,51 @@ public class MessageRestControllerTest {
                 .andExpect(status().isOk());
 
         String content = result.andReturn().getResponse().getContentAsString();
-        System.out.println("TEST " + content);
+
+    }
+
+    @Test
+    public void forwhocansend() throws Exception {
+        String req;
+        ResultActions result = mvc.perform(get("/api/messages/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Token","28a4b466fdc590c")
+        )
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        String content = result.andReturn().getResponse().getContentAsString();
+
+    }
+
+
+    @Test
+    public void wrongUser() throws Exception {
+        String req;
+        ResultActions result = mvc.perform(get("/api/messages/users")
+                .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+
+        String content = result.andReturn().getResponse().getContentAsString();
+
+    }
+
+    @Test
+    public void sendMsg() throws Exception {
+        String req;
+        ResultActions result = mvc.perform(put("/api/messages")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Token","28a4b466fdc590c")
+                .content("{\"receiverId\": \"1\",\"message\": \"Moja testowa wiadomosc\"}")
+        )
+                .andDo(print())
+                .andExpect(jsonPath("$.senderId").value("4"))
+                .andExpect(jsonPath("$.receiverId").value("1"))
+                .andExpect(status().isOk());
+
+        String content = result.andReturn().getResponse().getContentAsString();
+
     }
 }
