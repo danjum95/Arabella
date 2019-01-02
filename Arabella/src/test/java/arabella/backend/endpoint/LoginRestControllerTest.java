@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -26,10 +28,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
-@WebAppConfiguration
-@EnableJpaRepositories(basePackages="arabella.backend", entityManagerFactoryRef="emf")
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class LoginRestControllerTest {
 
 
@@ -45,15 +46,6 @@ public class LoginRestControllerTest {
     }
 
     @Test
-    public void givenWac_whenServletContext_thenItProvidesGreetController() {
-        ServletContext servletContext = wac.getServletContext();
-
-        Assert.assertNotNull(servletContext);
-        Assert.assertTrue(servletContext instanceof MockServletContext);
-        Assert.assertNotNull(wac.getBean("LoginRestController.java"));
-    }
-
-    @Test
     public void loginCorrect() throws Exception {
         String req;
         ResultActions result = mvc.perform(post("/api/login")
@@ -61,10 +53,40 @@ public class LoginRestControllerTest {
                 .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}")
         )
                 .andDo(print())
+                .andExpect(jsonPath("$.userId").value("4"))
                 .andExpect(status().isOk());
 
         String content = result.andReturn().getResponse().getContentAsString();
         System.out.println("TEST " + content);
     }
 
+    @Test
+    public void loginIncorrect() throws Exception {
+        String req;
+        ResultActions result = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\"}")
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("No password field or value"));
+
+        String content = result.andReturn().getResponse().getContentAsString();
+        System.out.println("TEST " + content);
+    }
+
+    @Test
+    public void loginIncorrectonlypass() throws Exception {
+        String req;
+        ResultActions result = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"password\": \"student\"}")
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("No email field or value"));
+
+        String content = result.andReturn().getResponse().getContentAsString();
+        System.out.println("TEST " + content);
+    }
 }
