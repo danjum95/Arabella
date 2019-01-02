@@ -47,7 +47,7 @@ public class LoginRestControllerTest {
 
     @Test
     public void loginCorrect() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}")
@@ -56,13 +56,13 @@ public class LoginRestControllerTest {
                 .andExpect(jsonPath("$.userId").value("4"))
                 .andExpect(status().isOk());
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 
     @Test
     public void wrongpass() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"email\": \"student@student.pl\",\"password\": \"studeddnt\"}")
@@ -70,13 +70,13 @@ public class LoginRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isConflict());
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 
     @Test
     public void loginIncorrect() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"email\": \"student@student.pl\"}")
@@ -85,13 +85,13 @@ public class LoginRestControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("No password field or value"));
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 
     @Test
     public void loginIncorrectonlypass() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"password\": \"student\"}")
@@ -100,20 +100,20 @@ public class LoginRestControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(content().string("No email field or value"));
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 
     @Test
     public void nodata() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
         )
                 .andDo(print())
                 .andExpect(status().isBadRequest());
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 }

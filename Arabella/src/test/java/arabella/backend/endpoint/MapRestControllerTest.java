@@ -14,10 +14,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,17 +35,17 @@ public class MapRestControllerTest {
     }
 
     @Test
-    public void loginCorrect() throws Exception {
-        String req;
-        ResultActions result = mvc.perform(post("/api/maps/{userId}")
+    public void getMap() throws Exception {
+
+        ResultActions result = mvc.perform(get("/api/maps/{userId}", 393)
                 .contentType(MediaType.APPLICATION_JSON)
 
         )
                 .andDo(print())
-                .andExpect(jsonPath("$.userId").value("4"))
-                .andExpect(status().isOk());
+                .andExpect(content().string("No map for given lessonId"))
+                .andExpect(status().isNotFound());
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 }

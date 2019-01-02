@@ -100,7 +100,7 @@ public class UserRestController {
         User user = sessionController.getUserFromToken(token);
 
         if (StringUtils.isEmpty(changesOfUser.getEmail())) {
-            return new ResponseEntity<>("Null or empty String as password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Null or empty String as email", HttpStatus.BAD_REQUEST);
         }
 
         if (user.getEmail().equals(changesOfUser.getEmail())) {

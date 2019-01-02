@@ -41,7 +41,7 @@ public class MessageRestControllerTest {
 
     @Test
     public void getMsg() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(get("/api/messages")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token","28a4b466fdc590c")
@@ -49,13 +49,13 @@ public class MessageRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 
     @Test
     public void forwhocansend() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(get("/api/messages/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token","28a4b466fdc590c")
@@ -63,27 +63,27 @@ public class MessageRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 
 
     @Test
     public void wrongUser() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(get("/api/messages/users")
                 .contentType(MediaType.APPLICATION_JSON)
         )
                 .andDo(print())
                 .andExpect(status().isBadRequest());
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 
     @Test
     public void sendMsg() throws Exception {
-        String req;
+
         ResultActions result = mvc.perform(put("/api/messages")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token","28a4b466fdc590c")
@@ -94,7 +94,7 @@ public class MessageRestControllerTest {
                 .andExpect(jsonPath("$.receiverId").value("1"))
                 .andExpect(status().isOk());
 
-        String content = result.andReturn().getResponse().getContentAsString();
+
 
     }
 }

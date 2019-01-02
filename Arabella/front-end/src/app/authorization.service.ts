@@ -61,9 +61,19 @@ export class AuthorizationService {
     return this.http.post(this.url + '/users/change/email', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
-  studentMinutes(token):any
+  studentMinutes(token, studentId, schoolId):any
   {
-    return this.http.get(this.url + '/lessons/how/many/minutes/student/drove', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+    return this.http.get(this.url + '/how/many/minutes/student/' + studentId + '/of/school/' + schoolId + '/drove', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
+  specificstudentMinutes(token)
+  {
+    return this.http.get(this.url + '/lessons/students/drives/durations', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
+  schoolstudentsMinutes(token)
+  {
+    return this.http.get(this.url + '/lessons/students/drives/durations', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
   getUserInfo(token): any {
