@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -55,6 +56,13 @@ public class LessonRestController {
                 lesson.setInstructorId(sessionController.checkToken(givenToken).getUserId());
                 lesson.setSchoolId(sessionController.findSchoolOfGivenUser(user).getId());
 
+                try {
+                    validateDate(lesson.getDate());
+                    validateDate(lesson.getEndDate());
+                } catch (Exception ex) {
+                    return new ResponseEntity<>("Date format should be: yyyy-mm-ddThh:mm:ss", HttpStatus.BAD_REQUEST);
+                }
+
                 lessonRepository.save(lesson);
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
@@ -63,6 +71,10 @@ public class LessonRestController {
         } else {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
+    }
+
+    private void validateDate(String date) {
+        Timestamp.valueOf(date);
     }
 
     @GetMapping("/how/many/minutes/student/drove")
