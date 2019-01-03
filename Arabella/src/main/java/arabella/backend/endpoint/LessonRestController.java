@@ -71,7 +71,7 @@ public class LessonRestController {
 
     private boolean isDateFormatCorrect(String date) {
         try {
-            Timestamp.valueOf(date);
+            Timestamp.valueOf(date.replace("T"," "));
             return true;
         } catch (IllegalArgumentException ex) {
             return false;
@@ -90,12 +90,7 @@ public class LessonRestController {
 
         List<Lesson> lessons = lessonRepository.findAllByStudentId(user.getId());
 
-        long sum = 0;
-        for (Lesson lesson : lessons) {
-            String endDate = lesson.getEndDate().replace("T"," ");
-            String startDate = lesson.getDate().replace("T"," ");
-            sum += Timestamp.valueOf(endDate).getTime() - Timestamp.valueOf(startDate).getTime();
-        }
+        long sum = sumDurationOfDrivesInMinutes(lessons);
 
         return new ResponseEntity<>(TimeUnit.MILLISECONDS.toMinutes(sum), HttpStatus.OK);
     }
