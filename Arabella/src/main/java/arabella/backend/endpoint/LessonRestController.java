@@ -55,6 +55,10 @@ public class LessonRestController {
                 lesson.setInstructorId(sessionController.checkToken(givenToken).getUserId());
                 lesson.setSchoolId(sessionController.findSchoolOfGivenUser(user).getId());
 
+                if (!isDateFormatCorrect(lesson.getDate()) || !isDateFormatCorrect(lesson.getEndDate())) {
+                    return new ResponseEntity<>("Date format should be: yyyy-mm-ddThh:mm:ss", HttpStatus.BAD_REQUEST);
+                }
+
                 lessonRepository.save(lesson);
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
@@ -62,6 +66,15 @@ public class LessonRestController {
             }
         } else {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    private boolean isDateFormatCorrect(String date) {
+        try {
+            Timestamp.valueOf(date.replace("T"," "));
+            return true;
+        } catch (IllegalArgumentException ex) {
+            return false;
         }
     }
 
@@ -77,12 +90,7 @@ public class LessonRestController {
 
         List<Lesson> lessons = lessonRepository.findAllByStudentId(user.getId());
 
-        long sum = 0;
-        for (Lesson lesson : lessons) {
-            String endDate = lesson.getEndDate().replace("T"," ");
-            String startDate = lesson.getDate().replace("T"," ");
-            sum += Timestamp.valueOf(endDate).getTime() - Timestamp.valueOf(startDate).getTime();
-        }
+        long sum = sumDurationOfDrivesInMinutes(lessons);
 
         return new ResponseEntity<>(TimeUnit.MILLISECONDS.toMinutes(sum), HttpStatus.OK);
     }

@@ -65,6 +65,15 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `PUT` - Header `Token`, [Lesson](src/main/java/arabella/backend/model/Lesson.java)(annotations) - add lesson
 
+*INPUT EXAMPLE*:
+```
+{
+    "studentId":"3",
+    "date":"2019-01-03T12:00:00",
+    "endDate":"2019-01-03T14:00:00"
+}
+```
+
 `GET` (`/of/school/{schoolId}`) - Header `Token` - Returns lessons depending on type of user, `owner` see all lessons
 
 `GET` (`/how/many/minutes/student/drove`) - Header `Token` - Returns duration of all lessons - endpoint only for students
