@@ -1,9 +1,23 @@
 html, body {
     height: 100%;
-    margin-left: 30px;
-    margin-bottom: 50px;
+    margin-left: 55px;
+    margin-top: -40px;
+    margin-bottom: 25px;
     }
 
 #map {
-    width: 70vw;
+    width: 60vw;
+    float: left;
 }
+
+.thead{
+    background-color: rgba(128, 128, 134, 0.75);
+    border-bottom: 2px solid;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 5px;
+    font-size: 13px;
+    justify-content: center;
+  }
