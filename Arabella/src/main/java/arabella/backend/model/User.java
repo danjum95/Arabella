@@ -3,6 +3,7 @@ package arabella.backend.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -35,6 +36,7 @@ public class User {
     @NotNull(
             groups = New.class
     )
+    @Email
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
