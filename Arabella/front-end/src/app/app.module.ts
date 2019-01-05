@@ -147,7 +147,7 @@ import { MapComponent } from './map/map.component';
         ]
       },
       {
-        path: 'registerKursant',
+        path: 'register/registerKursant',
         component: RegisterComponent
       },
       {
@@ -159,7 +159,7 @@ import { MapComponent } from './map/map.component';
         component: RegisterOskOrKursantComponent
       },
       {
-        path: 'registerOsk',
+        path: 'register/registerOsk',
         component: RegisterOskComponent
       }
     ])
