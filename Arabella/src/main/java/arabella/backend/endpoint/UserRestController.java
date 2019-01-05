@@ -50,7 +50,13 @@ public class UserRestController {
     public ResponseEntity addUser(@Validated(User.New.class) @RequestBody User newUser){
         if (!checkIfUserExists(newUser)) {
             Token token = new Token();
-            token.setUserId(userRepository.save(newUser).getId());
+            Long userIdForToken;
+            try {
+                userIdForToken = userRepository.save(newUser).getId();
+            } catch (Exception ex) {
+                return new ResponseEntity<>("Wrong email format", HttpStatus.BAD_REQUEST);
+            }
+            token.setUserId(userIdForToken);
             token.setValue(SessionController.generateTokenValue());
             return new ResponseEntity<>(tokenRepository.save(token), HttpStatus.OK);
         } else {
