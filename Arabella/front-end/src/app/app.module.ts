@@ -24,6 +24,9 @@ import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalComponent } from './cal/cal.component';
 import { ContractListComponent } from './contract-list/contract-list.component';
 import { MapComponent } from './map/map.component';
+import { MatDialogModule, MatTableModule, MatCheckboxModule, MatButtonModule} from '@angular/material';
+import { AddLessonsComponent } from './add-lessons/add-lessons.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -46,14 +49,20 @@ import { MapComponent } from './map/map.component';
     CalComponent,
     ContractListComponent,
     MapComponent,
+    AddLessonsComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     FullCalendarModule,
+    MatDialogModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatButtonModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -162,6 +171,9 @@ import { MapComponent } from './map/map.component';
         component: RegisterOskComponent
       }
     ])
+  ],
+  entryComponents: [
+    AddLessonsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
