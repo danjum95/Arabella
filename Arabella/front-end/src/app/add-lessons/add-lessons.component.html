@@ -1,0 +1,22 @@
+<link href="https://unpkg.com/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+
+<div class="form-group" style="text-align: center;">
+  <h3 mat-dialog-title>Dodawanie lekcji</h3>
+  <mat-dialog-content>
+    <input type="text" [(ngModel)]="email" placeholder="Email">
+    <br>
+    <h5>Data planowanej lekcji</h5>
+    <input type="date" [(ngModel)]="dat">
+    <br>
+    <h5>Godzina planowanej lekcji</h5>
+    <input type="time" [(ngModel)]="hours">
+    <br>
+    <h5>Długość trwania lekcji w minutach</h5>
+    <input type="range" name="points" min="0" max="10" [(ngModel)]="minutes">
+    <br>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close class="btn btn-danger btn-sm">Anuluj</button>
+    <button mat-button (click)="save()" class="btn btn-success btn-sm">Dodaj lekcję</button>
+  </mat-dialog-actions>
+</div>

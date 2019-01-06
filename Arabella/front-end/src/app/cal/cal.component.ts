@@ -3,6 +3,8 @@ import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
 import { OnInit, ViewChild, Component } from '@angular/core';
 import { lessonListInterface } from '../interface/lessonListInterface';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { AddLessonsComponent } from '../add-lessons/add-lessons.component';
 
 
 @Component({
@@ -15,11 +17,12 @@ export class CalComponent implements OnInit {
   displayEvent: any;
   myLogin: string;
   lessons: any;
+  hideSelect:boolean=false;
   isInstructor: boolean;
   allKursants$: any;
 
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  constructor(protected Auth: AuthorizationService) { }
+  constructor(protected Auth: AuthorizationService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadData();
@@ -151,19 +154,16 @@ export class CalComponent implements OnInit {
     this.displayEvent = model;
   }
 
-  addLesson(email: any , date2: any, minut: any) {
-    const minutes = 60;
-    const minutesAsMiliseconds = minutes * 60000 * 2;
-    const date = new Date(date2);
-    const dateAsTimestamp = date.valueOf();
-    const endDateAsTimestamp = dateAsTimestamp + minutesAsMiliseconds;
-    const dateToSave = new Date(endDateAsTimestamp);
+  openDialog(): void {
+    this.hideSelect=true;
+    setTimeout(()=>{
+      this.hideSelect=false;
+    },100)
+      
+    
+    const dialog = this.dialog.open(AddLessonsComponent, {width: '250px'});
 
-    console.log(date2);
-    console.log(dateToSave);
-
-    this.Auth.generalInfo(localStorage.getItem('userToken'), email).subscribe(data => {
-      this.Auth.addLessons(localStorage.getItem('userToken'), data.id, dateToSave.toISOString().split('.')[0], date2).subscribe();
+    dialog.afterClosed().subscribe(result => {
     });
   }
 
