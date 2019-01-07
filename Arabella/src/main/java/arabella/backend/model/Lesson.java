@@ -23,7 +23,8 @@ public class Lesson {
     @NotNull
     private String endDate;
 
-    private Boolean isDone;
+    @Column(name = "ENABLED", nullable = false)
+    private Boolean isDone = false;
 
     private String title;
 
