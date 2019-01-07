@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.sql.Array;
+import java.util.List;
 
 @Entity
 public class Map {
@@ -13,10 +15,10 @@ public class Map {
     private Long id;
 
     @NotNull
-    private String mapMarkers;
+    private Object[] mapMarkers;
 
     @NotNull
-    private String mapLines;
+    private Object[] mapLines;
 
     @NotNull
     private Long lessonId;
@@ -25,19 +27,19 @@ public class Map {
         this.id = id;
     }
 
-    public String getMapMarkers() {
+    public Object[] getMapMarkers() {
         return mapMarkers;
     }
 
-    public void setMapMarkers(String mapMarkers) {
+    public void setMapMarkers(Object[] mapMarkers) {
         this.mapMarkers = mapMarkers;
     }
 
-    public String getMapLines() {
+    public Object[] getMapLines() {
         return mapLines;
     }
 
-    public void setMapLines(String mapLines) {
+    public void setMapLines(Object[] mapLines) {
         this.mapLines = mapLines;
     }
 
