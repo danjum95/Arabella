@@ -2197,3 +2197,497 @@ Using generated security password: a98c917e-b411-4037-acad-1901ddd59bbc
 2019-01-07 19:14:39.502  INFO 39212 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2019-01-07 19:14:39.505  INFO 39212 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2019-01-07 19:14:39.534  INFO 39212 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-01-07 19:29:38.392  INFO 35536 --- [main] a.b.endpoint.ContractRestControllerTest  : Starting ContractRestControllerTest on Laptop with PID 35536 (started by Dawid in C:\Users\Dawid\Desktop\fullinz\Arabella\Arabella)
+2019-01-07 19:29:38.444  INFO 35536 --- [main] a.b.endpoint.ContractRestControllerTest  : No active profile set, falling back to default profiles: default
+2019-01-07 19:30:07.099  INFO 35536 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-01-07 19:30:08.583  INFO 35536 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1375ms. Found 10 repository interfaces.
+2019-01-07 19:30:13.970  INFO 35536 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9df4c642] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-07 19:30:14.110  INFO 35536 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$1d751374] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-07 19:30:16.455  INFO 35536 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-01-07 19:30:18.834  INFO 35536 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-01-07 19:30:19.838  INFO 35536 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-01-07 19:30:22.235  INFO 35536 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-01-07 19:30:22.238  INFO 35536 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-01-07 19:30:27.237  INFO 35536 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-01-07 19:30:29.204  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@34c76167 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:29.464  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@61d60e38 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:29.466  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6e95973c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:29.797  INFO 35536 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-01-07 19:30:45.796  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1dd44289 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.799  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@43fe2008 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.801  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@552bee2f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.803  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6a543e09 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.805  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2d0f548a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.807  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1fc3df43 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.810  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@15130002 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.812  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5e7cd0df (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.814  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@900649e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:45.816  WARN 35536 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@8b89b3a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:30:47.131  INFO 35536 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-01-07 19:31:35.674  INFO 35536 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 0367c92d-0182-47eb-884f-f5cf4d9b6e71
+
+2019-01-07 19:31:37.286  INFO 35536 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6fad5ace, org.springframework.security.web.context.SecurityContextPersistenceFilter@2914a328, org.springframework.security.web.header.HeaderWriterFilter@476a970c, org.springframework.security.web.authentication.logout.LogoutFilter@568c9ee1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@26291192, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3bc3d70e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@632dc41, org.springframework.security.web.session.SessionManagementFilter@1983a4e4, org.springframework.security.web.access.ExceptionTranslationFilter@75adb1c0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7857cb1d]
+2019-01-07 19:31:41.056  INFO 35536 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-07 19:31:41.954  WARN 35536 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-01-07 19:31:47.348  INFO 35536 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-01-07 19:31:47.637  INFO 35536 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-01-07 19:31:48.023  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:48.024  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:48.074  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 49 ms
+2019-01-07 19:31:48.323  INFO 35536 --- [scheduling-1] arabella.backend.auth.TokenCleaner       : Cleaning tokens 19:31:48
+2019-01-07 19:31:48.326  INFO 35536 --- [main] a.b.endpoint.ContractRestControllerTest  : Started ContractRestControllerTest in 133.884 seconds (JVM running for 157.83)
+2019-01-07 19:31:48.595  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@49467359 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.597  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3c009236 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.603  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@f1a8619 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.609  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@373334ee (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.613  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@59d4f9dd (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.616  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7e661ad4 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.637  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2597714f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.642  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@b2db557 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.643  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7549affe (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:48.646  WARN 35536 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3bb7bb39 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:31:49.050  INFO 35536 --- [scheduling-1] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-01-07 19:31:49.374  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:49.374  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:49.379  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:51.359  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:51.359  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:51.365  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:51.525  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:51.526  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:51.532  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:51.861  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:51.861  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:51.870  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2019-01-07 19:31:52.518  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:52.518  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:52.523  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:53.006  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:53.006  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:53.014  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2019-01-07 19:31:53.397  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:53.399  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:53.406  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 7 ms
+2019-01-07 19:31:53.665  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:53.666  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:53.672  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:53.993  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:53.993  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:53.999  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:54.380  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:54.380  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:54.384  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:54.618  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:54.619  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:54.631  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
+2019-01-07 19:31:54.976  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:54.976  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:54.981  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:55.200  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:55.201  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:55.205  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:55.513  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:55.513  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:55.518  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:55.859  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:55.860  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:55.866  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:56.145  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:56.145  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:56.152  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:56.155  WARN 35536 --- [main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity arabella.backend.endpoint.LoginRestController.tryToLogin(arabella.backend.model.User)]
+2019-01-07 19:31:56.166  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:56.166  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:56.172  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:56.210  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:56.210  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:56.215  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:56.223  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:56.224  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:56.229  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:56.614  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:56.614  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:56.620  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:56.633  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:56.633  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:56.639  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:56.676  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:56.677  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:56.682  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:57.050  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:57.050  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:57.055  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:57.173  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:57.174  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:57.179  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:57.181  WARN 35536 --- [main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingRequestHeaderException: Missing request header 'Token' for method parameter of type String]
+2019-01-07 19:31:57.187  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:57.187  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:57.194  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:57.478  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:57.479  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:57.486  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:57.689  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:57.689  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:57.696  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 7 ms
+2019-01-07 19:31:57.873  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:57.873  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:57.879  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:58.030  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:58.031  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:58.037  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:58.290  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:58.290  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:58.296  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:58.475  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:58.476  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:58.480  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:58.850  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:58.858  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:58.863  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:59.159  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:59.159  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:59.163  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:59.171  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:59.171  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:59.176  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:59.183  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:59.183  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:59.187  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:59.316  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:59.316  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:59.321  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:31:59.448  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:59.449  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:59.453  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:31:59.817  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:59.817  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:59.824  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:31:59.928  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:31:59.928  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:31:59.933  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:32:00.037  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:00.038  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:00.043  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:32:00.150  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:00.150  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:00.155  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:32:00.475  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:00.475  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:00.481  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:32:00.610  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:00.610  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:00.616  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:32:00.718  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:00.718  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:00.724  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:32:01.092  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:01.093  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:01.098  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:32:01.227  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:01.227  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:01.233  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:32:01.265  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:01.265  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:01.269  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2019-01-07 19:32:01.305  INFO 35536 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:32:01.305  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:32:01.311  INFO 35536 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:32:01.439  INFO 35536 --- [Thread-7] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-01-07 19:32:01.441  INFO 35536 --- [Thread-7] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-01-07 19:32:01.456  INFO 35536 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-01-07 19:32:01.458  INFO 35536 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-01-07 19:32:01.466  INFO 35536 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-01-07 19:38:53.948  INFO 42780 --- [main] a.b.e.InstructorRestControllerTest       : Starting InstructorRestControllerTest on Laptop with PID 42780 (started by Dawid in C:\Users\Dawid\Desktop\fullinz\Arabella\Arabella)
+2019-01-07 19:38:53.989  INFO 42780 --- [main] a.b.e.InstructorRestControllerTest       : No active profile set, falling back to default profiles: default
+2019-01-07 19:39:21.460  INFO 42780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-01-07 19:39:22.854  INFO 42780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1307ms. Found 10 repository interfaces.
+2019-01-07 19:39:27.288  INFO 42780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e64752a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-07 19:39:27.404  INFO 42780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$8de4c25c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-07 19:39:29.962  INFO 42780 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-01-07 19:39:32.663  INFO 42780 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-01-07 19:39:33.600  INFO 42780 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-01-07 19:39:36.044  INFO 42780 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-01-07 19:39:36.048  INFO 42780 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-01-07 19:39:41.596  INFO 42780 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-01-07 19:39:52.668  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7b6141f0 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.673  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7b8ea1db (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.675  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@a91119b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.678  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@77083e41 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.681  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@231df705 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.683  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2d130ac4 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.685  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2f0ccb34 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.687  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@194012a2 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.694  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@55296b50 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:52.698  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@60591e1b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:39:53.232  INFO 42780 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-01-07 19:40:03.949  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@76e00bdb (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:03.955  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@343d1d25 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:03.958  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@762da62b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:03.960  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@e5c5e6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:03.962  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@76dc36e5 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:03.965  WARN 42780 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1fb71788 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:05.044  INFO 42780 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-01-07 19:40:26.153  INFO 42780 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 7408b9d6-4bc5-495f-a282-64ab053f283d
+
+2019-01-07 19:40:28.381  INFO 42780 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e3692ca, org.springframework.security.web.context.SecurityContextPersistenceFilter@94aeba1, org.springframework.security.web.header.HeaderWriterFilter@20960b51, org.springframework.security.web.authentication.logout.LogoutFilter@3f33bb6f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ff8e36d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7bebad0d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75adb1c0, org.springframework.security.web.session.SessionManagementFilter@3e0704e2, org.springframework.security.web.access.ExceptionTranslationFilter@602aeb87, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@308be1a3]
+2019-01-07 19:40:32.995  INFO 42780 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-07 19:40:33.486  WARN 42780 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-01-07 19:40:38.409  INFO 42780 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-01-07 19:40:38.619  INFO 42780 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-01-07 19:40:39.154  INFO 42780 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:40:39.167  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:40:39.240  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 71 ms
+2019-01-07 19:40:39.539  INFO 42780 --- [main] a.b.e.InstructorRestControllerTest       : Started InstructorRestControllerTest in 118.324 seconds (JVM running for 180.246)
+2019-01-07 19:40:39.534  INFO 42780 --- [scheduling-1] arabella.backend.auth.TokenCleaner       : Cleaning tokens 19:40:39
+2019-01-07 19:40:39.665  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@374e4d48 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.729  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@4a8d7e9e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.771  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5a03f586 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.782  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1f62d783 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.785  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1e7e6c43 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.791  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3fa6889c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.793  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7a4ce52b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.838  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@739bfb2e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.839  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1eea9d6a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:39.841  WARN 42780 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@15031443 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:40:40.173  INFO 42780 --- [scheduling-1] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-01-07 19:40:40.216  INFO 42780 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:40:40.216  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:40:40.227  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 9 ms
+2019-01-07 19:40:41.772  INFO 42780 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:40:41.775  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:40:41.802  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 27 ms
+2019-01-07 19:40:41.850  INFO 42780 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:40:41.851  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:40:41.858  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 7 ms
+2019-01-07 19:40:43.095  INFO 42780 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:40:43.096  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:40:43.101  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2019-01-07 19:40:43.138  INFO 42780 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:40:43.139  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:40:43.147  INFO 42780 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2019-01-07 19:40:43.189  INFO 42780 --- [Thread-7] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-01-07 19:40:43.199  INFO 42780 --- [Thread-7] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-01-07 19:40:43.238  INFO 42780 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-01-07 19:40:43.243  INFO 42780 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-01-07 19:40:43.252  INFO 42780 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-01-07 19:43:08.133  INFO 27992 --- [main] a.b.endpoint.SchoolRestControllerTest    : Starting SchoolRestControllerTest on Laptop with PID 27992 (started by Dawid in C:\Users\Dawid\Desktop\fullinz\Arabella\Arabella)
+2019-01-07 19:43:08.141  INFO 27992 --- [main] a.b.endpoint.SchoolRestControllerTest    : No active profile set, falling back to default profiles: default
+2019-01-07 19:43:12.275  INFO 27992 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-01-07 19:43:13.165  INFO 27992 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 869ms. Found 10 repository interfaces.
+2019-01-07 19:43:15.927  INFO 27992 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4bef6e2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-07 19:43:15.992  INFO 27992 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$843f4414] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-07 19:43:24.942  INFO 27992 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-01-07 19:43:28.542  INFO 27992 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-01-07 19:43:31.757  INFO 27992 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-01-07 19:43:34.578  INFO 27992 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-01-07 19:43:34.581  INFO 27992 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-01-07 19:43:55.398  INFO 27992 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-01-07 19:43:59.227  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7ed49a7f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.231  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3b41e1bf (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.236  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@619c93ca (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.239  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@486e9d1d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.244  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6aa5974e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.246  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5e5ddfbc (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.248  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@5bda157e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.250  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@67e0fd6d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.256  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@21390938 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:43:59.259  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1129829c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:01.381  INFO 27992 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-01-07 19:44:13.458  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@e7b0bec (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.461  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7d90644f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.462  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@f810c18 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.465  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@59f3426f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.466  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@120411ec (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.469  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@280d5a82 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.471  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1a34a51e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.473  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@333a44f2 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.474  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2c668c2a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:13.477  WARN 27992 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6efd0a6e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:14.721  INFO 27992 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-01-07 19:44:20.075  INFO 27992 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9cedbe08-323f-4526-a57f-15347acebf45
+
+2019-01-07 19:44:20.410  INFO 27992 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@146db8a6, org.springframework.security.web.context.SecurityContextPersistenceFilter@22f046b, org.springframework.security.web.header.HeaderWriterFilter@cb1c58c, org.springframework.security.web.authentication.logout.LogoutFilter@2a21cbe7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@20723ee, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f57666b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2a20da9f, org.springframework.security.web.session.SessionManagementFilter@547052, org.springframework.security.web.access.ExceptionTranslationFilter@24f3fb87, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1736273c]
+2019-01-07 19:44:21.882  INFO 27992 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-07 19:44:22.036  WARN 27992 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-01-07 19:44:24.470  INFO 27992 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-01-07 19:44:24.632  INFO 27992 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-01-07 19:44:24.889  INFO 27992 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:44:24.891  INFO 27992 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:44:24.936  INFO 27992 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 44 ms
+2019-01-07 19:44:25.124  INFO 27992 --- [main] a.b.endpoint.SchoolRestControllerTest    : Started SchoolRestControllerTest in 77.81 seconds (JVM running for 87.385)
+2019-01-07 19:44:25.115  INFO 27992 --- [scheduling-1] arabella.backend.auth.TokenCleaner       : Cleaning tokens 19:44:25
+2019-01-07 19:44:25.198  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@20b30eee (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.220  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2e3944d8 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.227  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1e6986d6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.234  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@26153f8b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.237  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@56167699 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.245  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@32edf707 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.253  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@60e098ba (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.258  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@6f061a4a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.262  WARN 27992 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@ac10b8d (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:44:25.350  INFO 27992 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:44:25.351  INFO 27992 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:44:25.362  INFO 27992 --- [scheduling-1] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-01-07 19:44:25.371  INFO 27992 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 13 ms
+2019-01-07 19:44:30.323  INFO 27992 --- [Thread-7] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-01-07 19:44:30.401  INFO 27992 --- [Thread-7] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-01-07 19:44:30.438  INFO 27992 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-01-07 19:44:30.444  INFO 27992 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-01-07 19:44:30.475  INFO 27992 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-01-07 19:46:48.326  INFO 28464 --- [main] a.b.endpoint.LessonRestControllerTest    : Starting LessonRestControllerTest on Laptop with PID 28464 (started by Dawid in C:\Users\Dawid\Desktop\fullinz\Arabella\Arabella)
+2019-01-07 19:46:48.335  INFO 28464 --- [main] a.b.endpoint.LessonRestControllerTest    : No active profile set, falling back to default profiles: default
+2019-01-07 19:46:51.718  INFO 28464 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-01-07 19:46:52.036  INFO 28464 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 274ms. Found 10 repository interfaces.
+2019-01-07 19:46:53.914  INFO 28464 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9d138728] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-07 19:46:54.017  INFO 28464 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$1c93d45a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-07 19:46:55.050  INFO 28464 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-01-07 19:46:55.664  INFO 28464 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-01-07 19:46:55.878  INFO 28464 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-01-07 19:46:56.087  INFO 28464 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-01-07 19:46:56.092  INFO 28464 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-01-07 19:46:56.543  INFO 28464 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-01-07 19:46:57.869  INFO 28464 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-01-07 19:47:00.303  INFO 28464 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-01-07 19:47:05.279  INFO 28464 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 8d124d6a-d381-4637-b820-202452c05329
+
+2019-01-07 19:47:05.640  INFO 28464 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@65930e02, org.springframework.security.web.context.SecurityContextPersistenceFilter@4ec616d6, org.springframework.security.web.header.HeaderWriterFilter@3a589eed, org.springframework.security.web.authentication.logout.LogoutFilter@1e429f56, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d5a72cd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a8656a2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@85c3522, org.springframework.security.web.session.SessionManagementFilter@776d8097, org.springframework.security.web.access.ExceptionTranslationFilter@44a13699, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@30ed4034]
+2019-01-07 19:47:06.599  INFO 28464 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-07 19:47:06.742  WARN 28464 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-01-07 19:47:08.671  INFO 28464 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-01-07 19:47:08.798  INFO 28464 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2019-01-07 19:47:08.989  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:08.991  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:09.030  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 37 ms
+2019-01-07 19:47:09.147  INFO 28464 --- [scheduling-1] arabella.backend.auth.TokenCleaner       : Cleaning tokens 19:47:09
+2019-01-07 19:47:09.158  INFO 28464 --- [main] a.b.endpoint.LessonRestControllerTest    : Started LessonRestControllerTest in 21.467 seconds (JVM running for 23.744)
+2019-01-07 19:47:11.313  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@10781a3b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:11.318  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2fa2bcb3 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:11.319  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7fdbd2be (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:11.330  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@47b7c8fe (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:11.334  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@3b427ab6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:11.342  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@13f0e49 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:11.344  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@205072f2 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:11.347  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@59d9ae3e (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:11.351  WARN 28464 --- [scheduling-1] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@71e6e879 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:46.947  WARN 28464 --- [scheduling-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: null
+2019-01-07 19:47:46.948 ERROR 28464 --- [scheduling-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : HikariPool-1 - Connection is not available, request timed out after 35652ms.
+2019-01-07 19:47:11.436  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:46.951  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:46.966  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 15 ms
+2019-01-07 19:47:47.254 ERROR 28464 --- [scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task.
+
+org.springframework.transaction.CannotCreateTransactionException: Could not open JPA EntityManager for transaction; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at org.springframework.orm.jpa.JpaTransactionManager.doBegin(JpaTransactionManager.java:446) ~[spring-orm-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:378) ~[spring-tx-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:474) ~[spring-tx-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:289) ~[spring-tx-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135) ~[spring-data-jpa-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.3.RELEASE.jar:2.1.3.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at com.sun.proxy.$Proxy138.findAll(Unknown Source) ~[na:na]
+	at arabella.backend.auth.TokenCleaner.cleanTokens(TokenCleaner.java:30) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_77]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_77]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_77]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_77]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) ~[spring-context-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [na:1.8.0_77]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [na:1.8.0_77]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [na:1.8.0_77]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [na:1.8.0_77]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_77]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_77]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_77]
+Caused by: org.hibernate.exception.JDBCConnectionException: Unable to acquire JDBC Connection
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:48) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:109) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:136) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.SessionImpl.connection(SessionImpl.java:541) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_77]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_77]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_77]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_77]
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:246) ~[spring-core-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:230) ~[spring-core-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle.doGetConnection(HibernateJpaDialect.java:424) ~[spring-orm-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.beginTransaction(HibernateJpaDialect.java:173) ~[spring-orm-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	at org.springframework.orm.jpa.JpaTransactionManager.doBegin(JpaTransactionManager.java:401) ~[spring-orm-5.1.3.RELEASE.jar:5.1.3.RELEASE]
+	... 29 common frames omitted
+Caused by: java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 35652ms.
+	at com.zaxxer.hikari.pool.HikariPool.createTimeoutException(HikariPool.java:676) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:190) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.getConnection(HikariPool.java:155) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:128) ~[HikariCP-3.2.0.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:35) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:106) ~[hibernate-core-5.3.7.Final.jar:5.3.7.Final]
+	... 40 common frames omitted
+
+2019-01-07 19:47:47.299  INFO 28464 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-01-07 19:47:48.142  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@281963c (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:48.146  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2a2815cc (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:48.149  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@18fa5af6 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:48.154  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7fdabb3b (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:48.156  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@7164e28a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:48.160  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@1b881f1f (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:48.166  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@2de07c57 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:48.169  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@76cbee13 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:48.174  WARN 28464 --- [main] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@59d09ff3 (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
+2019-01-07 19:47:50.993  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:50.994  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:51.003  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2019-01-07 19:47:51.094  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:51.094  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:51.102  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2019-01-07 19:47:53.623  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:53.625  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:53.636  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
+2019-01-07 19:47:54.026  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:54.029  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:54.038  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 9 ms
+2019-01-07 19:47:54.081  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:54.081  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:54.092  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 10 ms
+2019-01-07 19:47:54.464  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:54.464  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:54.474  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2019-01-07 19:47:54.509  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:54.509  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:54.518  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 8 ms
+2019-01-07 19:47:54.572  INFO 28464 --- [main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2019-01-07 19:47:54.572  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2019-01-07 19:47:54.579  INFO 28464 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2019-01-07 19:47:54.620  INFO 28464 --- [Thread-7] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2019-01-07 19:47:54.626  INFO 28464 --- [Thread-7] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-01-07 19:47:54.642  INFO 28464 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-01-07 19:47:54.656  INFO 28464 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-01-07 19:47:54.685  INFO 28464 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

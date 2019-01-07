@@ -14,8 +14,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -70,12 +69,12 @@ public class SchoolRestControllerTest {
         ResultActions result = mvc.perform(put("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token","71a53f3bc5fb7f18")
-                .content("{\"name\": \"Szkola Testowa\"}")
+                .content("{\"testname\": \"Szkola Testowa\"}")
 
 
         )
                 .andDo(print())
-                .andExpect(status().isNotAcceptable());
+                .andExpect(status().isNotFound());
 
     }
 }

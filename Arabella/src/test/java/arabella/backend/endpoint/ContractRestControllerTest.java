@@ -98,5 +98,17 @@ public class ContractRestControllerTest {
 
     }
 
+    @Test
+    public void changeContracttest1error() throws Exception {
+
+        ResultActions result = mvc.perform(put("/api/contract/change/status/of/{schoolId}",5)
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Token","5c98c785b140c567")
+        )
+                .andDo(print())
+                .andExpect(status().isNotFound());
+
+    }
+
 
 }

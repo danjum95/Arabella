@@ -42,7 +42,7 @@ public class LessonRestControllerTest {
         ResultActions result = mvc.perform(put("/api/lessons")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token","2475ab4d5a31f2b0")
-                .content("{\"studentId\": \"313\",\"date\": \"2019-03-12T12:30:00\",\"endDate\": \"2019-03-12T15:30:00\"}")
+                .content("{\"studentId\": \"4\",\"date\": \"2019-03-12T12:30:00\",\"endDate\": \"2019-03-12T15:30:00\"}")
 
         )
                 .andDo(print())
@@ -148,6 +148,20 @@ public class LessonRestControllerTest {
         )
                 .andDo(print())
                 .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void addMissionLesson() throws Exception {
+
+        ResultActions result = mvc.perform(put("/api/lessons")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Token","2475ab4d5a31f2b0")
+                .content("{\"date\": \"2019-03-12T12:30:00\",\"endDate\": \"2019-03-12T15:30:00\"}")
+
+        )
+                .andDo(print())
+                .andExpect(status().isNotFound());
 
     }
 }
