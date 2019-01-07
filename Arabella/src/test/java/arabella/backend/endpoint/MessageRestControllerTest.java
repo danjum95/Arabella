@@ -44,7 +44,7 @@ public class MessageRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/messages")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","28a4b466fdc590c")
+                .header("Token","4e6db400a718c6e7")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -58,7 +58,7 @@ public class MessageRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/messages/users")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","28a4b466fdc590c")
+                .header("Token","71a52fa86b537c01")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -86,11 +86,11 @@ public class MessageRestControllerTest {
 
         ResultActions result = mvc.perform(put("/api/messages")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","28a4b466fdc590c")
+                .header("Token","4e6db400a718c6e7")
                 .content("{\"receiverId\": \"1\",\"message\": \"Moja testowa wiadomosc\"}")
         )
                 .andDo(print())
-                .andExpect(jsonPath("$.senderId").value("4"))
+                .andExpect(jsonPath("$.senderId").value("1"))
                 .andExpect(jsonPath("$.receiverId").value("1"))
                 .andExpect(status().isOk());
 

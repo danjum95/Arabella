@@ -41,7 +41,7 @@ public class ContractRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/contract")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","13fed19608e3e37")
+                .header("Token","71a53f3bc5fb7f18")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -53,7 +53,7 @@ public class ContractRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/contract")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","623fe289362c4a66")
+                .header("Token","5c98c785b140c567")
         )
                 .andDo(print())
                 .andExpect(status().isUnauthorized());
@@ -65,7 +65,7 @@ public class ContractRestControllerTest {
 
         ResultActions result = mvc.perform(put("/api/contract/instructor/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","64e52390843694ae")
+                .header("Token","2475ab4d5a31f2b0")
         )
                 .andDo(print())
                 .andExpect(status().isConflict());
@@ -77,7 +77,7 @@ public class ContractRestControllerTest {
 
         ResultActions result = mvc.perform(put("/api/contract/student/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","623fe289362c4a66")
+                .header("Token","5c98c785b140c567")
         )
                 .andDo(print())
                 .andExpect(status().isConflict());
@@ -89,7 +89,7 @@ public class ContractRestControllerTest {
 
         ResultActions result = mvc.perform(put("/api/contract/change/status/of/{schoolId}",5)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","623fe289362c4a66")
+                .header("Token","5c98c785b140c567")
                 .content("{\"status\": \"2\"}")
         )
                 .andDo(print())

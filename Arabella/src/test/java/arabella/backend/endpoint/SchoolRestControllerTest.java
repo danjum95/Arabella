@@ -40,7 +40,7 @@ public class SchoolRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","13fed19608e3e37")
+                .header("Token","71a53f3bc5fb7f18")
 
         )
                 .andDo(print())
@@ -53,7 +53,7 @@ public class SchoolRestControllerTest {
 
         ResultActions result = mvc.perform(put("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","13fed19608e3e37")
+                .header("Token","71a53f3bc5fb7f18")
                 .content("{\"name\": \"Szkola Testowa\"}")
 
 
@@ -69,7 +69,7 @@ public class SchoolRestControllerTest {
 
         ResultActions result = mvc.perform(put("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","13fed19608e3e37")
+                .header("Token","71a53f3bc5fb7f18")
                 .content("{\"name\": \"Szkola Testowa\"}")
 
 

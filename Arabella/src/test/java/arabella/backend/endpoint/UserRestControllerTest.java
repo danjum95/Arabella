@@ -39,7 +39,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/users/of/school/{schoolId}", 0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","55be68a5d98b292d")
+                .header("Token","517f1bebbf4e8a2")
 
         )
                 .andDo(print())
@@ -54,7 +54,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/users/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2b6f9eaccc656827")
+                .header("Token","522290504c486cfb")
 
         )
                 .andDo(print())
@@ -201,7 +201,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/users/change/password")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","12a60ce409b95b82")
+                .header("Token","4bf7cfc295100d7")
                 .content("{\"password\": \"janek\"}")
         )
                 .andDo(print())
@@ -213,7 +213,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/users/change/password")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","12a60ce409b95b82")
+                .header("Token","4bf7cfc295100d7")
                 .content("{\"password\": null}")
         )
                 .andDo(print())
@@ -225,7 +225,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/users/change/email")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","12a60ce409b95b82")
+                .header("Token","4bf7cfc295100d7")
                 .content("{\"email\": \"jan@test.pl\"}")
         )
                 .andDo(print())
@@ -237,7 +237,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/users/change/email")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","12a60ce409b95b82")
+                .header("Token","4bf7cfc295100d7")
                 .content("{\"email\": null}")
         )
                 .andDo(print())
@@ -250,7 +250,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/users/which/type/of/user", 10000)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","64e52390843694ae")
+                .header("Token","2475ab4d5a31f2b0")
 
         )
                 .andDo(print())
@@ -264,7 +264,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/users/which/type/of/user", 10000)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","623fe289362c4a66")
+                .header("Token","5c98c785b140c567")
 
         )
                 .andDo(print())
@@ -278,7 +278,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/users/which/type/of/user", 10000)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","13fed19608e3e37")
+                .header("Token","71a53f3bc5fb7f18")
 
         )
                 .andDo(print())
@@ -292,7 +292,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/users/which/school")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","623fe289362c4a66")
+                .header("Token","5c98c785b140c567")
 
         )
                 .andDo(print())

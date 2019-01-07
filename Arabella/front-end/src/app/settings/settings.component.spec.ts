@@ -79,7 +79,7 @@ describe('SettingsComponent', () => {
       connection.mockRespond(new Response(options));
     });
   
-    service.getUserDetails({token:'28a4b466fdc590c'}).subscribe((response) => {
+    service.getUserDetails({token:'4e6db400a718c6e7'}).subscribe((response) => {
       myresponse = response;
       expect(myresponse).toBeDefined();
       expect(myresponse.json()).toEqual({ success: true });
