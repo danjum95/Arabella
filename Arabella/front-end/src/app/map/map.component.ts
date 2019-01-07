@@ -52,8 +52,13 @@ export class MapComponent implements OnInit {
           console.log(this.lessonsId[i]);
         }
         this.Auth.getMap(this.lessonsId[this.lessonsId.length-1]).subscribe(map => {
-          console.log(map.error);
-        })
+          console.log(map.status);
+        }, error => {
+          if (error.status == 404)
+          {
+          console.log(error);
+          }
+        });
             
 
         var places = [
