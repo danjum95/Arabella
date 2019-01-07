@@ -31,13 +31,10 @@ public class MapRestController {
     @PutMapping
     public ResponseEntity putMap(@Validated Map newMap) {
         Optional<Map> map = mapRepository.findByLessonId(newMap.getLessonId());
-
-        if (!map.isPresent()) {
+        if (map.isPresent()) {
             return new ResponseEntity<>("Map already exists for current lessonId", HttpStatus.CONFLICT);
         }
 
-        mapRepository.save(newMap);
-
-        return new ResponseEntity<>(map.get(), HttpStatus.OK);
+        return new ResponseEntity<>(mapRepository.save(newMap), HttpStatus.OK);
     }
 }
