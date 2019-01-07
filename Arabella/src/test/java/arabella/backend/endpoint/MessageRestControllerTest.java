@@ -58,7 +58,7 @@ public class MessageRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/messages/users")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","c9674cc63b11510")
+                .header("Token","6c2fe866597be2d8")
         )
                 .andDo(print())
                 .andExpect(status().isOk());

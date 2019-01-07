@@ -41,7 +41,7 @@ public class ContractRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/contract")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","71a53f3bc5fb7f18")
+                .header("Token","cd6cc4d19ee576e")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -106,7 +106,7 @@ public class ContractRestControllerTest {
                 .header("Token","5c98c785b140c567")
         )
                 .andDo(print())
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
 
     }
 

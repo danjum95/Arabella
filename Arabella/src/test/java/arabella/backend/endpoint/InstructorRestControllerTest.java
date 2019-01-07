@@ -39,7 +39,7 @@ public class InstructorRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/instructors/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","3c2d3c73885655c7")
+                .header("Token","356abbe7fef75a73")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -51,7 +51,7 @@ public class InstructorRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/instructors/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","c9674cc63b11510")
+                .header("Token","6c2fe866597be2d8")
         )
                 .andDo(print())
                 .andExpect(status().isOk());

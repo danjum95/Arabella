@@ -56,7 +56,7 @@ public class LessonRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/lessons/how/many/minutes/student/drove")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","71a53f3bc5fb7f18")
+                .header("Token","cd6cc4d19ee576e")
         )
                 .andDo(print())
                 .andExpect(content().string("Endpoint only for students"))
@@ -69,7 +69,7 @@ public class LessonRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/lessons/how/many/minutes/student/drove")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","522290504c486cfb")
+                .header("Token","6c2fe866597be2d8")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -81,7 +81,7 @@ public class LessonRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/lessons/how/many/minutes/student/{studentId}/of/school/{schoolId}/drove",3,0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","71a53f3bc5fb7f18")
+                .header("Token","cd6cc4d19ee576e")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -94,7 +94,7 @@ public class LessonRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/lessons/how/many/minutes/student/{studentId}/of/school/{schoolId}/drove",3,0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","71a52fa86b537c01")
+                .header("Token","6c2fe866597be2d8")
         )
                 .andDo(print())
                 .andExpect(content().string("Endpoint only for instructor or school"))
@@ -102,24 +102,24 @@ public class LessonRestControllerTest {
 
     }
 
-    /*@Test
+    @Test
     public void getMinutesAsInstructor() throws Exception {
 
         ResultActions result = mvc.perform(get("/api/lessons/students/drives/durations")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2475ab4d5a31f2b0")
+                .header("Token","356abbe7fef75a73")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
 
-    }*/
+    }
 
     @Test
     public void getMinutesAsInstructorinEnpointForSchool() throws Exception {
 
         ResultActions result = mvc.perform(get("/api/lessons/students/drives/durations")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","522290504c486cfb")
+                .header("Token","6c2fe866597be2d8")
         )
                 .andDo(print())
                 .andExpect(content().string("Endpoint only for instructor or school"))
@@ -132,7 +132,7 @@ public class LessonRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/lessons/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","522290504c486cfb")
+                .header("Token","6b8c0d96c3a0177d")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -144,7 +144,7 @@ public class LessonRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/lessons/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","71a53f3bc5fb7f18")
+                .header("Token","cd6cc4d19ee576e")
         )
                 .andDo(print())
                 .andExpect(status().isOk());
