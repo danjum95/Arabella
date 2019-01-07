@@ -28,8 +28,13 @@ public class MapRestController {
         return new ResponseEntity<>("No map for given lessonId", HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping
+    public ResponseEntity getMaps() {
+        return new ResponseEntity<>(mapRepository.findAll(), HttpStatus.OK);
+    }
+
     @PutMapping
-    public ResponseEntity putMap(@Validated Map newMap) {
+    public ResponseEntity putMap(@Validated @RequestBody Map newMap) {
         Optional<Map> map = mapRepository.findByLessonId(newMap.getLessonId());
         if (map.isPresent()) {
             return new ResponseEntity<>("Map already exists for current lessonId", HttpStatus.CONFLICT);
