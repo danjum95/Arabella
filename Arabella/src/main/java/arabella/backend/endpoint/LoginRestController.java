@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @CrossOrigin("**")
 @RequestMapping("/api/login")
@@ -48,6 +50,7 @@ public class LoginRestController {
         Token token = new Token();
         token.setUserId(dbUser.getId());
         token.setValue(SessionController.generateTokenValue());
+        token.setExpDate(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(2));
 
         return new ResponseEntity<>(tokenRepository.save(token), HttpStatus.OK);
     }

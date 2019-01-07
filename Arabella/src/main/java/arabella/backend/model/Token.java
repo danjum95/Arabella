@@ -15,6 +15,8 @@ public class Token {
 
     private Long userId;
 
+    private Long expDate;
+
     public Long getId() {
         return id;
     }
@@ -37,5 +39,13 @@ public class Token {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getExpDate() {
+        return expDate;
+    }
+
+    public void setExpDate(Long expDate) {
+        this.expDate = expDate;
     }
 }
