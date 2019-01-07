@@ -8,15 +8,15 @@
       <div class="account-wall">
         <div class="tab-pane active">
           <form [formGroup]="myForm" (submit)= "register($event)" class="form-signin">
-            <input formControlName="email" type="text" class="form-control" placeholder="email" [(ngModel)]="email" name="email" id="email" 
+            <input formControlName="email" type="text" class="form-control" placeholder="E-mail" [(ngModel)]="email" name="email" id="email" 
             [ngClass]="{'in-valid': !myForm.controls['email'].valid && myForm.controls['email'].touched}"required autofocus>
-            <input formControlName="name" type="text" class="form-control" placeholder="imię" [(ngModel)]="name" name="name" id="name"
+            <input formControlName="name" type="text" class="form-control" placeholder="Imię" [(ngModel)]="name" name="name" id="name"
             [ngClass]="{'in-valid': !myForm.controls['name'].valid && myForm.controls['name'].touched}"required>
-            <input formControlName="lastname" type="text" class="form-control" placeholder="nazwisko" [(ngModel)]="lastname" name="lastname"id="lastname"
+            <input formControlName="lastname" type="text" class="form-control" placeholder="Nazwisko" [(ngModel)]="lastname" name="lastname"id="lastname"
             [ngClass]="{'in-valid': !myForm.controls['lastname'].valid && myForm.controls['lastname'].touched}"required>
             <input formControlName="password" type="password" class="form-control" placeholder="Hasło" [(ngModel)]="password" name="password"id="password"
             [ngClass]="{'in-valid': !myForm.controls['password'].valid && myForm.controls['password'].touched}"required>
-            <input [disabled]="!myForm.valid" type="submit" class="btn btn-lg btn-success btn-block" value="Zarejestruj się" />
+            <input [disabled]="!myForm.valid" type="submit" class="btn btn-lg btn-success btn-block" value="Zarejestruj instruktora" />
           </form>
         </div>
       </div>

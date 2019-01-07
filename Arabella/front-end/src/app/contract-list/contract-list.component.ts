@@ -23,7 +23,7 @@ export class ContractListComponent implements OnInit {
   }
 
   loadData () {
-    this.columns = ['Uzytkownik', 'Email', 'Zatwierdz'];
+    this.columns = ['Użytkownik', 'E-mail', 'Zatwierdź'];
     this.allContracts$ = this.Auth.getAllContracts(localStorage.getItem('userToken'));
   }
 
