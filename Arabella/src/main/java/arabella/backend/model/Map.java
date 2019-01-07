@@ -15,7 +15,11 @@ public class Map {
 
     @NotNull
     @Column(columnDefinition = "TEXT")
-    private String geoJson;
+    private String markers;
+
+    @NotNull
+    @Column(columnDefinition = "TEXT")
+    private String lines;
 
     @NotNull
     private Long lessonId;
@@ -28,12 +32,20 @@ public class Map {
         this.id = id;
     }
 
-    public String getGeoJson() {
-        return geoJson;
+    public String getMarkers() {
+        return markers;
     }
 
-    public void setGeoJson(String geoJson) {
-        this.geoJson = geoJson;
+    public void setMarkers(String markers) {
+        this.markers = markers;
+    }
+
+    public String getLines() {
+        return lines;
+    }
+
+    public void setLines(String lines) {
+        this.lines = lines;
     }
 
     public Long getLessonId() {
