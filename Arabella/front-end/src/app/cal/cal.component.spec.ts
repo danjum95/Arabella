@@ -7,6 +7,7 @@ import { CalendarComponent } from 'ng-fullcalendar';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod, RequestOptions } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import {MatDialogModule,MatDialogRef} from '@angular/material';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CalComponent } from './cal.component';
 
@@ -22,7 +23,7 @@ describe('CalComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CalComponent,CalendarComponent ],
-      imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule],
+      imports: [HttpClientTestingModule, BrowserModule, FormsModule, ReactiveFormsModule,RouterTestingModule,MatDialogModule],
       providers: [MockBackend,
         BaseRequestOptions,
         {
@@ -31,7 +32,7 @@ describe('CalComponent', () => {
             return new Http(backendInstance, defaultOptions);
           },
           deps: [MockBackend, BaseRequestOptions]
-        },AuthorizationService],
+        },AuthorizationService,{provide : MatDialogRef, useValue : {}}],
     })
     .compileComponents();
   }));
