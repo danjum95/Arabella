@@ -49,7 +49,6 @@ public class MessageRestController {
     @GetMapping
     public ResponseEntity getMessages(@RequestHeader("Token") String givenToken) {
         List<Message> messages = messageRepository.findAllByReceiverId(sessionController.checkToken(givenToken).getUserId());
-        messages.addAll(messageRepository.findAllBySenderId(sessionController.checkToken(givenToken).getUserId()));
         return new ResponseEntity<>(messages, HttpStatus.OK);
     }
 
