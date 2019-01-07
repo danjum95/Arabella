@@ -38,7 +38,7 @@ public class StudentRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/students/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","5c98c785b140c567")
+                .header("Token","2b6f9eaccc656827")
 
         )
                 .andDo(print())

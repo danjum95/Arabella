@@ -250,7 +250,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/users/which/type/of/user", 10000)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2475ab4d5a31f2b0")
+                .header("Token","356abbe7fef75a73")
 
         )
                 .andDo(print())
@@ -292,7 +292,7 @@ public class UserRestControllerTest {
 
         ResultActions result = mvc.perform(get("/api/users/which/school")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","5c98c785b140c567")
+                .header("Token","71cdac0f73bf177d")
 
         )
                 .andDo(print())

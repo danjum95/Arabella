@@ -99,6 +99,19 @@ public class ContractRestControllerTest {
     }
 
     @Test
+    public void changeContracttest3() throws Exception {
+
+        ResultActions result = mvc.perform(put("/api/contract/change/status/of/{schoolId}",0)
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Token","5c98c785b140c567")
+                .content("{\"status\": \"1\"}")
+        )
+                .andDo(print())
+                .andExpect(content().string("Contact with that id doesn't exists"))
+                .andExpect(status().isNotFound());
+
+    }
+    @Test
     public void changeContracttest1error() throws Exception {
 
         ResultActions result = mvc.perform(put("/api/contract/change/status/of/{schoolId}",5)
@@ -107,6 +120,18 @@ public class ContractRestControllerTest {
         )
                 .andDo(print())
                 .andExpect(status().isBadRequest());
+
+    }
+
+    @Test
+    public void missingFields() throws Exception {
+
+        ResultActions result = mvc.perform(put("/api/contract/change/status/of/{schoolId}",0)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"status\": \"1\"}")
+        )
+                .andDo(print())
+                .andExpect(status().isNotFound());
 
     }
 
