@@ -42,7 +42,7 @@ public class LessonRestControllerTest {
         ResultActions result = mvc.perform(put("/api/lessons")
                 .contentType(MediaType.APPLICATION_JSON)//jan
                 .header("Token","356abbe7fef75a73")
-                .content("{\"studentId\": \"1\",\"date\": \"2019-03-12T12:30:00\",\"endDate\": \"2019-03-12T15:30:00\"}")
+                .content("{\"studentId\": \"1\",\"date\": \"2090-03-12T12:30:00\",\"endDate\": \"2090-03-12T15:00:00\"}")
 
         )
                 .andDo(print())

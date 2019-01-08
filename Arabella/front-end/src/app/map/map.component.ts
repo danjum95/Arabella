@@ -52,14 +52,21 @@ export class MapComponent implements OnInit {
           console.log(this.lessonsId[i]);
         }
         this.Auth.getMap(1027).subscribe(map => {
-          console.log(map.mapMarkers[0].longitude);
-          var places = [
-          [map.mapMarkers[0].coordinates.longitude, map.mapMarkers[0].coordinates.latitude, map.mapMarkers[0].key],
-        ];
+
+        console.log(map.mapMarkers[0].longitude);
+        var places = [];
         
-        var points = [ 
-        [map.mapLines[0].longitude, map.mapLines[0].latitude],
-      ];
+        for (var i = 0; i < map.mapMarkers.length; i++)
+        {
+        places.push([map.mapMarkers[i].coordinates.longitude, map.mapMarkers[i].coordinates.latitude, map.mapMarkers[i].key]);
+        }
+
+        var points = [];
+
+        for (var i = 0; i < map.mapLines.length; i++)
+        {
+          points.push([map.mapLines[i].longitude, map.mapLines[i].latitude]);
+        }
 
         
         for (var i = 0; i < places.length; i++) {
