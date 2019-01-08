@@ -39,6 +39,7 @@ export class MapComponent implements OnInit {
   latitude: number = 52.4082663;
   longitude: number = 16.9335199;
   lessonsId: string[] = [];
+  mapNotDefined = false;
 
   ngOnInit() {
     this.vectorSource = new OlVectorSource({});
@@ -52,14 +53,14 @@ export class MapComponent implements OnInit {
           console.log(this.lessonsId[i]);
         }
         this.Auth.getMap(1027).subscribe(map => {
-
         console.log(map.mapMarkers[0].longitude);
         var places = [];
-        
+
         for (var i = 0; i < map.mapMarkers.length; i++)
         {
-        places.push([map.mapMarkers[i].coordinates.longitude, map.mapMarkers[i].coordinates.latitude, map.mapMarkers[i].key]);
+          places.push([map.mapMarkers[i].coordinates.longitude, map.mapMarkers[i].coordinates.latitude, map.mapMarkers[i].key]);
         }
+        console.log(places);
 
         var points = [];
 
@@ -79,7 +80,6 @@ export class MapComponent implements OnInit {
           {
             var iconStyle= new Style({
               image: new Icon({
-                color: '#4271AE',
                 crossOrigin: 'anonymous',
                 src: '../assets/images/marker.png'
               })
@@ -89,9 +89,17 @@ export class MapComponent implements OnInit {
           {
             var iconStyle = new Style({
               image: new Icon({
-                color: '#4271AE',
                 crossOrigin: 'anonymous',
                 src: '../assets/images/marker2.png'
+              })
+            })
+          }
+          else if (places[i][2] == 2)
+          {
+            var iconStyle = new Style({
+              image: new Icon({
+                crossOrigin: 'anonymous',
+                src: '../assets/images/marker3.png'
               })
             })
           }
@@ -99,9 +107,8 @@ export class MapComponent implements OnInit {
           {
             var iconStyle = new Style({
               image: new Icon({
-                color: '#4271AE',
                 crossOrigin: 'anonymous',
-                src: '../assets/images/marker3.png'
+                src: '../assets/images/marker4.png'
               })
             })
           }
@@ -158,17 +165,10 @@ export class MapComponent implements OnInit {
         }, error => {
           if (error.status == 404)
           {
-            var places = [
-              [16.9335199, 52.4082663, "r"],
-              [15.9335000, 52.4082000, "y"],
-              [14.9300000, 52.4080000, "b"],
-            ];
+            this.mapNotDefined = true;
+            var places = [];
             
-            var points = [ 
-            [16.9335199, 52.4082663],
-            [15.9335000, 52.4082000],
-            [14.9300000, 52.4080000]
-          ];
+            var points = [];
     
             
             for (var i = 0; i < places.length; i++) {
@@ -181,7 +181,6 @@ export class MapComponent implements OnInit {
               {
                 var iconStyle= new Style({
                   image: new Icon({
-                    color: '#4271AE',
                     crossOrigin: 'anonymous',
                     src: '../assets/images/marker.png'
                   })
@@ -191,7 +190,6 @@ export class MapComponent implements OnInit {
               {
                 var iconStyle = new Style({
                   image: new Icon({
-                    color: '#4271AE',
                     crossOrigin: 'anonymous',
                     src: '../assets/images/marker2.png'
                   })
@@ -201,7 +199,6 @@ export class MapComponent implements OnInit {
               {
                 var iconStyle = new Style({
                   image: new Icon({
-                    color: '#4271AE',
                     crossOrigin: 'anonymous',
                     src: '../assets/images/marker3.png'
                   })
