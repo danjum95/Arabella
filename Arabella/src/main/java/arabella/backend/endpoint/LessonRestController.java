@@ -28,6 +28,9 @@ public class LessonRestController {
     LessonRepository lessonRepository;
 
     @Autowired
+    MapRepository mapRepository;
+
+    @Autowired
     StudentRepository studentRepository;
 
     @Autowired
@@ -166,14 +169,47 @@ public class LessonRestController {
         User user = sessionController.getUserFromToken(givenToken);
 
         if (sessionController.isStudentOfGivenSchool(user, schoolId)) {
+            List<Lesson> lessons = lessonRepository.findAllByStudentId(user.getId());
+            List<arabella.backend.model.Map> maps = mapRepository.findAll();
+            for(Lesson lesson : lessons) {
+                for(arabella.backend.model.Map map : maps) {
+                    if (lesson.getId().equals(map.getLessonId())) {
+                        System.out.println("true lesson");
+                        lesson.setDone(true);
+                        break;
+                    } 
+                }
+            }
             return new ResponseEntity<>(lessonRepository.findAllByStudentId(user.getId()), HttpStatus.OK);
         }
 
         if (sessionController.isInstructorOfGivenSchool(user, schoolId)) {
+            List<Lesson> lessons = lessonRepository.findAllByInstructorId(user.getId());
+            List<arabella.backend.model.Map> maps = mapRepository.findAll();
+            for(Lesson lesson : lessons) {
+                for(arabella.backend.model.Map map : maps) {
+                    if (lesson.getId().equals(map.getLessonId())) {
+                        System.out.println("true lesson");
+                        lesson.setDone(true);
+                        break;
+                    }
+                }
+            }
             return new ResponseEntity<>(lessonRepository.findAllByInstructorId(user.getId()), HttpStatus.OK);
         }
 
         if (sessionController.isOwnerOfGivenSchool(user, schoolId)) {
+            List<Lesson> lessons = lessonRepository.findAllBySchoolId(schoolId);
+            List<arabella.backend.model.Map> maps = mapRepository.findAll();
+            for(Lesson lesson : lessons) {
+                for(arabella.backend.model.Map map : maps) {
+                    if (lesson.getId() == map.getLessonId()) {
+                        System.out.println("true lesson");
+                        lesson.setDone(true);
+                        break;
+                    }
+                }
+            }
             return new ResponseEntity<>(lessonRepository.findAllBySchoolId(schoolId), HttpStatus.OK);
         }
 

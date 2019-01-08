@@ -23,6 +23,9 @@ public class Lesson {
     @NotNull
     private String endDate;
 
+    @Column(name = "ENABLED", nullable = false)
+    private Boolean isDone = false;
+
     private String title;
 
     @OneToOne(fetch = FetchType.EAGER,
@@ -97,6 +100,18 @@ public class Lesson {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public Boolean getDone() {
+        return isDone;
+    }
+
+    public void setDone(Boolean done) {
+        isDone = done;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getTitle() {

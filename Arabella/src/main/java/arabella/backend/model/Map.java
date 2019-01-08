@@ -1,10 +1,11 @@
 package arabella.backend.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.sql.Array;
+import java.util.List;
 
 @Entity
 public class Map {
@@ -14,12 +15,10 @@ public class Map {
     private Long id;
 
     @NotNull
-    @Column(columnDefinition = "TEXT")
-    private String markers;
+    private Object[] mapMarkers;
 
     @NotNull
-    @Column(columnDefinition = "TEXT")
-    private String lines;
+    private Object[] mapLines;
 
     @NotNull
     private Long lessonId;
@@ -28,20 +27,24 @@ public class Map {
         this.id = id;
     }
 
-    public String getMarkers() {
-        return markers;
+    public Object[] getMapMarkers() {
+        return mapMarkers;
     }
 
-    public void setMarkers(String markers) {
-        this.markers = markers;
+    public void setMapMarkers(Object[] mapMarkers) {
+        this.mapMarkers = mapMarkers;
     }
 
-    public String getLines() {
-        return lines;
+    public Object[] getMapLines() {
+        return mapLines;
     }
 
-    public void setLines(String lines) {
-        this.lines = lines;
+    public void setMapLines(Object[] mapLines) {
+        this.mapLines = mapLines;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Long getLessonId() {
