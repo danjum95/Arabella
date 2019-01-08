@@ -14,8 +14,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -44,6 +43,20 @@ public class MapRestControllerTest {
                 .andDo(print())
                 .andExpect(content().string("No map for given lessonId"))
                 .andExpect(status().isNotFound());
+
+
+
+    }
+
+    @Test
+    public void addMapWithError() throws Exception {
+
+        ResultActions result = mvc.perform(put("/api/maps")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"lessonId\": \"1027\"}")
+        )
+                .andDo(print())
+                .andExpect(status().isBadRequest());
 
 
 
