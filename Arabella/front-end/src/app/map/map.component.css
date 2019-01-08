@@ -9,15 +9,20 @@ html, body {
     width: 60vw;
     float: left;
 }
-
+#legend
+{
+    transform: scale(0.7);
+    margin-left: -95px;
+}
 .thead{
     background-color: rgba(128, 128, 134, 0.75);
     border-bottom: 2px solid;
+    text-align: center;
   }
   
   th, td {
     text-align: center;
     padding: 5px;
-    font-size: 13px;
+    font-size: 12px;
     justify-content: center;
   }
