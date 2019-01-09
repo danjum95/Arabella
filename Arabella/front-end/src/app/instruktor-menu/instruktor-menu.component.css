@@ -46,3 +46,14 @@ nav.sidebar:hover{
   margin-left: 10vw;
   position: fixed;
 }
+
+@media screen and (max-width: 767px) {
+  .collapse{
+    display: block !important;
+    visibility: visible !important;
+    }
+  .glyphicon
+  {
+    margin-right: 20px !important;
+  }
+  }

@@ -58,7 +58,5 @@ public class MapRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isBadRequest());
 
-
-
     }
 }
