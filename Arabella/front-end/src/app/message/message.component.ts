@@ -13,40 +13,11 @@ import { IReceivedMessageInterface } from '../interface/receivedMessageInterface
 export class MessageComponent implements OnInit {
   to: any;
   textMessage: any;
-  dataInstruktor: Observable<Array<instruktorListInterface>>;
-  idKursant: any;
-  idInstruktor: any;
-  idSend: any;
-  msgForm: FormGroup;
-  message = {
-    to: '',
-    title: '',
-    textMessage:''
-  };
   rev$: Observable<Array<IReceivedMessageInterface>>;
 
   constructor(private Auth: AuthorizationService) {
-    this.createForm();
   }
-
-
-  createForm(): void {
-   this.msgForm = new FormGroup({
-       'to': new FormControl(this.message.to, [
-             Validators.required,
-             Validators.email
-       ]),
-       'title': new FormControl(this.message.title, [
-           Validators.required,
-           Validators.minLength(5)
-       ]),
-       'textMessage': new FormControl(this.message.textMessage, [
-        Validators.required,
-        Validators.minLength(10)
-       ])
-   });
-  }
-
+  
   ngOnInit() {
     this.getMessages();
   }
@@ -63,5 +34,5 @@ export class MessageComponent implements OnInit {
         }
       });
     });
-  }
+}
 }

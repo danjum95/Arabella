@@ -17,11 +17,7 @@ export class CalComponent implements OnInit {
   displayEvent: any;
   myLogin: string;
   lessons: any;
-<<<<<<< HEAD
-  hideSelect:boolean=false;
-=======
   hideSelect = false;
->>>>>>> develop
   isInstructor: boolean;
   allKursants$: any;
 
@@ -159,18 +155,10 @@ export class CalComponent implements OnInit {
   }
 
   openDialog(): void {
-<<<<<<< HEAD
-    this.hideSelect=true;
-    setTimeout(()=>{
-      this.hideSelect=false;
-    },100)
-      
-=======
     this.hideSelect = true;
     setTimeout(() => {
       this.hideSelect = false;
     }, 50);
->>>>>>> develop
     
     const dialog = this.dialog.open(AddLessonsComponent, {width: '250px'});
 

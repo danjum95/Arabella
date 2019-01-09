@@ -14,7 +14,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -47,6 +48,7 @@ public class MapRestControllerTest {
 
 
     }
+<<<<<<< HEAD
 
     @Test
     public void addMapWithError() throws Exception {
@@ -59,4 +61,6 @@ public class MapRestControllerTest {
                 .andExpect(status().isBadRequest());
 
     }
+=======
+>>>>>>> parent of 5127eb63... Added test
 }
