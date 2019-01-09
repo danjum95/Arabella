@@ -55,3 +55,14 @@ td {
 tbody :hover {
   background-color: rgba(199, 195, 175, 0.75);
 }
+
+@media screen and (max-width: 767px) {
+  .button{
+    transform: scale(0.8)!important;
+    margin-left: 155px;
+    }
+    .table
+  {
+    transform: scale(0.8)!important;
+  }
+  }

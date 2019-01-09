@@ -53,3 +53,10 @@
 .in-valid {
   border: 2px solid red;
 }
+
+@media screen and (max-width: 765px) {
+  .container
+  {
+    margin-left:175px;
+  }
+}

@@ -82,7 +82,7 @@ body {
 @media screen and (max-width: 765px) {
   h3
   {
-    transform: scale(0.8);
+    font-size: 17px;
   }
     .msg_send_btn
     {
