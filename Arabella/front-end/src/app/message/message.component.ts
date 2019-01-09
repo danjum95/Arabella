@@ -1,4 +1,3 @@
-import { instruktorListInterface } from './../interface/instruktorListInterface';
 import { AuthorizationService } from './../authorization.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -23,16 +22,9 @@ export class MessageComponent implements OnInit {
 
   getMessages() {
     this.rev$ = this.Auth.getAllMessages(localStorage.getItem('userToken'));
-
-    console.log(this.rev$);
   }
 
-  sendMessage(event) {
-    event.preventDefault();
-    const target = event.target;
-    this.to = target.querySelector('#to').value;
-    this.textMessage = target.querySelector('#textMessage').value;
-
+  sendMessage() {
     this.Auth.getUsersToMessage(localStorage.getItem('userToken')).subscribe(data => {
       data.forEach(element => {
         if (this.to === element.email) {

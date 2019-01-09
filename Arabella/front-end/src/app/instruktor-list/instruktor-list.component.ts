@@ -14,6 +14,7 @@ export class InstruktorListComponent implements OnInit {
   allInstruktors$: Observable<Array<instruktorListInterface>>;
 
   columns: string[];
+  email: any;
 
   constructor(private Auth: AuthorizationService, private router: Router) { }
 
@@ -39,6 +40,24 @@ export class InstruktorListComponent implements OnInit {
 
     this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {
       this.allInstruktors$ = this.Auth.getInstructors(localStorage.getItem('userToken'), data.id);
+    });
+  }
+
+  send(event) {
+    event.preventDefault();
+    this.email = event.target.innerHTML;
+    this.Auth.getTypeOfUser(localStorage.getItem('userToken')).subscribe(data =>  {
+      switch (data) {
+        case 0:
+          this.router.navigate(['oskMenu/message']);
+          break;
+        case 1:
+          this.router.navigate(['instruktorMenu/message']);
+          break;
+        case 2:
+        this.router.navigate(['kursantMenu/message']);
+        break;
+      }
     });
   }
 }

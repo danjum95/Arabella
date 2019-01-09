@@ -8,7 +8,7 @@
   border-bottom: 5px solid;
 }
 
-th, td {
+th {
   text-align: center;
   padding: 8px;
   font-size: 18px;
@@ -17,9 +17,19 @@ th, td {
 
 td {
   background-color: rgba(199, 195, 175, 0.65);
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
 }
 
+span {
+  font-size: 15px;
+}
 
-tbody :hover {
-  background-color: rgba(199, 195, 175, 0.75);
+span:hover {
+  color: green;
+}
+
+span::after {
+  color: green;
 }
