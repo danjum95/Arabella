@@ -1,7 +1,7 @@
 import { AuthorizationService } from './../authorization.service';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
-import { OnInit, ViewChild, Component } from '@angular/core';
+import { OnInit, ViewChild, Component, ViewContainerRef } from '@angular/core';
 import { lessonListInterface } from '../interface/lessonListInterface';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddLessonsComponent } from '../add-lessons/add-lessons.component';
@@ -17,7 +17,11 @@ export class CalComponent implements OnInit {
   displayEvent: any;
   myLogin: string;
   lessons: any;
+<<<<<<< HEAD
   hideSelect:boolean=false;
+=======
+  hideSelect = false;
+>>>>>>> develop
   isInstructor: boolean;
   allKursants$: any;
 
@@ -155,15 +159,22 @@ export class CalComponent implements OnInit {
   }
 
   openDialog(): void {
+<<<<<<< HEAD
     this.hideSelect=true;
     setTimeout(()=>{
       this.hideSelect=false;
     },100)
       
+=======
+    this.hideSelect = true;
+    setTimeout(() => {
+      this.hideSelect = false;
+    }, 50);
+>>>>>>> develop
     
     const dialog = this.dialog.open(AddLessonsComponent, {width: '250px'});
 
-    dialog.afterClosed().subscribe(result => {
+    dialog.afterClosed().subscribe(() => {
     });
   }
 

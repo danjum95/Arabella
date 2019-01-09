@@ -2,7 +2,6 @@ import { AuthorizationService } from './../authorization.service';
 import { Component, OnInit } from '@angular/core';
 import { contractListInterface } from '../interface/contractListInterface';
 import { Observable } from 'rxjs';
-import { timeout } from 'q';
 
 @Component({
   selector: 'app-contract-list',

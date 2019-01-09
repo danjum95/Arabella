@@ -11,7 +11,7 @@
         </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let instruktor of allInstruktors$ | async">
+      <tr (click)="send($event)" *ngFor="let instruktor of allInstruktors$ | async">
           <td>
             {{instruktor.user.firstName}}
           </td>

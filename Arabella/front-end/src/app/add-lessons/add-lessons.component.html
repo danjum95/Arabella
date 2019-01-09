@@ -11,8 +11,8 @@
     <h5>Godzina planowanej lekcji</h5>
     <input type="time" [(ngModel)]="hours">
     <br>
-    <h5>Długość trwania lekcji w minutach</h5>
-    <input type="range" name="points" min="0" max="10" [(ngModel)]="minutes">
+    <h5>Długość trwania lekcji: {{minutes}} minut</h5>
+    <input type="range" name="points" min="0" max="180" [(ngModel)]="minutes">
     <br>
   </mat-dialog-content>
   <mat-dialog-actions>
