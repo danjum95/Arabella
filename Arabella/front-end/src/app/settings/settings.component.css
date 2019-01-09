@@ -25,3 +25,10 @@ input[type="text"]
   opacity: 0.95;
 }
 
+@media screen and (max-width: 765px) {
+  .container
+  {
+    margin-left:175px;
+  }
+}
+

@@ -79,3 +79,13 @@ body {
 .title{
   font-weight: bold;
 }
+@media screen and (max-width: 765px) {
+  h3
+  {
+    transform: scale(0.8);
+  }
+    .msg_send_btn
+    {
+    margin-top: -95px;
+    }
+}
