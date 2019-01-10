@@ -1,7 +1,7 @@
 import React from 'react';
 import MapView, { Polyline } from 'react-native-maps';
 import {Platform, View, StyleSheet, Button, Alert, ToastAndroid} from 'react-native';
-import { Constants, Location, Permissions } from 'expo';
+import {Constants, Location, Permissions, SecureStore} from 'expo';
 import DialogInput from 'react-native-dialog-input';
 import { Actions } from 'react-native-router-flux';
 import axios from "axios";
@@ -78,18 +78,34 @@ class Map extends React.Component {
     }
   };
 
+  saveMapDialog() {
+    Alert.alert(
+      'Zapisz trase',
+      'Czy chcesz zapisać zarejestrowaną trasę?',
+      [
+        {text: 'Potwierdź', onPress: () => this.saveMap()},
+        {text: 'Wróć', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}
+      ]
+    )
+  }
+
   saveMap() {
-    axios.put(_env.API_URL + '/api/maps/', {
-      markers: this.state.markers,
-      lines: this.state.lines
-    })
-      .then(function (response) {
-        console.log(response.data);
+    SecureStore.getItemAsync('token').then((token) => {
+      axios.put(_env.API_URL + '/api/maps/', {
+        lessonId: this.props.lessonId,
+        mapMarkers: this.state.markers,
+        mapLines: this.state.lines
+      }, {headers: { Token: token }
       })
-      .catch(function (error) {
-        console.log(error.response);
-        ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
-      });
+        .then(function (response) {
+          console.log(response.data);
+          Actions.Usermenu();
+        })
+        .catch(function (error) {
+          console.log(error.response);
+          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+        });
+    });
   }
 
   addMarker(title) {
@@ -106,6 +122,7 @@ class Map extends React.Component {
   }
 
   render() {
+    console.log(this.state.markers);
     if(this.state.location) {
       return (
         <View style={styles.container}>
@@ -156,7 +173,7 @@ class Map extends React.Component {
             </View>
             <View style={{ padding: 5 }}>
               <Button
-                onPress={() => {}}
+                onPress={() => {this.saveMapDialog()}}
                 title="Zapisz"
                 color="#841584"
               />

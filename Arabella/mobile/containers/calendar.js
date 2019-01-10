@@ -1,6 +1,6 @@
 import React from 'react';
 import { Agenda } from 'react-native-calendars';
-import {Text, ToastAndroid, View} from 'react-native';
+import {Text, ToastAndroid, View, Button} from 'react-native';
 import {LocaleConfig} from 'react-native-calendars';
 import {Actions} from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -35,12 +35,14 @@ class Calendar extends React.Component {
       })
         .then(function (response) {
           response.data.forEach(obj => {
+            console.log(obj);
             const date = obj.date.split('T')[0];
             if(!(date in this.state.items)) {
               let newItems = this.state.items;
               newItems[date] = [{
+                id: obj.id,
                 name: 'Jazdy',
-                height: 100,
+                height: 135,
                 from: obj.date.split('T')[1],
                 to: obj.endDate.split('T')[1],
                 participant: obj.student.firstName + ' ' + obj.student.lastName
@@ -51,7 +53,7 @@ class Calendar extends React.Component {
               let newItems = this.state.items;
               newItems[date].push({
                 name: 'Jazdy',
-                height: 100,
+                height: 135,
                 from: obj.date.split('T')[1],
                 to: obj.endDate.split('T')[1],
                 participant: obj.student.firstName + ' ' + obj.student.lastName
@@ -111,6 +113,9 @@ class Calendar extends React.Component {
         <Text style={styles.lightTextDate}>
           Kursant: {item.participant}
         </Text>
+        <View style={styles.bottomButton}>
+          <Button title='DODAJ TRASE' onPress={() => {Actions.Map({lessonId: item.id})}}/>
+        </View>
       </View>
     );
   }
@@ -123,11 +128,6 @@ class Calendar extends React.Component {
 
   rowHasChanged(r1, r2) {
     return r1.name !== r2.name;
-  }
-
-  timeToString(time) {
-    const date = new Date(time);
-    return date.toISOString().split('T')[0];
   }
 
 }

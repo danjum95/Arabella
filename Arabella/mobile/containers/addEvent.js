@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addEvent } from '../actions/calendarActions';
 import Autocomplete from "react-native-autocomplete-input";
-import {requestEvents, requestParticipants} from "../utils/mock-api";
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import {Actions} from "react-native-router-flux";
 import {SecureStore} from "expo";
 import axios from "axios";
 import {_env} from "../local/env";
+import styles from '../styles/styles'
 
 class AddEvent extends React.Component {
 
@@ -49,19 +49,17 @@ class AddEvent extends React.Component {
         headers: { Token: token }
       })
         .then(function (response) {
-          console.log(response.data);
           response.data.forEach(user =>{
             element = user.user.name + ' - ' + user.user.email;
-            participants.push(user);
             users.push(element);
           })
         }.bind(this))
         .catch(function (error) {
           console.log(error);
-          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+          ToastAndroid.show('Błąd po stronie serwera xxx!', ToastAndroid.SHORT);
         });
     });
-    this.setState({usersData: users, participants: participants});
+    this.setState({usersData: users});
   }
 
   findUser(query) {
@@ -77,9 +75,8 @@ class AddEvent extends React.Component {
   render() {
     const users = this.findUser(this.state.user);
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
-
     return (
-      <View style={styles.container}>
+      <View style={styles.containerEvent}>
 
         <View style={styles.autoFillInput}>
           <Autocomplete
@@ -133,38 +130,32 @@ class AddEvent extends React.Component {
           <Button
             onPress={() => {
               SecureStore.getItemAsync('token').then((token) => {
-                axios.put(_env.API_URL + '/api/lessons', {
-                  headers: { Token: token },
-                  Lesson: {
-                    studentId: null,
-                    startDate: null,
-                    endDate: null
-                  }
+                axios.post(_env.API_URL + '/api/users/other/user/info', {
+                  email: this.state.user.split(' - ')[1]},
+                  {headers: { Token: token }
                 })
                   .then(function (response) {
-                    console.log(response.data);
-                    response.data.forEach(user =>{
-                      element = user.user.name + ' - ' + user.user.email;
-                      participants.push(user);
-                      users.push(element);
+                    const user = response.data;
+                    axios.put(_env.API_URL + '/api/lessons', {
+                      studentId: user.id,
+                      date: this.props.eventDay.dateString + 'T' + this.state.from + ':00',
+                      endDate: this.props.eventDay.dateString + 'T' + this.state.to + ':00'
+                    }, { headers: { Token: token }
                     })
+                      .then(function (response) {
+                        ToastAndroid.show('Dodano jazdy!', ToastAndroid.SHORT);
+                        Actions.Usermenu();
+                      }.bind(this))
+                      .catch(function (error) {
+                        console.log(error);
+                        ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+                      });
                   }.bind(this))
                   .catch(function (error) {
                     console.log(error);
                     ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
                   });
               });
-
-              let jsondata = {};
-              jsondata[this.props.eventDay.dateString] = [{
-                name: 'Testowe Jazdy',
-                height: 100,
-                from: this.state.from,
-                to: this.state.to,
-                participant: this.state.user.split('-')[0]
-              }];
-              this.props.addEvent(jsondata);
-              Actions.pop();
             }}
             title="Dodaj jazdy"
           />
@@ -174,40 +165,6 @@ class AddEvent extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:'#efefef',
-    padding:10,
-  },
-  autoFillInput:{
-    flex:1,
-    marginTop: 50
-  },
-  timepickerFrom:{
-    flex:1,
-    marginTop: 80,
-    justifyContent:'center'
-  },
-  timepickerTo:{
-    flex:1,
-    justifyContent:'center'
-  },
-  button:{
-    padding: 5,
-    margin: 5
-  },
-  lightText: {
-    fontSize: 20,
-    color: 'darkgrey',
-    fontWeight: 'bold'
-  },
-  mainText: {
-    fontWeight: 'bold',
-    fontSize: 20
-  }
-});
 
 const mapStateToProps = (state) => {
   const { calendarEvents } = state;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button, ToastAndroid} from 'react-native';
+import { View, Button, ToastAndroid, ActivityIndicator } from 'react-native';
 import { SecureStore } from "expo";
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from "redux";
@@ -12,6 +12,10 @@ import styles from '../styles/styles'
 class Usermenu extends React.Component {
 
   componentWillMount() {
+    this.getDataFromApi();
+  }
+
+  getDataFromApi() {
     SecureStore.getItemAsync('token').then((token) => {
       axios.get(_env.API_URL + '/api/users/user/info', {
         headers: { Token: token }
@@ -58,26 +62,35 @@ class Usermenu extends React.Component {
     }
   }
 
+
   render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.button}>
-          <Button onPress={() => {Actions.ProfileInfo()}} title="Mój profil" />
+    console.log(this.props.user);
+    if(!this.props.user.get('school')) {
+      setTimeout(() => { console.log('pop'); Actions.pop(); }, 5000);
+      return (
+        <View style={styles.container}>
+          <ActivityIndicator size="large" color="#0000ff" />
         </View>
-        <View style={styles.button}>
-          <Button onPress={() => {Actions.Calendar({schoolID: this.props.user.get('school').id})}} title="Kalendarz" />
+      );
+    }
+    else {
+      return (
+        <View style={styles.container}>
+          <View style={styles.button}>
+            <Button onPress={() => {Actions.ProfileInfo()}} title="Mój profil" />
+          </View>
+          <View style={styles.button}>
+            <Button onPress={() => {Actions.Calendar({schoolID: this.props.user.get('school').id})}} title="Kalendarz" />
+          </View>
+          <View style={styles.button}>
+            <Button onPress={() => {Actions.ParticipantsList({schoolID: this.props.user.get('school').id})}} title="Lista Kursantów" />
+          </View>
+          <View style={styles.button}>
+            <Button onPress={this.userLogout} title="Wyloguj" />
+          </View>
         </View>
-        <View style={styles.button}>
-          <Button onPress={() => {Actions.ParticipantsList({schoolID: this.props.user.get('school').id})}} title="Lista Kursantów" />
-        </View>
-        <View style={styles.button}>
-          <Button onPress={() => {Actions.Map()}} title="Mapa" />
-        </View>
-        <View style={styles.button}>
-          <Button onPress={this.userLogout} title="Wyloguj" />
-        </View>
-      </View>
-    );
+      );
+    }
   }
 }
 

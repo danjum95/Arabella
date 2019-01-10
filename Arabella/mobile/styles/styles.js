@@ -11,6 +11,11 @@ export default StyleSheet.create({
     padding: 5,
     margin: 5
   },
+  bottomButton:{
+    padding: 5,
+    margin: 5,
+    justifyContent: 'flex-end'
+  },
   element: {
     borderWidth:2,
     borderColor:'#000',
@@ -56,5 +61,23 @@ export default StyleSheet.create({
   mainTextDate: {
     fontWeight: 'bold',
     fontSize: 14
+  },
+  containerEvent:{
+    flex:1,
+    backgroundColor:'#efefef',
+    padding:10,
+  },
+  autoFillInput:{
+    flex:1,
+    marginTop: 50
+  },
+  timepickerFrom:{
+    flex:1,
+    marginTop: 80,
+    justifyContent:'center'
+  },
+  timepickerTo:{
+    flex:1,
+    justifyContent:'center'
   }
 })
