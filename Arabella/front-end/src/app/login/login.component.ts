@@ -37,13 +37,13 @@ export class LoginComponent {
         this.Auth.getTypeOfUser(data.value).subscribe(dat =>  {
           switch (dat) {
             case 0:
-              this.router.navigate(['oskMenu']);
+              this.router.navigate(['oskMenu/calendar']);
               break;
             case 1:
-              this.router.navigate(['instruktorMenu']);
+              this.router.navigate(['instruktorMenu/calendar']);
               break;
             case 2:
-              this.router.navigate(['kursantMenu']);
+              this.router.navigate(['kursantMenu/calendar']);
               break;
           }
         });

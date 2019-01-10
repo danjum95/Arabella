@@ -15,9 +15,11 @@
             {{contract.user.email}}
           </td>
           <td *ngIf="!(contract.status == 2)" class="td-actions">
-              <button (click) = "id($event)"  class="btn btn-small btn-success" id="{{contract.id}}">
+              <span (click)= "id($event)" class="glyphicon glyphicon-plus" id="{{contract.id}}"></span>
+              <!---<button (click) = "id($event)"  id="{{contract.id}}">
                 <i class="btn-icon-only icon-ok"></i>
-              </button>
+
+              </button>-->
             </td>
         </tr>
   </tbody>
