@@ -39,7 +39,7 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `POST` (`/check`) - Header `Token`, Header `Refresh-Token` - Returns status `404` when `token` expired or `userId` with status `200`
 
-`POST` (`/renew`) - Header `Token`, Header `Refresh-Token` - Returns `token`, `refresh-token` and `uid` with status `200` or `404` when not matching `Refresh-Token`
+`POST` (`/renew`) - Header `Token`, Header `Refresh-Token` - Returns `token`, `refresh-token` and `uid` with status `200` or `404` when no matching `Refresh-Token`
 
 ### Messages - `/api/messages`
 
