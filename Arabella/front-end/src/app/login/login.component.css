@@ -40,11 +40,22 @@
 .alert {
   display: grid;
   margin-bottom: 5px;
-  max-width: 310px;
-  margin-left: 29vw;
+  max-width: 250px;
+  margin-left: 30vw;
   box-shadow: 5px 5px 5px 5px rgba(0.300, 0.300, 0.300, 0.300);
 }
 
 .in-valid {
   border: 2px solid red;
+}
+
+.btn-info
+{
+  background-color: #377d92;
+  border-color: #1e4955;
+}
+
+.btn-info:hover {
+  background-color: #285e6e;
+  border-color: #143038;
 }

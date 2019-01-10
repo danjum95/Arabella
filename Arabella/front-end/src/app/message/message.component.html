@@ -25,9 +25,9 @@
         </div>
         <div class="mesgs">
           <div class="type_msg">
-            <form (submit)= "sendMessage($event)" class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Odbiorca"[(ngModel)]="to" name="to" required>
-              <input type="text" class="write_msg" placeholder="Wiadomość" [(ngModel)]="textMessage" name="textMessage" required>
+            <form (submit)= "sendMessage($event)" [formGroup]="msgForm" class="input_msg_write">
+              <input type="text" formControlName="to" class="write_msg" placeholder="Odbiorca"[(ngModel)]="to" name="to" required>
+              <input type="text" formControlName="textMessage" class="write_msg" placeholder="Wiadomość" [(ngModel)]="textMessage" name="textMessage" required>
               <button type="submit" class="msg_send_btn">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
               </button>

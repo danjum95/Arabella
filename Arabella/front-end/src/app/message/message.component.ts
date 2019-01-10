@@ -1,7 +1,7 @@
 import { AuthorizationService } from './../authorization.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { IReceivedMessageInterface } from '../interface/receivedMessageInterface';
 
@@ -13,9 +13,14 @@ import { IReceivedMessageInterface } from '../interface/receivedMessageInterface
 export class MessageComponent implements OnInit {
   to: any;
   textMessage: any;
+  msgForm: FormGroup;
   rev$: Observable<Array<IReceivedMessageInterface>>;
 
-  constructor(private Auth: AuthorizationService) {
+  constructor(private Auth: AuthorizationService, private fb: FormBuilder) {
+    this.msgForm = fb.group({
+      'to': [null, Validators.required],
+      'texMessage': [null, Validators.required]
+    });
   }
   
   ngOnInit() {

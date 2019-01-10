@@ -46,4 +46,13 @@
   margin-left: 29vw;
 }
 
+.btn-info
+{
+  background-color: #377d92;
+  border-color: #1e4955;
+}
 
+.btn-info:hover {
+  background-color: #285e6e;
+  border-color: #143038;
+}

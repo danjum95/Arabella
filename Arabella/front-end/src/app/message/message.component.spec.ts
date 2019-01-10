@@ -52,21 +52,18 @@ describe('MessageComponent', () => {
 
   it('form invalid', async(() => {
     component.msgForm.controls['to'].setValue('');
-    component.msgForm.controls['title'].setValue('');
     component.msgForm.controls['textMessage'].setValue('');
     expect(component.msgForm.valid).toBeFalsy();
   }));
 
   it('form is valid', async(() => {
     component.msgForm.controls['to'].setValue('test1@test.pl');
-    component.msgForm.controls['title'].setValue('tytul123');
     component.msgForm.controls['textMessage'].setValue('sadadsdsadadasdas');
     expect(component.msgForm.valid).toBeTruthy();
   }));
 
   it('form is invalid partially', async(() => {
     component.msgForm.controls['to'].setValue('testowy');
-    component.msgForm.controls['title'].setValue('tytul123');
     component.msgForm.controls['textMessage'].setValue('123');
     expect(component.msgForm.valid).toBeFalsy();
   }));
