@@ -53,6 +53,7 @@ export class MapComponent implements OnInit {
           console.log(this.lessonsId[i]);
         }
         this.Auth.getMap(this.lessonsId[this.lessonsId.length - 1]).subscribe(map => {
+          console.log(this.lessonsId[this.lessonsId.length - 1]);
         console.log(map.mapMarkers[0].longitude);
         var places = [];
 
