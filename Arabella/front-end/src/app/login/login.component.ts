@@ -31,11 +31,11 @@ export class LoginComponent {
     const password = target.querySelector('#password').value;
 
     this.Auth.login(email, password).subscribe(data => {
-      localStorage.setItem('userToken', data.value);
+      localStorage.setItem('userToken', data.token);
       localStorage.setItem('userId', data.userId);
 
       setTimeout(() => {
-        this.Auth.getTypeOfUser(data.value).subscribe(dat =>  {
+        this.Auth.getTypeOfUser(data.token).subscribe(dat =>  {
           switch (dat) {
             case 0:
               this.router.navigate(['oskMenu/calendar']);

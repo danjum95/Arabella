@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from "@angular/common";
 import { AuthorizationService } from './../authorization.service';
 import OlMap from 'ol/Map';
 import OlVectorSource from 'ol/source/Vector';
@@ -38,13 +39,10 @@ export class MapComponent implements OnInit {
     view: OlView;
   latitude: number = 52.4082663;
   longitude: number = 16.9335199;
-  lessonsId: string[] = [];
+  lessonsId: Array<string> = [];
   mapNotDefined = false;
 
   ngOnInit() {
-    this.vectorSource = new OlVectorSource({});
-    this.vectorLine = new OlVectorSource({});
-    
     this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(dat => {
       this.Auth.getLessons(localStorage.getItem('userToken'), dat.id).subscribe(da => {
         for (var i = 0; i < da.length; i++)
@@ -52,8 +50,15 @@ export class MapComponent implements OnInit {
           this.lessonsId.push(da[i].id);
           console.log(this.lessonsId[i]);
         }
-        this.Auth.getMap(this.lessonsId[this.lessonsId.length - 1]).subscribe(map => {
-          console.log(this.lessonsId[this.lessonsId.length - 1]);
+      })
+    });
+  }
+
+  getMap(id)
+  {
+        this.vectorSource = new OlVectorSource({});
+        this.vectorLine = new OlVectorSource({});
+        this.Auth.getMap(id).subscribe(map => {
         console.log(map.mapMarkers[0].longitude);
         var places = [];
 
@@ -259,8 +264,6 @@ export class MapComponent implements OnInit {
           }
         });
         
-      })
-    });
   }
 }
 

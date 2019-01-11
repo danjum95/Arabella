@@ -30,7 +30,7 @@ export class RegisterComponent {
   }
   register() {
       this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
-        localStorage.setItem('newUser', data.value);
+        localStorage.setItem('newUser', data.token);
       }, (error) => this.isLoginError = true);
 
     if (!(this.isLoginError === true)) {

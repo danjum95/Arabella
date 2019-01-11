@@ -78,7 +78,7 @@ describe('RegisterOskComponent', () => {
 
   it('should get register school successful', () => {
     service.addSchools("Moje OSK", "12345678910").subscribe((data: any) => {
-      expect(data.value).toBe('abcdefghijklmno');
+      expect(data.token).toBe('abcdefghijklmno');
     });
   });
 

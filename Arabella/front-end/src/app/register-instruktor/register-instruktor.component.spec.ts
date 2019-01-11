@@ -75,7 +75,7 @@ describe('RegisterInstruktorComponent', () => {
 
   it('should get register instructor successful', () => {
     service.addUsers("Marcin", "Marcinowski", "testowy@testowy.pl", "1234567").subscribe((data: any) => {
-      expect(data.value).toBe('abcdefghijklmno');
+      expect(data.token).toBe('abcdefghijklmno');
     });
   });
 

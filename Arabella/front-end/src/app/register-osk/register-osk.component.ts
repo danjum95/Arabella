@@ -30,7 +30,7 @@ export class RegisterOskComponent {
   register() {
 
     this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
-      localStorage.setItem('newTokenOsk', data.value);
+      localStorage.setItem('newTokenOsk', data.token);
       this.Auth.addSchools(this.oskName, localStorage.getItem('newTokenOsk')).subscribe();
       setTimeout(() => {
         localStorage.removeItem('newTokenOsk');

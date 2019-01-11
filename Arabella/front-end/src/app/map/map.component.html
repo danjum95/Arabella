@@ -4,6 +4,11 @@
 
 <html>
   <body>
+      <ul>               
+          <li *ngFor="let lesson of lessonsId" >
+            <a (click)="getMap(lesson)" >{{ lesson }}</a>
+          </li>
+      </ul>
     <div id="legend" class="legend">
       <thead>
 				<tr>
