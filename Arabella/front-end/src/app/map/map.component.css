@@ -40,3 +40,13 @@ html, body {
     margin-left: 29vw;
     box-shadow: 5px 5px 5px 5px rgba(0.300, 0.300, 0.300, 0.300);
   }
+  .listlessons2 {
+    margin-left:-50px;
+    width: 100px;
+  }
+  .listlessons {
+    margin-left:-50px;
+    height: 150px;
+    width: 75px;
+    overflow-y: scroll;
+  }

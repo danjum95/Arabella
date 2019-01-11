@@ -4,16 +4,8 @@
 
 <html>
   <body>
-      <ul>               
-          <li *ngFor="let lesson of lessonsId" >
-            <a (click)="getMap(lesson)" >{{ lesson }}</a>
-          </li>
-      </ul>
     <div id="legend" class="legend">
       <thead>
-				<tr>
-					<th></th>
-        </tr>
         <tr>
             <th>LEGENDA</th>
         </tr>
@@ -34,10 +26,17 @@
 
               <td>Nietrzymanie się przed STOP </td>
           </tr>
-        </tbody></div>
-      <div id="map" class="map"></div>
+        </tbody>
+      </div>
+      <div class="listlessons2">Lista Twoich lekcji: </div>          
+      <div class="listlessons">
+          <div *ngFor="let lesson of lessonsId" >
+            <a (click)="getMap(lesson)" >{{ lesson }}</a>
+          </div>
+      </div>
+      <div *ngIf = "!mapNotDefined" id="map" class="map"></div>
       <div *ngIf = "mapNotDefined" class="alert alert-danger">
-          <i class="material-icons">Brak mapy dla ostatniej jazdy</i>
+          <i class="material-icons">Brak mapy dla tej jazdy</i>
       </div>
   </body>
 </html>

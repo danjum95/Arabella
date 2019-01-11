@@ -60,6 +60,7 @@ export class MapComponent implements OnInit {
         this.vectorLine = new OlVectorSource({});
         this.Auth.getMap(id).subscribe(map => {
         console.log(map.mapMarkers[0].longitude);
+        this.mapNotDefined = false;
         var places = [];
 
         for (var i = 0; i < map.mapMarkers.length; i++)
@@ -176,10 +177,6 @@ export class MapComponent implements OnInit {
             
             var points = [];
     
-            
-            for (var i = 0; i < places.length; i++) {
-              console.log(places[i][0], places[i][1],places[i][2]);
-            
               var iconFeature = new OlFeature({
                 geometry: new OlPoint(fromLonLat([places[i][0], places[i][1]])),
               });
@@ -212,7 +209,7 @@ export class MapComponent implements OnInit {
               }
               iconFeature.setStyle(iconStyle);
               this.vectorSource.addFeature(iconFeature);
-            }
+            
             
               for (var i = 0; i < points.length; i++) {
                     points[i] = fromLonLat(points[i]);
