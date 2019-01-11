@@ -99,22 +99,22 @@ class ProfileInfo extends React.Component {
         <View style={styles.element}>
           <View style={styles.subElement}>
             <Text style={styles.lightText}>Mail</Text>
-            <Text style={styles.mainText}>{this.props.user.get('info').email}</Text>
+            <Text style={styles.mainText}>{this.props.userInfo.email}</Text>
           </View>
 
           <View style={styles.subElement}>
             <Text style={styles.lightText}>Imię</Text>
-            <Text style={styles.mainText}>{this.props.user.get('info').firstName}</Text>
+            <Text style={styles.mainText}>{this.props.userInfo.firstName}</Text>
           </View>
 
           <View style={styles.subElement}>
             <Text style={styles.lightText}>Nazwisko</Text>
-            <Text style={styles.mainText}>{this.props.user.get('info').lastName}</Text>
+            <Text style={styles.mainText}>{this.props.userInfo.lastName}</Text>
           </View>
 
           <View style={styles.subElement}>
             <Text style={styles.lightText}>Rola</Text>
-            <Text style={styles.mainText}>{this.roleInterpreter(this.props.user.get('role'))}</Text>
+            <Text style={styles.mainText}>{this.roleInterpreter(this.props.userRole)}</Text>
           </View>
         </View>
 

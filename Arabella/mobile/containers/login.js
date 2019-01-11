@@ -44,11 +44,14 @@ class Login extends React.Component {
                 headers: { 'Content-Type': 'application/json' }
               })
                 .then(function (response) {
-                  SecureStore.setItemAsync('token', response.data.value);
+                  console.log(response.data['refresh-token']);
+                  SecureStore.setItemAsync('token', response.data.token);
+                  SecureStore.setItemAsync('refresh-token', response.data['refresh-token']);
                   ToastAndroid.show('Zalogowano!', ToastAndroid.SHORT);
                   Actions.Usermenu();
                 })
                 .catch(function (error) {
+                  console.log(error);
                   console.log(error.response);
                   ToastAndroid.show('Błędny e-mail lub hasło!', ToastAndroid.SHORT);
                 });

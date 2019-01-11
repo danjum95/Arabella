@@ -28,7 +28,7 @@ class Calendar extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     SecureStore.getItemAsync('token').then((token) => {
       axios.get(_env.API_URL + '/api/lessons/of/school/' + this.props.schoolID, {
         headers: { Token: token }
@@ -45,7 +45,8 @@ class Calendar extends React.Component {
                 height: 135,
                 from: obj.date.split('T')[1],
                 to: obj.endDate.split('T')[1],
-                participant: obj.student.firstName + ' ' + obj.student.lastName
+                participant: obj.student.firstName + ' ' + obj.student.lastName,
+                done: obj.done
               }];
               this.setState({ items: newItems });
             }
@@ -113,11 +114,24 @@ class Calendar extends React.Component {
         <Text style={styles.lightTextDate}>
           Kursant: {item.participant}
         </Text>
-        <View style={styles.bottomButton}>
-          <Button title='DODAJ TRASE' onPress={() => {Actions.Map({lessonId: item.id})}}/>
-        </View>
+        {this.renderItemMapButton(item.done, item.id)}
       </View>
     );
+  }
+
+  renderItemMapButton(done, id) {
+    if(!done)
+      return (
+        <View style={styles.bottomButton}>
+          <Button title='DODAJ TRASE' onPress={() => {Actions.Map({lessonId: id})}}/>
+        </View>
+      );
+    else
+      return (
+        <View style={styles.bottomButton}>
+          <Button title='POKAŻ TRASE' onPress={() => { console.log("NOT IMPLEMENTED - SHOW THE WAE"); }}/>
+        </View>
+      );
   }
 
   renderEmptyDate() {

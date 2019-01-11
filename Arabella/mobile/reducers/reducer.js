@@ -24,20 +24,22 @@ const USER_INITIAL_STATE = Map({
   school: null
 });
 
-const userReducer = (state = USER_INITIAL_STATE, action) => {
+const userReducer = (state = 'kutas', action) => {
   switch (action.type) {
-
     case 'ADD_USER_INFO':
       return state.set("info", action.payload);
 
     case 'ADD_USER_ROLE':
-      return state.set("role", action.payload);
+      console.log('ADD USER ROLE REDUCER');
+      console.log(action.payload);
+      //return state.set("role", action.payload);
+      return 'kutas 2';
 
     case 'ADD_USER_SCHOOL':
       return state.set("school", action.payload);
 
     default:
-      return state
+      return state;
   }
 };
 

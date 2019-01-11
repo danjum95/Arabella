@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Button, ToastAndroid, ActivityIndicator } from 'react-native';
+import { View, Button, ToastAndroid, ActivityIndicator, Text } from 'react-native';
 import { SecureStore } from "expo";
 import { Actions } from 'react-native-router-flux';
 import { bindActionCreators } from "redux";
@@ -8,53 +8,66 @@ import { addUserInfo, addUserRole, addUserSchool } from "../actions/userInfoActi
 import axios from "axios";
 import {_env} from "../local/env";
 import styles from '../styles/styles'
+import { sendRequestSet } from "../utils/token-utils";
 
 class Usermenu extends React.Component {
 
-  componentWillMount() {
-    this.getDataFromApi();
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInfo: null,
+      userRole: null,
+      userSchool: null
+    };
   }
 
-  getDataFromApi() {
-    SecureStore.getItemAsync('token').then((token) => {
-      axios.get(_env.API_URL + '/api/users/user/info', {
-        headers: { Token: token }
-      })
-        .then(function (response) {
-          this.props.addUserInfo(response.data);
-        }.bind(this))
-        .catch(function (error) {
-          console.log(error);
-          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
-        });
+  componentDidMount() {
+    sendRequestSet(this.getUserDataFromApi);
+  }
 
-      axios.get(_env.API_URL + '/api/users/which/type/of/user', {
-        headers: { Token: token }
+  getUserDataFromApi = (token) => {
+    const self = this;
+    axios.get(_env.API_URL + '/api/users/user/info', {
+      headers: { Token: token }
+    })
+      .then(function (response) {
+        //props.addUserInfo(response.data);
+        self.setState({userInfo: response.data});
       })
-        .then(function (response) {
-          this.props.addUserRole(response.data);
-        }.bind(this))
-        .catch(function (error) {
-          console.log(error);
-          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
-        });
+      .catch(function (error) {
+        console.log(error);
+        ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+      });
 
-      axios.get(_env.API_URL + '/api/users/which/school', {
-        headers: { Token: token }
+    axios.get(_env.API_URL + '/api/users/which/type/of/user', {
+      headers: { Token: token }
+    })
+      .then(function (response) {
+        //props.addUserRole(response.data);
+        self.setState({userRole: response.data});
       })
-        .then(function (response) {
-          this.props.addUserSchool(response.data);
-        }.bind(this))
-        .catch(function (error) {
-          console.log(error);
-          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
-        });
-    });
+      .catch(function (error) {
+        console.log(error);
+        ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+      });
+
+    axios.get(_env.API_URL + '/api/users/which/school', {
+      headers: { Token: token }
+    })
+      .then(function (response) {
+        //props.addUserSchool(response.data);
+        self.setState({userSchool: response.data});
+      })
+      .catch(function (error) {
+        console.log(error);
+        ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+      });
   }
 
   async userLogout() {
     try {
       await SecureStore.deleteItemAsync('token');
+      await SecureStore.deleteItemAsync('refresh-token');
       ToastAndroid.show('Wylogowano!', ToastAndroid.SHORT);
       Actions.Login();
     } catch (error) {
@@ -62,11 +75,8 @@ class Usermenu extends React.Component {
     }
   }
 
-
   render() {
-    console.log(this.props.user);
-    if(!this.props.user.get('school')) {
-      setTimeout(() => { console.log('pop'); Actions.pop(); }, 5000);
+    if(!(this.state.userInfo && this.state.userRole && this.state.userSchool)) {
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
@@ -77,13 +87,13 @@ class Usermenu extends React.Component {
       return (
         <View style={styles.container}>
           <View style={styles.button}>
-            <Button onPress={() => {Actions.ProfileInfo()}} title="Mój profil" />
+            <Button onPress={() => {Actions.ProfileInfo({userInfo: this.state.userInfo, userRole: this.state.userRole})}} title="Mój profil" />
           </View>
           <View style={styles.button}>
-            <Button onPress={() => {Actions.Calendar({schoolID: this.props.user.get('school').id})}} title="Kalendarz" />
+            <Button onPress={() => {Actions.Calendar({schoolID: this.state.userSchool.id})}} title="Kalendarz" />
           </View>
           <View style={styles.button}>
-            <Button onPress={() => {Actions.ParticipantsList({schoolID: this.props.user.get('school').id})}} title="Lista Kursantów" />
+            <Button onPress={() => {Actions.ParticipantsList({schoolID: this.state.userSchool.id})}} title="Lista Kursantów" />
           </View>
           <View style={styles.button}>
             <Button onPress={this.userLogout} title="Wyloguj" />
@@ -94,10 +104,10 @@ class Usermenu extends React.Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
-  const { user } = state;
-  return { user }
+  return {
+    user: state.user,
+  }
 };
 
 const mapDispatchToProps = dispatch => (
