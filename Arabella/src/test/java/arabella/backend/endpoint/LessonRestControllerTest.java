@@ -1,5 +1,6 @@
 package arabella.backend.endpoint;
 
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,11 +38,22 @@ public class LessonRestControllerTest {
 
     @Test
     public void addLesson() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"jan@test.pl\",\"password\": \"janek\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
 
         ResultActions result = mvc.perform(put("/api/lessons")
                 .contentType(MediaType.APPLICATION_JSON)//jan
-                .header("Token","356abbe7fef75a73")
-                .content("{\"studentId\": \"1\",\"date\": \"2090-03-12T12:30:00\",\"endDate\": \"2090-03-12T15:00:00\"}")
+                .header("Token",token)
+                .content("{\"studentId\": \"4\",\"date\": \"2090-03-12T12:30:00\",\"endDate\": \"2090-03-12T15:00:00\"}")
 
         )
                 .andDo(print())
@@ -54,9 +65,18 @@ public class LessonRestControllerTest {
     @Test
     public void GetMinutesasSchoolforRequestUsers() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/lessons/how/many/minutes/student/drove")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(content().string("Endpoint only for students"))
@@ -66,10 +86,19 @@ public class LessonRestControllerTest {
 
     @Test
     public void GetMinutesastUsers() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
 
         ResultActions result = mvc.perform(get("/api/lessons/how/many/minutes/student/drove")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","6c2fe866597be2d8")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -79,9 +108,18 @@ public class LessonRestControllerTest {
     @Test
     public void getMinutesAsSchool() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/lessons/how/many/minutes/student/{studentId}/of/school/{schoolId}/drove",3,0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -92,9 +130,18 @@ public class LessonRestControllerTest {
     @Test
     public void getMinutesAsUserinEnpointForSchool() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/lessons/how/many/minutes/student/{studentId}/of/school/{schoolId}/drove",3,0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","6c2fe866597be2d8")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(content().string("Endpoint only for instructor or school"))
@@ -105,9 +152,18 @@ public class LessonRestControllerTest {
     @Test
     public void getMinutesAsInstructor() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/lessons/students/drives/durations")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","356abbe7fef75a73")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -115,11 +171,21 @@ public class LessonRestControllerTest {
     }
 
     @Test
-    public void getMinutesAsInstructorinEnpointForSchool() throws Exception {
+    public void getMinutesAsKursantinEnpointForSchool() throws Exception {
+
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
 
         ResultActions result = mvc.perform(get("/api/lessons/students/drives/durations")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","6c2fe866597be2d8")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(content().string("Endpoint only for instructor or school"))
@@ -130,9 +196,18 @@ public class LessonRestControllerTest {
     @Test
     public void getLessonsAsInstructor() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/lessons/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","6b8c0d96c3a0177d")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -142,9 +217,18 @@ public class LessonRestControllerTest {
     @Test
     public void getLessonsAsSchool() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/lessons/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());

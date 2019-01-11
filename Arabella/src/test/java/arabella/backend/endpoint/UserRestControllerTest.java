@@ -1,5 +1,6 @@
 package arabella.backend.endpoint;
 
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,10 +37,18 @@ public class UserRestControllerTest {
 
     @Test
     public void getSchoolUsers() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
 
         ResultActions result = mvc.perform(get("/api/users/of/school/{schoolId}", 0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","356abbe7fef75a73")
+                .header("Token",token)
 
         )
                 .andDo(print())
@@ -52,9 +61,18 @@ public class UserRestControllerTest {
     @Test
     public void userInfo() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/users/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","71cdac0f73bf177d")
+                .header("Token",token)
 
         )
                 .andDo(print())
@@ -73,9 +91,18 @@ public class UserRestControllerTest {
     @Test
     public void getUserInfo() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/other/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2b6f9eaccc656827")
+                .header("Token",token)
                 .content("{\"email\": \"student@student.pl\"}")
 
         )
@@ -89,9 +116,18 @@ public class UserRestControllerTest {
     @Test
     public void getSpecificUser() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/users/{id}", 2)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","55be68a5d98b292d")
+                .header("Token",token)
 
         )
                 .andDo(print())
@@ -248,9 +284,19 @@ public class UserRestControllerTest {
     @Test
     public void instructortype() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
+
         ResultActions result = mvc.perform(get("/api/users/which/type/of/user", 10000)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","356abbe7fef75a73")
+                .header("Token",token)
 
         )
                 .andDo(print())
@@ -262,9 +308,18 @@ public class UserRestControllerTest {
     @Test
     public void kursanttype() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/users/which/type/of/user", 10000)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","5c98c785b140c567")
+                .header("Token",token)
 
         )
                 .andDo(print())
@@ -275,10 +330,18 @@ public class UserRestControllerTest {
 
     @Test
     public void schooltype() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
 
         ResultActions result = mvc.perform(get("/api/users/which/type/of/user", 10000)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
 
         )
                 .andDo(print())
@@ -290,9 +353,19 @@ public class UserRestControllerTest {
     @Test
     public void belongtoSchool() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
+
         ResultActions result = mvc.perform(get("/api/users/which/school")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","71cdac0f73bf177d")
+                .header("Token",token)
 
         )
                 .andDo(print())

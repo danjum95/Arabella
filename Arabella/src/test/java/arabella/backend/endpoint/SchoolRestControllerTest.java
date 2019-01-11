@@ -1,5 +1,6 @@
 package arabella.backend.endpoint;
 
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,9 +38,18 @@ public class SchoolRestControllerTest {
     @Test
     public void GetSchoolsInfo() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
 
         )
                 .andDo(print())
@@ -50,9 +60,18 @@ public class SchoolRestControllerTest {
     @Test
     public void SchoolExists() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(put("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
                 .content("{\"name\": \"Szkola Testowa\"}")
 
 
@@ -66,9 +85,18 @@ public class SchoolRestControllerTest {
     @Test
     public void SchoolError() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(put("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
                 .content("{\"testname\": \"Szkola Testowa\"}")
 
 

@@ -1,5 +1,6 @@
 package arabella.backend.endpoint;
 
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,10 +36,19 @@ public class InstructorRestControllerTest {
 
     @Test
     public void Getinslistasschool() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
 
         ResultActions result = mvc.perform(get("/api/instructors/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","356abbe7fef75a73")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -49,9 +58,18 @@ public class InstructorRestControllerTest {
     @Test
     public void Getinslistasuser() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/instructors/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","6c2fe866597be2d8")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());

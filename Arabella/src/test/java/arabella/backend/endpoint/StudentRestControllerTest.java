@@ -1,5 +1,6 @@
 package arabella.backend.endpoint;
 
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,9 +38,18 @@ public class StudentRestControllerTest {
     @Test
     public void KursantDontGetInfo() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/students/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2b6f9eaccc656827")
+                .header("Token",token)
 
         )
                 .andDo(print())
@@ -49,9 +60,18 @@ public class StudentRestControllerTest {
     @Test
     public void GetInfo() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/students/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
 
         )
                 .andDo(print())

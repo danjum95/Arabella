@@ -1,6 +1,7 @@
 package arabella.backend.endpoint;
 
 import arabella.backend.model.Message;
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,9 +43,21 @@ public class MessageRestControllerTest {
     @Test
     public void getMsg() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
+
         ResultActions result = mvc.perform(get("/api/messages")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","4e6db400a718c6e7")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -55,10 +68,20 @@ public class MessageRestControllerTest {
 
     @Test
     public void forwhocansend() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
 
         ResultActions result = mvc.perform(get("/api/messages/users")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","6c2fe866597be2d8")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -84,13 +107,25 @@ public class MessageRestControllerTest {
     @Test
     public void sendMsg() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
+
         ResultActions result = mvc.perform(put("/api/messages")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","4e6db400a718c6e7")
+                .header("Token",token)
                 .content("{\"receiverId\": \"1\",\"message\": \"Moja testowa wiadomosc\"}")
         )
                 .andDo(print())
-                .andExpect(jsonPath("$.senderId").value("1"))
+                .andExpect(jsonPath("$.senderId").value("4"))
                 .andExpect(jsonPath("$.receiverId").value("1"))
                 .andExpect(status().isOk());
 

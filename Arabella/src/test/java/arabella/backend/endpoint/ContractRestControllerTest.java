@@ -1,5 +1,6 @@
 package arabella.backend.endpoint;
 
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,8 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,9 +39,18 @@ public class ContractRestControllerTest {
     @Test
     public void getContractsOK() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(get("/api/contract")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","cd6cc4d19ee576e")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -50,10 +59,18 @@ public class ContractRestControllerTest {
 
     @Test
     public void getContractsUnauthorized() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
 
         ResultActions result = mvc.perform(get("/api/contract")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","5c98c785b140c567")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isUnauthorized());
@@ -62,10 +79,18 @@ public class ContractRestControllerTest {
 
     @Test
     public void makeContractwithInsT1() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
 
         ResultActions result = mvc.perform(put("/api/contract/instructor/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2475ab4d5a31f2b0")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isConflict());
@@ -75,9 +100,18 @@ public class ContractRestControllerTest {
     @Test
     public void makeContractwithStudent() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(put("/api/contract/student/of/school/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","5c98c785b140c567")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isConflict());
@@ -86,10 +120,18 @@ public class ContractRestControllerTest {
 
     @Test
     public void changeContracttest1() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
 
         ResultActions result = mvc.perform(put("/api/contract/change/status/of/{schoolId}",5)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","5c98c785b140c567")
+                .header("Token",token)
                 .content("{\"status\": \"2\"}")
         )
                 .andDo(print())
@@ -100,10 +142,19 @@ public class ContractRestControllerTest {
 
     @Test
     public void changeContracttest3() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
 
         ResultActions result = mvc.perform(put("/api/contract/change/status/of/{schoolId}",0)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","5c98c785b140c567")
+                .header("Token",token)
                 .content("{\"status\": \"1\"}")
         )
                 .andDo(print())
@@ -113,10 +164,18 @@ public class ContractRestControllerTest {
     }
     @Test
     public void changeContracttest1error() throws Exception {
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        String token = JsonPath.parse(resultString).read("$.token");
 
         ResultActions result = mvc.perform(put("/api/contract/change/status/of/{schoolId}",5)
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","5c98c785b140c567")
+                .header("Token",token)
         )
                 .andDo(print())
                 .andExpect(status().isBadRequest());
@@ -131,7 +190,7 @@ public class ContractRestControllerTest {
                 .content("{\"status\": \"1\"}")
         )
                 .andDo(print())
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
 
     }
 
