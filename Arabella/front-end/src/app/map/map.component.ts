@@ -58,6 +58,8 @@ export class MapComponent implements OnInit {
 
   getMap(id)
   {
+        setTimeout(() => this.mapRendered = true, 10);
+        setTimeout(() => this.mapRendered = false, 10);
         this.vectorSource = new OlVectorSource({});
         this.vectorLine = new OlVectorSource({});
         console.log(id + " " +this.previousMap);
