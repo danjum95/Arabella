@@ -1,26 +1,20 @@
-<div class="button">
+<div class="container">
+  <div class="button">
     <button (click)="instruktorzy()" class="button1">Instruktorzy</button>
     <button class="button2">Kursanci</button>
-</div>
-<table class="table">
+  </div>
+  <table class="table">
     <thead>
-        <tr class="thead">
-            <th *ngFor="let col of columns">
-              {{col}}
-            </th>
-          </tr>
+      <tr class="thead">
+        <th *ngFor="let col of columns">{{ col }}</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let kursant of allKursants$ | async">
-            <td>
-              {{kursant.user.firstName}}
-            </td>
-            <td>
-              {{kursant.user.lastName}}
-            </td>
-            <td>
-              {{kursant.user.email}}
-            </td>
-          </tr>
+      <tr *ngFor="let kursant of (allKursants$ | async)">
+        <td>{{ kursant.user.firstName }}</td>
+        <td>{{ kursant.user.lastName }}</td>
+        <td>{{ kursant.user.email }}</td>
+      </tr>
     </tbody>
   </table>
+</div>

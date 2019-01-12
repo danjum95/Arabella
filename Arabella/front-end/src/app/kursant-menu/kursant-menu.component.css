@@ -31,6 +31,7 @@ nav.sidebar{
   height: 315px;
   margin-left: -160px;
   float: left;
+  margin-top: 10%;
 }
 
 nav.sidebar li {
@@ -42,7 +43,8 @@ nav.sidebar:hover{
 }
 
 .router{
-  margin-top: 10vh;
-  margin-left: 10vw;
+  width: 100%;
+    height: 100%;
+    margin: auto;
   position: fixed;
 }

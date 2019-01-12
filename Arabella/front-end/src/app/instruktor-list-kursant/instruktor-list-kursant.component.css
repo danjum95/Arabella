@@ -1,14 +1,14 @@
 .table {
-  width: 50vw;
-  position: fixed;
-  margin-left: 15vw;
+  width: 60%;
 }
-.thead{
+
+.thead {
   background-color: rgba(128, 128, 134, 0.75);
   border-bottom: 5px solid;
 }
 
-th, td {
+th,
+td {
   text-align: center;
   padding: 8px;
   font-size: 18px;
@@ -19,7 +19,13 @@ td {
   background-color: rgba(199, 195, 175, 0.65);
 }
 
-
 tbody :hover {
   background-color: rgba(199, 195, 175, 0.75);
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 20vh;
+  margin-left: 20vw;
 }

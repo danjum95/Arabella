@@ -9,6 +9,7 @@ import { IReceivedMessageInterface } from '../interface/receivedMessageInterface
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
+  positive = false;
   to: any;
   textMessage: any;
   rev$: Observable<Array<IReceivedMessageInterface>>;
@@ -26,11 +27,16 @@ export class MessageComponent implements OnInit {
 
   sendMessage() {
     this.Auth.getUsersToMessage(localStorage.getItem('userToken')).subscribe(data => {
+      this.positive = true;
       data.forEach(element => {
         if (this.to === element.email) {
           this.Auth.addMessage(localStorage.getItem('userToken'), element.id, this.textMessage).subscribe();
         }
       });
     });
+
+    setTimeout(() => {
+      this.positive = false;
+    }, 1500);
   }
 }

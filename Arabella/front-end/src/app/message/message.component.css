@@ -1,36 +1,42 @@
 body {
   background-color: rgba(255, 255, 255, 0.9);
+  width: 70%;
+  margin: auto;
+  margin-top: 10%;
 }
 .container {
-  max-width:80vw;
-  margin:auto;
+  max-width: 80vw;
+  margin: auto;
 }
 
 .inbox_people {
   float: left;
   overflow: hidden;
-  width: 40%; border-right:1px solid #c4c4c4;
-  overflow-y: scroll;
-}
-.inbox_msg {
-  overflow: hidden;
-  height: 60vh;
+  width: 250px;
+  border-right: 1px solid #c4c4c4;
+  overflow: scroll;
 }
 
-.chat_ib p{
-  font-size:14px;
-  margin:auto
+.inbox_msg {
+  overflow: hidden;
+  height: 400px;
+}
+
+.chat_ib p {
+  font-size: 14px;
+  margin: auto;
 }
 
 .chat_list {
   margin: 0;
-  padding: 18px 16px 10px;
+  padding: 4px 4px 2px;
 }
 .inbox_chat {
   height: 100px;
+  width: 240px;
 }
 
- .received_withd_msg p {
+.received_withd_msg p {
   border-radius: 3px;
   color: #646464;
   font-size: 14px;
@@ -44,7 +50,7 @@ body {
 
 .mesgs {
   float: left;
-  padding: 30px 15px 0 25px;
+  padding: 4px 4px 0 30px;
   width: 60%;
 }
 
@@ -55,6 +61,21 @@ body {
   font-size: 15px;
   min-height: 48px;
   width: 100%;
+}
+
+#textMessage {
+  background: none;
+  border: none;
+  width: 300px;
+  height: 240px;
+}
+
+#textMessage:focus {
+  outline: none;
+}
+
+.input_msg_write input:focus {
+  outline: none;
 }
 
 .type_msg {
@@ -75,6 +96,18 @@ body {
   width: 33px;
 }
 
-.title{
+.title {
   font-weight: bold;
+}
+
+.positive-message {
+  text-align: center;
+  background: rgba(0, 255, 0, 0.8);
+  width: 25%;
+  height: 5vh;
+  margin: auto;
+  margin-top: 5%;
+  padding: 5px;
+  font-size: 15px;
+  color: white;
 }

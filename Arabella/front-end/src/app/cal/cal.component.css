@@ -1,16 +1,14 @@
 .container {
-  background: rgba(255,255,255,0.9);
-  padding-top: 15px;
-  transform: scale(0.70);
-  margin-top: -240px;
-  margin-left: -30px;
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(0.75);
+  margin-top: -70px;
 }
 
-input{
+input {
   width: 400px;
 }
 
-button{
+button {
   width: 70%;
   height: 50px;
   margin-left: 15%;

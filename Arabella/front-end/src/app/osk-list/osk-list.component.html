@@ -1,35 +1,29 @@
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+  href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="span7">
-  <div class="widget stacked widget-table action-table">
-
-		<div class="widget-header">
-			<h3>Lista OSK</h3>
-		</div>
-
-	<div class="widget-content">
-
-		<table class="table table-striped table-bordered">
-			<thead>
-				<tr>
-					<th>OSK</th>
-				</tr>
-			</thead>
-			<tbody>
-          <tr *ngFor="let osk of allOsk$ | async">
-            <td>
-              {{osk.name}}
-            </td>
-            <td class="td-actions">
-              <button (click) = "id($event)">
-                <i id="{{osk.id}}" class="btn-icon-only icon-ok"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-		</table>
-	</div>
-	</div>
+<div class="contTable">
+  <div class="tab">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Wybierz ośrodek szkolenia kierowców</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let osk of (allOsk$ | async)">
+          <td [ngStyle]="{ 'padding-left': '15px' }">{{ osk.name }}</td>
+          <td class="but">
+            <button (click)="id($event)">
+              <i id="{{ osk.id }}" class="btn-icon-only icon-ok"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

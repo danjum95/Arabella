@@ -1,36 +1,67 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4">
-      <div class="account-wall">
-        <div class="tab-pane active">
-          <form [formGroup]="myForm" (submit)= "loginUser($event)" class="form-signin">
-            <input formControlName="email" type="text" name = "email" class="form-control" placeholder="Nazwa użytkownika lub mail" id="username"
-            [ngClass]="{'in-valid': !myForm.controls['email'].valid && myForm.controls['email'].touched}" required autofocus>
-            <input formControlName="password" type="password" class="form-control" placeholder="Hasło" id="password" name="password"
-            [ngClass]="{'in-valid': !myForm.controls['password'].valid && myForm.controls['password'].touched}"required>
-            <input [disabled]="!myForm.valid" type="submit" class="btn btn-lg btn-success btn-block" value="Zaloguj się" />
-          </form>
-          <form class="form-signin">
-            <a routerLink="register"><input type="submit" class="btn btn-lg btn-info btn-block" value="Zarejestruj się" /></a>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="contener-error">
-    <div *ngIf="!myForm.controls['email'].valid && myForm.controls['email'].touched" class="alert alert-danger">
-        <i class="material-icons">Email jest wymagany</i>
-    </div>
-    <div *ngIf="!myForm.controls['password'].valid && myForm.controls['password'].touched" class="alert alert-danger">
-        <i class="material-icons">Hasło jest wymagane</i>
-    </div>
-      <div *ngIf = "isLoginError" class="alert alert-danger">
-          <i class="material-icons">Nieprawidłowe dane</i>
-      </div>
-  </div>
-  
+<app-nav-bar></app-nav-bar>
+
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Logowanie</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="login-form" [formGroup]="myForm">
+      <table class="login-table" cellspacing="0">
+        <tr>
+          <td>
+            <mat-icon [ngStyle]="{ 'margin-right': '10px' }"
+              >account_circle</mat-icon
+            >
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                formControlName="email"
+                type="text"
+                name="email"
+                placeholder="Email"
+                [(ngModel)]="email"
+                class="data"
+                required
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-icon [ngStyle]="{ 'margin-right': '10px' }">vpn_key</mat-icon>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                formControlName="password"
+                type="password"
+                name="password"
+                placeholder="Hasło"
+                floatPlaceholder="never"
+                [(ngModel)]="password"
+                class="data"
+                required
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="loginUser()" id="login" mat-raised-button>Login</button>
+  </mat-card-actions>
+</mat-card>
+
+<div class="error-message" *ngIf="errorMessage">
+  Nieprawidłowy e-mail bądź hasło
 </div>
+
+<div class="error-message" *ngIf="noContract">Nie zaakceptowany przez osk!</div>
