@@ -6,13 +6,14 @@ html, body {
     }
 
 #map {
-    width: 60vw;
+    width: 50vw;
+    height: 30vw;
     float: left;
 }
 #legend
 {
     transform: scale(0.7);
-    margin-left: -95px;
+    margin-left: -50px;
 }
 .thead{
     background-color: rgba(128, 128, 134, 0.75);
@@ -43,10 +44,17 @@ html, body {
   .listlessons2 {
     margin-left:-50px;
     width: 100px;
+    background-color: white;
   }
   .listlessons {
+    background-color: white;
     margin-left:-50px;
     height: 150px;
-    width: 75px;
+    width: 80px;
+    float: left;
     overflow-y: scroll;
+  }
+  a
+  {
+    color: black !important;
   }

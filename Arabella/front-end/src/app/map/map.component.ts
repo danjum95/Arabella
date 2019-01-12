@@ -41,6 +41,8 @@ export class MapComponent implements OnInit {
   longitude: number = 16.9335199;
   lessonsId: Array<string> = [];
   mapNotDefined = false;
+  mapRendered = false;
+  previousMap: string = "";
 
   ngOnInit() {
     this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(dat => {
@@ -56,11 +58,15 @@ export class MapComponent implements OnInit {
 
   getMap(id)
   {
+    
         this.vectorSource = new OlVectorSource({});
         this.vectorLine = new OlVectorSource({});
+        console.log(id + " " +this.previousMap);
         this.Auth.getMap(id).subscribe(map => {
-        console.log(map.mapMarkers[0].longitude);
-        this.mapNotDefined = false;
+        if (id != this.previousMap)
+        {
+        this.previousMap = id.toString();
+        
         var places = [];
 
         for (var i = 0; i < map.mapMarkers.length; i++)
@@ -142,7 +148,7 @@ export class MapComponent implements OnInit {
           });
         this.view = new OlView({
           center: fromLonLat([16.9335199, 52.4082663]),
-          zoom: 8
+          zoom: 12
         });
 
 
@@ -161,106 +167,36 @@ export class MapComponent implements OnInit {
       });
 
       /* View and map */
-
       this.map = new OlMap({
           target: 'map',
           // Added both layers
           layers: [this.tileLayer, vectorLineLayer, this.vectorLayer],
           view: this.view
       });
-          console.log(map.status);
+
+      this.mapNotDefined = false;
+      this.mapRendered = false;
+      console.log(this.mapRendered + "  " + this.mapNotDefined)
+    }
+    else
+    {
+      this.previousMap = id.toString();
+      this.mapRendered = true;
+      this.mapNotDefined = true;
+      console.log(this.mapRendered + "  " + this.mapNotDefined)
+      
+    }
         }, error => {
           if (error.status == 404)
-          {
+          {            
             this.mapNotDefined = true;
-            var places = [];
-            
-            var points = [];
-    
-              var iconFeature = new OlFeature({
-                geometry: new OlPoint(fromLonLat([places[i][0], places[i][1]])),
-              });
-              if (places[i][2] == "r")
-              {
-                var iconStyle= new Style({
-                  image: new Icon({
-                    crossOrigin: 'anonymous',
-                    src: '../assets/images/marker.png'
-                  })
-                })
-              }
-              else if (places[i][2] == "b")
-              {
-                var iconStyle = new Style({
-                  image: new Icon({
-                    crossOrigin: 'anonymous',
-                    src: '../assets/images/marker2.png'
-                  })
-                })
-              }
-              else
-              {
-                var iconStyle = new Style({
-                  image: new Icon({
-                    crossOrigin: 'anonymous',
-                    src: '../assets/images/marker3.png'
-                  })
-                })
-              }
-              iconFeature.setStyle(iconStyle);
-              this.vectorSource.addFeature(iconFeature);
-            
-            
-              for (var i = 0; i < points.length; i++) {
-                    points[i] = fromLonLat(points[i]);
-                    console.log(points[i]);
-              }
-    
-              var featureLine = new OlFeature({
-                geometry: new LineString(points)
-              });
-              this.vectorLine.addFeature(featureLine);
-            
-    
-              var vectorLineLayer = new OlVectorLayer({
-                  source: this.vectorLine,
-                  style: new Style({
-                      fill: new Fill({ color: '#000000', weight: 2 }),
-                      stroke: new Stroke({ color: '#000000', width: 2 })
-                  })
-              });
-            this.view = new OlView({
-              center: fromLonLat([16.9335199, 52.4082663]),
-              zoom: 8
-            });
-    
-    
-          this.vectorLayer = new OlVectorLayer({
-              source: this.vectorSource
-          });
-    
-          /* XYZ */
-    
-          this.xyzSource = new OlXyzSource({
-              url: 'http://tile.osm.org/{z}/{x}/{y}.png'
-          });
-    
-          this.tileLayer = new OlTileLayer({
-              source: this.xyzSource
-          });
-    
-          /* View and map */
-    
-          this.map = new OlMap({
-              target: 'map',
-              // Added both layers
-              layers: [this.tileLayer, vectorLineLayer, this.vectorLayer],
-              view: this.view
-          });
-          console.log(error);
+            this.mapRendered = false;
+            this.previousMap = id.toString();
+            console.log(this.mapRendered + "  " + this.mapNotDefined)
+            setTimeout(() => this.mapRendered = true, 500);
+            setTimeout(() => this.mapRendered = false, 500);
           }
         });
-        
   }
 }
 

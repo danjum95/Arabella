@@ -30,13 +30,16 @@
       </div>
       <div class="listlessons2">Lista Twoich lekcji: </div>          
       <div class="listlessons">
-          <div *ngFor="let lesson of lessonsId" >
-            <a (click)="getMap(lesson)" >{{ lesson }}</a>
+          <div *ngFor="let lesson of lessonsId; let i=index " >
+            <a (click)="getMap(lesson)" >Lekcja {{ i+1 }}</a>
           </div>
       </div>
-      <div *ngIf = "!mapNotDefined" id="map" class="map"></div>
-      <div *ngIf = "mapNotDefined" class="alert alert-danger">
+      <div *ngIf = "!mapRendered" id="map" class="map"></div>
+      <div *ngIf = "!mapRendered && mapNotDefined" class="alert alert-danger">
           <i class="material-icons">Brak mapy dla tej jazdy</i>
+      </div>
+      <div *ngIf = "mapRendered && mapNotDefined" class="alert alert-danger">
+          <i class="material-icons">Mapa już została wygenerowana</i>
       </div>
   </body>
 </html>
