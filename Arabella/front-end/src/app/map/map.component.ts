@@ -58,7 +58,6 @@ export class MapComponent implements OnInit {
 
   getMap(id)
   {
-    
         this.vectorSource = new OlVectorSource({});
         this.vectorLine = new OlVectorSource({});
         console.log(id + " " +this.previousMap);
@@ -130,9 +129,9 @@ export class MapComponent implements OnInit {
         }
         
           for (var i = 0; i < points.length; i++) {
-                console.log(points[i]);
+                points[i] = fromLonLat(points[i]);
+                console.log("P" + points[i]);
           }
-
           var featureLine = new OlFeature({
             geometry: new LineString(points)
           });
@@ -165,6 +164,7 @@ export class MapComponent implements OnInit {
       this.tileLayer = new OlTileLayer({
           source: this.xyzSource
       });
+      console.log(vectorLineLayer);
 
       /* View and map */
       this.map = new OlMap({
