@@ -12,7 +12,7 @@ html, body {
 }
 #legend
 {
-    transform: scale(0.7);
+    transform: scale(0.8);
     margin-left: -50px;
 }
 .thead{
@@ -37,20 +37,20 @@ html, body {
   .alert {
     display: grid;
     margin-bottom: 5px;
-    max-width: 310px;
+    max-width: 250px;
     margin-left: 29vw;
     box-shadow: 5px 5px 5px 5px rgba(0.300, 0.300, 0.300, 0.300);
   }
   .listlessons2 {
     margin-left:-50px;
-    width: 100px;
+    width: 150px;
     background-color: white;
   }
   .listlessons {
     background-color: white;
     margin-left:-50px;
     height: 150px;
-    width: 80px;
+    width: 100px;
     float: left;
     overflow-y: scroll;
   }
