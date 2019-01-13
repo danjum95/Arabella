@@ -4,12 +4,6 @@
 
 <html>
   <body>
-      <div class="listlessons2">Lista Twoich lekcji: </div>          
-      <div class="listlessons">
-          <div *ngFor="let lesson of lessonsId; let i=index " >
-            <a (click)="getMap(lesson)" >Lekcja {{ i+1 }}</a>
-          </div>
-      </div>
     <div id="legend" class="legend">
       <thead>
         <tr>
@@ -34,7 +28,12 @@
           </tr>
         </tbody>
       </div>
-    
+      <div class="listlessons2">Lista Twoich lekcji: </div>          
+      <div class="listlessons">
+          <div *ngFor="let lesson of lessonsId; let i=index " >
+                <a (click)="getMap(lesson)" >Lekcja {{ i+1 }}</a>
+          </div>
+      </div>
       <div *ngIf = "!mapRendered" id="map" class="map"></div>
       <div class="error-message" *ngIf = "!mapRendered && mapNotDefined" >
          <p> Brak mapy dla tej jazdy</p>
