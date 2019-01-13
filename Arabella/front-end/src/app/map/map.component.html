@@ -4,30 +4,6 @@
 
 <html>
   <body>
-    <div id="legend" class="legend">
-      <thead>
-        <tr>
-            <th>LEGENDA</th>
-        </tr>
-			</thead>
-			<tbody>
-          <tr>
-            <td><img src="../assets/images/marker.png"></td>
-            <td><img src="../assets/images/marker2.png"></td>
-            <td><img src="../assets/images/marker3.png"></td>
-            <td><img src="../assets/images/marker4.png"></td>
-          </tr>
-          <tr>
-              <td>Nieprawidłowe parkowanie </td>
-
-              <td>Nieustąpienie pierwszeństwa </td>
-
-              <td>Wyprzedzanie na podwójnej ciągłej</td>
-
-              <td>Nietrzymanie się przed STOP </td>
-          </tr>
-        </tbody>
-      </div>
       <div class="listlessons2">Lista Twoich lekcji: </div>          
       <div class="listlessons">
           <div *ngFor="let lesson of lessonsId; let i=index " >
@@ -35,15 +11,16 @@
           </div>
       </div>
       <div *ngIf = "!mapRendered" id="map" class="map"></div>
-      <div id="popup" class="ol-popup">
-            <a id="popup-closer" class="ol-popup-closer"></a>
-            <div id="popup-content"></div>
-      </div>
       <div class="error-message" *ngIf = "!mapRendered && mapNotDefined" >
          <p> Brak mapy dla tej jazdy</p>
       </div>
       <div class="error-message error-message2" *ngIf = "mapRendered && mapNotDefined" >
           <p>Mapa już została wygenerowana</p>
+      </div>
+
+      <div id="popup" class="ol-popup">
+            <a id="popup-closer" class="ol-popup-closer"></a>
+            <div id="popup-content"></div>
       </div>
   </body>
 </html>
