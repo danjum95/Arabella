@@ -36,11 +36,11 @@
       </div>
     
       <div *ngIf = "!mapRendered" id="map" class="map"></div>
-      <div *ngIf = "!mapRendered && mapNotDefined" class="error-message">
-          Brak mapy dla tej jazdy
+      <div class="error-message" *ngIf = "!mapRendered && mapNotDefined" >
+         <p> Brak mapy dla tej jazdy</p>
       </div>
-      <div *ngIf = "mapRendered && mapNotDefined" class="error-message">
-          Mapa już została wygenerowana
+      <div class="error-message" *ngIf = "mapRendered && mapNotDefined" >
+          <p>Mapa już została wygenerowana</p>
       </div>
   </body>
 </html>

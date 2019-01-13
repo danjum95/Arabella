@@ -56,7 +56,7 @@ nav.sidebar:hover{
     }
   .glyphicon
   {
-    margin-right: 20px !important;
+    margin-right: inherit !important;
   }
   nav.sidebar{
     width: 205px;
