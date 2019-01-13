@@ -73,6 +73,9 @@ html, body {
     font-size: 15px;
     color: white;
   }
+  .error-message2 {
+    width: 30%;
+  }
   .left
   {
     float:left;
@@ -101,5 +104,8 @@ html, body {
     padding: 5px;
     font-size: 15px;
     color: white;
+  }
+  .error-message2 {
+    width: 40%;
   }
 }
