@@ -147,8 +147,8 @@ export class MapComponent implements OnInit {
               })
           });
         this.view = new OlView({
-          center: fromLonLat([16.9335199, 52.4082663]),
-          zoom: 15
+          center: fromLonLat([places[0][0],  places[0][1]]),
+          zoom: 12
         });
 
 
