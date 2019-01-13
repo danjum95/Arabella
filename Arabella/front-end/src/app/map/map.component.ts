@@ -16,11 +16,7 @@ import Stroke from 'ol/style/Stroke';
 import Fill from 'ol/style/Fill';
 import Icon from 'ol/style/Icon';
 import { fromLonLat, toLonLat } from 'ol/proj';
-import {toStringHDMS} from 'ol/coordinate';
-import { markParentViewsForCheck } from '@angular/core/src/view/util';
-import { Observable } from 'rxjs';
 
-declare var ol: any;
 
 @Component({
   selector: 'app-map',
@@ -46,14 +42,20 @@ export class MapComponent implements OnInit {
   mapNotDefined = false;
   mapRendered = false;
   previousMap: string = "";
+  closer: any;
+  container: any;
+  content: any;
 
   ngOnInit() {
+    this.closer = document.getElementById('popup-closer');
+    this.content = document.getElementById('popup-content');
+    this.container = document.getElementById('popup');
     this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(dat => {
       this.Auth.getLessons(localStorage.getItem('userToken'), dat.id).subscribe(da => {
         for (var i = 0; i < da.length; i++)
         {
           this.lessonsId.push(da[i].id);
-          console.log(this.lessonsId[i]);
+          //console.log(this.lessonsId[i]);
         }
       })
       
@@ -68,24 +70,24 @@ export class MapComponent implements OnInit {
         this.vectorSource = new OlVectorSource({});
         this.vectorLine = new OlVectorSource({});
         //console.log(id + " " +this.previousMap);
+        
+        var contents = this.content;
+        //var container = document.getElementById('popup');
         this.Auth.getMap(id).subscribe(map => {
         if (id != this.previousMap)
         {
-        var content = document.getElementById('popup-content');
-        var closer = document.getElementById('popup-closer');
-        var container = document.getElementById('popup');
-
+        console.log(this.closer);
         var overlay = new Overlay({
-          element: container,
+          element: this.container,
           autoPan: true,
           autoPanAnimation: {
             duration: 250
           }
         });
 
-        closer.onclick = function() {
+        this.closer.onclick = function() {
           overlay.setPosition(undefined);
-          closer.blur();
+          this.closer.blur();
           return false;
         };
 
@@ -182,11 +184,11 @@ export class MapComponent implements OnInit {
           var coord2 = hdms[1].toFixed(3);
           var pl1 = places [i][0].toFixed(3);
           var pl2 = places [i][1].toFixed(3);
-          console.log(coord1 + "  " + coord2);
-          console.log(pl1 + "  " + pl2);
+          //console.log(coord1 + "  " + coord2);
+          //console.log(pl1 + "  " + pl2);
           if (coord1 == pl1)
           {
-        content.innerHTML = '<p>Twój błąd:</p><code>' + places[i][2] +
+            contents.innerHTML = '<p>Twój błąd:</p><code>' + places[i][2] +
             '</code>';
         overlay.setPosition(coordinate);
           break;
@@ -196,14 +198,14 @@ export class MapComponent implements OnInit {
 
       this.mapNotDefined = false;
       this.mapRendered = false;
-      console.log(this.mapRendered + "  " + this.mapNotDefined)
+      //console.log(this.mapRendered + "  " + this.mapNotDefined)
     }
     else
     {
       this.previousMap = id.toString();
       this.mapRendered = true;
       this.mapNotDefined = true;
-      console.log(this.mapRendered + "  " + this.mapNotDefined)
+      //console.log(this.mapRendered + "  " + this.mapNotDefined)
       
     }
         }, error => {
@@ -212,7 +214,7 @@ export class MapComponent implements OnInit {
             this.mapNotDefined = true;
             this.mapRendered = false;
             this.previousMap = id.toString();
-            console.log(this.mapRendered + "  " + this.mapNotDefined)
+            //console.log(this.mapRendered + "  " + this.mapNotDefined)
             setTimeout(() => this.mapRendered = true, 500);
             setTimeout(() => this.mapRendered = false, 500);
           }
