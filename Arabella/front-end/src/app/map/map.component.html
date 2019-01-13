@@ -35,6 +35,10 @@
           </div>
       </div>
       <div *ngIf = "!mapRendered" id="map" class="map"></div>
+      <div id="popup" class="ol-popup">
+            <a id="popup-closer" class="ol-popup-closer"></a>
+            <div id="popup-content"></div>
+      </div>
       <div class="error-message" *ngIf = "!mapRendered && mapNotDefined" >
          <p> Brak mapy dla tej jazdy</p>
       </div>
