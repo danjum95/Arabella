@@ -83,7 +83,6 @@ export class MapComponent implements OnInit {
           points.push([map.mapLines[i].longitude, map.mapLines[i].latitude]);
         }
 
-        
         for (var i = 0; i < places.length; i++) {
           console.log(places[i][0], places[i][1],places[i][2]);
         

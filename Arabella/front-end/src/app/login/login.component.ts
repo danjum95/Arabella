@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { AuthorizationService } from './../authorization.service';
 import { Component} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +11,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
 
+  errorMessage = false;
+  noContract = false;
   myForm: FormGroup;
-
+  email: any;
+  password: any;
   token: string;
-  isLoginError = false;
- 
 
   constructor(private Auth: AuthorizationService, private router: Router, private fb: FormBuilder) {
     this.myForm = fb.group({
@@ -24,13 +25,16 @@ export class LoginComponent {
     });
   }
 
-  loginUser(event) {
-    event.preventDefault();
-    const target = event.target;
-    const email = target.querySelector('#username').value;
-    const password = target.querySelector('#password').value;
+  loginUser() {
+    if (this.myForm.invalid) {
+      this.errorMessage = true;
+    }
 
-    this.Auth.login(email, password).subscribe(data => {
+    setTimeout(() => {
+      this.errorMessage = false;
+    }, 1500);
+
+    this.Auth.login(this.email, this.password).subscribe(data => {
       localStorage.setItem('userToken', data.token);
       localStorage.setItem('userId', data.userId);
 
@@ -47,11 +51,21 @@ export class LoginComponent {
               this.router.navigate(['kursantMenu/calendar']);
               break;
           }
-        });
-      }, 500);
+        },
+        (err: HttpErrorResponse) => {
+          this.noContract = true;
+          });
+      }, 1000);
     },
     (err: HttpErrorResponse) => {
-        this.isLoginError = true;
+      if (!this.errorMessage) {
+        this.errorMessage = true;
+      }
+
+      setTimeout(() => {
+        this.errorMessage = false;
+        this.noContract = false;
+      }, 1500);
     });
   }
 }

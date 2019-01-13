@@ -1,39 +1,99 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4">
-      <div class="account-wall">
-        <div class="tab-pane active">
-          <form [formGroup]="myForm" (submit)= "register($event)" class="form-signin">
-            <input formControlName="email" type="text" class="form-control" placeholder="E-mail" [(ngModel)]="email" name="email" id="email" 
-            [ngClass]="{'in-valid': !myForm.controls['email'].valid && myForm.controls['email'].touched}"required autofocus>
-            <input formControlName="name" type="text" class="form-control" placeholder="Imię" [(ngModel)]="name" name="name" id="name"
-            [ngClass]="{'in-valid': !myForm.controls['name'].valid && myForm.controls['name'].touched}"required>
-            <input formControlName="lastname" type="text" class="form-control" placeholder="Nazwisko" [(ngModel)]="lastname" name="lastname"id="lastname"
-            [ngClass]="{'in-valid': !myForm.controls['lastname'].valid && myForm.controls['lastname'].touched}"required>
-            <input formControlName="password" type="password" class="form-control" placeholder="Hasło" [(ngModel)]="password" name="password"id="password"
-            [ngClass]="{'in-valid': !myForm.controls['password'].valid && myForm.controls['password'].touched}"required>
-            <input [disabled]="!myForm.valid" type="submit" class="btn btn-lg btn-success btn-block" value="Zarejestruj instruktora" />
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Rejestracja</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="myForm" class="login-form">
+      <table class="login-table" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                formControlName="name"
+                type="text"
+                name="name"
+                placeholder="Imię"
+                [(ngModel)]="name"
+                class="data"
+                required
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                formControlName="lastname"
+                type="text"
+                name="lastname"
+                placeholder="Nazwisko"
+                [(ngModel)]="lastname"
+                class="data"
+                required
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                formControlName="email"
+                type="text"
+                name="email"
+                placeholder="Email"
+                [(ngModel)]="email"
+                class="data"
+                required
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                formControlName="password"
+                type="password"
+                name="password"
+                placeholder="Hasło"
+                floatPlaceholder="never"
+                [(ngModel)]="password"
+                class="data"
+                required
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="register()" id="login" mat-raised-button>
+      Zarejestruj
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<div class="error-message" *ngIf="errorMessage">
+  Nieprawidłowy e-mail bądź któreś z pól pozostało puste
 </div>
-<div class="contener-error">
-    <div *ngIf="!myForm.controls['name'].valid && myForm.controls['name'].touched" class="alert alert-danger">
-        <i class="material-icons">Imię jest wymagane</i>
-    </div>
-    <div *ngIf="!myForm.controls['lastname'].valid && myForm.controls['lastname'].touched" class="alert alert-danger">
-        <i class="material-icons">Nazwisko jest wymagane</i>
-    </div>
-    <div *ngIf="!myForm.controls['email'].valid && myForm.controls['email'].touched" class="alert alert-danger">
-        <i class="material-icons">Email jest wymagany</i>
-    </div>
-    <div *ngIf="!myForm.controls['password'].valid && myForm.controls['password'].touched" class="alert alert-danger">
-        <i class="material-icons">Hasło jest wymagane i musi mieć przynajmniej 6 znaków</i>
-    </div>
-  </div>
+
+<div class="error-message" *ngIf="errorMessageData">
+  Taka osoba już istnieje!
+</div>
+
+<div class="success-message" *ngIf="successMessage">Zarejestrowano!</div>

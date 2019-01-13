@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../authorization.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register-instruktor',
@@ -8,14 +9,15 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./register-instruktor.component.css']
 })
 export class RegisterInstruktorComponent {
+  errorMessage = false;
+  errorMessageData = false;
+  successMessage = false;
   name: any;
   lastname: any;
   email: any;
   password: any;
   token: any;
   myForm: FormGroup;
-
-  isRegistered = false;
 
   constructor(private Auth: AuthorizationService, private fb: FormBuilder) {
     this.myForm = fb.group({
@@ -27,14 +29,29 @@ export class RegisterInstruktorComponent {
   }
 
   register() {
-
-    this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
-      this.token = data.token;
-      this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(dat => {
-        this.Auth.cotractInstruktor(this.token, dat.id).subscribe();
-        this.isRegistered = true;
+    if (this.myForm.invalid) {
+      this.errorMessage = true;
+    } else {
+      this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
+        this.successMessage = true;
+        this.token = data.value;
+        this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(dat => {
+          this.Auth.cotractInstruktor(this.token, dat.id).subscribe();
+        });
+      },
+      (err: HttpErrorResponse) => {
+        this.errorMessageData = true;
       });
-    });
+
+      setTimeout(() => {
+        this.successMessage = false;
+      }, 1500);
   }
+
+  setTimeout(() => {
+    this.errorMessage = false;
+    this.errorMessageData = false;
+  }, 1500);
+}
 
 }

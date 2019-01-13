@@ -37,8 +37,6 @@ export class AuthorizationService {
   }
 
   cotractKursant(token, id): any {
-    console.log(token);
-    console.log(id);
     return this.http.put(this.url + '/contract/student/of/school/' + id, null, {
       headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
@@ -140,7 +138,6 @@ export class AuthorizationService {
     const data = {status: status};
     return this.http.put(this.url + '/contract/change/status/of/' + contractId, data, {
       headers: {'Content-Type' : 'application/json', 'Token' : token}});
-
   }
 }
 

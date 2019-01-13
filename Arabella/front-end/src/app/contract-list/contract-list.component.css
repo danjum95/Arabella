@@ -1,9 +1,9 @@
 .table {
-  width: 50vw;
-  position: fixed;
-  margin-left: 15vw;
+  width: 60%;
+  margin: auto;
+  margin-top: 10%;
 }
-.thead{
+.thead {
   background-color: rgba(128, 128, 134, 0.75);
   border-bottom: 5px solid;
 }

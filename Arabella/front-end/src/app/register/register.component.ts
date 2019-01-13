@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  errorMessage = false;
+  errorMessageData = false;
   name: any;
   lastname: any;
   email: any;
@@ -28,13 +30,25 @@ export class RegisterComponent {
       'password': [null, Validators.required]
     });
   }
-  register() {
-      this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
-        localStorage.setItem('newUser', data.token);
-      }, (error) => this.isLoginError = true);
 
-    if (!(this.isLoginError === true)) {
-      this.router.navigate(['oskList']);
+  registerUser() {
+    if (this.myForm.invalid) {
+      this.errorMessage = true;
+    } else {
+      this.Auth.addUsers(this.name, this.lastname, this.email, this.password).subscribe(data => {
+        localStorage.setItem('newUser', data.value);
+        setTimeout(() => {
+          this.router.navigate(['oskList']);
+        }, 300);
+      },
+      (err: HttpErrorResponse) => {
+          this.errorMessageData = true;
+      });
     }
+    
+    setTimeout(() => {
+      this.errorMessage = false;
+      this.errorMessageData = false;
+    }, 1500);
   }
 }
