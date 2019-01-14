@@ -57,6 +57,7 @@ export class MapComponent implements OnInit {
           this.lessonsId.push(da[i].id);
           //console.log(this.lessonsId[i]);
         }
+        this.getMap(this.lessonsId[this.lessonsId.length - 1]);
       })
       
     });
@@ -70,7 +71,6 @@ export class MapComponent implements OnInit {
         this.vectorSource = new OlVectorSource({});
         this.vectorLine = new OlVectorSource({});
         //console.log(id + " " +this.previousMap);
-        
         var contents = this.content;
         //var container = document.getElementById('popup');
         this.Auth.getMap(id).subscribe(map => {
