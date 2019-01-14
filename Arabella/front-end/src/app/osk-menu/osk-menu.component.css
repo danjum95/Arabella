@@ -51,3 +51,24 @@ nav.sidebar:hover {
   margin: auto;
   position: fixed;
 }
+
+@media screen and (max-width: 768px) {
+  .collapse{
+    display: block !important;
+    visibility: visible !important;
+    }
+  .glyphicon
+  {
+    margin-right: inherit !important;
+  }
+  nav.sidebar{
+    width: 205px;
+    height: 305px;
+    margin-left: -170px;
+    float: left;
+  }
+  nav.sidebar .navbar-nav > li {
+    border-bottom: 2px #e5e5e5d0 solid;
+    transform: scale(0.9)!important;
+  }
+  }

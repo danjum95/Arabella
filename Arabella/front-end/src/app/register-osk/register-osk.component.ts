@@ -31,7 +31,7 @@ export class RegisterOskComponent {
       'password': [null, Validators.required]
     });
    }
-
+   
   register() {
 
     if (this.myForm.invalid) {

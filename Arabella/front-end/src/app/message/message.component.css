@@ -4,6 +4,9 @@ body {
   margin: auto;
   margin-top: 10%;
 }
+#heading h3 { 
+  display: inline;
+}
 .container {
   max-width: 80vw;
   margin: auto;
@@ -11,10 +14,9 @@ body {
 
 .inbox_people {
   float: left;
-  overflow: hidden;
-  width: 250px;
-  border-right: 1px solid #c4c4c4;
-  overflow: scroll;
+  max-height: 350px;
+  width: 40%; border-right:1px solid #c4c4c4;
+  overflow-y: scroll;
 }
 
 .inbox_msg {
@@ -60,7 +62,7 @@ body {
   color: #4c4c4c;
   font-size: 15px;
   min-height: 48px;
-  width: 100%;
+  width: 80%;
 }
 
 #textMessage {
@@ -94,6 +96,8 @@ body {
   right: 0;
   top: 300px;
   width: 33px;
+  float: right;
+  margin-right: 20%;
 }
 
 .title {
@@ -110,4 +114,26 @@ body {
   padding: 5px;
   font-size: 15px;
   color: white;
+}
+
+.text-right
+{
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) {
+  body{
+    margin-top: 10px;
+  }
+  .container {
+    transform:scale(0.8);
+  }
+  h3
+  {
+    font-size: 17px;
+  }
+    .msg_send_btn
+    {
+    margin-top: -95px;
+    }
 }

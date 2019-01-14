@@ -61,6 +61,21 @@ export class AuthorizationService {
     return this.http.post(this.url + '/users/change/email', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
+  studentMinutes(token, studentId, schoolId):any
+  {
+    return this.http.get(this.url + '/how/many/minutes/student/' + studentId + '/of/school/' + schoolId + '/drove', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
+  specificstudentMinutes(token)
+  {
+    return this.http.get(this.url + '/lessons/students/drives/durations', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
+  schoolstudentsMinutes(token)
+  {
+    return this.http.get(this.url + '/lessons/students/drives/durations', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
   getUserInfo(token): any {
     return this.http.get(this.url + '/users/user/info', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
@@ -83,6 +98,8 @@ export class AuthorizationService {
   getLesson(token, id) {
     return this.http.get(this.url + '/lessons/of/school/' + id, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
+
+
 
   getUsersToMessage(token): any {
     return this.http.get(this.url + '/messages/users', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
@@ -107,6 +124,11 @@ export class AuthorizationService {
     return this.http.get(this.url + '/lessons/of/school/' + schoolId, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
+  getMap(lessonId): any
+  {
+    return this.http.get(this.url + '/maps/' + lessonId, {headers: {'Content-Type' : 'application/json'}});
+  }
+
   generalInfo(token, email): any {
     const data = {email: email};
     return this.http.post(this.url + '/users/other/user/info', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
@@ -116,10 +138,6 @@ export class AuthorizationService {
     const data = {status: status};
     return this.http.put(this.url + '/contract/change/status/of/' + contractId, data, {
       headers: {'Content-Type' : 'application/json', 'Token' : token}});
-  }
-
-  getMap(lessonId): any {
-    return this.http.get(this.url + '/maps/' + lessonId, {headers: {'Content-Type' : 'application/json'}});
   }
 }
 

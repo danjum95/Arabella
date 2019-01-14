@@ -2,10 +2,10 @@
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
   margin: auto;
   width: 260px;
-  margin-top: 15%;
+  margin-top: 5%;
   background: #ffffffd3;
   padding: 0;
-  height: 290px;
+  height: 475px;
 }
 
 .mat-card-header {
@@ -32,9 +32,14 @@ mat-card-actions {
   margin-top: -30px;
 }
 
+mat-card-title {
+  margin: auto;
+  margin-left: 20%;
+  margin-top: 10%;
+}
+
 .data {
   border: none;
-  border-bottom: 1px solid rgba(102, 51, 153, 0.719);
   background: none;
   font-size: 15px;
   margin-bottom: 10px;
@@ -86,4 +91,24 @@ button {
   padding: 5px;
   font-size: 15px;
   color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .login-card{
+    transform: scale(0.8);
+    margin-top: -20px;
+  }
+
+  .error-message {
+    text-align: center;
+    background: rgba(255, 0, 0, 0.8);
+    width: 25%;
+    height: 20vh;
+    margin: auto;
+    margin-top: 5%;
+    padding: 5px;
+    font-size: 15px;
+    color: white;
+  }
+
 }

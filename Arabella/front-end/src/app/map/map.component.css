@@ -1,20 +1,20 @@
-html, body {
+.container {
     height: 100%;
-    margin-left: 55px;
-    margin-top: -40px;
-    margin-bottom: 25px;
+    width: 100%;
+    margin: 20px;
+    margin-right: 0px;
+    background:transparent;
     }
 
 #map {
-    width: 50vw;
-    height: 30vw;
-    float: left;
+  resize: none;
+  width: 60vw;
+  height: 60vh;
+  margin-top: 5%;
+  margin-right: 0px;
+  float: right;
 }
-#legend
-{
-    transform: scale(0.8);
-    margin-left: -50px;
-}
+
 .thead{
     background-color: rgba(128, 128, 134, 0.75);
     border-bottom: 2px solid;
@@ -27,12 +27,6 @@ html, body {
     font-size: 12px;
     justify-content: center;
   }
-
-  .material-icons {
-    color: red;
-    text-align: center;
-    font-size: 20px;
-  }
   
   .alert {
     display: grid;
@@ -41,20 +35,143 @@ html, body {
     margin-left: 29vw;
     box-shadow: 5px 5px 5px 5px rgba(0.300, 0.300, 0.300, 0.300);
   }
+  .mess {
+    margin-right: 5%;
+    margin-left: 5%;
+    float: right;
+    position: absolute;
+    margin-top: 5%;
+
+  }
   .listlessons2 {
-    margin-left:-50px;
-    width: 150px;
-    background-color: white;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
+    background-color: rgba(255, 255, 255, 0.8);
   }
   .listlessons {
-    background-color: white;
-    margin-left:-50px;
-    height: 150px;
-    width: 100px;
-    float: left;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
+    background-color: #ffffffd3;
+    height: 55vh;
+    width: 100%;
     overflow-y: scroll;
   }
   a
   {
     color: black !important;
   }
+  p
+  {
+    position: absolute;
+  }
+  .error-message {
+    text-align: center;
+    background: rgba(255, 0, 0, 0.8);
+    width: 30%;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
+    margin-left: 40%;
+    height: 7vh;
+    margin-top: 50%;
+    padding: 5px;
+    font-size: 15px;
+    color: white;
+  }
+  .error-message2 {
+    width: 30%;
+    margin-top: 50%;
+  }
+  .left
+  {
+    float:left;
+  }
+
+  
+  .ol-popup {
+    position: absolute;
+    background-color: white;
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 280px;
+  }
+  .ol-popup:after, .ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  .ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+  }
+  .ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+  }
+  .ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+  }
+  .ol-popup-closer:after {
+    content: "✖";
+  }
+
+
+  @media screen and (max-width: 850px) {
+  body
+  {
+    transform:scale(0.9);
+  }
+
+  #map {
+  width: 60vw;
+  height: 60vh;
+  margin: auto;
+  margin-top: 5%;
+  float: right;
+  }
+  
+  .error-message {
+    text-align: center;
+    background: rgba(255, 0, 0, 0.8);
+    width: 26%;
+    margin-left: 40%;
+    height: 7vh;
+    margin-top: 50%;
+    padding: 5px;
+    font-size: 15px;
+    color: white;
+  }
+  .error-message2 {
+    width: 40%;
+    margin-top: 50%;
+  }
+  .listlessons2 {
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
+    margin-left: 425px;
+    margin-top: 70px;
+    width: 125px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .listlessons {
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
+    background-color: #ffffffd3;
+    margin-left: 425px;
+    margin-top: 5px;
+    height: 150px;
+    width: 100px;
+    float: left;
+    overflow-y: scroll;
+  }
+}

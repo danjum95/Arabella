@@ -37,6 +37,7 @@ const routes: Routes = [
   {
     path: 'oskMenu',
     component: OskMenuComponent,
+    canActivate: [localStorage.getItem('userToken')],
     children: [
       {
         path: 'message',
@@ -71,6 +72,7 @@ const routes: Routes = [
   {
     path: 'instruktorMenu',
     component: InstruktorMenuComponent,
+    canActivate: [localStorage.getItem('userToken')],
     children: [
       {
         path: 'message',
@@ -97,6 +99,7 @@ const routes: Routes = [
   {
     path: 'kursantMenu',
     component: KursantMenuComponent,
+    canActivate: [localStorage.getItem('userToken')],
     children: [
       {
         path: 'message',

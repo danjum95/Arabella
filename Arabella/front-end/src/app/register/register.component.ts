@@ -1,5 +1,6 @@
 import { AuthorizationService } from './../authorization.service';
 import { Router} from '@angular/router';
+
 import { Component} from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,6 +18,7 @@ export class RegisterComponent {
   lastname: any;
   email: any;
   password: any;
+
   myForm: FormGroup;
   isLoginError = false;
 

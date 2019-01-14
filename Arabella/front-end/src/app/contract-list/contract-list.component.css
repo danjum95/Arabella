@@ -33,3 +33,10 @@ span:hover {
 span::after {
   color: green;
 }
+
+@media screen and (max-width: 767px) {
+    .table
+  {
+    transform: scale(0.8)!important;
+  }
+  }

@@ -2,45 +2,24 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<html>
-  <body>
-      <div class="listlessons2">Lista Twoich lekcji: </div>          
-      <div class="listlessons">
-          <div *ngFor="let lesson of lessonsId; let i=index " >
-            <a (click)="getMap(lesson)" >Lekcja {{ i+1 }}</a>
-          </div>
+  <div class = "container">
+      <div class = "mess">
+        <div class="listlessons2">Lista Twoich lekcji: </div>          
+        <div class="listlessons">
+            <div *ngFor="let lesson of lessonsId; let i=index " >
+                <a (click)="getMap(lesson)" >Lekcja {{ i+1 }}</a>
+            </div>
+        </div>
       </div>
-    <div id="legend" class="legend">
-      <thead>
-        <tr>
-            <th>LEGENDA</th>
-        </tr>
-			</thead>
-			<tbody>
-          <tr>
-            <td><img src="../assets/images/marker.png"></td>
-            <td><img src="../assets/images/marker2.png"></td>
-            <td><img src="../assets/images/marker3.png"></td>
-            <td><img src="../assets/images/marker4.png"></td>
-          </tr>
-          <tr>
-              <td>Nieprawidłowe parkowanie </td>
-
-              <td>Nieustąpienie pierwszeństwa </td>
-
-              <td>Wyprzedzanie na podwójnej ciągłej</td>
-
-              <td>Nietrzymanie się przed STOP </td>
-          </tr>
-        </tbody>
+      <div id="popup" class="ol-popup">
+            <a id="popup-closer" class="ol-popup-closer"></a>
+            <div id="popup-content"></div>
       </div>
-    
       <div *ngIf = "!mapRendered" id="map" class="map"></div>
-      <div *ngIf = "!mapRendered && mapNotDefined" class="alert alert-danger">
-          <i class="material-icons">Brak mapy dla tej jazdy</i>
+      <div class="error-message" *ngIf = "!mapRendered && mapNotDefined" >
+         <p> Brak mapy dla tej jazdy</p>
       </div>
-      <div *ngIf = "mapRendered && mapNotDefined" class="alert alert-danger">
-          <i class="material-icons">Mapa już została wygenerowana</i>
+      <div class="error-message error-message2" *ngIf = "mapRendered && mapNotDefined" >
+          <p>Mapa już została wygenerowana</p>
       </div>
-  </body>
-</html>
+  </div>
