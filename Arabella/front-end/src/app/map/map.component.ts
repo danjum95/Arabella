@@ -55,9 +55,9 @@ export class MapComponent implements OnInit {
         for (var i = 0; i < da.length; i++)
         {
           this.lessonsId.push(da[i].id);
+          this.getMap(this.lessonsId[i]);
           //console.log(this.lessonsId[i]);
         }
-        this.getMap(this.lessonsId[this.lessonsId.length - 1]);
       })
       
     });
