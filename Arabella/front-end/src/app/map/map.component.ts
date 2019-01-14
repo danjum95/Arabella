@@ -148,7 +148,7 @@ export class MapComponent implements OnInit {
           });
         this.view = new OlView({
           center: fromLonLat([places[0][0],  places[0][1]]),
-          zoom: 12
+          zoom: 15
         });
 
 
@@ -186,7 +186,7 @@ export class MapComponent implements OnInit {
           var pl2 = places [i][1].toFixed(3);
           //console.log(coord1 + "  " + coord2);
           //console.log(pl1 + "  " + pl2);
-          if (coord1 == pl1)
+          if ((coord1 == pl1) && (coord2 == pl2))
           {
             contents.innerHTML = '<p>Twój błąd:</p><code>' + places[i][2] +
             '</code>';
