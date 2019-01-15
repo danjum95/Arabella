@@ -14,24 +14,20 @@ export function sendRequestSet(requestSetCallback) {
           requestSetCallback(token);
         })
         .catch(function (error) {
-          console.log('/api/login/check - error');
-          console.log(error);
-          console.log(error.response);
           axios.post(_env.API_URL + '/api/login/renew', {}, {
             headers: { "Token": token, "Refresh-Token": refreshToken }
           })
             .then(function (response) {
-              SecureStore.setItemAsync('token', response.data.token).then(
+              SecureStore.setItemAsync('token', response.data.token).then(() => {
                 SecureStore.setItemAsync('refresh-token', response.data['refresh-token']).then(() => {
-                  console.log('refresh tokens');
-                    requestSetCallback(token);
+                  console.log(JSON.stringify(error.message));
+                  requestSetCallback(token);
                 })
-              );
+              });
             })
             .catch(function (error) {
-              console.log('/api/login/renew - error');
-              console.log(error);
-              console.log(error.response);
+              console.log(JSON.stringify(error.message));
+              ToastAndroid.show('Problem z tokenami dostępowymi! Zaloguj się ponownie!', ToastAndroid.SHORT);
               userLogout();
             });
         });
@@ -43,9 +39,8 @@ async function userLogout() {
   try {
     await SecureStore.deleteItemAsync('token');
     await SecureStore.deleteItemAsync('refresh-token');
-    ToastAndroid.show('Token mismatch!', ToastAndroid.SHORT);
     Actions.Login();
   } catch (error) {
-    console.log('SecureStore error: ' + error.message);
+    Actions.Login();
   }
 }

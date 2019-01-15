@@ -84,7 +84,6 @@ class Map extends React.Component {
           }, {headers: { Token: token }
           })
             .then(function (response) {
-              console.log(response.data);
               ToastAndroid.show('Zapisano trase!', ToastAndroid.SHORT);
               Actions.Usermenu();
             })

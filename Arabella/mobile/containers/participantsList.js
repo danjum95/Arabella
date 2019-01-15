@@ -16,14 +16,12 @@ class ParticipantsList extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.schoolID);
     let users = this.state.participants;
     SecureStore.getItemAsync('token').then((token) => {
       axios.get(_env.API_URL + '/api/students/of/school/' + this.props.schoolID, {
         headers: { Token: token }
       })
         .then(function (response) {
-          console.log(response.data);
           response.data.forEach(user =>{
             let userKeyed = user;
             userKeyed["key"] = user.id.toString();

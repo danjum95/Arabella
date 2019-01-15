@@ -14,6 +14,9 @@ import { Provider } from 'react-redux';
 import ProfileInfo from "./containers/profileinfo";
 import MapReadOnly from "./containers/mapReadOnly";
 import CalendarReadOnly from "./containers/calendarReadOnly";
+import Messages from "./containers/messages";
+import Inbox from "./containers/inbox";
+import SendMessage from "./containers/sendMessage";
 
 const store = createStore(reducer);
 
@@ -98,6 +101,24 @@ class App extends React.Component {
                 hideNavBar={true}
                 key='MapReadOnly'
                 title='MapReadOnly'
+              />
+              <Scene
+                component={Messages}
+                hideNavBar={true}
+                key='Messages'
+                title='Messages'
+              />
+              <Scene
+                component={Inbox}
+                hideNavBar={true}
+                key='Inbox'
+                title='Inbox'
+              />
+              <Scene
+                component={SendMessage}
+                hideNavBar={true}
+                key='SendMessage'
+                title='SendMessage'
               />
             </Scene>
           </Router>

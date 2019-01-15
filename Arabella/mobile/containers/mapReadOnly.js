@@ -38,7 +38,6 @@ class MapReadOnly extends React.Component {
   }
 
   render() {
-    console.log(this.state.location);
     if(this.state.location) {
       return (
         <View style={styles.mapContainer}>

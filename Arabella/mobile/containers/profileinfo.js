@@ -38,7 +38,7 @@ class ProfileInfo extends React.Component {
         transparent={false}
         visible={this.state.modalVisible}
         onRequestClose={() => {
-          console.log('modal closed');
+          this.setModalVisible(false);
         }}>
         <View style={styles.container}>
           <TextInput

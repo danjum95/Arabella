@@ -35,7 +35,6 @@ class CalendarReadOnly extends React.Component {
       })
         .then(function (response) {
           response.data.forEach(obj => {
-            console.log(obj);
             const date = obj.date.split('T')[0];
             if(!(date in this.state.items)) {
               let newItems = this.state.items;

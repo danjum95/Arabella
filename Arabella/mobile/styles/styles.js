@@ -28,6 +28,13 @@ export default StyleSheet.create({
     padding: 2,
     margin: 2
   },
+  messageFlexBox: {
+    flex: 1,
+    borderWidth:2,
+    borderColor:'#000',
+    padding: 5,
+    margin: 5
+  },
   lightText: {
     fontSize: 18,
     color: 'darkgrey',
@@ -36,6 +43,10 @@ export default StyleSheet.create({
   mainText: {
     fontWeight: 'bold',
     fontSize: 20
+  },
+  messageToText: {
+    fontWeight: 'bold',
+    fontSize: 18
   },
   input:{
     padding:10, margin: 10,
@@ -67,9 +78,19 @@ export default StyleSheet.create({
     backgroundColor:'#efefef',
     padding:10,
   },
+  sendMessageContainer:{
+    flex:1,
+    backgroundColor:'#efefef',
+    padding:10,
+    marginTop: 20
+  },
   autoFillInput:{
     flex:1,
-    marginTop: 50
+    marginTop: 20
+  },
+  messageView:{
+    flex:1,
+    padding:10
   },
   timepickerFrom:{
     flex:1,

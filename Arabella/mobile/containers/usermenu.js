@@ -31,11 +31,9 @@ class Usermenu extends React.Component {
       headers: { Token: token }
     })
       .then(function (response) {
-        //props.addUserInfo(response.data);
         self.setState({userInfo: response.data});
       })
       .catch(function (error) {
-        console.log(error);
         ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
       });
 
@@ -43,11 +41,9 @@ class Usermenu extends React.Component {
       headers: { Token: token }
     })
       .then(function (response) {
-        //props.addUserRole(response.data);
         self.setState({userRole: response.data});
       })
       .catch(function (error) {
-        console.log(error);
         ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
       });
 
@@ -55,11 +51,9 @@ class Usermenu extends React.Component {
       headers: { Token: token }
     })
       .then(function (response) {
-        //props.addUserSchool(response.data);
         self.setState({userSchool: response.data});
       })
       .catch(function (error) {
-        console.log(error);
         ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
       });
   }
@@ -90,6 +84,9 @@ class Usermenu extends React.Component {
             <Button onPress={() => {Actions.ProfileInfo({userInfo: this.state.userInfo, userRole: this.state.userRole})}} title="Mój profil" />
           </View>
           <View style={styles.button}>
+            <Button onPress={() => {Actions.Messages()}} title="Wiadomości" />
+          </View>
+          <View style={styles.button}>
             <Button onPress={() => {Actions.Calendar({schoolID: this.state.userSchool.id})}} title="Kalendarz" />
           </View>
           <View style={styles.button}>
@@ -106,6 +103,9 @@ class Usermenu extends React.Component {
         <View style={styles.container}>
           <View style={styles.button}>
             <Button onPress={() => {Actions.ProfileInfo({userInfo: this.state.userInfo, userRole: this.state.userRole})}} title="Mój profil" />
+          </View>
+          <View style={styles.button}>
+            <Button onPress={() => {Actions.Messages()}} title="Wiadomości" />
           </View>
           <View style={styles.button}>
             <Button onPress={() => {Actions.CalendarReadOnly({schoolID: this.state.userSchool.id})}} title="Kalendarz" />

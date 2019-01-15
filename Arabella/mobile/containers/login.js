@@ -44,7 +44,6 @@ class Login extends React.Component {
                 headers: { 'Content-Type': 'application/json' }
               })
                 .then(function (response) {
-                  console.log(response.data['refresh-token']);
                   SecureStore.setItemAsync('token', response.data.token);
                   SecureStore.setItemAsync('refresh-token', response.data['refresh-token']);
                   ToastAndroid.show('Zalogowano!', ToastAndroid.SHORT);
