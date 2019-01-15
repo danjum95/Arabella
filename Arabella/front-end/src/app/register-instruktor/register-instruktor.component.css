@@ -2,7 +2,7 @@
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
   margin: auto;
   width: 260px;
-  margin-top: 5%;
+  margin-top: 15%;
   background: #ffffffd3;
   padding: 0;
   height: 400px;
@@ -32,9 +32,14 @@ mat-card-actions {
   margin-top: -30px;
 }
 
+mat-card-title {
+  margin: auto;
+  margin-left: 20%;
+  margin-top: 10%;
+}
+
 .data {
   border: none;
-  border-bottom: 1px solid rgba(102, 51, 153, 0.719);
   background: none;
   font-size: 15px;
   margin-bottom: 10px;
@@ -91,7 +96,6 @@ button {
 @media screen and (max-width: 768px) {
   .login-card{
     transform: scale(0.8);
-    margin-top: 50px;
   }
   
   .error-message {

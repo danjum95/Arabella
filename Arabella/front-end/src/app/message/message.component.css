@@ -4,7 +4,9 @@ body {
   margin: auto;
   margin-top: 10%;
 }
-#heading h3 { display: inline; }
+#heading h3 { 
+  display: inline;
+}
 .container {
   max-width: 80vw;
   margin: auto;
@@ -60,7 +62,7 @@ body {
   color: #4c4c4c;
   font-size: 15px;
   min-height: 48px;
-  width: 100%;
+  width: 80%;
 }
 
 #textMessage {
@@ -94,7 +96,8 @@ body {
   right: 0;
   top: 300px;
   width: 33px;
-  margin-right: 125px;
+  float: right;
+  margin-right: 20%;
 }
 
 .title {
@@ -115,7 +118,7 @@ body {
 
 .text-right
 {
-  margin-right: 135px;
+  text-align: center;
 }
 
 @media screen and (max-width: 767px) {
