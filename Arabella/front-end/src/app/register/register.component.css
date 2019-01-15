@@ -20,6 +20,12 @@ mat-card-header {
   font-size: 30px;
 }
 
+mat-card-title {
+  margin: auto;
+  margin-left: 20%;
+  margin-top: 10%;
+}
+
 mat-card-content {
   padding: 10px;
   margin-bottom: 0;
@@ -34,7 +40,6 @@ mat-card-actions {
 
 .data {
   border: none;
-  border-bottom: 1px solid rgba(102, 51, 153, 0.719);
   background: none;
   font-size: 15px;
   margin-bottom: 10px;
