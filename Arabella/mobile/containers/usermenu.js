@@ -76,14 +76,14 @@ class Usermenu extends React.Component {
   }
 
   render() {
-    if(!(this.state.userInfo && this.state.userRole && this.state.userSchool)) {
+    if(!(this.state.userInfo && this.state.userSchool)) {
       return (
         <View style={styles.container}>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
       );
     }
-    else {
+    else if (this.state.userRole === 1) {
       return (
         <View style={styles.container}>
           <View style={styles.button}>
@@ -95,6 +95,31 @@ class Usermenu extends React.Component {
           <View style={styles.button}>
             <Button onPress={() => {Actions.ParticipantsList({schoolID: this.state.userSchool.id})}} title="Lista Kursantów" />
           </View>
+          <View style={styles.button}>
+            <Button onPress={this.userLogout} title="Wyloguj" />
+          </View>
+        </View>
+      );
+    }
+    else if (this.state.userRole === 2) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.button}>
+            <Button onPress={() => {Actions.ProfileInfo({userInfo: this.state.userInfo, userRole: this.state.userRole})}} title="Mój profil" />
+          </View>
+          <View style={styles.button}>
+            <Button onPress={() => {Actions.CalendarReadOnly({schoolID: this.state.userSchool.id})}} title="Kalendarz" />
+          </View>
+          <View style={styles.button}>
+            <Button onPress={this.userLogout} title="Wyloguj" />
+          </View>
+        </View>
+      );
+    }
+    else {
+      return (
+        <View style={styles.container}>
+          <Text style={{ fontSize: 16, alignSelf: 'center'}}>OSK nie ma dostępu do aplikacji mobilnej</Text>
           <View style={styles.button}>
             <Button onPress={this.userLogout} title="Wyloguj" />
           </View>

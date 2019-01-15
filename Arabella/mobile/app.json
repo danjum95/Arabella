@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "arabella-mobile",
-    "description": "This project is really great.",
+    "description": "Arabella react native project.",
     "slug": "arabella-mobile",
     "privacy": "public",
     "sdkVersion": "31.0.0",

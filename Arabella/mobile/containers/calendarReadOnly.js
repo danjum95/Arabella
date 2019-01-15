@@ -11,7 +11,7 @@ import axios from "axios";
 import {_env} from "../local/env";
 import {SecureStore} from "expo";
 
-class Calendar extends React.Component {
+class CalendarReadOnly extends React.Component {
 
   constructor(props) {
     super(props);
@@ -42,7 +42,6 @@ class Calendar extends React.Component {
               newItems[date] = [{
                 id: obj.id,
                 name: 'Jazdy',
-                height: 135,
                 from: obj.date.split('T')[1],
                 to: obj.endDate.split('T')[1],
                 participant: obj.student.firstName + ' ' + obj.student.lastName,
@@ -54,7 +53,6 @@ class Calendar extends React.Component {
               let newItems = this.state.items;
               newItems[date].push({
                 name: 'Jazdy',
-                height: 135,
                 from: obj.date.split('T')[1],
                 to: obj.endDate.split('T')[1],
                 participant: obj.student.firstName + ' ' + obj.student.lastName
@@ -88,22 +86,19 @@ class Calendar extends React.Component {
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
-        onDayPress={(day)=>{
-          if(JSON.stringify(day) === JSON.stringify(this.state.selectedDay)) {
-            this.setState({selectedDay: undefined});
-            Actions.AddEvent({eventDay: day, schoolID: this.props.schoolID});
-          }
-          else
-            this.setState({selectedDay: day})
-        }}
         loadItemsForMonth={this.loadItems.bind(this)}
       />
     );
   }
 
   renderItem(item) {
+    let height;
+    if(item.done)
+      height = 135;
+    else
+      height = 100;
     return (
-      <View style={[styles.item, {height: item.height}]}>
+      <View style={[styles.item, {height: height}]}>
         <Text style={styles.mainTextDate}>{item.name}</Text>
         <Text style={styles.lightTextDate}>
           Od: {item.from.split(':')[0] + ':' + item.from.split(':')[1]}
@@ -120,13 +115,7 @@ class Calendar extends React.Component {
   }
 
   renderItemMapButton(done, id) {
-    if(!done)
-      return (
-        <View style={styles.bottomButton}>
-          <Button title='DODAJ TRASE' onPress={() => { Actions.Map({lessonId: id})} }/>
-        </View>
-      );
-    else
+    if(done)
       return (
         <View style={styles.bottomButton}>
           <Button title='POKAŻ TRASE' onPress={() => { Actions.MapReadOnly({lessonId: id})} }/>
@@ -157,4 +146,4 @@ const mapDispatchToProps = dispatch => (
   }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarReadOnly);

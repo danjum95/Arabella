@@ -79,5 +79,20 @@ export default StyleSheet.create({
   timepickerTo:{
     flex:1,
     justifyContent:'center'
+  },
+  mapContainer:{
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    justifyContent: 'flex-end',
+  },
+  map:{
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
   }
 })

@@ -12,10 +12,12 @@ import { createStore } from "redux";
 import reducer from "./reducers/reducer";
 import { Provider } from 'react-redux';
 import ProfileInfo from "./containers/profileinfo";
+import MapReadOnly from "./containers/mapReadOnly";
+import CalendarReadOnly from "./containers/calendarReadOnly";
 
 const store = createStore(reducer);
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   constructor() {
     super();
@@ -62,6 +64,12 @@ export default class App extends React.Component {
                 title='Calendar'
               />
               <Scene
+                component={CalendarReadOnly}
+                hideNavBar={true}
+                key='CalendarReadOnly'
+                title='CalendarReadOnly'
+              />
+              <Scene
                 component={AddEvent}
                 hideNavBar={true}
                 key='AddEvent'
@@ -85,6 +93,12 @@ export default class App extends React.Component {
                 key='Map'
                 title='Map'
               />
+              <Scene
+                component={MapReadOnly}
+                hideNavBar={true}
+                key='MapReadOnly'
+                title='MapReadOnly'
+              />
             </Scene>
           </Router>
         </Provider>
@@ -102,3 +116,5 @@ const styles = StyleSheet.create({
     padding:10
   }
 });
+
+export default App;

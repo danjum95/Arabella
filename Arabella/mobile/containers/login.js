@@ -51,8 +51,6 @@ class Login extends React.Component {
                   Actions.Usermenu();
                 })
                 .catch(function (error) {
-                  console.log(error);
-                  console.log(error.response);
                   ToastAndroid.show('Błędny e-mail lub hasło!', ToastAndroid.SHORT);
                 });
             }}

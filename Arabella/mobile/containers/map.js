@@ -4,8 +4,11 @@ import {Platform, View, StyleSheet, Button, Alert, ToastAndroid} from 'react-nat
 import {Constants, Location, Permissions, SecureStore} from 'expo';
 import DialogInput from 'react-native-dialog-input';
 import { Actions } from 'react-native-router-flux';
+import styles from '../styles/styles'
 import axios from "axios";
 import {_env} from "../local/env";
+
+let locationPromise;
 
 class Map extends React.Component {
 
@@ -54,29 +57,51 @@ class Map extends React.Component {
     } else {
       this.setState({ locationUpdates: true, });
       Alert.alert("Rozpoczęto śledzenie trasy!");
-      Location.watchPositionAsync({
-        enableHighAccuracy: true,
-        distanceInterval: 10,
-      }, NewLocation => {
-        this.setState({
-          prevLocation: this.state.location,
-          location: NewLocation
-        });
-        this.setState(prevState => ({
-          lines: [...prevState.lines, {latitude: NewLocation.coords.latitude, longitude: NewLocation.coords.longitude}]
-        }))
-      });
+      locationPromise = Location.watchPositionAsync({
+          enableHighAccuracy: true,
+          distanceInterval: 10,
+        }, NewLocation => {
+          this.setState({
+            prevLocation: this.state.location,
+            location: NewLocation
+          });
+          this.setState(prevState => ({
+            lines: [...prevState.lines, {latitude: NewLocation.coords.latitude, longitude: NewLocation.coords.longitude}]
+          }))
+        })
     }
   };
 
-  _checkOut = async () => {
-    if (!this.state.locationUpdates) {
-      console.log("YOU ARE ALREADY CHECKED OUT!");
-    } else {
-      this.setState({ locationUpdates: false, });
-      console.log("SUCCESSFULLY CHECKED OUT!");
-    }
-  };
+  saveMap() {
+    locationPromise.then(resolveValue => {
+      resolveValue.remove();
+      if(this.state.locationUpdates) {
+        SecureStore.getItemAsync('token').then((token) => {
+          axios.put(_env.API_URL + '/api/maps', {
+            lessonId: this.props.lessonId,
+            mapMarkers: this.state.markers,
+            mapLines: this.state.lines
+          }, {headers: { Token: token }
+          })
+            .then(function (response) {
+              console.log(response.data);
+              ToastAndroid.show('Zapisano trase!', ToastAndroid.SHORT);
+              Actions.Usermenu();
+            })
+            .catch(function (error) {
+              console.log(JSON.stringify(error.message));
+              Alert.alert(
+                'Błąd', '' + JSON.stringify(error.message),
+                [
+                  {text: 'Wróć', style: 'cancel'}
+                ]
+              );
+              ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+            });
+        });
+      }
+    })
+  }
 
   saveMapDialog() {
     Alert.alert(
@@ -84,28 +109,9 @@ class Map extends React.Component {
       'Czy chcesz zapisać zarejestrowaną trasę?',
       [
         {text: 'Potwierdź', onPress: () => this.saveMap()},
-        {text: 'Wróć', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}
+        {text: 'Wróć', style: 'cancel'}
       ]
     )
-  }
-
-  saveMap() {
-    SecureStore.getItemAsync('token').then((token) => {
-      axios.put(_env.API_URL + '/api/maps/', {
-        lessonId: this.props.lessonId,
-        mapMarkers: this.state.markers,
-        mapLines: this.state.lines
-      }, {headers: { Token: token }
-      })
-        .then(function (response) {
-          console.log(response.data);
-          Actions.Usermenu();
-        })
-        .catch(function (error) {
-          console.log(error.response);
-          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
-        });
-    });
   }
 
   addMarker(title) {
@@ -122,10 +128,9 @@ class Map extends React.Component {
   }
 
   render() {
-    console.log(this.state.markers);
     if(this.state.location) {
       return (
-        <View style={styles.container}>
+        <View style={styles.mapContainer}>
           <MapView
             style={styles.map}
             initialRegion={{
@@ -199,23 +204,5 @@ class Map extends React.Component {
   }
 
 }
-
-const styles = StyleSheet.create({
-  container:{
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    justifyContent: 'flex-end',
-  },
-  map:{
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0
-  }
-});
 
 export default Map;

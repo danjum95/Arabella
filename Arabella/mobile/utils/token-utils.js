@@ -15,6 +15,7 @@ export function sendRequestSet(requestSetCallback) {
         })
         .catch(function (error) {
           console.log('/api/login/check - error');
+          console.log(error);
           console.log(error.response);
           axios.post(_env.API_URL + '/api/login/renew', {}, {
             headers: { "Token": token, "Refresh-Token": refreshToken }
@@ -24,12 +25,12 @@ export function sendRequestSet(requestSetCallback) {
                 SecureStore.setItemAsync('refresh-token', response.data['refresh-token']).then(() => {
                   console.log('refresh tokens');
                     requestSetCallback(token);
-                }
-                )
+                })
               );
             })
             .catch(function (error) {
               console.log('/api/login/renew - error');
+              console.log(error);
               console.log(error.response);
               userLogout();
             });
