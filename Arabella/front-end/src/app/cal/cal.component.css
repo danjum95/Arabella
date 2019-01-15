@@ -1,7 +1,7 @@
 .container {
   background: rgba(255, 255, 255, 0.9);
   transform: scale(0.65);
-  margin-top: -100px;
+  margin-top: -150px;
   font-size: 20px;
 }
 
@@ -9,6 +9,9 @@ input {
   width: 400px;
 }
 
+.fc-day-grid-event > .fc-content {
+  overflow: hidden;
+}
 button {
   width: 70%;
   height: 50px;
