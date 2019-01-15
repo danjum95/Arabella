@@ -20,7 +20,7 @@ export class MessageComponent implements OnInit {
   constructor(private Auth: AuthorizationService, private fb: FormBuilder) {
     this.msgForm = fb.group({
       'to': [null, Validators.required],
-      'texMessage': [null, Validators.required]
+      'textMessage': [null, Validators.required]
     });
   }
   

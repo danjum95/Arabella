@@ -41,6 +41,14 @@ export class CalComponent implements OnInit {
               this.calendarOptions = {
                 editable: false,
                 eventLimit: false,
+                eventRender: <any>function(event, $el) {
+                  $el.popover({
+                    content: event.description,
+                    trigger: 'hover',
+                    placement: 'top',
+                    container: 'body'
+                  })
+                },
                 handleWindowResize: true,
                 locale:	'pl',
                 buttonText: {
@@ -82,6 +90,7 @@ export class CalComponent implements OnInit {
               eventLimit: false,
               handleWindowResize: true,
               locale:	'pl',
+              
               buttonText: {
                 today: 'Dzisiaj',
                 month: 'Miesiąc',
@@ -118,6 +127,14 @@ export class CalComponent implements OnInit {
               this.calendarOptions = {
                 editable: false,
                 eventLimit: false,
+                eventRender: <any>function(event, $el) {
+                  $el.popover({
+                    content: event.description,
+                    trigger: 'hover',
+                    placement: 'top',
+                    container: 'body'
+                  })
+                },
                 handleWindowResize: true,
                 locale:	'pl',
                 buttonText: {
@@ -167,6 +184,7 @@ export class CalComponent implements OnInit {
   }
 
   eventClick(model: any) {
+    alert("Opis dzisiejszej jazdy: " + model.event.title);
     model = {
       event: {
         id: model.event.id,

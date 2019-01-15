@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class ContractListComponent implements OnInit {
 
+  message = false;
   allContracts$: Observable<Array<contractListInterface>>;
 
   columns: string[];
@@ -27,6 +28,11 @@ export class ContractListComponent implements OnInit {
   }
 
   id(event) {
+    this.message = true;
     this.Auth.acceptContract(localStorage.getItem('userToken'), event.target.id, 2).subscribe();
+
+    setTimeout(() => {
+      this.message = false;
+    }, 1500);
   }
 }

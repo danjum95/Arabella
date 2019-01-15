@@ -22,11 +22,12 @@
         </div>
         <div class="mesgs">
           <div class="type_msg">
-            <form (submit)="sendMessage($event)" class="input_msg_write">
+            <form (submit)="sendMessage($event)" class="input_msg_write" [formGroup]="msgForm">
               <input
                 type="text"
                 class="write_msg"
                 placeholder="Odbiorca"
+                formControlName="to"
                 [(ngModel)]="to"
                 name="to"
                 required
@@ -35,6 +36,7 @@
                 type="text"
                 class="write_msg"
                 id="textMessage"
+                formControlName="textMessage"
                 placeholder="Wiadomość"
                 [(ngModel)]="textMessage"
                 name="textMessage"

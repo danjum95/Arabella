@@ -22,6 +22,18 @@ td {
   text-align: center;
 }
 
+.message {
+  text-align: center;
+  background: rgba(0, 255, 0, 0.8);
+  width: 25%;
+  height: 5vh;
+  margin: auto;
+  margin-top: 5%;
+  padding: 5px;
+  font-size: 15px;
+  color: white;
+}
+
 span {
   font-size: 15px;
 }
