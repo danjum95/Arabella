@@ -89,7 +89,7 @@ class SendMessage extends React.Component {
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
 
     return (
-      <View style={styles.sendMessageContainer}>
+      <View style={styles.containerTopContent}>
         <View style={styles.subElement}>
           <Text style={styles.messageToText}>Do: {this.parseMessageTo(this.state.messageTo)}</Text>
         </View>
@@ -117,7 +117,7 @@ class SendMessage extends React.Component {
           }}/>
         </View>}
         {this.state.locked &&
-        <View style={styles.sendMessageContainer}>
+        <View style={styles.containerTopContent}>
           <View style={styles.messageFlexBox}>
             <View style={{
               borderBottomColor: '#6dbaf2',

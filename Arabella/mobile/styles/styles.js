@@ -78,7 +78,7 @@ export default StyleSheet.create({
     backgroundColor:'#efefef',
     padding:10,
   },
-  sendMessageContainer:{
+  containerTopContent:{
     flex:1,
     backgroundColor:'#efefef',
     padding:10,
