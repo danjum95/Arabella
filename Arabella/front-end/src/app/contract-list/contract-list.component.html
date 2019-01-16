@@ -15,12 +15,11 @@
             class="glyphicon glyphicon-plus"
             id="{{ contract.id }}"
           ></span>
-          <!---<button (click) = "id($event)"  id="{{contract.id}}">
-                <i class="btn-icon-only icon-ok"></i>
-
-              </button>-->
         </td>
       </tr>
     </tbody>
   </table>
+</div>
+<div class="message" *ngIf="message">
+  Osoba została zatwierdzona
 </div>

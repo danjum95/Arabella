@@ -1,7 +1,7 @@
 .table {
   width: 60%;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 20%;
 }
 .thead {
   background-color: rgba(128, 128, 134, 0.75);
@@ -20,6 +20,18 @@ td {
   font-size: 15px;
   font-weight: bold;
   text-align: center;
+}
+
+.message {
+  text-align: center;
+  background: rgba(0, 255, 0, 0.8);
+  width: 25%;
+  height: 5vh;
+  margin: auto;
+  margin-top: 5%;
+  padding: 5px;
+  font-size: 15px;
+  color: white;
 }
 
 span {

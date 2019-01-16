@@ -55,9 +55,9 @@ export class MapComponent implements OnInit {
         for (var i = 0; i < da.length; i++)
         {
           this.lessonsId.push(da[i].id);
-          this.getMap(this.lessonsId[this.lessonsId.length - 1]);
           //console.log(this.lessonsId[i]);
         }
+        this.getMap(this.lessonsId[this.lessonsId.length - 1]);
       })
       
     });
@@ -74,6 +74,7 @@ export class MapComponent implements OnInit {
         var contents = this.content;
         //var container = document.getElementById('popup');
         this.Auth.getMap(id).subscribe(map => {
+          
         if (id != this.previousMap)
         {
         console.log(this.closer);
@@ -121,7 +122,7 @@ export class MapComponent implements OnInit {
             var iconStyle= new Style({
               image: new Icon({
                 crossOrigin: 'anonymous',
-                src: '../assets/images/marker.png'
+                src: '../assets/images/marker2.png'
               })
             })
           
@@ -147,7 +148,7 @@ export class MapComponent implements OnInit {
               })
           });
         this.view = new OlView({
-          center: fromLonLat([places[0][0],  places[0][1]]),
+          center: [points[0][0],  points[0][1]],
           zoom: 15
         });
 
@@ -198,7 +199,7 @@ export class MapComponent implements OnInit {
 
       this.mapNotDefined = false;
       this.mapRendered = false;
-      //console.log(this.mapRendered + "  " + this.mapNotDefined)
+      console.log(this.mapRendered + "  " + this.mapNotDefined)
     }
     else
     {
