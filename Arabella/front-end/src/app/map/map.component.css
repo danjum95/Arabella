@@ -3,6 +3,7 @@
   width: 100%;
   margin: 20px;
   margin-right: 0px;
+  margin-top: 10%;
   background:transparent;
   }
 
@@ -10,7 +11,6 @@
 resize: none;
 width: 60vw;
 height: 60vh;
-margin-top: 5%;
 margin-right: 0px;
 float: right;
 }
@@ -40,7 +40,6 @@ th, td {
   margin-left: 5%;
   float: right;
   position: absolute;
-  margin-top: 5%;
 
 }
 .listlessons2 {
@@ -138,7 +137,6 @@ body
 width: 60vw;
 height: 60vh;
 margin: auto;
-margin-top: 5%;
 float: right;
 }
 
@@ -159,18 +157,17 @@ float: right;
 }
 .listlessons2 {
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
-  margin-left: 425px;
-  margin-top: 70px;
+  margin-left: 10%;
   width: 125px;
   background-color: rgba(255, 255, 255, 0.8);
 }
 .listlessons {
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
   background-color: #ffffffd3;
-  margin-left: 425px;
   margin-top: 5px;
-  height: 150px;
-  width: 100px;
+  margin-left: 10%;
+  height: 60vh;
+  width: 125px;
   float: left;
   overflow-y: scroll;
 }
