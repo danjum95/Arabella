@@ -1,9 +1,6 @@
 import React from 'react';
 import { View, Modal, Text, Button, TextInput, ToastAndroid} from 'react-native';
 import styles from '../styles/styles'
-import {bindActionCreators} from "redux";
-import {addUserInfo, addUserRole} from "../actions/userInfoActions";
-import { connect } from 'react-redux';
 import axios from "axios";
 import {_env} from "../local/env";
 import {SecureStore} from "expo";
@@ -71,7 +68,6 @@ class ProfileInfo extends React.Component {
                         this.setModalVisible(false);
                       }.bind(this))
                       .catch(function (error) {
-                        console.log(error.response);
                         ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
                       });
                   });
@@ -129,17 +125,4 @@ class ProfileInfo extends React.Component {
   }
 }
 
-
-const mapStateToProps = (state) => {
-  const { user } = state;
-  return { user }
-};
-
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    addUserInfo,
-    addUserRole
-  }, dispatch)
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfo);
+export default ProfileInfo;

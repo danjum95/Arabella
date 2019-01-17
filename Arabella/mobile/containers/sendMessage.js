@@ -2,10 +2,6 @@ import React from 'react';
 import { View, TouchableOpacity, ToastAndroid, Button, Text, TextInput } from 'react-native';
 import styles from '../styles/styles'
 import { Actions } from 'react-native-router-flux';
-import { SecureStore } from "expo";
-import { bindActionCreators } from "redux";
-import { connect } from 'react-redux';
-import { addUserInfo, addUserRole, addUserSchool } from "../actions/userInfoActions";
 import axios from "axios";
 import {_env} from "../local/env";
 import { sendRequestSet } from "../utils/token-utils";

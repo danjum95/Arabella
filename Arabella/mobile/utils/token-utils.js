@@ -10,17 +10,16 @@ export function sendRequestSet(requestSetCallback) {
       axios.post(_env.API_URL + '/api/login/check', {}, {
         headers: { "Token": token, "Refresh-Token": refreshToken }
       })
-        .then(function (response) {
+        .then(function () {
           requestSetCallback(token);
         })
-        .catch(function (error) {
+        .catch(function () {
           axios.post(_env.API_URL + '/api/login/renew', {}, {
             headers: { "Token": token, "Refresh-Token": refreshToken }
           })
             .then(function (response) {
               SecureStore.setItemAsync('token', response.data.token).then(() => {
                 SecureStore.setItemAsync('refresh-token', response.data['refresh-token']).then(() => {
-                  console.log(JSON.stringify(error.message));
                   requestSetCallback(token);
                 })
               });

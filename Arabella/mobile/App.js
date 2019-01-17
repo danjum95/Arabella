@@ -6,10 +6,10 @@ import AddEvent from "./containers/addEvent";
 import Map from "./containers/map";
 import ParticipantsList from "./containers/participantsList";
 import {ActionConst, Router, Scene} from 'react-native-router-flux';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import { SecureStore } from "expo";
 import { createStore } from "redux";
-import reducer from "./reducers/reducer";
+import { calendarReducer } from "./reducers/reducer";
 import { Provider } from 'react-redux';
 import ProfileInfo from "./containers/profileinfo";
 import MapReadOnly from "./containers/mapReadOnly";
@@ -17,8 +17,15 @@ import CalendarReadOnly from "./containers/calendarReadOnly";
 import Messages from "./containers/messages";
 import Inbox from "./containers/inbox";
 import SendMessage from "./containers/sendMessage";
+import styles from "./styles/styles";
+import { combineReducers } from 'redux';
 
-const store = createStore(reducer);
+const reducers = {
+  calendar: calendarReducer
+};
+
+const rootReducer = combineReducers(reducers);
+const store = createStore(rootReducer);
 
 class App extends React.Component {
 
@@ -128,14 +135,5 @@ class App extends React.Component {
   }
 
 }
-
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    justifyContent: 'center',
-    backgroundColor:'#efefef',
-    padding:10
-  }
-});
 
 export default App;

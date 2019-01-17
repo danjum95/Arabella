@@ -2,9 +2,6 @@ import React from 'react';
 import { View, Button, ToastAndroid, ActivityIndicator, Text } from 'react-native';
 import { SecureStore } from "expo";
 import { Actions } from 'react-native-router-flux';
-import { bindActionCreators } from "redux";
-import { connect } from 'react-redux';
-import { addUserInfo, addUserRole, addUserSchool } from "../actions/userInfoActions";
 import axios from "axios";
 import {_env} from "../local/env";
 import styles from '../styles/styles'
@@ -129,18 +126,4 @@ class Usermenu extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  }
-};
-
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    addUserInfo,
-    addUserRole,
-    addUserSchool
-  }, dispatch)
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Usermenu);
+export default Usermenu;

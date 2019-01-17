@@ -1,49 +1,29 @@
-import { Map, OrderedMap } from 'immutable';
-import { combineReducers } from 'redux';
+import {includesObject} from "../utils/calendar-utils";
 
-const EVENTS_INITIAL_STATE = {
-  events: {}
-};
-
-const calendarReducer = (state = EVENTS_INITIAL_STATE, action) => {
+export const calendarReducer = (state = {}, action) => {
   switch (action.type) {
-
     case 'ADD_EVENT':
-      const { events } = state;
-      Object.keys(action.payload).forEach(key => events[key] = action.payload[key]);
-      return { events };
+      const dateString = action.payload.date.split('T')[0];
+      if(dateString in state) {
+        if(!includesObject(state[dateString], action.payload))
+          state[dateString].push(action.payload);
+      }
+      else {
+        state[dateString] = [];
+        state[dateString].push(action.payload);
+      }
+      return state;
 
-    default:
-      return state
-  }
-};
+    case 'ADD_KEY_WITHOUT_VALUE':
+      if(!(action.payload in state)) {
+        state[action.payload] = [];
+        return state;
+      }
+      else
+        return state;
 
-const USER_INITIAL_STATE = Map({
-  info: Map(),
-  role: null,
-  school: null
-});
-
-const userReducer = (state = 'kutas', action) => {
-  switch (action.type) {
-    case 'ADD_USER_INFO':
-      return state.set("info", action.payload);
-
-    case 'ADD_USER_ROLE':
-      console.log('ADD USER ROLE REDUCER');
-      console.log(action.payload);
-      //return state.set("role", action.payload);
-      return 'kutas 2';
-
-    case 'ADD_USER_SCHOOL':
-      return state.set("school", action.payload);
 
     default:
       return state;
   }
 };
-
-export default combineReducers({
-  calendarEvents: calendarReducer,
-  user: userReducer
-});
