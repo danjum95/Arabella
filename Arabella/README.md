@@ -41,6 +41,10 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `POST` (`/renew`) - Header `Token`, Header `Refresh-Token` - Returns `token`, `refresh-token` and `uid` with status `200` or `404` when no matching `Refresh-Token`
 
+### Activation - `/api/activate`
+
+`GET` - (`/account/{activationCode}`) - Activates account which is associated with that activationCode - Returns `200` when activated, `404` when unrecognized  `activationCode` or `500` when `activationCode` indicates on non-existing account 
+
 ### Messages - `/api/messages`
 
 `PUT` - Header `Token`, [Message](src/main/java/arabella/backend/model/Message.java) (annotations) - Sends message
