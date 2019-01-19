@@ -35,7 +35,7 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 ### Login - `/api/login`
 
-`POST` - [User](src/main/java/arabella/backend/model/User.java) (Only `email`, `password`) - Returns `token`, `refresh-token` and `userId` if logged
+`POST` - [User](src/main/java/arabella/backend/model/User.java) (Only `email`, `password`) - Returns status `200` `token`, `refresh-token` and `userId`; Status `400` when missing fields; `401` when user not activated; `404` when given user not found; `409` when password doesn't match
 
 `POST` (`/check`) - Header `Token`, Header `Refresh-Token` - Returns status `404` when `token` expired or `userId` with status `200`
 
