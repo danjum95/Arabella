@@ -13,6 +13,9 @@ public class Student {
 
     private Long userId;
 
+    @Column(nullable = false)
+    private Boolean active = Boolean.TRUE;
+
     @OneToOne(fetch = FetchType.EAGER,
             cascade =  CascadeType.ALL)
     @JoinColumn(name = "userId", referencedColumnName ="id", insertable = false, updatable = false)
@@ -48,5 +51,13 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

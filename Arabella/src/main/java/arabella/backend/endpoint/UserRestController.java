@@ -52,7 +52,6 @@ public class UserRestController {
     @Autowired
     EmailController emailController;
 
-
     @PutMapping
     public ResponseEntity addUser(@Validated(User.New.class) @RequestBody User newUser){
         if (!checkIfUserExists(newUser)) {
@@ -137,7 +136,6 @@ public class UserRestController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
-
 
     public boolean checkIfUserExists(User user) {
         return userRepository.findByEmail(user.getEmail()) != null;
