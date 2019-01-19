@@ -1,48 +1,74 @@
-nav.sidebar, .main{
+nav.sidebar,
+.main {
   -webkit-transition: margin 700ms ease-out;
-    -moz-transition: margin 700ms ease-out;
-    -o-transition: margin 700ms ease-out;
-    transition: margin 700ms ease-out;
-    z-index: 2;
+  -moz-transition: margin 700ms ease-out;
+  -o-transition: margin 700ms ease-out;
+  transition: margin 700ms ease-out;
+  z-index: 2;
 }
 
-.main{
+.main {
   padding: 10px 10px 0 10px;
 }
 
-nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+nav.sidebar.navbar.sidebar > .container .navbar-brand,
+.navbar > .container-fluid .navbar-brand {
   margin-left: 0px;
 }
 
-nav.sidebar a{
+nav.sidebar a {
   padding-right: 10px;
 }
 
-nav.sidebar .navbar-nav > li{
+nav.sidebar .navbar-nav > li {
   border-bottom: 2px #e5e5e5d0 solid;
 }
 
-nav.sidebar .navbar-collapse, nav.sidebar .container-fluid{
+nav.sidebar .navbar-collapse,
+nav.sidebar .container-fluid {
   padding: 0 0px 0 0px;
 }
 
-nav.sidebar{
+nav.sidebar {
   width: 205px;
   height: 370px;
   margin-left: -160px;
   float: left;
+  margin-top: 15%;
 }
 
 nav.sidebar li {
   width: 100%;
 }
 
-nav.sidebar:hover{
+nav.sidebar:hover {
   margin-left: 3px;
 }
 
-.router{
-  margin-top: 10vh;
-  margin-left: 10vw;
+.router {
+  width: 100%;
+  height: 100%;
+  margin: auto;
   position: fixed;
 }
+
+@media screen and (max-width: 768px) {
+  .collapse{
+    display: block !important;
+    visibility: visible !important;
+    }
+  .glyphicon
+  {
+    margin-right: inherit !important;
+  }
+  nav.sidebar{
+    width: 205px;
+    height: 305px;
+    margin-left: -170px;
+    float: left;
+  }
+  nav.sidebar .navbar-nav > li {
+    border-bottom: 2px #e5e5e5d0 solid;
+    transform: scale(0.9)!important;
+  }
+  }

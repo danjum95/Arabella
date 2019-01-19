@@ -1,0 +1,27 @@
+.container {
+  float: right;
+  margin-right: 0;
+}
+
+#title {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+button {
+  background: none;
+  padding: 10px;
+  margin-right: 15px;
+  color: white;
+  font-size: 15px;
+  border: none;
+}
+
+button:hover {
+  border-bottom: 1px solid white;
+}
+
+
+.mat-toolbar
+{
+  background:transparent!important;
+}

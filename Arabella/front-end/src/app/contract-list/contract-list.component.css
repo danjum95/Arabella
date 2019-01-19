@@ -1,9 +1,9 @@
 .table {
-  width: 50vw;
-  position: fixed;
-  margin-left: 15vw;
+  width: 60%;
+  margin: auto;
+  margin-top: 20%;
 }
-.thead{
+.thead {
   background-color: rgba(128, 128, 134, 0.75);
   border-bottom: 5px solid;
 }
@@ -22,6 +22,18 @@ td {
   text-align: center;
 }
 
+.message {
+  text-align: center;
+  background: rgba(0, 255, 0, 0.8);
+  width: 25%;
+  height: 5vh;
+  margin: auto;
+  margin-top: 5%;
+  padding: 5px;
+  font-size: 15px;
+  color: white;
+}
+
 span {
   font-size: 15px;
 }
@@ -33,3 +45,10 @@ span:hover {
 span::after {
   color: green;
 }
+
+@media screen and (max-width: 767px) {
+    .table
+  {
+    transform: scale(0.8)!important;
+  }
+  }

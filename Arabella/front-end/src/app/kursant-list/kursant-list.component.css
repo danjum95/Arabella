@@ -1,10 +1,6 @@
-.button {
-  margin-left: 15vw;
-}
 .button1 {
   padding: 16px 32px;
-  margin-top: -52px;
-  position: fixed;
+  position: block;
   background-color: rgba(199, 195, 175, 0.65);
   border: none;
   transition: 1s;
@@ -14,33 +10,29 @@
 
 .button2 {
   padding: 16px 32px;
-  margin-top: -52px;
-  position: fixed;
+  position: block;
   background-color: rgba(128, 128, 134, 0.75);
   border: none;
   transition: 1s;
   cursor: pointer;
   display: inline-block;
-  margin-left: 137px;
 }
-
 
 .button1:hover {
   background-color: rgba(128, 128, 134, 0.75);
 }
 
-
 .table {
-  width: 50vw;
-  position: fixed;
-  margin-left: 15vw;
+  width: 60%;
 }
-.thead{
+
+.thead {
   background-color: rgba(128, 128, 134, 0.75);
   border-bottom: 5px solid;
 }
 
-th, td {
+th,
+td {
   text-align: center;
   padding: 8px;
   font-size: 18px;
@@ -51,7 +43,25 @@ td {
   background-color: rgba(199, 195, 175, 0.65);
 }
 
-
 tbody :hover {
   background-color: rgba(199, 195, 175, 0.75);
 }
+
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 15%;
+  margin-left: 25%;
+}
+
+@media screen and (max-width: 767px) {
+  .button{
+    transform: scale(0.8)!important;
+    margin-left: -15px;
+    }
+    .table
+  {
+    margin-top: -20px;
+    transform: scale(0.8)!important;
+  }
+  }

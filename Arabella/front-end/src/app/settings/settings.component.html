@@ -1,22 +1,91 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4">
-      <div class="account-wall">
-        <div class="tab-pane active">
-            <input type="text" class="form-control" [(ngModel)]="name" name="name" id="name"readonly>
-            <input type="text" class="form-control" [(ngModel)]="surname" name="surname" id="surname"readonly>
-            <input type="text" class="form-control" [(ngModel)]="email" name="email" id="email">
-            <input type="password" class="form-control" placeholder="Podaj nowe hasło" [(ngModel)]="password" name="password" id="password">
-            <input (click)="change()" class="btn btn-lg btn-success btn-block" value="Zapisz zmiany" />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Ustawienia</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="login-form">
+      <table class="login-table" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                type="text"
+                name="name"
+                [(ngModel)]="name"
+                id="name"
+                class="data"
+                readonly
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                type="text"
+                name="surname"
+                [(ngModel)]="surname"
+                class="data"
+                readonly
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                type="text"
+                name="email"
+                [(ngModel)]="email"
+                class="data"
+                required
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="login-table" floatLabel="never">
+              <input
+                matInput
+                type="password"
+                name="password"
+                placeholder="Podaj nowe hasło"
+                floatPlaceholder="never"
+                [(ngModel)]="password"
+                class="data"
+                required
+              />
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button (click)="change()" id="login" mat-raised-button>Zapisz</button>
+  </mat-card-actions>
+</mat-card>
 
-
+<div class="success-message" *ngIf="successMessage">Zapisano!</div>

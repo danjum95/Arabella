@@ -8,26 +8,41 @@
   </head>
   <body>
     <div class="container">
-      <h3 class=" text-center">Wiadomości</h3>
-
+        <h3 class="text-right">Wyślij wiadomość</h3>
       <div class="inbox_msg">
         <div class="inbox_people">
-          <div class="inbox_chat" *ngFor="let message of rev$ |async">
+          <div class="inbox_chat" *ngFor="let message of (rev$ | async)">
             <div class="chat_list">
               <div class="chat_ib">
-                <h5>Od: {{message.sender.email}}</h5>
-                <p>
-                  Wiadomość: {{message.message}}
-                </p>
+                <h5>Od: {{ message.sender.email }}</h5>
+                <p>Wiadomość: {{ message.message }}</p>
               </div>
             </div>
           </div>
         </div>
         <div class="mesgs">
           <div class="type_msg">
-            <form (submit)= "sendMessage($event)" class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Odbiorca"[(ngModel)]="to" name="to" required>
-              <input type="text" class="write_msg" placeholder="Wiadomość" [(ngModel)]="textMessage" name="textMessage" required>
+            <form (submit)="sendMessage($event)" class="input_msg_write" [formGroup]="msgForm">
+              <input
+                type="text"
+                class="write_msg"
+                placeholder="Odbiorca"
+                formControlName="to"
+                [(ngModel)]="to"
+                name="to"
+                required
+              />
+              <textarea
+                type="text"
+                class="write_msg"
+                id="textMessage"
+                formControlName="textMessage"
+                placeholder="Wiadomość"
+                [(ngModel)]="textMessage"
+                name="textMessage"
+                required
+              >
+              </textarea>
               <button type="submit" class="msg_send_btn">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
               </button>
@@ -37,4 +52,7 @@
       </div>
     </div>
   </body>
+  <div class="positive-message" *ngIf="positive">
+    Wiadomość została wysłana!
+  </div>
 </html>

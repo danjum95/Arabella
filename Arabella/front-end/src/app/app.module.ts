@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BannerComponent } from './banner/banner.component';
 import { LoginComponent } from './login/login.component';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { KursantMenuComponent } from './kursant-menu/kursant-menu.component';
 import { InstruktorMenuComponent } from './instruktor-menu/instruktor-menu.component';
@@ -17,21 +15,21 @@ import { InstruktorListComponent } from './instruktor-list/instruktor-list.compo
 import { KursantListComponent } from './kursant-list/kursant-list.component';
 import { SettingsComponent } from './settings/settings.component';
 import { MessageComponent } from './message/message.component';
-import { RegisterOskOrKursantComponent } from './register-osk-or-kursant/register-osk-or-kursant.component';
 import { RegisterOskComponent } from './register-osk/register-osk.component';
 import { InstruktorListKursantComponent } from './instruktor-list-kursant/instruktor-list-kursant.component';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { CalComponent } from './cal/cal.component';
 import { ContractListComponent } from './contract-list/contract-list.component';
 import { MapComponent } from './map/map.component';
-import { MatDialogModule, MatTableModule, MatCheckboxModule, MatButtonModule} from '@angular/material';
+import { MatDialogModule, MatTableModule, MatCheckboxModule, MatButtonModule, 
+  MatIconModule, MatMenuModule, MatCardModule, MatToolbarModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import { AddLessonsComponent } from './add-lessons/add-lessons.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BannerComponent,
     LoginComponent,
     KursantMenuComponent,
     InstruktorMenuComponent,
@@ -43,13 +41,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     KursantListComponent,
     SettingsComponent,
     MessageComponent,
-    RegisterOskOrKursantComponent,
     RegisterOskComponent,
     InstruktorListKursantComponent,
     CalComponent,
     ContractListComponent,
     MapComponent,
     AddLessonsComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,114 +61,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatCheckboxModule,
     MatButtonModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: LoginComponent
-      },
-      {
-        path: 'oskMenu',
-        component: OskMenuComponent,
-        children: [
-          {
-            path: 'message',
-            component: MessageComponent
-          },
-          {
-            path: 'registerInstruktor',
-            component: RegisterInstruktorComponent
-          },
-          {
-            path: 'instruktorList',
-            component: InstruktorListComponent,
-          },
-          {
-            path: 'kursantList',
-            component: KursantListComponent
-          },
-          {
-            path: 'settings',
-            component: SettingsComponent
-          },
-          {
-            path: 'calendar',
-            component: CalComponent
-          },
-          {
-            path: 'contract',
-            component: ContractListComponent
-          }
-        ]
-      },
-      {
-        path: 'instruktorMenu',
-        component: InstruktorMenuComponent,
-        children: [
-          {
-            path: 'message',
-            component: MessageComponent
-          },
-          {
-            path: 'instruktorList',
-            component: InstruktorListComponent,
-          },
-          {
-            path: 'kursantList',
-            component: KursantListComponent
-          },
-          {
-            path: 'settings',
-            component: SettingsComponent
-          },
-          {
-            path: 'calendar',
-            component: CalComponent
-          }
-        ]
-      },
-      {
-        path: 'kursantMenu',
-        component: KursantMenuComponent,
-        children: [
-          {
-            path: 'message',
-            component: MessageComponent
-          },
-          {
-            path: 'map',
-            component: MapComponent
-          },
-          {
-            path: 'instruktorList',
-            component: InstruktorListKursantComponent,
-          },
-          {
-            path: 'settings',
-            component: SettingsComponent
-          },
-          {
-            path: 'calendar',
-            component: CalComponent
-          }
-        ]
-      },
-      {
-        path: 'registerKursant',
-        component: RegisterComponent
-      },
-      {
-        path: 'oskList',
-        component: OskListComponent
-      },
-      {
-        path: 'register',
-        component: RegisterOskOrKursantComponent
-      },
-      {
-        path: 'registerOsk',
-        component: RegisterOskComponent
-      }
-    ])
+    MatCardModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    AppRoutingModule,
   ],
   entryComponents: [
     AddLessonsComponent

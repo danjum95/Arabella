@@ -1,8 +1,23 @@
-<link rel='stylesheet' type='text/css' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.css'>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.css"
+/>
 
 <div class="container" *ngIf="calendarOptions">
-    <ng-fullcalendar #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" [(eventsModel)]="events"></ng-fullcalendar>  
-    <div *ngIf="isInstructor" class="mat-app-background basic-container">
-        <button mat-raised-button class="btn btn-success btn-sm" (click)="openDialog()">Dodaj lekcje</button>
-    </div>
+  <ng-fullcalendar
+    #ucCalendar
+    [options]="calendarOptions"
+    (eventClick)="eventClick($event.detail)"
+    [(eventsModel)]="events"
+  ></ng-fullcalendar>
+  <div *ngIf="isInstructor" class="mat-app-background basic-container">
+    <button
+      mat-raised-button
+      class="btn btn-success btn-sm"
+      (click)="openDialog()"
+    >
+      Dodaj lekcje
+    </button>
+  </div>
 </div>

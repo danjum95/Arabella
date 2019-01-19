@@ -5,6 +5,7 @@ import { OnInit, ViewChild, Component, ViewContainerRef } from '@angular/core';
 import { lessonListInterface } from '../interface/lessonListInterface';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddLessonsComponent } from '../add-lessons/add-lessons.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class CalComponent implements OnInit {
   allKursants$: any;
 
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  constructor(protected Auth: AuthorizationService, public dialog: MatDialog) { }
+  constructor(protected Auth: AuthorizationService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.loadData();
@@ -40,6 +41,14 @@ export class CalComponent implements OnInit {
               this.calendarOptions = {
                 editable: false,
                 eventLimit: false,
+                eventRender: <any>function(event, $el) {
+                  $el.popover({
+                    content: event.description,
+                    trigger: 'hover',
+                    placement: 'top',
+                    container: 'body'
+                  })
+                },
                 handleWindowResize: true,
                 locale:	'pl',
                 buttonText: {
@@ -81,6 +90,7 @@ export class CalComponent implements OnInit {
               eventLimit: false,
               handleWindowResize: true,
               locale:	'pl',
+              
               buttonText: {
                 today: 'Dzisiaj',
                 month: 'Miesiąc',
@@ -117,6 +127,14 @@ export class CalComponent implements OnInit {
               this.calendarOptions = {
                 editable: false,
                 eventLimit: false,
+                eventRender: <any>function(event, $el) {
+                  $el.popover({
+                    content: event.description,
+                    trigger: 'hover',
+                    placement: 'top',
+                    container: 'body'
+                  })
+                },
                 handleWindowResize: true,
                 locale:	'pl',
                 buttonText: {
@@ -158,15 +176,15 @@ export class CalComponent implements OnInit {
     this.hideSelect = true;
     setTimeout(() => {
       this.hideSelect = false;
-    }, 50);
+    }, 1);
     
     const dialog = this.dialog.open(AddLessonsComponent, {width: '250px'});
 
-    dialog.afterClosed().subscribe(() => {
-    });
+    dialog.afterClosed().subscribe();
   }
 
   eventClick(model: any) {
+    alert("Opis dzisiejszej jazdy: " + model.event.title);
     model = {
       event: {
         id: model.event.id,
