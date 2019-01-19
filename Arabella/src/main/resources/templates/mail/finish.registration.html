@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Aktywuj swoje konto w serwisie Arabella</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1 th:text="${title}">Arabella (ar.orlean.ski)</h1>
+Witaj, <span th:text="${name}">użytkowniku</span>!
+Aby aktywować konto w serwisie kliknij w następujący link:
+<a th:attr="href=http://ar.orlean.ski/aktywuj/key=${key}">Link...</a>
+<span th:text="${description}">Twój asystent - Arabella</span>
+</body>
+</html>
