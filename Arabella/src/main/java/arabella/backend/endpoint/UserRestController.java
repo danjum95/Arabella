@@ -1,6 +1,7 @@
 package arabella.backend.endpoint;
 
 import arabella.backend.auth.SessionController;
+import arabella.backend.mail.EmailController;
 import arabella.backend.model.*;
 import arabella.backend.repository.InstructorRepository;
 import arabella.backend.repository.StudentRepository;
@@ -41,10 +42,14 @@ public class UserRestController {
     InstructorRepository instructorRepository;
 
     @Autowired
+    TokenRepository tokenRepository;
+
+    @Autowired
     SessionController sessionController;
 
     @Autowired
-    TokenRepository tokenRepository;
+    EmailController emailController;
+
 
     @PutMapping
     public ResponseEntity addUser(@Validated(User.New.class) @RequestBody User newUser){
@@ -58,6 +63,8 @@ public class UserRestController {
             }
             token.setUserId(userIdForToken);
             token.setValue(SessionController.generateTokenValue());
+            String activationCode = SessionController.generateTokenValue();
+            emailController.sendActivationEmailToNewUser(newUser.getEmail(), newUser.getFirstName(), activationCode);
             return new ResponseEntity<>(tokenRepository.save(token), HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.CONFLICT);

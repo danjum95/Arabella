@@ -77,6 +77,9 @@ public class SessionController {
         Optional<User> user = userRepository.findById(checkToken(token).getUserId());
 
         if(user.isPresent()) {
+            if (user.get().getActivated() == Boolean.FALSE) {
+                throw new RestClientException("User not activated!");
+            }
             return user.get();
         }
 
