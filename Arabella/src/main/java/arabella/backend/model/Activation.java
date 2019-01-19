@@ -13,7 +13,7 @@ public class Activation {
 
     private Long userId;
 
-    private Long activationCode;
+    private String activationCode;
 
     public Long getId() {
         return id;
@@ -31,11 +31,11 @@ public class Activation {
         this.userId = userId;
     }
 
-    public Long getActivationCode() {
+    public String getActivationCode() {
         return activationCode;
     }
 
-    public void setActivationCode(Long activationCode) {
+    public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
     }
 }

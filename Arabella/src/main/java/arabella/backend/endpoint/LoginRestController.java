@@ -53,6 +53,10 @@ public class LoginRestController {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
 
+        if (dbUser.getActivated() == Boolean.FALSE) {
+            return new ResponseEntity<>("User not activated", HttpStatus.UNAUTHORIZED);
+        }
+
         Token token = new Token();
         token.setUserId(dbUser.getId());
         token.setValue(SessionController.generateTokenValue());

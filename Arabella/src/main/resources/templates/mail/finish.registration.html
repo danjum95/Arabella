@@ -8,7 +8,8 @@
 <h1 th:text="${title}">Arabella (ar.orlean.ski)</h1>
 Witaj, <span th:text="${name}">użytkowniku</span>!
 Aby aktywować konto w serwisie kliknij w następujący link:
-<a th:attr="href=http://ar.orlean.ski/aktywuj/key=${key}">Link...</a>
-<span th:text="${description}">Twój asystent - Arabella</span>
+<a th:href="@{http://ar.orlean.ski/aktywuj/konto=__${key}__}">Link aktywacyjny</a>
+<br>
+<span>Twój asystent - Arabella</span>
 </body>
 </html>

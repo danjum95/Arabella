@@ -3,14 +3,13 @@ package arabella.backend.endpoint;
 import arabella.backend.auth.SessionController;
 import arabella.backend.mail.EmailController;
 import arabella.backend.model.*;
-import arabella.backend.repository.InstructorRepository;
-import arabella.backend.repository.StudentRepository;
-import arabella.backend.repository.TokenRepository;
-import arabella.backend.repository.UserRepository;
+import arabella.backend.repository.*;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.bytebuddy.utility.RandomString;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +41,9 @@ public class UserRestController {
     InstructorRepository instructorRepository;
 
     @Autowired
+    ActivationRepository activationRepository;
+
+    @Autowired
     TokenRepository tokenRepository;
 
     @Autowired
@@ -63,8 +65,13 @@ public class UserRestController {
             }
             token.setUserId(userIdForToken);
             token.setValue(SessionController.generateTokenValue());
-            String activationCode = SessionController.generateTokenValue();
+            String activationCode = generateActivationCode();
             emailController.sendActivationEmailToNewUser(newUser.getEmail(), newUser.getFirstName(), activationCode);
+
+            Activation activation = new Activation();
+            activation.setActivationCode(activationCode);
+            activation.setUserId(userIdForToken);
+            activationRepository.save(activation);
             return new ResponseEntity<>(tokenRepository.save(token), HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.CONFLICT);
@@ -213,6 +220,10 @@ public class UserRestController {
         } else {
             return new ResponseEntity<>("Not belong to school", HttpStatus.NOT_FOUND);
         }
+    }
+
+    private String generateActivationCode() {
+        return RandomStringUtils.random(12, true, false);
     }
 
     private class ExclusionStrategyImpl implements ExclusionStrategy {

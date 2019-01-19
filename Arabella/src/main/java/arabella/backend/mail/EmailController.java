@@ -23,11 +23,10 @@ public class EmailController {
         //throw new RuntimeException("Wyłączono wysylanie maili!");
         Context context = new Context();
         context.setVariable("title", "Dokończenie rejestracji w serwisie Arabella");
-        context.setVariable("description", "Aby aktywować konto...");
-        context.setVariable("name",name);
+        context.setVariable("name", name);
         context.setVariable("key", activationLink);
 
-        String body = templateEngine.process("mail/register", context);
+        String body = templateEngine.process("mail/finish.registration", context);
         emailSender.sendEmail(email, "Rejestracja w systemie Arabella", body);
     }
 
@@ -35,7 +34,6 @@ public class EmailController {
         //throw new RuntimeException("Wyłączono wysylanie maili!");
         Context context = new Context();
         context.setVariable("title", "Dokończenie rejestracji w serwisie Arabella");
-        context.setVariable("description", "Aby aktywować konto...");
         context.setVariable("name", name);
         context.setVariable("key", password);
 
