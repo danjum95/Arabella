@@ -11,6 +11,8 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `PUT` - [User](src/main/java/arabella/backend/model/User.java)(group = New.class) - add user to DB abd returns `Token`
 
+`PUT` (`/already/activated`) - Header `Token` (of School), [User](src/main/java/arabella/backend/model/User.java)(group = New.class) - add user to DB abd returns `Token`, this endpoint will not send an email - user will be already activated
+
 `GET` (`/user/info`) - Header `Token` - Returns info about user which use given `Token`
 
 `GET` (`/{id}`) - None (temporary) - Shows DB information about user of given `id`
