@@ -22,7 +22,7 @@ public class EmailController {
     public void sendActivationEmailToNewUser(String email, String name, String activationLink){
         //throw new RuntimeException("Wyłączono wysylanie maili!");
         Context context = new Context();
-        context.setVariable("title", "Dokończenie rejestracji w serwisie Arabella");
+        context.setVariable("title", "Dokończenie rejestracji w systemie Arabella");
         context.setVariable("name", name);
         context.setVariable("key", activationLink);
 
@@ -33,7 +33,7 @@ public class EmailController {
     public void sendLoginDataToInstructor(String email, String name, String password){
         //throw new RuntimeException("Wyłączono wysylanie maili!");
         Context context = new Context();
-        context.setVariable("title", "Dokończenie rejestracji w serwisie Arabella");
+        context.setVariable("title", "Dokończenie rejestracji w systemie Arabella");
         context.setVariable("name", name);
         context.setVariable("key", password);
 

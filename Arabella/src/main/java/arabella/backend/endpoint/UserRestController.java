@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RestController
@@ -80,13 +81,43 @@ public class UserRestController {
             }
             token.setUserId(userIdForToken);
             token.setValue(SessionController.generateTokenValue());
-            String activationCode = generateActivationCode();
-            emailController.sendActivationEmailToNewUser(newUser.getEmail(), newUser.getFirstName(), activationCode);
+            token.setExpDate(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(2));
 
+            String activationCode = generateActivationCode();
             Activation activation = new Activation();
             activation.setActivationCode(activationCode);
             activation.setUserId(userIdForToken);
             activationRepository.save(activation);
+
+            emailController.sendActivationEmailToNewUser(newUser.getEmail(), newUser.getFirstName(), activationCode);
+            return new ResponseEntity<>(tokenRepository.save(token), HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
+    }
+
+    @PutMapping("/already/activated")
+    public ResponseEntity addUserAlreadyActivated(@RequestHeader("Token") String givenToken, @Validated(User.New.class) @RequestBody User newUser) {
+        User user = sessionController.getUserFromToken(givenToken);
+
+        School school = sessionController.findSchoolOfGivenUser(user);
+
+        if (school == null || !sessionController.isOwnerOfGivenSchool(user, school.getId())) {
+            return new ResponseEntity<>("User without school or not owner of a School", HttpStatus.UNAUTHORIZED);
+        }
+
+        if (!checkIfUserExists(newUser)) {
+            Token token = new Token();
+            Long userIdForToken;
+            try {
+                newUser.setActivated(Boolean.TRUE);
+                userIdForToken = userRepository.save(newUser).getId();
+            } catch (Exception ex) {
+                return new ResponseEntity<>("Wrong email format", HttpStatus.BAD_REQUEST);
+            }
+            token.setUserId(userIdForToken);
+            token.setValue(SessionController.generateTokenValue());
+            token.setExpDate(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(2));
             return new ResponseEntity<>(tokenRepository.save(token), HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.CONFLICT);

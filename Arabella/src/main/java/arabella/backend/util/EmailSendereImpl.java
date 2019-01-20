@@ -20,7 +20,7 @@ public class EmailSendereImpl implements EmailSender {
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mail, true);
             helper.setTo(to);
-            helper.setFrom("arabella@orlean.ski");
+            helper.setFrom("konto@ar.orlean.ski");
             helper.setSubject(title);
             helper.setText(content, true);
 
