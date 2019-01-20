@@ -1,6 +1,8 @@
 package arabella.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,8 +20,7 @@ public class School {
 
     private Long ownerId;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ownerId", referencedColumnName ="id", insertable = false, updatable = false)
     private User user;
 

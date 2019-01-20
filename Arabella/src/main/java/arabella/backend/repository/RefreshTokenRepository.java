@@ -8,4 +8,5 @@ import java.util.List;
 public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Long> {
     RefreshToken findByValue(String key);
     List<RefreshToken> findByUid(Long uid);
+    void deleteAllByUid(Long id);
 }

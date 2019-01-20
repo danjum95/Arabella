@@ -40,6 +40,7 @@ public class ActivationRestController {
 
         user.get().setActivated(Boolean.TRUE);
         userRepository.save(user.get());
+        activationRepository.delete(activation);
         return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
 }

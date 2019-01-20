@@ -1,5 +1,8 @@
 package arabella.backend.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -35,13 +38,11 @@ public class Contract {
     @NotNull
     private Integer status;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", referencedColumnName ="id", insertable = false, updatable = false)
     private User user;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "schoolId", referencedColumnName ="id", insertable = false, updatable = false)
     School school;
 

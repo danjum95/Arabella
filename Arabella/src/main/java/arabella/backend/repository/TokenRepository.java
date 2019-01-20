@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface TokenRepository extends JpaRepository<Token, Long> {
     Optional<Token> findByValue (String token);
+
+    void deleteAllByUserId(Long id);
 }

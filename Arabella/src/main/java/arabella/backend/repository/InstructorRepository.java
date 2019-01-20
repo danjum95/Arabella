@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface InstructorRepository extends JpaRepository<Instructor, Long> {
+    void deleteByUserId(Long id);
 
     Optional<Instructor> findByUserId(Long id);
 

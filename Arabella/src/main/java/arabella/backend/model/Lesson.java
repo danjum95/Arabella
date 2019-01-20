@@ -1,5 +1,8 @@
 package arabella.backend.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -28,13 +31,11 @@ public class Lesson {
 
     private String title;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "instructorId", referencedColumnName ="id", insertable = false, updatable = false)
     private User instructor;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "studentId", referencedColumnName ="id", insertable = false, updatable = false)
     private User student;
 

@@ -1,5 +1,8 @@
 package arabella.backend.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -18,13 +21,11 @@ public class Message {
     @NotNull
     private String message;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "senderId", referencedColumnName ="id", insertable = false, updatable = false)
     private User sender;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "receiverId", referencedColumnName ="id", insertable = false, updatable = false)
     private User receiver;
 

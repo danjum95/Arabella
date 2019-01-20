@@ -13,6 +13,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -36,6 +37,21 @@ public class UserRestController {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    SchoolRepository schoolRepository;
+
+    @Autowired
+    ContractRepository contractRepository;
+
+    @Autowired
+    MessageRepository messageRepository;
+
+    @Autowired
+    RefreshTokenRepository refreshTokenRepository;
+
+    @Autowired
+    LessonRepository lessonRepository;
 
     @Autowired
     InstructorRepository instructorRepository;
@@ -189,7 +205,7 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/which/type/of/user")
+        @GetMapping("/which/type/of/user")
     public ResponseEntity getTypeOfUser(@RequestHeader("Token") String givenToken) {
         User user = sessionController.getUserFromToken(givenToken);
 
@@ -218,6 +234,49 @@ public class UserRestController {
         } else {
             return new ResponseEntity<>("Not belong to school", HttpStatus.NOT_FOUND);
         }
+    }
+
+    @DeleteMapping("/{userId}")
+    @Transactional
+    public ResponseEntity disableStudent(@RequestHeader("Token") String token, @PathVariable("userId") Long idOfUserToRemove) {
+        User user = sessionController.getUserFromToken(token);
+
+        School school = sessionController.findSchoolOfGivenUser(user);
+
+        if (school == null ) {
+            return new ResponseEntity<>("You doesn't belong to school", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!sessionController.isOwnerOfGivenSchool(user, school.getId())) {
+            return new ResponseEntity<>("You doesn't have sufficient permissions to remove User",HttpStatus.UNAUTHORIZED);
+        }
+
+        Optional<User> userToRemove = userRepository.findById(idOfUserToRemove);
+
+        if (!userToRemove.isPresent()) {
+            return new ResponseEntity<>("User to remove not found", HttpStatus.NOT_FOUND);
+        }
+
+        School schoolOfUserToRemove = sessionController.findSchoolOfGivenUser(userToRemove.get());
+        if (schoolOfUserToRemove == null) {
+            return new ResponseEntity<>("User's school not found", HttpStatus.NOT_FOUND);
+        }
+        if (!schoolOfUserToRemove.getId().equals(school.getId())) {
+            return new ResponseEntity<>("Not the same school", HttpStatus.BAD_REQUEST);
+        }
+
+        contractRepository.deleteAllByUserId(idOfUserToRemove);
+        messageRepository.deleteAllBySenderId(idOfUserToRemove);
+        messageRepository.deleteAllByReceiverId(idOfUserToRemove);
+        lessonRepository.deleteAllByStudentId(idOfUserToRemove);
+        lessonRepository.deleteAllByInstructorId(idOfUserToRemove);
+        studentRepository.deleteByUserId(idOfUserToRemove);
+        instructorRepository.deleteByUserId(idOfUserToRemove);
+        refreshTokenRepository.deleteAllByUid(idOfUserToRemove);
+        tokenRepository.deleteAllByUserId(idOfUserToRemove);
+        userRepository.delete(userToRemove.get());
+
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     private String generateActivationCode() {
