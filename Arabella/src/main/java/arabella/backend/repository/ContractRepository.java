@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ContractRepository extends JpaRepository<Contract, Long> {
 
+    void deleteAllByUserId(Long id);
+
     List<Contract> findAllBySchoolId(Long id);
 
     List<Contract> findByUserId(Long id);

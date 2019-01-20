@@ -1,5 +1,8 @@
 package arabella.backend.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,8 +16,10 @@ public class Student {
 
     private Long userId;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @Column(nullable = false)
+    private Boolean active = Boolean.TRUE;
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", referencedColumnName ="id", insertable = false, updatable = false)
     private User user;
 
@@ -48,5 +53,13 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

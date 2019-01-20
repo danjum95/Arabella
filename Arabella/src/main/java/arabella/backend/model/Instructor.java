@@ -1,5 +1,8 @@
 package arabella.backend.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,8 +16,7 @@ public class Instructor {
 
     private Long userId;
 
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", referencedColumnName ="id", insertable = false, updatable = false)
     private User user;
 

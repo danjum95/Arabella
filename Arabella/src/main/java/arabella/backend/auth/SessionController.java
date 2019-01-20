@@ -46,7 +46,8 @@ public class SessionController {
     }
 
     public boolean isStudentOfGivenSchool(User user, Long schoolId) {
-        if (studentRepository.findByUserIdAndSchoolId(user.getId(), schoolId).isPresent()) {
+        Optional<Student> student = studentRepository.findByUserIdAndSchoolId(user.getId(), schoolId);
+        if (student.isPresent()) {
             return true;
         }
         return false;
@@ -77,6 +78,10 @@ public class SessionController {
         Optional<User> user = userRepository.findById(checkToken(token).getUserId());
 
         if(user.isPresent()) {
+            if (user.get().getActivated() == Boolean.FALSE) {
+                throw new RestClientException("User not activated!");
+            }
+
             return user.get();
         }
 

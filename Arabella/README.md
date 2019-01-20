@@ -11,6 +11,8 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `PUT` - [User](src/main/java/arabella/backend/model/User.java)(group = New.class) - add user to DB abd returns `Token`
 
+`PUT` (`/already/activated`) - Header `Token` (of School), [User](src/main/java/arabella/backend/model/User.java)(group = New.class) - add user to DB abd returns `Token`, this endpoint will not send an email - user will be already activated
+
 `GET` (`/user/info`) - Header `Token` - Returns info about user which use given `Token`
 
 `GET` (`/{id}`) - None (temporary) - Shows DB information about user of given `id`
@@ -23,7 +25,9 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 `POST` (`/change/password`) - Header `Token`, [User](src/main/java/arabella/backend/model/User.java) (only password field) - Changes password if not the same
 
-`POST` (`/change/email`) - Header `Token`, [User](src/main/java/arabella/backend/model/User.java) (only email field) - Changes email if not the same and new email not already used 
+`POST` (`/change/email`) - Header `Token`, [User](src/main/java/arabella/backend/model/User.java) (only email field) - Changes email if not the same and new email not already used
+
+`DELETE` (`/{id}`) - Header `Token` (of School) - Remove user of type student or instructor 
 
 ### Students - `/api/students`
 
@@ -35,11 +39,15 @@ METHOD (APPEND TO PATH) - REQUIRE PARAMS (VALIDATION TYPE) - DESCRIPTION
 
 ### Login - `/api/login`
 
-`POST` - [User](src/main/java/arabella/backend/model/User.java) (Only `email`, `password`) - Returns `token`, `refresh-token` and `userId` if logged
+`POST` - [User](src/main/java/arabella/backend/model/User.java) (Only `email`, `password`) - Returns status `200` `token`, `refresh-token` and `userId`; Status `400` when missing fields; `401` when user not activated; `404` when given user not found; `409` when password doesn't match
 
 `POST` (`/check`) - Header `Token`, Header `Refresh-Token` - Returns status `404` when `token` expired or `userId` with status `200`
 
 `POST` (`/renew`) - Header `Token`, Header `Refresh-Token` - Returns `token`, `refresh-token` and `uid` with status `200` or `404` when no matching `Refresh-Token`
+
+### Activation - `/api/activate`
+
+`GET` - (`/account/{activationCode}`) - Activates account which is associated with that activationCode - Returns `200` when activated, `404` when unrecognized  `activationCode` or `500` when `activationCode` indicates on non-existing account 
 
 ### Messages - `/api/messages`
 
