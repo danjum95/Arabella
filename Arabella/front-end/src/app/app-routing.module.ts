@@ -16,6 +16,8 @@ import { KursantMenuComponent } from './kursant-menu/kursant-menu.component';
 import { MapComponent } from './map/map.component';
 import { InstruktorListKursantComponent } from './instruktor-list-kursant/instruktor-list-kursant.component';
 import { OskListComponent } from './osk-list/osk-list.component';
+import { SendLinkActiveComponent } from './send-link-active/send-link-active.component';
+import { SendActiveOskComponent } from './send-active-osk/send-active-osk.component';
 
 const routes: Routes = [
   {
@@ -123,6 +125,14 @@ const routes: Routes = [
   {
     path: 'oskList',
     component: OskListComponent
+  },
+  {
+    path: 'sendEmail',
+    component: SendLinkActiveComponent
+  },
+  {
+    path: 'activeOsk',
+    component: SendActiveOskComponent
   }
 ];
 

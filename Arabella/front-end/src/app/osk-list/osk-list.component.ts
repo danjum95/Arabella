@@ -22,9 +22,12 @@ export class OskListComponent implements OnInit {
     this.allOsk$ = this.Auth.getSchools();
   }
 
-  id(event) {
-    this.Auth.cotractKursant(localStorage.getItem('newUser'), event.target.id).subscribe();
+  reg(id) {
     setTimeout(() => {
+      this.Auth.cotractKursant(localStorage.getItem('newUser'), id).subscribe();
+    }, 100);
+    setTimeout(() => {
+      localStorage.removeItem('newUser');
       this.router.navigate(['']);
     }, 500);
   }

@@ -5,111 +5,65 @@
 />
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <app-nav-bar></app-nav-bar>
 
-<mat-card class="login-card">
-  <mat-card-header>
-    <mat-card-title>Rejestracja</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="myForm" class="login-form">
-      <table class="login-table" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                formControlName="oskName"
-                type="text"
-                name="oskName"
-                placeholder="Nazwa OSK"
-                [(ngModel)]="oskName"
-                class="data"
-                required
-              />
+<div class="container">
+    <div class="loginForm">
+      <div class="main-div">
+        <div class="panel">
+          <h2>Rejestracja</h2>
+        </div>
+        <div class="login-container">
+            <mat-form-field>
+                <input matInput [(ngModel)]="oskName" placeholder="Nazwa OSK" [formControl]="oskNameControl" required>
+                <mat-error *ngIf="oskNameControl.invalid">{{getErrorMessageOskName()}}</mat-error>
             </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                formControlName="name"
-                type="text"
-                name="name"
-                placeholder="Imię"
-                [(ngModel)]="name"
-                class="data"
-                required
-              />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                formControlName="lastname"
-                type="text"
-                name="lastname"
-                placeholder="Nazwisko"
-                [(ngModel)]="lastname"
-                class="data"
-                required
-              />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                formControlName="email"
-                type="text"
-                name="email"
-                placeholder="Email"
-                [(ngModel)]="email"
-                class="data"
-                required
-              />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                formControlName="password"
-                type="password"
-                name="password"
-                placeholder="Hasło"
-                floatPlaceholder="never"
-                [(ngModel)]="password"
-                class="data"
-                required
-              />
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button (click)="register()" id="login" mat-raised-button>
-      Zarejestruj
-    </button>
-  </mat-card-actions>
-</mat-card>
 
-<div class="error-message" *ngIf="errorMessage">
-  Nieprawidłowy e-mail bądź któreś z pól pozostało puste
-</div>
+            <mat-form-field>
+              <input matInput [(ngModel)]="name" placeholder="Imię" [formControl]="nameControl" required>
+              <mat-error *ngIf="nameControl.invalid">{{getErrorMessageName()}}</mat-error>
+            </mat-form-field>
 
-<div class="error-message" *ngIf="errorMessage">Dane osk już istnieje!</div>
+            <mat-form-field>
+              <input matInput [(ngModel)]="lastname" placeholder="Nazwisko" [formControl]="lastnameControl" required>
+              <mat-error *ngIf="lastnameControl.invalid">{{getErrorMessageLastname()}}</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <input matInput [(ngModel)]="email" placeholder="E-mail" [formControl]="emailControl" required>
+              <mat-error *ngIf="emailControl.invalid">{{getErrorMessageEmail()}}</mat-error>
+            </mat-form-field>
+          
+            <mat-form-field>
+              <input matInput [(ngModel)]="password" placeholder="Hasło" [formControl]="passwordControl" [type]="hide ? 'password' : 'text'" required>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error *ngIf="passwordControl.invalid">{{getErrorMessagePassword()}}</mat-error>
+            </mat-form-field>
 
-<div class="success-message" *ngIf="successMessage">Zarejestrowano!</div>
+            <mat-form-field>
+                <input matInput [(ngModel)]="password2" placeholder="Podaj hasło ponownie" [formControl]="passwordControl2" type="password" required>
+                <mat-error *ngIf="passwordControl2.invalid">{{getErrorMessagePassword()}}</mat-error>
+            </mat-form-field>
+
+        </div>
+        <div class="button">
+            <button class="btn btn-primary" (click)="register()">Zarejestruj</button>
+        </div>
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="errorDataMessage">
+          Dana osoba już istnieje !
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="isWrongPasswords">
+        Podane hasła nie są takie same !
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          Nieprawidłowe dane !
+      </div>
+
+      <div class="alert alert-success" *ngIf="successMessage">
+        Zarejestrowano!
+      </div>
+    </div>
+  </div>

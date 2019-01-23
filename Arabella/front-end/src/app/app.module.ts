@@ -26,6 +26,8 @@ import { MatDialogModule, MatTableModule, MatCheckboxModule, MatButtonModule,
 import { AddLessonsComponent } from './add-lessons/add-lessons.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SendLinkActiveComponent } from './send-link-active/send-link-active.component';
+import { SendActiveOskComponent } from './send-active-osk/send-active-osk.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     MapComponent,
     AddLessonsComponent,
     NavBarComponent,
+    SendLinkActiveComponent,
+    SendActiveOskComponent,
   ],
   imports: [
     BrowserModule,

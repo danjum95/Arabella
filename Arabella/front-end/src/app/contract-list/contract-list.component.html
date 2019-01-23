@@ -1,25 +1,43 @@
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr class="thead">
-        <th *ngFor="let col of columns">{{ col }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let contract of (allContracts$ | async)">
-        <td *ngIf="!(contract.status == 2)">{{ contract.user.name }}</td>
-        <td *ngIf="!(contract.status == 2)">{{ contract.user.email }}</td>
-        <td *ngIf="!(contract.status == 2)" class="td-actions">
-          <span
-            (click)="id($event)"
-            class="glyphicon glyphicon-plus"
-            id="{{ contract.id }}"
-          ></span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table *ngIf="!errorMessage" class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th *ngFor="let col of columns">{{ col }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let contract of (allContracts$ | async)">
+              <td [ngStyle]="{ 'font-size': '2.5vh' }" *ngIf="!(contract.status == 2)">{{ contract.user.name }}</td>
+              <td [ngStyle]="{ 'font-size': '2.5vh' }" *ngIf="!(contract.status == 2)">{{ contract.user.email }}</td>
+              <td *ngIf="!(contract.status == 2)" class="but">
+                <button type="button" class="btn btn-success" (click)="id($event)">
+                  <span class="glyphicon glyphicon-ok" id="{{ contract.id }}"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-success" *ngIf="message">
+      Osoba została zatwierdzona !
+  </div>
+
+  <div class="alert alert-warning" *ngIf="errorMessage">
+      Brak osób do zatwierdzenia
+  </div>
 </div>
-<div class="message" *ngIf="message">
-  Osoba została zatwierdzona
-</div>
+

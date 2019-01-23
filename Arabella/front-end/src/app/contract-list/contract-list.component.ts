@@ -12,6 +12,7 @@ export class ContractListComponent implements OnInit {
 
   message = false;
   allContracts$: Observable<Array<contractListInterface>>;
+  errorMessage = false;
 
   columns: string[];
 
@@ -23,8 +24,21 @@ export class ContractListComponent implements OnInit {
   }
 
   loadData () {
-    this.columns = ['Użytkownik', 'E-mail', 'Zatwierdź'];
-    this.allContracts$ = this.Auth.getAllContracts(localStorage.getItem('userToken'));
+    this.Auth.getAllContracts(localStorage.getItem('userToken')).subscribe(data => {
+      if (data.length === 0) {
+        this.errorMessage = true;
+      } else {
+        for ( let i = 0; i < data.length; i++) {
+          if (data[i].status === 2) {
+            this.errorMessage = true;
+          }
+        }
+      }
+    });
+    setTimeout(() => {
+      this.columns = ['Użytkownik', 'E-mail', 'Zatwierdź'];
+      this.allContracts$ = this.Auth.getAllContracts(localStorage.getItem('userToken'));
+    }, 300);
   }
 
   id(event) {

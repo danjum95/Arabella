@@ -4,20 +4,32 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.css"
 />
 
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
 <div class="container" *ngIf="calendarOptions">
-  <ng-fullcalendar
-    #ucCalendar
-    [options]="calendarOptions"
-    (eventClick)="eventClick($event.detail)"
-    [(eventsModel)]="events"
-  ></ng-fullcalendar>
-  <div *ngIf="isInstructor" class="mat-app-background basic-container">
-    <button
-      mat-raised-button
-      class="btn btn-success btn-sm"
-      (click)="openDialog()"
-    >
-      Dodaj lekcje
-    </button>
+    <div class="row">
+      <div class="col-xs-12">
+          <ng-fullcalendar
+          #ucCalendar
+          [options]="calendarOptions"
+          (eventClick)="eventClick($event.detail)"
+          [(eventsModel)]="events">
+          </ng-fullcalendar>
+          <div *ngIf="isInstructor" class="mat-app-background basic-container">
+            <button
+              mat-raised-button
+              class="btn btn-success btn-sm"
+              (click)="openDialog()">
+                Dodaj lekcje
+            </button>
+          </div>
+      </div>
+    </div>
   </div>
-</div>

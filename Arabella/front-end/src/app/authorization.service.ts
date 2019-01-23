@@ -42,6 +42,7 @@ export class AuthorizationService {
   }
 
   cotractInstruktor(token, id): any {
+    console.log(token);
     return this.http.put(this.url + '/contract/instructor/of/school/' + id, null, {
       headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
@@ -61,18 +62,15 @@ export class AuthorizationService {
     return this.http.post(this.url + '/users/change/email', data, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
-  studentMinutes(token, studentId, schoolId):any
-  {
+  studentMinutes(token, studentId, schoolId):any {
     return this.http.get(this.url + '/how/many/minutes/student/' + studentId + '/of/school/' + schoolId + '/drove', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
-  specificstudentMinutes(token)
-  {
+  specificstudentMinutes(token) {
     return this.http.get(this.url + '/lessons/students/drives/durations', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
-  schoolstudentsMinutes(token)
-  {
+  schoolstudentsMinutes(token) {
     return this.http.get(this.url + '/lessons/students/drives/durations', {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
@@ -124,8 +122,7 @@ export class AuthorizationService {
     return this.http.get(this.url + '/lessons/of/school/' + schoolId, {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 
-  getMap(lessonId): any
-  {
+  getMap(lessonId): any {
     return this.http.get(this.url + '/maps/' + lessonId, {headers: {'Content-Type' : 'application/json'}});
   }
 
@@ -138,6 +135,23 @@ export class AuthorizationService {
     const data = {status: status};
     return this.http.put(this.url + '/contract/change/status/of/' + contractId, data, {
       headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
+  activeUser(activationCode) {
+    return this.http.get(this.url + '/activate/account/' + activationCode,
+    {headers: {'Content-Type' : 'application/json'}});
+  }
+
+  delete(userId, token) {
+
+    return this.http.delete(this.url + '/users/' + userId,
+    {headers: {'Content-Type' : 'application/json', 'Token' : token}});
+  }
+
+  addInstructors(firstName, lastName, email, password, token): any {
+    const data = {firstName: firstName, lastName: lastName, email: email, password: password};
+    return this.http.put(this.url + '/users/already/activated', data, 
+    {headers: {'Content-Type' : 'application/json', 'Token' : token}});
   }
 }
 

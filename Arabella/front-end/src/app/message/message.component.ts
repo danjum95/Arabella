@@ -18,21 +18,18 @@ export class MessageComponent implements OnInit {
   rev$: Observable<Array<IReceivedMessageInterface>>;
 
   constructor(private Auth: AuthorizationService, private fb: FormBuilder) {
-    this.msgForm = fb.group({
-      'to': [null, Validators.required],
-      'textMessage': [null, Validators.required]
-    });
   }
   
   ngOnInit() {
     this.getMessages();
   }
-
+  
   getMessages() {
     this.rev$ = this.Auth.getAllMessages(localStorage.getItem('userToken'));
   }
 
   sendMessage() {
+    this.positive = true;
     this.Auth.getUsersToMessage(localStorage.getItem('userToken')).subscribe(data => {
       this.positive = true;
       data.forEach(element => {

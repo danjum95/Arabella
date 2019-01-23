@@ -1,25 +1,41 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-  <div class = "container">
-      <div class = "mess">
-        <div class="listlessons2">Lista Twoich lekcji: </div>          
-        <div class="listlessons">
-            <div *ngFor="let lesson of lessonsId; let i=index " >
-                <a (click)="getMap(lesson)" >Lekcja {{ i+1 }}</a>
+<div class = "container">
+    <div class = "row">
+        <div class="col-xs-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th [ngStyle]="{ 'font-size': '2.5vh' }">Lista lekcji</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let lesson of lessonsId; let i=index " >
+                            <td (click)="getMap(lesson)" [ngStyle]="{ 'font-size': '2.5vh' }">Lekcja {{ i+1 }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-      </div>
-      <div id="popup" class="ol-popup">
-            <a id="popup-closer" class="ol-popup-closer"></a>
-            <div id="popup-content"></div>
-      </div>
-      <div *ngIf = "!mapRendered" id="map" class="map"></div>
-      <div class="error-message" *ngIf = "!mapRendered && mapNotDefined" >
-         <p> Brak mapy dla tej jazdy</p>
-      </div>
-      <div class="error-message error-message2" *ngIf = "mapRendered && mapNotDefined" >
-          <p>Mapa już została wygenerowana</p>
-      </div>
+
+        <div class="col-xs-9 offset-xs-1">
+            <div id="popup" class="ol-popup">
+                <a id="popup-closer" class="ol-popup-closer"></a>
+                <div id="popup-content"></div>
+            </div>
+            <div *ngIf = "!mapRendered" id="map" class="map"></div>
+
+
+            <div class="alert alert-danger" role="alert" *ngIf = "!mapRendered && mapNotDefined">
+                    Brak mapy dla tej jazdy !
+            </div>
+        </div>
+    </div>
 </div>

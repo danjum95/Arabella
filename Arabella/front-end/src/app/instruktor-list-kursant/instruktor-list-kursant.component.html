@@ -1,16 +1,31 @@
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr class="thead">
-        <th *ngFor="let col of columns">{{ col }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let instruktor of (allInstruktors$ | async)">
-        <td>{{ instruktor.user.firstName }}</td>
-        <td>{{ instruktor.user.lastName }}</td>
-        <td>{{ instruktor.user.email }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th [ngStyle]="{ 'font-size': '2.5vh' }" *ngFor="let col of columns">{{ col }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let instruktor of (allInstruktors$ | async)">
+              <td [ngStyle]="{ 'font-size': '2.5vh' }"> {{ instruktor.user.firstName }}</td>
+              <td [ngStyle]="{ 'font-size': '2.5vh' }"> {{ instruktor.user.lastName }}</td>
+              <td [ngStyle]="{ 'font-size': '2.5vh' }"> {{ instruktor.user.email }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

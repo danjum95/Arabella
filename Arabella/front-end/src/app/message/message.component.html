@@ -1,15 +1,25 @@
-<html>
-  <head>
+
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
       type="text/css"
       rel="stylesheet"
     />
-  </head>
-  <body>
+    <link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
     <div class="container">
-        <h3 class="text-right">Wyślij wiadomość</h3>
+      <div class= "title">
+        <h3 id="title">Wyślij wiadomość</h3>
+      </div>
       <div class="inbox_msg">
+        <div>
+          <p>Skrzynka odbiorczka</p>
+        </div>
         <div class="inbox_people">
           <div class="inbox_chat" *ngFor="let message of (rev$ | async)">
             <div class="chat_list">
@@ -22,37 +32,32 @@
         </div>
         <div class="mesgs">
           <div class="type_msg">
-            <form (submit)="sendMessage($event)" class="input_msg_write" [formGroup]="msgForm">
+            <div class="input_msg_write">
               <input
                 type="text"
-                class="write_msg"
+                class="send_to"
                 placeholder="Odbiorca"
-                formControlName="to"
                 [(ngModel)]="to"
                 name="to"
                 required
               />
               <textarea
                 type="text"
-                class="write_msg"
-                id="textMessage"
-                formControlName="textMessage"
+                class="message_to"
                 placeholder="Wiadomość"
                 [(ngModel)]="textMessage"
                 name="textMessage"
-                required
-              >
+                required>
               </textarea>
-              <button type="submit" class="msg_send_btn">
+              <button (click)="sendMessage()" class="msg_send_btn">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
-  <div class="positive-message" *ngIf="positive">
+  <div class="alert alert-success" role="alert" *ngIf="positive">
     Wiadomość została wysłana!
   </div>
-</html>
+

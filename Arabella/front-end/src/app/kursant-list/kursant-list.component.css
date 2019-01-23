@@ -1,7 +1,7 @@
 .button1 {
-  padding: 16px 32px;
+  padding: 10px 20px;
   position: block;
-  background-color: rgba(199, 195, 175, 0.65);
+  background-color: rgba(255, 255, 255, 0.75);
   border: none;
   transition: 1s;
   cursor: pointer;
@@ -9,59 +9,54 @@
 }
 
 .button2 {
-  padding: 16px 32px;
+  padding: 10px 20px;
   position: block;
-  background-color: rgba(128, 128, 134, 0.75);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
   border: none;
   transition: 1s;
   cursor: pointer;
   display: inline-block;
 }
 
+.btt {
+  width: 50%;
+  margin: auto;
+}
+
 .button1:hover {
-  background-color: rgba(128, 128, 134, 0.75);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
 }
 
 .table {
-  width: 60%;
-}
-
-.thead {
-  background-color: rgba(128, 128, 134, 0.75);
-  border-bottom: 5px solid;
-}
-
-th,
-td {
+  width: 50%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 5px;
   text-align: center;
-  padding: 8px;
+}
+
+.but {
+  text-align: center;
+}
+
+.table-responsive {
+  border: none;
+}
+
+th {
+  text-align: center;
+}
+
+.alert {
+  width: 50%;
   font-size: 18px;
-  justify-content: center;
-}
-
-td {
-  background-color: rgba(199, 195, 175, 0.65);
-}
-
-tbody :hover {
-  background-color: rgba(199, 195, 175, 0.75);
+  text-align: center;
+  margin: auto;
+  margin-top: 2vh;
 }
 
 .container {
-  width: 80%;
-  margin: auto;
-  margin-top: 15%;
-  margin-left: 25%;
+  margin-top: 25vh;
 }
-
-@media screen and (max-width: 767px) {
-  .button{
-    transform: scale(0.8)!important;
-    margin-left: -15px;
-    }
-    .table
-  {
-    margin-top: -20px;
-    transform: scale(0.8)!important;
-  }
-  }
