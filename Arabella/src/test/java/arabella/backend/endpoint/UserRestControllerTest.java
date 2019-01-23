@@ -64,7 +64,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -76,11 +76,11 @@ public class UserRestControllerTest {
 
         )
                 .andDo(print())
-                .andExpect(jsonPath("$.id").value("2"))
-                .andExpect(jsonPath("$.firstName").value("Pawel"))
-                .andExpect(jsonPath("$.lastName").value("Kowalski"))
-                .andExpect(jsonPath("$.email").value("danjum@wp.pl"))
-                .andExpect(jsonPath("$.name").value("Pawel Kowalski"))
+                .andExpect(jsonPath("$.id").value("3"))
+                .andExpect(jsonPath("$.firstName").value("Patryk"))
+                .andExpect(jsonPath("$.lastName").value("Nowak"))
+                .andExpect(jsonPath("$.email").value("danjum95@gmail.com"))
+                .andExpect(jsonPath("$.name").value("Patryk Nowak"))
                 .andExpect(status().isOk());
 
 
@@ -94,7 +94,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -160,7 +160,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -187,7 +187,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -213,7 +213,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -239,7 +239,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -266,7 +266,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -293,7 +293,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -316,7 +316,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -339,7 +339,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -362,7 +362,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -410,7 +410,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -455,7 +455,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 

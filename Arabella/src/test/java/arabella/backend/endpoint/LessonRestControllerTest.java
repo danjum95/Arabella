@@ -41,7 +41,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"piotr.owsiak@wp.pl\",\"password\": \"instruktor\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -53,7 +53,7 @@ public class LessonRestControllerTest {
         ResultActions result = mvc.perform(put("/api/lessons")
                 .contentType(MediaType.APPLICATION_JSON)//jan
                 .header("Token",token)
-                .content("{\"studentId\": \"4\",\"date\": \"2090-03-12T12:30:00\",\"endDate\": \"2090-03-12T15:00:00\"}")
+                .content("{\"studentId\": \"2\",\"date\": \"2090-03-12T12:30:00\",\"endDate\": \"2090-03-12T15:00:00\"}")
 
         )
                 .andDo(print())
@@ -89,7 +89,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -133,7 +133,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -176,7 +176,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 

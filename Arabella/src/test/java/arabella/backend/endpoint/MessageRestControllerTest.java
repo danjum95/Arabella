@@ -46,7 +46,7 @@ public class MessageRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -71,7 +71,7 @@ public class MessageRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -110,7 +110,7 @@ public class MessageRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -122,11 +122,11 @@ public class MessageRestControllerTest {
         ResultActions result = mvc.perform(put("/api/messages")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token",token)
-                .content("{\"receiverId\": \"1\",\"message\": \"Moja testowa wiadomosc\"}")
+                .content("{\"receiverId\": \"2\",\"message\": \"Moja testowa wiadomosc\"}")
         )
                 .andDo(print())
-                .andExpect(jsonPath("$.senderId").value("4"))
-                .andExpect(jsonPath("$.receiverId").value("1"))
+                .andExpect(jsonPath("$.senderId").value("3"))
+                .andExpect(jsonPath("$.receiverId").value("2"))
                 .andExpect(status().isOk());
 
 

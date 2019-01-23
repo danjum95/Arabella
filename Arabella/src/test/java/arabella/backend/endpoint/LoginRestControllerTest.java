@@ -50,7 +50,7 @@ public class LoginRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}")
+                .content("{\"email\": \"danjum95@gmail.com\",\"password\": \"kursant\"}")
         )
                 .andDo(print())
                 .andExpect(jsonPath("$.userId").value("4"))
