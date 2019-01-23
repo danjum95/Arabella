@@ -68,7 +68,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"osk\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -111,7 +111,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"osk\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -220,7 +220,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"osk\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 

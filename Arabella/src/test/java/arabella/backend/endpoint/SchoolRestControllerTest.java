@@ -41,7 +41,7 @@ public class SchoolRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"osk\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -63,7 +63,7 @@ public class SchoolRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"osk\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -72,7 +72,7 @@ public class SchoolRestControllerTest {
         ResultActions result = mvc.perform(put("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token",token)
-                .content("{\"name\": \"OSK Warszawa\"}")
+                .content("{\"name\": \"Szkola Testowa\"}")
 
 
         )
@@ -88,7 +88,7 @@ public class SchoolRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"osk\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -97,7 +97,7 @@ public class SchoolRestControllerTest {
         ResultActions result = mvc.perform(put("/api/schools")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token",token)
-                .content("{\"testname\": \"OSK Warszawa\"}")
+                .content("{\"testname\": \"Szkola Testowa\"}")
 
 
         )

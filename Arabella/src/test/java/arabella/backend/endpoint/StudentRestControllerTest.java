@@ -63,7 +63,7 @@ public class StudentRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"danjum95@gamil.com\",\"password\": \"danjum\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"osk\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
