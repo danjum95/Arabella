@@ -1,0 +1,32 @@
+<link
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+  rel="stylesheet"
+  id="bootstrap-css"
+/>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+    <div class="loginForm">
+      <div class="main-div">
+        <div class="panel">
+          <h2>Przepisz kod wysłany na e-mail</h2>
+        </div>
+        <div class="login-container">
+            <mat-form-field>
+              <input matInput [(ngModel)]="active" placeholder="Kod weryfikacyjny" [formControl]="activeControl" required>
+              <mat-error *ngIf="activeControl.invalid">{{getErrorMessageActive()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="button">
+            <button class="btn btn-primary" (click)="send()">Zatwierdź</button>
+        </div>
+      </div>
+
+      <div class="alert alert-danger" role="alert" *ngIf="errorMessage2">
+          Nieprawidłowy kod weryfikacyjny
+      </div>
+    </div>
+  </div>
+  

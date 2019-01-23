@@ -11,29 +11,32 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class LoginComponent {
 
+  emailControl = new FormControl('', [Validators.required, Validators.email]);
+  passwordControl = new FormControl('', [Validators.required]);
+
   errorMessage = false;
   noContract = false;
+  hide = true;
   myForm: FormGroup;
   email: any;
   password: any;
   token: string;
 
   constructor(private Auth: AuthorizationService, private router: Router, private fb: FormBuilder) {
-    this.myForm = fb.group({
-      'email': [null, Validators.compose([Validators.required, Validators.pattern('.+[@].+[\.].+')])],
-      'password': [null, Validators.required]
-    });
+  }
+
+  getErrorMessageEmail() {
+    return this.emailControl.hasError('required') ? 'Pole nie może być puste!' :
+        this.emailControl.hasError('email') ? 'Nieprawidłowy e-mail' :
+            '';
+  }
+
+  getErrorMessagePassword() {
+    return this.passwordControl.hasError('required') ? 'Pole nie może być puste!' :
+            '';
   }
 
   loginUser() {
-    if (this.myForm.invalid) {
-      this.errorMessage = true;
-    }
-
-    setTimeout(() => {
-      this.errorMessage = false;
-    }, 1500);
-
     this.Auth.login(this.email, this.password).subscribe(data => {
       localStorage.setItem('userToken', data.token);
       localStorage.setItem('userId', data.userId);
@@ -54,17 +57,19 @@ export class LoginComponent {
         },
         (err: HttpErrorResponse) => {
           this.noContract = true;
+
+          setTimeout(() => {
+            this.noContract = false;
+          }, 1500);
+
           });
-      }, 1000);
+      }, 10);
     },
     (err: HttpErrorResponse) => {
-      if (!this.errorMessage) {
         this.errorMessage = true;
-      }
 
       setTimeout(() => {
         this.errorMessage = false;
-        this.noContract = false;
       }, 1500);
     });
   }

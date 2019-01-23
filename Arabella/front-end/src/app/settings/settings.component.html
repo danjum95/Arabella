@@ -6,86 +6,47 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<link
-  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
-  rel="stylesheet"
-  id="bootstrap-css"
-/>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+  <div class="loginForm">
+    <div class="main-div">
+      <div class="panel">
+        <h2>Ustawienia</h2>
+      </div>
+      <div class="login-container">
+          <mat-form-field>
+              <input matInput [(ngModel)]="name" readonly>
+          </mat-form-field>
 
-<mat-card class="login-card">
-  <mat-card-header>
-    <mat-card-title>Ustawienia</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form class="login-form">
-      <table class="login-table" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                type="text"
-                name="name"
-                [(ngModel)]="name"
-                id="name"
-                class="data"
-                readonly
-              />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                type="text"
-                name="surname"
-                [(ngModel)]="surname"
-                class="data"
-                readonly
-              />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                type="text"
-                name="email"
-                [(ngModel)]="email"
-                class="data"
-                required
-              />
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field class="login-table" floatLabel="never">
-              <input
-                matInput
-                type="password"
-                name="password"
-                placeholder="Podaj nowe hasło"
-                floatPlaceholder="never"
-                [(ngModel)]="password"
-                class="data"
-                required
-              />
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button (click)="change()" id="login" mat-raised-button>Zapisz</button>
-  </mat-card-actions>
-</mat-card>
+          <mat-form-field>
+              <input matInput [(ngModel)]="surname" readonly>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <input matInput [(ngModel)]="email" placeholder="E-mail" [formControl]="emailControl" required>
+            <mat-error *ngIf="emailControl.invalid">{{getErrorMessageEmail()}}</mat-error>
+          </mat-form-field>
 
-<div class="success-message" *ngIf="successMessage">Zapisano!</div>
+          <mat-form-field>
+              <input matInput [(ngModel)]="password2" placeholder="Stare hasło" [formControl]="passwordControl2" type = "password" required>
+              <mat-error *ngIf="passwordControl2.invalid">{{getErrorMessagePassword2()}}</mat-error>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <input matInput [(ngModel)]="password" placeholder="Nowe hasło" [formControl]="passwordControl" [type]="hide ? 'password' : 'text'" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="passwordControl.invalid">{{getErrorMessagePassword()}}</mat-error>
+          </mat-form-field>
+      </div>
+      <div class="button">
+          <button class="btn btn-primary" (click)="change()">Zapisz</button>
+      </div>
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="successMessage">
+        Zapisano !
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="errorPassword">
+        Błędne hasło !
+    </div>
+  </div>
+</div>

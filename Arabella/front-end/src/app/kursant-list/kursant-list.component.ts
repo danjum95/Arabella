@@ -12,6 +12,8 @@ import { instruktorListInterface } from '../interface/instruktorListInterface';
 export class KursantListComponent implements OnInit {
 
   allKursants$: Observable<Array<instruktorListInterface>>;
+  authorization: boolean;
+  message = false;
 
   columns: string[];
 
@@ -35,11 +37,28 @@ export class KursantListComponent implements OnInit {
   }
 
   loadData () {
-    this.columns = ['Imię', 'Nazwisko', 'E-mail'];
+    this.Auth.getTypeOfUser(localStorage.getItem('userToken')).subscribe(data =>  {
+      if (data === 0) {
+        this.authorization = true;
+        this.columns = ['Imię', 'Nazwisko', 'E-mail', 'Usuń'];
+      } else {
+        this.columns = ['Imię', 'Nazwisko', 'E-mail'];
+        this.authorization = false;
+      }
+    });
 
     this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {
       this.allKursants$ = this.Auth.getStudents(localStorage.getItem('userToken'), data.id);
     });
+  }
+
+  id(user) {
+    this.message = true;
+    this.Auth.delete(user.id, localStorage.getItem('userToken')).subscribe();
+
+    setTimeout(() => {
+      this.message = false;
+    }, 1500);
   }
 
 }

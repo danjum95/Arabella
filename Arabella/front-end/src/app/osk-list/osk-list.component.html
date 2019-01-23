@@ -1,29 +1,34 @@
 <link
-  href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+  href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
   rel="stylesheet"
   id="bootstrap-css"
 />
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="contTable">
-  <div class="tab">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Wybierz ośrodek szkolenia kierowców</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let osk of (allOsk$ | async)">
-          <td [ngStyle]="{ 'padding-left': '15px' }">{{ osk.name }}</td>
-          <td class="but">
-            <button (click)="id($event)">
-              <i id="{{ osk.id }}" class="btn-icon-only icon-ok"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th [ngStyle]="{ 'font-size': '2.5vh' }" colspan="2" >Wybierz ośrodek szkolenia kierowców</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let osk of (allOsk$ | async)">
+              <td [ngStyle]="{ 'font-size': '2.5vh' }">{{ osk.name }}</td>
+              <td class="but">
+                  <button type="button" class="btn btn-success" (click)="reg(osk.id)">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

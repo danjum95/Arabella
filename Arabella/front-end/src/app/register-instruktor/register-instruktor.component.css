@@ -1,112 +1,75 @@
-.login-card {
-  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
-  margin: auto;
-  width: 260px;
-  margin-top: 15%;
-  background: #ffffffd3;
-  padding: 0;
-  height: 400px;
+.container {
+  margin-top: 10vh;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.mat-card-header {
-  background: #ffe4c4d2;
+.login-container > * {
+  width: 100%;
+}
+
+.panel {
+  background: none;
+}
+.panel h2 {  
+  color:#444444f8;
+  font-size:18px; 
+  margin:0 0 8px 0;
+}
+
+.main-div {
+  background: #ffffffb9 none repeat scroll 0 0;
+  border-radius: 2px;
+  margin: 10px auto 30px;
+  max-width: 38%;
+  padding: 50px 70px 70px 71px;
+}
+
+.loginForm{ text-align:center;}
+
+mat-form-field {
+  margin-bottom:10px;
+}
+
+.btn.btn-primary {
+  background: #f0ad4e none repeat scroll 0 0;
+  border-color: #f0ad4e;
+  color: #ffffff;
+  font-size: 16px;
+  width: 100%;
   height: 50px;
-  width: 70%;
-  margin: auto;
-  border-radius: 5px;
+  line-height: 50px;
+  padding: 0;
 }
 
-mat-card-header {
-  font-size: 30px;
+.btn.btn-primary:hover {
+  background: green;
 }
 
-mat-card-content {
-  padding: 10px;
-  margin-bottom: 0;
-  margin-left: 10%;
-  margin-top: 5%;
-}
-
-mat-card-actions {
+.alert {
+  width: 50%;
+  font-size: 18px;
   text-align: center;
-  margin-top: -30px;
-}
-
-mat-card-title {
   margin: auto;
-  margin-left: 20%;
-  margin-top: 10%;
 }
 
-.data {
-  border: none;
-  background: none;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-.data:focus {
-  outline: none;
-}
-
-#login {
-  font-size: 20px;
-  color: black;
-  border: none;
-}
-
-#login:hover {
-  color: rebeccapurple;
-  font-size: 21px;
-}
-
-button {
-  background: none;
-  padding: 10px;
-  margin-right: 15px;
-  color: white;
-  font-size: 15px;
-  border: none;
-}
-
-.error-message {
-  text-align: center;
-  background: rgba(255, 0, 0, 0.8);
-  width: 25%;
-  height: 8vh;
-  margin: auto;
-  margin-top: 5%;
-  padding: 5px;
-  font-size: 15px;
-  color: white;
-}
-
-.success-message {
-  text-align: center;
-  background: rgba(0, 255, 0, 0.8);
-  width: 25%;
-  height: 5vh;
-  margin: auto;
-  margin-top: 5%;
-  padding: 5px;
-  font-size: 15px;
-  color: white;
-}
-
-@media screen and (max-width: 768px) {
-  .login-card{
-    transform: scale(0.8);
+@media only screen and (max-width: 768px) {
+  .container {
+    margin-top: 0px;
   }
-  
-  .error-message {
-    text-align: center;
-    background: rgba(255, 0, 0, 0.8);
-    width: 25%;
-    height: 15vh;
-    margin: auto;
-    margin-top: 5%;
-    padding: 5px;
+  .main-div {
+    transform: scale(0.9);
+    padding: 10px 20px 20px 21px;
+  }
+
+  .panel h2 {
+    transform: scale(0.9);
     font-size: 15px;
-    color: white;
+  }
+
+  .login-container {
+    transform: scale(0.9);
   }
 }

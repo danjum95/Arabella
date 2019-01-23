@@ -1,54 +1,30 @@
 .table {
-  width: 60%;
+  width: 50%;
   margin: auto;
-  margin-top: 20%;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 5px;
+  text-align: center;
 }
-.thead {
-  background-color: rgba(128, 128, 134, 0.75);
-  border-bottom: 5px solid;
+
+.but {
+  text-align: center;
+}
+
+.row {
+  margin-top: 25vh;
+}
+
+.table-responsive {
+  border: none;
 }
 
 th {
   text-align: center;
-  padding: 8px;
+}
+
+.alert {
+  width: 50%;
   font-size: 18px;
-  justify-content: center;
-}
-
-td {
-  background-color: rgba(199, 195, 175, 0.65);
-  font-size: 15px;
-  font-weight: bold;
   text-align: center;
-}
-
-.message {
-  text-align: center;
-  background: rgba(0, 255, 0, 0.8);
-  width: 25%;
-  height: 5vh;
   margin: auto;
-  margin-top: 5%;
-  padding: 5px;
-  font-size: 15px;
-  color: white;
 }
-
-span {
-  font-size: 15px;
-}
-
-span:hover {
-  color: green;
-}
-
-span::after {
-  color: green;
-}
-
-@media screen and (max-width: 767px) {
-    .table
-  {
-    transform: scale(0.8)!important;
-  }
-  }

@@ -1,9 +1,8 @@
 import { AuthorizationService } from './../authorization.service';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
-import { OnInit, ViewChild, Component, ViewContainerRef } from '@angular/core';
-import { lessonListInterface } from '../interface/lessonListInterface';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { OnInit, ViewChild, Component } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { AddLessonsComponent } from '../add-lessons/add-lessons.component';
 import { Router } from '@angular/router';
 
@@ -184,7 +183,7 @@ export class CalComponent implements OnInit {
   }
 
   eventClick(model: any) {
-    alert("Opis dzisiejszej jazdy: " + model.event.title);
+    alert('Opis jazdy: ' + model.event.title);
     model = {
       event: {
         id: model.event.id,

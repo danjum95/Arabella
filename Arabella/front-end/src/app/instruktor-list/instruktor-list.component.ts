@@ -14,7 +14,8 @@ export class InstruktorListComponent implements OnInit {
   allInstruktors$: Observable<Array<instruktorListInterface>>;
 
   columns: string[];
-  email: any;
+  authorization: boolean;
+  message = false;
 
   constructor(private Auth: AuthorizationService, private router: Router) { }
 
@@ -36,28 +37,27 @@ export class InstruktorListComponent implements OnInit {
   }
 
   loadData () {
-    this.columns = ['Imię', 'Nazwisko', 'E-mail'];
+    this.Auth.getTypeOfUser(localStorage.getItem('userToken')).subscribe(data =>  {
+      if (data === 0) {
+        this.authorization = true;
+        this.columns = ['Imię', 'Nazwisko', 'E-mail', 'Usuń'];
+      } else {
+        this.columns = ['Imię', 'Nazwisko', 'E-mail'];
+        this.authorization = false;
+      }
+    });
 
     this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(data => {
       this.allInstruktors$ = this.Auth.getInstructors(localStorage.getItem('userToken'), data.id);
     });
   }
 
-  send(event) {
-    event.preventDefault();
-    this.email = event.target.innerHTML;
-    this.Auth.getTypeOfUser(localStorage.getItem('userToken')).subscribe(data =>  {
-      switch (data) {
-        case 0:
-          this.router.navigate(['oskMenu/message']);
-          break;
-        case 1:
-          this.router.navigate(['instruktorMenu/message']);
-          break;
-        case 2:
-        this.router.navigate(['kursantMenu/message']);
-        break;
-      }
-    });
+  id(user) {
+    this.message = true;
+    this.Auth.delete(user.id, localStorage.getItem('userToken')).subscribe();
+
+    setTimeout(() => {
+      this.message = false;
+    }, 1500);
   }
 }
