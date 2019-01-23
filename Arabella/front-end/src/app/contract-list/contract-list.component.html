@@ -22,8 +22,8 @@
               <td [ngStyle]="{ 'font-size': '2.5vh' }" *ngIf="!(contract.status == 2)">{{ contract.user.name }}</td>
               <td [ngStyle]="{ 'font-size': '2.5vh' }" *ngIf="!(contract.status == 2)">{{ contract.user.email }}</td>
               <td *ngIf="!(contract.status == 2)" class="but">
-                <button type="button" class="btn btn-success" (click)="id($event)">
-                  <span class="glyphicon glyphicon-ok" id="{{ contract.id }}"></span>
+                <button type="button" class="btn btn-success" (click)="reg(contract.id)">
+                  <span class="glyphicon glyphicon-ok"></span>
                 </button>
               </td>
             </tr>

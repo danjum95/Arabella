@@ -19,7 +19,7 @@
           </mat-form-field>
         
           <mat-form-field>
-            <input matInput [(ngModel)]="password" placeholder="password" [formControl]="passwordControl" [type]="hide ? 'password' : 'text'" required>
+            <input matInput [(ngModel)]="password" placeholder="Hasło" [formControl]="passwordControl" [type]="hide ? 'password' : 'text'" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             <mat-error *ngIf="passwordControl.invalid">{{getErrorMessagePassword()}}</mat-error>
           </mat-form-field>

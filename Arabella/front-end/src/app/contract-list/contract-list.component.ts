@@ -41,12 +41,13 @@ export class ContractListComponent implements OnInit {
     }, 300);
   }
 
-  id(event) {
+  reg(id) {
     this.message = true;
-    this.Auth.acceptContract(localStorage.getItem('userToken'), event.target.id, 2).subscribe();
+    this.Auth.acceptContract(localStorage.getItem('userToken'), id, 2).subscribe();
 
     setTimeout(() => {
       this.message = false;
     }, 1500);
   }
 }
+
