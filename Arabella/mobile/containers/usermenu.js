@@ -6,6 +6,8 @@ import axios from "axios";
 import {_env} from "../local/env";
 import styles from '../styles/styles'
 import { sendRequestSet } from "../utils/token-utils";
+import InstructorView from "./instructorView";
+import ParticipantView from "./participantView";
 
 class Usermenu extends React.Component {
 
@@ -54,7 +56,7 @@ class Usermenu extends React.Component {
       .catch(function (error) {
         ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
       });
-  }
+  };
 
   async userLogout() {
     try {
@@ -68,57 +70,32 @@ class Usermenu extends React.Component {
   }
 
   render() {
-    if(!(this.state.userInfo && this.state.userSchool)) {
+    if (this.state.userRole === 1) {
       return (
-        <ImageBackground source={require('../assets/background.jpg')} style={{width: '100%', height: '100%'}}>
-          <View style={{marginTop: 150}}>
-            <ActivityIndicator size="large" color="#0000ff" />
-          </View>
-        </ImageBackground>
-      );
-    }
-    else if (this.state.userRole === 1) {
-      return (
-        <ImageBackground source={require('../assets/background.jpg')} style={{width: '100%', height: '100%'}}>
-          <View style={{marginTop: 150}}>
-            <View style={styles.button}>
-              <Button onPress={() => {Actions.ProfileInfo({userInfo: this.state.userInfo, userRole: this.state.userRole})}} title="Mój profil" />
-            </View>
-            <View style={styles.button}>
-              <Button onPress={() => {Actions.Messages()}} title="Wiadomości" />
-            </View>
-            <View style={styles.button}>
-              <Button onPress={() => {Actions.Calendar({schoolID: this.state.userSchool.id})}} title="Kalendarz" />
-            </View>
-            <View style={styles.button}>
-              <Button onPress={() => {Actions.UsersList({schoolID: this.state.userSchool.id, userRole: this.state.userRole})}} title="Lista Kursantów" />
-            </View>
-            <View style={styles.button}>
-              <Button onPress={this.userLogout} title="Wyloguj" />
-            </View>
-          </View>
-        </ImageBackground>
+        <InstructorView
+          userInfo={this.state.userInfo}
+          userRole={this.state.userRole}
+          userSchool={this.state.userSchool}
+        />
       );
     }
     else if (this.state.userRole === 2) {
       return (
+        <ParticipantView
+          userInfo={this.state.userInfo}
+          userRole={this.state.userRole}
+          userSchool={this.state.userSchool}
+        />
+      );
+    }
+    else if(this.state.userRole === 0) {
+      return (
         <ImageBackground source={require('../assets/background.jpg')} style={{width: '100%', height: '100%'}}>
           <View style={{marginTop: 150}}>
-            <View style={styles.button}>
-              <Button onPress={() => {Actions.ProfileInfo({userInfo: this.state.userInfo, userRole: this.state.userRole})}} title="Mój profil" />
-            </View>
-            <View style={styles.button}>
-              <Button onPress={() => {Actions.Messages()}} title="Wiadomości" />
-            </View>
-            <View style={styles.button}>
-              <Button onPress={() => {Actions.CalendarReadOnly({schoolID: this.state.userSchool.id})}} title="Kalendarz" />
-            </View>
-            <View style={styles.button}>
-              <Button onPress={() => {Actions.UsersList({schoolID: this.state.userSchool.id, userRole: this.state.userRole})}} title="Lista Instruktorów" />
-            </View>
-            <View style={styles.button}>
-              <Button onPress={this.userLogout} title="Wyloguj" />
-            </View>
+            <Text style={{ fontSize: 16, alignSelf: 'center'}}>OSK nie ma dostępu do aplikacji mobilnej</Text>
+          </View>
+          <View style={styles.button}>
+            <Button onPress={this.userLogout} title="Wyloguj" />
           </View>
         </ImageBackground>
       );
@@ -127,10 +104,7 @@ class Usermenu extends React.Component {
       return (
         <ImageBackground source={require('../assets/background.jpg')} style={{width: '100%', height: '100%'}}>
           <View style={{marginTop: 150}}>
-            <Text style={{ fontSize: 16, alignSelf: 'center'}}>OSK nie ma dostępu do aplikacji mobilnej</Text>
-            <View style={styles.button}>
-              <Button onPress={this.userLogout} title="Wyloguj" />
-            </View>
+            <ActivityIndicator size="large" color="#0000ff" />
           </View>
         </ImageBackground>
       );

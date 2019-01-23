@@ -28,7 +28,6 @@ class UsersList extends React.Component {
       headers: { Token: token }
     })
       .then(function (response) {
-        console.log(response.data);
         response.data.forEach(element =>{
           const elementWithKey = element;
           elementWithKey["key"] = element.id.toString();
@@ -49,7 +48,6 @@ class UsersList extends React.Component {
       headers: { Token: token }
     })
       .then(function (response) {
-        console.log(response.data);
         response.data.forEach(element =>{
           const elementWithKey = element;
           elementWithKey["key"] = element.id.toString();
