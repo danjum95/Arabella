@@ -40,7 +40,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -64,7 +64,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -76,11 +76,11 @@ public class UserRestControllerTest {
 
         )
                 .andDo(print())
-                .andExpect(jsonPath("$.id").value("4"))
-                .andExpect(jsonPath("$.firstName").value("Student"))
-                .andExpect(jsonPath("$.lastName").value("Studentowski"))
-                .andExpect(jsonPath("$.email").value("student@student.pl"))
-                .andExpect(jsonPath("$.name").value("Student Studentowski"))
+                .andExpect(jsonPath("$.id").value("2"))
+                .andExpect(jsonPath("$.firstName").value("Pawel"))
+                .andExpect(jsonPath("$.lastName").value("Kowalski"))
+                .andExpect(jsonPath("$.email").value("danjum@wp.pl"))
+                .andExpect(jsonPath("$.name").value("Pawel Kowalski"))
                 .andExpect(status().isOk());
 
 
@@ -94,7 +94,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -103,7 +103,7 @@ public class UserRestControllerTest {
         ResultActions result = mvc.perform(post("/api/users/other/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Token",token)
-                .content("{\"email\": \"student@student.pl\"}")
+                .content("{\"email\": \"danjum@wp.pl\"}")
 
         )
                 .andDo(print())
@@ -119,7 +119,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -131,7 +131,7 @@ public class UserRestControllerTest {
 
         )
                 .andDo(print())
-                .andExpect(jsonPath("$.email").value("szkola@szkola.pl"))
+                .andExpect(jsonPath("$.email").value("paw.kow95@wp.pl"))
                 .andExpect(status().isOk());
 
 
@@ -157,10 +157,21 @@ public class UserRestControllerTest {
     @Test
     public void getUserInfo2() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/other/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2b6f9eaccc656827")
-                .content("{\"id\": \"4\"}")
+                .header("Token",token)
+                .content("{\"id\": \"2\"}")
 
         )
                 .andDo(print())
@@ -173,9 +184,20 @@ public class UserRestControllerTest {
     @Test
     public void getUserInfoError2() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/other/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2b6f9eaccc656827")
+                .header("Token",token)
                 .content("{\"id\": null}")
         )
                 .andDo(print())
@@ -188,9 +210,20 @@ public class UserRestControllerTest {
     @Test
     public void getUserInfoError1() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/other/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2b6f9eaccc656827")
+                .header("Token",token)
                 .content("{\"email\": null}")
         )
                 .andDo(print())
@@ -203,9 +236,20 @@ public class UserRestControllerTest {
     @Test
     public void getUserInfoWrongMail() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/other/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2b6f9eaccc656827")
+                .header("Token",token)
                 .content("{\"email\": \"testowymail@mail.pl\"}")
         )
                 .andDo(print())
@@ -219,9 +263,20 @@ public class UserRestControllerTest {
     @Test
     public void getUserInfoWrongId() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/other/user/info")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","2b6f9eaccc656827")
+                .header("Token",token)
                 .content("{\"id\": \"50000\"}")
         )
                 .andDo(print())
@@ -235,10 +290,21 @@ public class UserRestControllerTest {
     @Test
     public void changepassexists() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/change/password")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","4bf7cfc295100d7")
-                .content("{\"password\": \"janek\"}")
+                .header("Token",token)
+                .content("{\"password\": \"danjum\"}")
         )
                 .andDo(print())
                 .andExpect(status().isNotModified());
@@ -247,9 +313,20 @@ public class UserRestControllerTest {
     @Test
     public void changepassempty() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/change/password")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","4bf7cfc295100d7")
+                .header("Token",token)
                 .content("{\"password\": null}")
         )
                 .andDo(print())
@@ -259,10 +336,21 @@ public class UserRestControllerTest {
     @Test
     public void changemailexists() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/change/email")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","4bf7cfc295100d7")
-                .content("{\"email\": \"jan@test.pl\"}")
+                .header("Token",token)
+                .content("{\"email\": \"danjum95@gmail.pl\"}")
         )
                 .andDo(print())
                 .andExpect(status().isNotModified());
@@ -271,9 +359,20 @@ public class UserRestControllerTest {
     @Test
     public void changemailempty() throws Exception {
 
+        ResultActions res
+                = mvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
+
+        String resultString = res.andReturn().getResponse().getContentAsString();
+
+        System.out.println(resultString);
+
+        String token = JsonPath.parse(resultString).read("$.token");
+
         ResultActions result = mvc.perform(post("/api/users/change/email")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header("Token","4bf7cfc295100d7")
+                .header("Token",token)
                 .content("{\"email\": null}")
         )
                 .andDo(print())
@@ -287,7 +386,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+                .content("{\"email\": \"danjum95@gamil.com\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -311,7 +410,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -333,7 +432,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -356,7 +455,7 @@ public class UserRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 

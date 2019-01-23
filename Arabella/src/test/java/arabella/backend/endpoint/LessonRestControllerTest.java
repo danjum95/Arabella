@@ -41,7 +41,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"jan@test.pl\",\"password\": \"janek\"}"));
+                .content("{\"email\": \"danjum95@gmail.pl\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -68,7 +68,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -89,7 +89,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -111,7 +111,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -133,7 +133,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -155,7 +155,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+                .content("{\"email\": \"danjum95@gamil.com\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -176,7 +176,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}"));
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -199,7 +199,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"instruktor@instruktor.pl\",\"password\": \"qwer\"}"));
+                .content("{\"email\": \"danjum95@gamil.com\",\"password\": \"danjum\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 
@@ -220,7 +220,7 @@ public class LessonRestControllerTest {
         ResultActions res
                 = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"szkola@szkola.pl\",\"password\": \"szkola\"}"));
+                .content("{\"email\": \"paw.kow95@wp.pl\",\"password\": \"pawkow\"}"));
 
         String resultString = res.andReturn().getResponse().getContentAsString();
 

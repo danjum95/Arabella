@@ -50,7 +50,7 @@ public class LoginRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"student\"}")
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"danjum\"}")
         )
                 .andDo(print())
                 .andExpect(jsonPath("$.userId").value("4"))
@@ -65,7 +65,7 @@ public class LoginRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\",\"password\": \"studeddnt\"}")
+                .content("{\"email\": \"danjum@wp.pl\",\"password\": \"studeddnt\"}")
         )
                 .andDo(print())
                 .andExpect(status().isConflict());
@@ -79,7 +79,7 @@ public class LoginRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"email\": \"student@student.pl\"}")
+                .content("{\"email\": \"danjum@wp.pl\"}")
         )
                 .andDo(print())
                 .andExpect(status().isBadRequest())
@@ -94,7 +94,7 @@ public class LoginRestControllerTest {
 
         ResultActions result = mvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"password\": \"student\"}")
+                .content("{\"password\": \"danjum\"}")
         )
                 .andDo(print())
                 .andExpect(status().isBadRequest())
