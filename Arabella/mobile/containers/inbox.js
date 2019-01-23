@@ -79,6 +79,9 @@ class Inbox extends React.Component {
     return (
       <View style={styles.container}>
         {this.renderMessageModal()}
+        <Text style={{marginTop: 15}}>
+          Skrzynka odbiorcza ({this.state.messages.length}):
+        </Text>
         <FlatList
           data={this.state.messages}
           renderItem={({item}) =>

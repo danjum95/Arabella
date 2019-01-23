@@ -59,16 +59,16 @@ class Calendar extends React.Component {
         <Text style={styles.lightTextDate}>
           Kursant: {item.student.name}
         </Text>
-        {this.renderItemMapButton(item.done, item.id)}
+        {this.renderItemMapButton(item.done, item.id, item.date)}
       </View>
     );
   }
 
-  renderItemMapButton(done, id) {
+  renderItemMapButton(done, id, date) {
     if(!done)
       return (
         <View style={styles.bottomButton}>
-          <Button title='DODAJ TRASE' onPress={() => { Actions.Map({lessonId: id})} }/>
+          <Button title='DODAJ TRASE' onPress={() => { Actions.Map({lessonId: id, lessonDate: date})} }/>
         </View>
       );
     else

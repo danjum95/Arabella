@@ -2,6 +2,7 @@ import {includesObject} from "../utils/calendar-utils";
 
 export const calendarReducer = (state = {}, action) => {
   switch (action.type) {
+
     case 'ADD_EVENT':
       const dateString = action.payload.date.split('T')[0];
       if(dateString in state) {
@@ -22,6 +23,12 @@ export const calendarReducer = (state = {}, action) => {
       else
         return state;
 
+    case 'CHANGE_MAP_STATE':
+      state[action.payload.date].forEach(element => {
+        if(element.id === action.payload.id)
+          element.done = true;
+      });
+      return state;
 
     default:
       return state;

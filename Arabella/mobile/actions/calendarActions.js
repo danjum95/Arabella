@@ -11,3 +11,10 @@ export function addKeyWithoutValue( dateString ) {
     payload: dateString
   }
 }
+
+export function changeMapState( dateIdObject ) {
+  return {
+    type: "CHANGE_MAP_STATE",
+    payload: dateIdObject
+  }
+}

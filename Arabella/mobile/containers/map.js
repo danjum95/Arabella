@@ -1,12 +1,16 @@
 import React from 'react';
 import MapView, { Polyline } from 'react-native-maps';
-import {Platform, View, StyleSheet, Button, Alert, ToastAndroid} from 'react-native';
+import {Platform, View, Button, Alert, ToastAndroid} from 'react-native';
 import {Constants, Location, Permissions, SecureStore} from 'expo';
 import DialogInput from 'react-native-dialog-input';
 import { Actions } from 'react-native-router-flux';
 import styles from '../styles/styles'
 import axios from "axios";
 import {_env} from "../local/env";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from "../actions";
+import {sendRequestSet} from "../utils/token-utils";
 
 let locationPromise;
 
@@ -72,32 +76,36 @@ class Map extends React.Component {
     }
   };
 
+  saveMapToApi = (token) => {
+    const self = this;
+    axios.put(_env.API_URL + '/api/maps', {
+      lessonId: self.props.lessonId,
+      mapMarkers: self.state.markers,
+      mapLines: self.state.lines
+    }, {headers: { Token: token }
+    })
+      .then(function (response) {
+        ToastAndroid.show('Zapisano trase!', ToastAndroid.SHORT);
+        self.props.changeMapState({date: self.props.lessonDate.split('T')[0], id: self.props.lessonId});
+        Actions.Usermenu();
+      })
+      .catch(function (error) {
+        console.log(JSON.stringify(error.message));
+        Alert.alert(
+          'Błąd', '' + JSON.stringify(error.message),
+          [
+            {text: 'Wróć', style: 'cancel'}
+          ]
+        );
+        ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+      });
+  };
+
   saveMap() {
     locationPromise.then(resolveValue => {
       resolveValue.remove();
       if(this.state.locationUpdates) {
-        SecureStore.getItemAsync('token').then((token) => {
-          axios.put(_env.API_URL + '/api/maps', {
-            lessonId: this.props.lessonId,
-            mapMarkers: this.state.markers,
-            mapLines: this.state.lines
-          }, {headers: { Token: token }
-          })
-            .then(function (response) {
-              ToastAndroid.show('Zapisano trase!', ToastAndroid.SHORT);
-              Actions.Usermenu();
-            })
-            .catch(function (error) {
-              console.log(JSON.stringify(error.message));
-              Alert.alert(
-                'Błąd', '' + JSON.stringify(error.message),
-                [
-                  {text: 'Wróć', style: 'cancel'}
-                ]
-              );
-              ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
-            });
-        });
+        sendRequestSet(this.saveMapToApi);
       }
     })
   }
@@ -184,15 +192,16 @@ class Map extends React.Component {
             </View>
           </View>
 
-          <DialogInput isDialogVisible={this.state.isDialogVisible}
-                       title={"Znacznik"}
-                       message={"Dodaj punkt kontrolny"}
-                       hintInput ={"Nazwa"}
-                       submitInput={ (inputText) => {
-                         this.addMarker(inputText);
-                         this.hideDialog();
-                       }}
-                       closeDialog={ () => {this.hideDialog()}}>
+          <DialogInput
+            isDialogVisible={this.state.isDialogVisible}
+            title={"Znacznik"}
+            message={"Dodaj punkt kontrolny"}
+            hintInput ={"Nazwa"}
+            submitInput={ (inputText) => {
+              this.addMarker(inputText);
+              this.hideDialog();
+            }}
+            closeDialog={ () => {this.hideDialog()}}>
           </DialogInput>
 
         </View>
@@ -201,7 +210,12 @@ class Map extends React.Component {
     else return (<View/>);
 
   }
-
 }
 
-export default Map;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    changeMapState: actions.changeMapState
+  }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(Map);

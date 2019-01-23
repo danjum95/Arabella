@@ -25,7 +25,6 @@ class CalendarReadOnly extends React.Component {
 
   componentDidMount() {
     LocaleConfig.defaultLocale = 'pl';
-    ToastAndroid.show('Naciśnij podwójnie dowolny dzień aby dodać jazdy!', ToastAndroid.LONG);
     SecureStore.getItemAsync('token').then((token) => {
       axios.get(_env.API_URL + '/api/lessons/of/school/' + this.props.schoolID, {
         headers: { Token: token }

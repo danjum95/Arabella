@@ -1,15 +1,11 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, Button, ToastAndroid} from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { addEvent } from '../actions/calendarActions';
+import {Text, View, TouchableOpacity, Button, ToastAndroid} from 'react-native';
 import Autocomplete from "react-native-autocomplete-input";
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import {Actions} from "react-native-router-flux";
-import {SecureStore} from "expo";
 import axios from "axios";
 import {_env} from "../local/env";
-import styles from '../styles/styles'
+import styles from '../styles/styles';
 import {sendRequestSet} from "../utils/token-utils";
 
 class AddEvent extends React.Component {

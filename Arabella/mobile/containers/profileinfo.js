@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Modal, Text, Button, TextInput, ToastAndroid} from 'react-native';
+import {View, Modal, Text, Button, TextInput, ToastAndroid, ImageBackground} from 'react-native';
 import styles from '../styles/styles'
 import axios from "axios";
 import {_env} from "../local/env";
@@ -53,29 +53,29 @@ class ProfileInfo extends React.Component {
           <View style={styles.button}>
             <Button
               onPress={() => {
-              if(!this.state.password)
-                ToastAndroid.show('Wpisz hasło!', ToastAndroid.SHORT);
-              else {
-                if(this.state.password === this.state.repeatPassword) {
-                  SecureStore.getItemAsync('token').then((token) => {
-                    axios.post(_env.API_URL + '/api/users/change/password', {
-                      password: this.state.password
-                    }, {
-                      headers: { Token: token, 'Content-Type': 'application/json' }
-                    })
-                      .then(function (response) {
-                        ToastAndroid.show('Zmieniono hasło!', ToastAndroid.SHORT);
-                        this.setModalVisible(false);
-                      }.bind(this))
-                      .catch(function (error) {
-                        ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
-                      });
-                  });
+                if(!this.state.password)
+                  ToastAndroid.show('Wpisz hasło!', ToastAndroid.SHORT);
+                else {
+                  if(this.state.password === this.state.repeatPassword) {
+                    SecureStore.getItemAsync('token').then((token) => {
+                      axios.post(_env.API_URL + '/api/users/change/password', {
+                        password: this.state.password
+                      }, {
+                        headers: { Token: token, 'Content-Type': 'application/json' }
+                      })
+                        .then(function (response) {
+                          ToastAndroid.show('Zmieniono hasło!', ToastAndroid.SHORT);
+                          this.setModalVisible(false);
+                        }.bind(this))
+                        .catch(function (error) {
+                          ToastAndroid.show('Błąd po stronie serwera!', ToastAndroid.SHORT);
+                        });
+                    });
+                  }
+                  else
+                    ToastAndroid.show('Hasła różnią się od siebie!', ToastAndroid.SHORT);
                 }
-                else
-                  ToastAndroid.show('Hasła różnią się od siebie!', ToastAndroid.SHORT);
-              }
-            }} title="Potwierdź" />
+              }} title="Potwierdź" />
           </View>
           <View style={styles.button}>
             <Button
@@ -90,37 +90,39 @@ class ProfileInfo extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground source={require('../assets/background.jpg')} style={{width: '100%', height: '100%'}}>
+        <View style={{marginTop: 150}}>
 
-        <View style={styles.element}>
-          <View style={styles.subElement}>
-            <Text style={styles.lightText}>Mail</Text>
-            <Text style={styles.mainText}>{this.props.userInfo.email}</Text>
+          <View style={styles.element}>
+            <View style={styles.subElement}>
+              <Text style={styles.lightText}>Mail</Text>
+              <Text style={styles.mainText}>{this.props.userInfo.email}</Text>
+            </View>
+
+            <View style={styles.subElement}>
+              <Text style={styles.lightText}>Imię</Text>
+              <Text style={styles.mainText}>{this.props.userInfo.firstName}</Text>
+            </View>
+
+            <View style={styles.subElement}>
+              <Text style={styles.lightText}>Nazwisko</Text>
+              <Text style={styles.mainText}>{this.props.userInfo.lastName}</Text>
+            </View>
+
+            <View style={styles.subElement}>
+              <Text style={styles.lightText}>Rola</Text>
+              <Text style={styles.mainText}>{this.roleInterpreter(this.props.userRole)}</Text>
+            </View>
           </View>
 
-          <View style={styles.subElement}>
-            <Text style={styles.lightText}>Imię</Text>
-            <Text style={styles.mainText}>{this.props.userInfo.firstName}</Text>
+          <View style={styles.button}>
+            <Button onPress={() => {
+              this.setModalVisible(true);
+            }} title="Zmień hasło" />
           </View>
-
-          <View style={styles.subElement}>
-            <Text style={styles.lightText}>Nazwisko</Text>
-            <Text style={styles.mainText}>{this.props.userInfo.lastName}</Text>
-          </View>
-
-          <View style={styles.subElement}>
-            <Text style={styles.lightText}>Rola</Text>
-            <Text style={styles.mainText}>{this.roleInterpreter(this.props.userRole)}</Text>
-          </View>
+          {this.renderModal()}
         </View>
-
-        <View style={styles.button}>
-          <Button onPress={() => {
-            this.setModalVisible(true);
-          }} title="Zmień hasło" />
-        </View>
-        {this.renderModal()}
-      </View>
+      </ImageBackground>
     );
   }
 }

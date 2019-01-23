@@ -4,7 +4,7 @@ import Usermenu from "./containers/usermenu";
 import Calendar from "./containers/calendar";
 import AddEvent from "./containers/addEvent";
 import Map from "./containers/map";
-import ParticipantsList from "./containers/participantsList";
+import UsersList from "./containers/usersList";
 import {ActionConst, Router, Scene} from 'react-native-router-flux';
 import {ActivityIndicator, View} from 'react-native';
 import { SecureStore } from "expo";
@@ -86,10 +86,10 @@ class App extends React.Component {
                 title='AddEvent'
               />
               <Scene
-                component={ParticipantsList}
+                component={UsersList}
                 hideNavBar={true}
-                key='ParticipantsList'
-                title='ParticipantsList'
+                key='UsersList'
+                title='UsersList'
               />
               <Scene
                 component={ProfileInfo}

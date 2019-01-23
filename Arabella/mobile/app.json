@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "arabella-mobile",
-    "description": "Arabella react native project.",
+    "name": "Arabella",
+    "description": "Arabella mobile application - OSK Helper.",
     "slug": "arabella-mobile",
     "privacy": "public",
     "sdkVersion": "31.0.0",
