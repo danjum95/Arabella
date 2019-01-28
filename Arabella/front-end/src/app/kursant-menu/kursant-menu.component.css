@@ -10,6 +10,10 @@ nav.sidebar, .main{
   padding: 10px 10px 0 10px;
 }
 
+.routerLink {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 nav.sidebar.navbar.sidebar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
   margin-left: 0px;
 }
@@ -47,6 +51,7 @@ nav.sidebar:hover{
     height: 100%;
     margin: auto;
   position: fixed;
+  overflow: scroll;
 }
 
 @media screen and (max-width: 768px) {
@@ -59,13 +64,14 @@ nav.sidebar:hover{
     margin-right: inherit !important;
   }
   nav.sidebar{
-    width: 205px;
-    height: 305px;
-    margin-left: -170px;
+    width: 140px;
+    height: 260px;
+    margin-left: -100px;
     float: left;
+    margin-top: 10%;
   }
   nav.sidebar .navbar-nav > li {
     border-bottom: 2px #e5e5e5d0 solid;
-    transform: scale(0.9)!important;
+    transform: scale(0.7)!important;
   }
   }

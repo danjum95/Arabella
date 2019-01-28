@@ -1,8 +1,7 @@
 .button1 {
-  padding: 10px 20px;
-  position: block;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  padding: 18px 20px 10px 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black;
   border: none;
   transition: 1s;
   cursor: pointer;
@@ -11,12 +10,12 @@
 
 .button2 {
   padding: 10px 20px;
-  position: block;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(0, 0, 0, 0.7);
   border: none;
   transition: 1s;
   cursor: pointer;
   display: inline-block;
+  color: white;
 }
 
 .btt {
@@ -25,8 +24,8 @@
 }
 
 .button2:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black;
 }
 
 .table {

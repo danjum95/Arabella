@@ -1,10 +1,9 @@
-
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-      type="text/css"
-      rel="stylesheet"
-    />
-    <link
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+  type="text/css"
+  rel="stylesheet"
+/>
+<link
   href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
   rel="stylesheet"
   id="bootstrap-css"
@@ -12,52 +11,44 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-    <div class="container">
-      <div class= "title">
-        <h3 id="title">Wyślij wiadomość</h3>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="title">Wyślij wiadomość</div>
       <div class="inbox_msg">
-        <div>
-          <p>Skrzynka odbiorcza</p>
-        </div>
-        <div class="inbox_people">
-          <div class="inbox_chat" *ngFor="let message of (rev$ | async)">
-            <div class="chat_list">
-              <div class="chat_ib">
-                <h5>Od: {{ message.sender.email }}</h5>
-                <p>Wiadomość: {{ message.message }}</p>
-              </div>
-            </div>
+        <div class="inbox">Skrzynka odbiorcza</div>
+        <div class="inbox_people" *ngFor="let message of (rev$ | async)">
+          <div class="chat_list">
+            <h5>Od: {{ message.sender.email }}</h5>
+            <p>Wiadomość: {{ message.message }}</p>
           </div>
         </div>
         <div class="mesgs">
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <input
-                type="text"
-                class="send_to"
-                placeholder="Odbiorca"
-                [(ngModel)]="to"
-                name="to"
-                required
-              />
-              <textarea
-                type="text"
-                class="message_to"
-                placeholder="Wiadomość"
-                [(ngModel)]="textMessage"
-                name="textMessage"
-                required>
-              </textarea>
-              <button (click)="sendMessage()" class="msg_send_btn">
-                <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
+          <input
+            type="text"
+            class="send_to"
+            placeholder="Odbiorca"
+            [(ngModel)]="to"
+            name="to"
+            required
+          />
+          <textarea
+            type="text"
+            class="message_to"
+            placeholder="Wiadomość"
+            [(ngModel)]="textMessage"
+            name="textMessage"
+            required
+          >
+          </textarea>
+          <button (click)="sendMessage()" class="msg_send_btn">
+            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </div>
-  <div class="alert alert-success" role="alert" *ngIf="positive">
-    Wiadomość została wysłana!
   </div>
-
+</div>
+<div class="alert alert-success" role="alert" *ngIf="positive">
+  Wiadomość została wysłana!
+</div>

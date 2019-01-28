@@ -50,6 +50,7 @@ export class MapComponent implements OnInit {
     this.closer = document.getElementById('popup-closer');
     this.content = document.getElementById('popup-content');
     this.container = document.getElementById('popup');
+ 
     this.Auth.getSchool(localStorage.getItem('userToken')).subscribe(dat => {
       this.Auth.getLessons(localStorage.getItem('userToken'), dat.id).subscribe(da => {
         for (var i = 0; i < da.length; i++)
@@ -65,6 +66,7 @@ export class MapComponent implements OnInit {
  
   getMap(id)
   {
+        this.container.style.display = 'inline-block';
         setTimeout(() => this.mapRendered = true, 10);
         setTimeout(() => this.mapRendered = false, 10);
         this.vectorSource = new OlVectorSource({});
@@ -190,6 +192,7 @@ export class MapComponent implements OnInit {
         }, error => {
           if (error.status == 404)
           {            
+            this.container.style.display = 'none';
             this.mapNotDefined = true;
             this.mapRendered = false;
             this.previousMap = id.toString();

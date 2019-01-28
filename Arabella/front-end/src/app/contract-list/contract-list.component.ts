@@ -35,15 +35,16 @@ export class ContractListComponent implements OnInit {
         }
       }
     });
-    setTimeout(() => {
-      this.columns = ['Użytkownik', 'E-mail', 'Zatwierdź'];
-      this.allContracts$ = this.Auth.getAllContracts(localStorage.getItem('userToken'));
-    }, 300);
+
+    this.columns = ['Użytkownik', 'E-mail', 'Zatwierdź'];
+    this.allContracts$ = this.Auth.getAllContracts(localStorage.getItem('userToken'));
   }
 
   reg(id) {
     this.message = true;
-    this.Auth.acceptContract(localStorage.getItem('userToken'), id, 2).subscribe();
+    setTimeout(() => {
+      this.Auth.acceptContract(localStorage.getItem('userToken'), id, 2).subscribe();
+    }, 100);
 
     setTimeout(() => {
       this.message = false;
