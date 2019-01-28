@@ -17,11 +17,13 @@
       <div class="title">Wyślij wiadomość</div>
       <div class="inbox_msg">
         <div class="inbox">Skrzynka odbiorcza</div>
-        <div class="inbox_people" *ngFor="let message of (rev$ | async)">
-          <div class="chat_list">
-            <h5>Od: {{ message.sender.email }}</h5>
-            <p>Wiadomość: {{ message.message }}</p>
-          </div>
+        <div class="inbox_people">
+            <div class="inbox_chat" *ngFor="let message of (rev$ | async)">
+              <div class="chat_list">
+                  <h5>Od: {{ message.sender.email }}</h5>
+                  <p>Wiadomość: {{ message.message }}</p>
+              </div>
+            </div>
         </div>
         <div class="mesgs">
           <input
@@ -50,5 +52,5 @@
   </div>
 </div>
 <div class="alert alert-success" role="alert" *ngIf="positive">
-  Wiadomość została wysłana!
-</div>
+    Wiadomość została wysłana!
+  </div>
