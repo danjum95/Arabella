@@ -9,8 +9,10 @@ import arabella.backend.repository.TokenRepository;
 import arabella.backend.repository.UserRepository;
 import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -20,6 +22,9 @@ import java.util.concurrent.TimeUnit;
 @CrossOrigin("**")
 @RequestMapping("/api/login")
 public class LoginRestController {
+
+    @Value("${security.hash.pepper}")
+    private String pepper;
 
     @Autowired
     TokenRepository tokenRepository;
@@ -49,7 +54,7 @@ public class LoginRestController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
-        if (!dbUser.getPassword().equals(password)) {
+        if (!BCrypt.checkpw(user.getPassword() + pepper, dbUser.getPassword())) {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
 

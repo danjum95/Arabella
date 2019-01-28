@@ -8,11 +8,12 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.bytebuddy.utility.RandomString;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.FieldError;
@@ -30,6 +31,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
+
+    @Value("${security.hash.pepper}")
+    private String pepper;
 
     Gson gson = new GsonBuilder().setExclusionStrategies(new ExclusionStrategyImpl()).create();
 
@@ -75,9 +79,10 @@ public class UserRestController {
             Token token = new Token();
             Long userIdForToken;
             try {
+                hashUserPassword(newUser);
                 userIdForToken = userRepository.save(newUser).getId();
             } catch (Exception ex) {
-                return new ResponseEntity<>("Wrong email format", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>("Wrong email format" + ex.getMessage(), HttpStatus.BAD_REQUEST);
             }
             token.setUserId(userIdForToken);
             token.setValue(SessionController.generateTokenValue());
@@ -94,6 +99,11 @@ public class UserRestController {
         } else {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
+    }
+
+    private void hashUserPassword(User user) {
+        String hashedPassword = BCrypt.hashpw(user.getPassword() + pepper, BCrypt.gensalt());
+        user.setPassword(hashedPassword);
     }
 
     @PutMapping("/already/activated")
